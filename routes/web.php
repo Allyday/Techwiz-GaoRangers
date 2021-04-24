@@ -30,7 +30,12 @@ Route::get('/typeproduct', function () {
 Route::get('/adminaccount', function () {
     return view('view_admin.adminaccount');
 })->name('adminaccount');
+//Route::get('/restaurants',[\App\Http\Controllers\RestaurantController::class,'index']);
+Route::get('/aaa',function(){
+    return "aaaaa";
+}
 
+);
 
 
 Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
