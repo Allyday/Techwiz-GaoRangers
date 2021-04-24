@@ -11,6 +11,24 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
+Route::get('/allproduct', function () {
+    return view('view_admin.productAll');
+})->name('allproduct');
+
+Route::get('/typeproduct', function () {
+    return view('view_admin.typeproduct');
+})->name('typeproduct');
+
+
+Route::get('/adminaccount', function () {
+    return view('view_admin.adminaccount');
+})->name('adminaccount');
+//Route::get('/restaurants',[\App\Http\Controllers\RestaurantController::class,'index']);
+Route::get('/aaa',function(){
+    return "aaaaa";
+}
+
+);
 
 
 Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
