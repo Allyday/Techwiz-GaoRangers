@@ -11,8 +11,12 @@ use App\Http\Controllers\DishesController;
 
 
 // public
+// Route::get('/', function () {
+//     return view('index');
+// })->name('home');
+
 Route::get('/', function () {
-    return view('index');
+    return '<h1>home page</h1>';
 })->name('home');
 
 Route::get('/allproduct', function () {
