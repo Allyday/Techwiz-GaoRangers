@@ -41,6 +41,8 @@ Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 
 Route::get('auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
+Route::get('/', [AdminController::class, 'index'])->name('home');
+
 
 
 // check middleware
@@ -48,7 +50,6 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('auth/login', [AuthController::class, 'login'])->name('auth.login');
     Route::get('auth/register', [AuthController::class, 'register'])->name('auth.register');
 
-    Route::get('/', [AdminController::class, 'index'])->name('home');
     // add more route need authenticate
 });
 
