@@ -32,7 +32,6 @@ Route::get('/adminaccount', [UserController::class, "index"])->name('adminaccoun
 Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
 
 
-);
 
 
 Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
