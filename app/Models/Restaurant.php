@@ -10,6 +10,7 @@ class Restaurant extends Model
     use HasFactory;
 
     protected $table = 'restaurants';
-
     protected $primaryKey = 'id';
+    public $timestamps = true;
+    protected $fillable = ['name', 'city', 'district', 'municipality', 'street', 'houseNumber', 'keywords'];
 }
