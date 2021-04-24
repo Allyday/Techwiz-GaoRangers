@@ -20,6 +20,9 @@ class AuthCheck
             return redirect(route('auth.login'))->with('fail', 'You have to login first !');
         }
         if (session()->has('User') && ($request->path() == 'auth/login' || $request->path() == 'auth/register')) {
+            // if(session()->has('Type')){
+
+            // };
             return back();
         }
         // clear cache (can not access previous page, if logout)

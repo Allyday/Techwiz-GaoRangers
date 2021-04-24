@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
-use App\Models\Admin;
+use App\Models\User;
+use App\Rules\StaffRule;
+use App\Http\Requests\ValidateRegisterRequest;
 
-use App\Http\Requests\RegisterValidationRequest;
-use App\Http\Requests\LoginValidationRequest;
 
 class AuthController extends Controller
 {
@@ -17,23 +17,36 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    function check(LoginValidationRequest $request)
+    function check(Request $request)
     {
         // validation request
-        $request->validated();
+        $request->validated([
+            'username' => 'required ',
+            'password' => 'required | max: 12 | min:4',
+        ]);
 
-        $user = Admin::get()->where('email', '=', $request->email)->first();
+        $user = User::get()->where('userName', '=', $request->username)->first();
+        print_r($user);
 
         if (!$user) {
             return back()->with('fail', 'We do not recognize your email address !');
         } else {
             // check password
-            if (!Hash::check($request->password, $user->password)) {
+
+            // if (!Hash::check($request->password, $user->password)) {
+            if (!($request->password == $user->password)) {
+
                 return back()->with('fail', 'Incorrect password');
             } else {
-                $request->session()->put('User', $user->id);
+                if ($user->type == 2) {
+                    $request->session()->put('User', $user->id);
 
-                return redirect(route('admin'));
+                    return redirect(route('home'));
+                }
+
+                $request->session()->put('User', $user->id);
+                $request->session()->put('User_type', $user->type);
+                return redirect(route('staff'));
             }
         }
     }
@@ -45,25 +58,67 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    function save(RegisterValidationRequest $request)
+    function save(ValidateRegisterRequest $request)
     {
         // validation request
         $request->validated();
 
-        // insert to database
-        $user = Admin::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+        // set default for column : `picture`
+        $picture = 'http://img/';
 
-        $save = $user->save();
+        if ($request->type == 1) {
+            // fix restaurantId
+            $restaurantId = 3;
+            // create user for staff
+            $user = User::create([
+                'phoneNumber' => $request->phoneNumber,
+                'userName' => '_'.$restaurantId.$request->userName,
+                'mail' => $request->mail,
+                'password' => Hash::make($request->password),
+                'gender' => $request->gender,
+                'firstName' => $request->firstname,
+                'lastName' => $request->lastname,
+                'type' => $request->type,
+                'picture' => $picture,
+                'restaurantId' => $restaurantId,
+            ]);
 
-        if ($save) {
-            return back()->with('success', 'Create success account !');
+            $save = $user->save();
+
+            if ($save) {
+                return 'success, Create success account !';
+            } else {
+                return 'fail, Something went wrong, try again later !';
+            }
         } else {
-            return back()->with('fail', 'Something went wrong, try again later !');
+
+            // insert to database 
+            $user = User::create([
+                'phoneNumber' => $request->phoneNumber,
+                'userName' => $request->userName,
+                'mail' => $request->mail,
+                'password' => Hash::make($request->password),
+                'gender' => $request->gender,
+                'firstName' => $request->firstname,
+                'lastName' => $request->lastname,
+                'type' => $request->type,
+                'picture' => $picture,
+            ]);
+            
+            $save = $user->save();
+
+            if ($save) {
+                return back()->with('success', 'Create success account !');
+            } else {
+                return back()->with('fail', 'Something went wrong, try again later !');
+            }
         }
+    }
+
+
+    function register_staff()
+    {
+        return view('auth.register_staff');
     }
 
     function logout()
@@ -77,7 +132,7 @@ class AuthController extends Controller
 
     function admin()
     {
-        $user = Admin::get()->where('id', '=', session('User'))->first();
+        $user = User::get()->where('id', '=', session('User'))->first();
         $data = ['user' => $user];
         return view('admin/dashboard', compact('user', $data));
     }
@@ -93,7 +148,7 @@ class AuthController extends Controller
 
 
         // get user
-        $user = Admin::get()->where('id', '=', $request->id)->first();
+        $user = User::get()->where('id', '=', $request->id)->first();
 
         // get password, check password
         if (!Hash::check($request->password, $user->password)) {
