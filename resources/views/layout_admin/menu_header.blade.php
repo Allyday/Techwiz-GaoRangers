@@ -1,4 +1,3 @@
-
 {{-- menu --}}
 <div class="page-wrapper chiller-theme toggled">
    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
@@ -49,7 +48,7 @@
                   <span>QUẢN LÝ HỆ THỐNG</span>
                </li>
                <li>
-                  <a href="{{ route('adminaccount') }}">
+                  <a href="{{ route('staff.account') }}">
                      <i class="fas fa-users"></i> Quản lý tài khoản
                   </a>
                </li>
@@ -61,7 +60,7 @@
                   <div class="sidebar-submenu">
                      <ul>
                         <li>
-                           <a href="./admin_billAll.php"><i class="fas fa-clipboard-check"></i>Danh sách đơn hàng</a>
+                           <a href="#"><i class="fas fa-clipboard-check"></i>Danh sách đơn hàng</a>
                         </li>
                         <li>
                            <a href="#"><i class="fas fa-reply"></i>Trả hàng</a>
@@ -83,10 +82,10 @@
                   <div class="sidebar-submenu">
                      <ul>
                         <li>
-                           <a href="{{ route('allproduct') }}"><i class="fas fa-shopping-basket"></i>Danh sách sản phẩm</a>
+                           <a href="{{ route('staff.product') }}"><i class="fas fa-shopping-basket"></i>Danh sách sản phẩm</a>
                         </li>
                         <li>
-                           <a href="{{ route('typeproduct') }}"><i class="fas fa-layer-group"></i>Loại sản phẩm</a>
+                           <a href="{{ route('staff.type') }}"><i class="fas fa-layer-group"></i>Loại sản phẩm</a>
                         </li>
                         <li>
                            <a href="./admin_productsInStore.php"><i class="fas fa-store"></i>Kho</a>
