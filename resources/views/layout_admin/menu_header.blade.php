@@ -48,7 +48,7 @@
                   <span>QUẢN LÝ HỆ THỐNG</span>
                </li>
                <li>
-                  <a href="{{ route('staff.account') }}">
+                  <a href="">
                      <i class="fas fa-users"></i> Quản lý tài khoản
                   </a>
                </li>
@@ -82,10 +82,10 @@
                   <div class="sidebar-submenu">
                      <ul>
                         <li>
-                           <a href="{{ route('staff.product') }}"><i class="fas fa-shopping-basket"></i>Danh sách sản phẩm</a>
+                           <a href=""><i class="fas fa-shopping-basket"></i>Danh sách sản phẩm</a>
                         </li>
                         <li>
-                           <a href="{{ route('staff.type') }}"><i class="fas fa-layer-group"></i>Loại sản phẩm</a>
+                           <a href=""><i class="fas fa-layer-group"></i>Loại sản phẩm</a>
                         </li>
                         <li>
                            <a href="./admin_productsInStore.php"><i class="fas fa-store"></i>Kho</a>

@@ -20,7 +20,7 @@ class AuthController extends Controller
     function check(Request $request)
     {
         // validation request
-        $request->validated([
+        $request->validate([
             'username' => 'required ',
             'password' => 'required | max: 12 | min:4',
         ]);
@@ -33,8 +33,8 @@ class AuthController extends Controller
         } else {
             // check password
 
-            if (!Hash::check($request->password, $user->password)) {
-                // if (!($request->password == $user->password)) {
+            // if (!Hash::check($request->password, $user->password)) {
+                if (!($request->password == $user->password)) {
 
                 return back()->with('fail', 'Incorrect password');
             } else {
