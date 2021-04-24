@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DishesController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +31,13 @@ Route::get('/typeproduct', function () {
 })->name('typeproduct');
 
 
-Route::get('/adminaccount', function () {
-    return view('view_admin.adminaccount');
-})->name('adminaccount');
+// Route::get('/adminaccount', function () {
+//     return view('view_admin.adminaccount');
+// })->name('adminaccount');
+
+Route::get('/adminaccount', [UserController::class, "index"])->name('adminaccount');
+Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
+
 
 
 
