@@ -13,9 +13,30 @@ Route::get('/', function () {
     return view('template.home');
 })->name('home');
 
+Route::get('/food', function () {
+    return view('template.food_results');
+})->name('food_result');
 
-Route::get('/adminaccount', [UserController::class, "index"])->name('adminaccount');
-Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
+Route::get('/profile', function () {
+    return view('template.profile');
+})->name('profile');
+
+Route::get('/restaurant', function () {
+    return view('template.restaurants');
+})->name('restaurant');
+
+
+Route::get('/contact', function () {
+    return view('template.contact');
+})->name('contact');
+
+Route::get('/checkout', function () {
+    return view('template.checkout');
+})->name('checkout');
+
+
+// Route::get('/adminaccount', [UserController::class, "index"])->name('adminaccount');
+// Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
 
 
 
@@ -47,6 +68,4 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/product/type', [AdminController::class, 'type_product'])->name('staff.type');
 
     Route::get('/staff/account', [AdminController::class, 'setting_account'])->name('staff.account');
-
-    
 });

@@ -1,7 +1,7 @@
 <!--header starts-->
 <header id="header" class="header-scroll top-header headrom">
     <!-- .navbar -->
-    <nav class="navbar navbar-dark" style="background-image: url({{ asset('images/menu-bg.jpg') }}) ">
+    <nav class="navbar navbar-dark" >
         <div class="container">
             <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
             <a class="navbar-brand" href="index.html"> <img class="img-rounded" src="{{ asset('images/food-picky-logo.png') }}" alt=""> </a>

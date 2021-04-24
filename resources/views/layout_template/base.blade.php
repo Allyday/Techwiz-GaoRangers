@@ -9,12 +9,16 @@
    <meta name="description" content="">
    <meta name="author" content="">
    <link rel="icon" href="#">
-   <title>Starter Template for Bootstrap</title>
+   <title>
+      @yield('title')
+   </title>
    <!-- Bootstrap core CSS -->
    <link href="{{ asset('template/css/bootstrap.min.css') }}" rel="stylesheet">
    <link href="{{ asset('template/css/font-awesome.min.css') }}" rel="stylesheet">
    <link href="{{ asset('template/css/animsition.min.css') }}" rel="stylesheet">
    <link href="{{ asset('template/css/animate.css') }}" rel="stylesheet">
+   <!-- fontawesome cdn  -->
+   {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" > --}}
    <!-- Custom styles for this template -->
    <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
 </head>
@@ -25,7 +29,7 @@
       @include('layout_template.header')
 
       @yield('content')
-      
+
       @include('layout_template.footer')
 
    </div>
