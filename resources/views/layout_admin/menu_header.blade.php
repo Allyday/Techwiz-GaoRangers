@@ -28,7 +28,7 @@
             </div>
          </div>
          <!-- sidebar-header  -->
-         <div class="sidebar-search">
+         {{-- <div class="sidebar-search">
             <div>
                <div class="input-group">
                   <input type="text" class="form-control search-menu" placeholder="Search...">
@@ -39,7 +39,7 @@
                   </div>
                </div>
             </div>
-         </div>
+         </div> --}}
          <!-- sidebar-search  -->
 
          <!-- sidebar-menu  -->
