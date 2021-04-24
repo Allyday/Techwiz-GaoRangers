@@ -72,7 +72,7 @@ class AuthController extends Controller
             // create user for staff
             $user = User::create([
                 'phoneNumber' => $request->phoneNumber,
-                'userName' => '_'.$restaurantId.$request->userName,
+                'userName' => '_' . $restaurantId . $request->userName,
                 'mail' => $request->mail,
                 'password' => Hash::make($request->password),
                 'gender' => $request->gender,
@@ -104,7 +104,7 @@ class AuthController extends Controller
                 'type' => $request->type,
                 'picture' => $picture,
             ]);
-            
+
             $save = $user->save();
 
             if ($save) {

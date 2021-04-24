@@ -33,13 +33,13 @@ Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
 
 
 
-
+// post check log in
 Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
-
+// check register
 Route::post('auth/save', [AuthController::class, 'save'])->name('auth.save');
-
+// check change password
 Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
-
+// log out
 Route::get('auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // only hiencoday access
@@ -54,9 +54,9 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     // add more route need authenticate
     Route::get('/staff', [AdminController::class, 'index'])->name('staff');
 
-    Route::get('/staff/menu', [AdminController::class, 'products'])->name('staff.menu');
+    Route::get('/staff/menu', [AdminController::class, 'menu'])->name('staff.menu');
 
     Route::get('/staff/product/type', [AdminController::class, 'type_product'])->name('staff.type');
 
-    Route::get('/staff/setting/account', [AdminController::class, 'setting_account'])->name('staff.account');
+    Route::get('/staff/account', [AdminController::class, 'setting_account'])->name('staff.account');
 });
