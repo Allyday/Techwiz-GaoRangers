@@ -33,8 +33,8 @@ class AuthController extends Controller
         } else {
             // check password
 
-            // if (!Hash::check($request->password, $user->password)) {
-            if (!($request->password == $user->password)) {
+            if (!Hash::check($request->password, $user->password)) {
+                // if (!($request->password == $user->password)) {
 
                 return back()->with('fail', 'Incorrect password');
             } else {
@@ -86,9 +86,13 @@ class AuthController extends Controller
             $save = $user->save();
 
             if ($save) {
-                return 'success, Create success account !';
+
+                $request->session()->put('User', $user->id);
+                $request->session()->put('User_type', $user->type);
+
+                return redirect(route('staff'));
             } else {
-                return 'fail, Something went wrong, try again later !';
+                return back()->with('fail, Something went wrong, try again later !');
             }
         } else {
 
@@ -108,7 +112,10 @@ class AuthController extends Controller
             $save = $user->save();
 
             if ($save) {
-                return back()->with('success', 'Create success account !');
+                $request->session()->put('User', $user->id);
+                $request->session()->put('User_type', $user->type);
+
+                return redirect(route('home'));
             } else {
                 return back()->with('fail', 'Something went wrong, try again later !');
             }
