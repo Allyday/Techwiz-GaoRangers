@@ -1434,7 +1434,7 @@ App section
 
 footer {
     background: url(../images/pattern.png)center repeat;
-    padding: 90px 0;
+    padding: 30px 0 25px;
     z-index: 1;
     position: relative;
 }
@@ -1490,10 +1490,6 @@ footer ul li a {
 
 .how-it-works-links {
     margin-bottom: 70px;
-}
-
-.address p {
-    margin-bottom: 35px;
 }
 
 footer ul li a:hover {

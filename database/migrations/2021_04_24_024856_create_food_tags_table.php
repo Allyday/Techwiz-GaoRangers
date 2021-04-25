@@ -16,6 +16,7 @@ class CreateFoodTagsTable extends Migration
         Schema::create('food_tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
     }

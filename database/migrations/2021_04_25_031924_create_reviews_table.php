@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateReviews extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,22 @@ class UpdateReviews extends Migration
      */
     public function up()
     {
-        Schema::table('reviews', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('userId');
+            $table->unsignedInteger('restaurantId');
+            $table->unsignedInteger('orderId')->unique();
+            $table->float('stars')->default(0)->nullable();
+            $table->tinyInteger('is_active')->default(1);
+            $table->timestamps();
             $table->foreign('userId')->references('id')
                 ->on('users')
                 ->onDelete('cascade');
             $table->foreign('restaurantId')->references('id')
                 ->on('restaurants')
+                ->onDelete('cascade');
+            $table->foreign('orderId')->references('id')
+                ->on('orders')
                 ->onDelete('cascade');
         });
     }
@@ -30,8 +40,6 @@ class UpdateReviews extends Migration
      */
     public function down()
     {
-        Schema::table('reviews', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('reviews');
     }
 }

@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('mail')->unique();
             $table->unsignedInteger('restaurantId')->nullable();
             $table->tinyInteger('type')->default(1);
+            $table->tinyInteger('is_active')->default(1);
             $table->foreign('restaurantId')
                 ->references('id')
                 ->on('restaurants')
