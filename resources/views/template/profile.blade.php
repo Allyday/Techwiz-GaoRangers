@@ -8,7 +8,7 @@
    <div class="top-links">
       <div class="container">
          <ul class="row links">
-            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="index.html">Choose Your Location</a></li>
+            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
             <li class="col-xs-12 col-sm-3 link-item"><span>2</span><a href="restaurants.html">Choose Restaurant</a></li>
             <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="profile.html">Pick Your favorite food</a></li>
             <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="checkout.html">Order and Pay online</a></li>
@@ -384,7 +384,8 @@
                               </select>
                            </div>
                            <div class="col-xs-4">
-                              <input class="form-control" type="number" value="2" id="example-number-input"> </div>
+                              <input class="form-control" type="number" value="2" id="example-number-input">
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -400,7 +401,8 @@
                               </select>
                            </div>
                            <div class="col-xs-4">
-                              <input class="form-control" value="4" id="quant-input"> </div>
+                              <input class="form-control" value="4" id="quant-input">
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -433,34 +435,6 @@
       <!-- end:row -->
    </div>
    <!-- end:Container -->
-   <section class="app-section">
-      <div class="app-wrap">
-         <div class="container">
-            <div class="row text-img-block text-xs-left">
-               <div class="container">
-                  <div class="col-xs-12 col-sm-6 hidden-xs-down right-image text-center">
-                     <figure> <img src="{{ asset('images/app.png') }}" alt="Right Image"> </figure>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 left-text">
-                     <h3>The Best Food Delivery App</h3>
-                     <p>Now you can make food happen pretty much wherever you are thanks to the free easy-to-use Food Delivery &amp; Takeout App.</p>
-                     <div class="social-btns">
-                        <a href="#" class="app-btn apple-button clearfix">
-                           <div class="pull-left"><i class="fa fa-apple"></i> </div>
-                           <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">App Store</span> </div>
-                        </a>
-                        <a href="#" class="app-btn android-button clearfix">
-                           <div class="pull-left"><i class="fa fa-android"></i> </div>
-                           <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">Play store</span> </div>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
-
    <!-- Modal -->
    <div class="modal fade" id="order-modal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -491,7 +465,8 @@
                               </select>
                            </div>
                            <div class="col-xs-5">
-                              <input class="form-control" type="number" value="0" id="quant-input-2"> </div>
+                              <input class="form-control" type="number" value="0" id="quant-input-2">
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -522,7 +497,8 @@
                               </select>
                            </div>
                            <div class="col-xs-5">
-                              <input class="form-control" type="number" value="0" id="quant-input-3"> </div>
+                              <input class="form-control" type="number" value="0" id="quant-input-3">
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -553,7 +529,8 @@
                               </select>
                            </div>
                            <div class="col-xs-5">
-                              <input class="form-control" type="number" value="0" id="quant-input-4"> </div>
+                              <input class="form-control" type="number" value="0" id="quant-input-4">
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -584,7 +561,8 @@
                               </select>
                            </div>
                            <div class="col-xs-5">
-                              <input class="form-control" type="number" value="0" id="quant-input-5"> </div>
+                              <input class="form-control" type="number" value="0" id="quant-input-5">
+                           </div>
                         </div>
                      </div>
                   </div>
