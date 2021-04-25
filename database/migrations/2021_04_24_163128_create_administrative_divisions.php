@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFoodTagsTable extends Migration
+class CreateAdministrativeDivisions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateFoodTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('food_tags', function (Blueprint $table) {
+        Schema::create('administrativeDivisions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->nullable();
+            $table->tinyInteger('parentId')->default(0)->nullable();
+            $table->tinyInteger('type')->default(0);
+            $table->string('nearBy')->nullable();
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
@@ -28,6 +31,6 @@ class CreateFoodTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('food_tags');
+        Schema::dropIfExists('administrativeDivisions');
     }
 }

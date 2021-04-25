@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateUserAddresses extends Migration
+class CreateFeedbackTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,13 @@ class UpdateUserAddresses extends Migration
      */
     public function up()
     {
-        Schema::table('user_addresses', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('userId');
+            $table->string('title')->nullable();
+            $table->string('content')->nullable();
+            $table->tinyInteger('is_active')->default(1);
+            $table->timestamps();
             $table->foreign('userId')->references('id')
                 ->on('users')
                 ->onDelete('cascade');
@@ -27,8 +33,6 @@ class UpdateUserAddresses extends Migration
      */
     public function down()
     {
-        Schema::table('user_addresses', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('feedback');
     }
 }

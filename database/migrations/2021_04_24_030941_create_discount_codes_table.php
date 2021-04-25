@@ -22,6 +22,7 @@ class CreateDiscountCodesTable extends Migration
             $table->double('orderMin')->nullable();
             $table->dateTime('startDate')->nullable();
             $table->dateTime('endDate')->nullable();
+            $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
     }

@@ -22,6 +22,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('street',500);
             $table->string('houseNumber',15)->unique();
             $table->string('keywords',500);
+            $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
     }

@@ -21,6 +21,11 @@ class CreateOrdersTable extends Migration
             $table->double('deliveryFee')->default(0)->nullable();
             $table->double('discountAmount')->default(0)->nullable();
             $table->unsignedInteger('discountCodeId')->nullable();
+            $table->string('city',500)->nullable();
+            $table->string('district',500)->nullable();
+            $table->string('municipality',500)->nullable();
+            $table->string('street',500)->nullable();
+            $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
             $table->foreign('userId')->references('id')
                 ->on('users')

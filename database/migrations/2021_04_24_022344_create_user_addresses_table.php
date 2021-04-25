@@ -22,8 +22,12 @@ class CreateUserAddressesTable extends Migration
             $table->string('street',500)->nullable();
             $table->string('houseNumber',15);
             $table->string('latLon')->nullable();
+            $table->tinyInteger('is_active')->default(1);
             $table->tinyInteger('isDefault')->default(0);
             $table->timestamps();
+            $table->foreign('userId')->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

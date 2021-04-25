@@ -18,8 +18,10 @@ class CreateDishesTable extends Migration
             $table->string('name',500);
             $table->string('description')->nullable();
             $table->double('price')->nullable();
+            $table->string('photo',1000);
             $table->unsignedInteger('restaurantId');
             $table->unsignedInteger('dishCategoryId')->nullable();
+            $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
             $table->foreign('restaurantId')->references('id')
                 ->on('restaurants')
