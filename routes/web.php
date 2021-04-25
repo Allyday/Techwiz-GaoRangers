@@ -34,12 +34,6 @@ Route::get('/checkout', function () {
     return view('template.checkout');
 })->name('checkout');
 
-
-// Route::get('/adminaccount', [UserController::class, "index"])->name('adminaccount');
-// Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
-
-
-
 // post check log in
 Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
 // check register
@@ -68,4 +62,10 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/product/type', [AdminController::class, 'type_product'])->name('staff.type');
 
     Route::get('/staff/account', [AdminController::class, 'setting_account'])->name('staff.account');
+    Route::get('/adminaccount', [UserController::class, "index"])->name('adminaccount');
+    Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
+    Route::get('/staff/{dish}/edit', [DishesController::class, "edit"]);
+    Route::post('/staff/editDish/{dish}', [DishesController::class, "update"]);
+    Route::get('/staff/dish/create', [DishesController::class, "create"]);
+    Route::get('/staff/dish/store', [DishesController::class, "store"]);
 });
