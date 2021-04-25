@@ -55,7 +55,7 @@
 <!-- banner part ends -->
 <!-- location match part starts -->
 <div class="location-match text-xs-center">
-   <div class="container"> <span>356 restaurants matched your location: <span class="primary-color">New York, NY -</span> </span>
+   <div class="container"> <span>356 restaurants in your city: <span class="primary-color">Hanoi, Vietnam</span> </span>
    </div>
 </div>
 <!-- location match part ends -->
@@ -78,7 +78,7 @@
                <div class="content">
                   <h5><a href="profile.html">The South"s Best Fried Chicken</a></h5>
                   <div class="product-name">Fried Chicken with cheese</div>
-                  <div class="price-btn-block"> <span class="price">$ 15,99</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
+                  <div class="price-btn-block"> <span class="price">$15,99</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
                </div>
                <div class="restaurant-block">
                   <div class="left">
@@ -101,7 +101,7 @@
                <div class="content">
                   <h5><a href="profile.html">The South"s Best Fried Chicken</a></h5>
                   <div class="product-name">Fried Chicken with cheese</div>
-                  <div class="price-btn-block"> <span class="price">$ 18,49</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
+                  <div class="price-btn-block"> <span class="price">$18,49</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
                </div>
                <div class="restaurant-block">
                   <div class="left">
@@ -124,7 +124,7 @@
                <div class="content">
                   <h5><a href="profile.html">The South"s Best Fried Chicken</a></h5>
                   <div class="product-name">Fried Chicken with cheese</div>
-                  <div class="price-btn-block"> <span class="price">$ 21,19</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
+                  <div class="price-btn-block"> <span class="price">$21,19</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
                </div>
                <div class="restaurant-block">
                   <div class="left">
@@ -144,7 +144,7 @@
 <section class="how-it-works">
    <div class="container">
       <div class="text-xs-center">
-         <h2>Easy 3 Step Order</h2>
+         <h2>Easy 3-Step Order</h2>
          <!-- 3 block sections starts -->
          <div class="row how-it-works-solution">
             <div class="col-xs-12 col-sm-12 col-md-4 how-it-works-steps white-txt col1">
@@ -191,7 +191,7 @@
       <!-- 3 block sections ends -->
       <div class="row">
          <div class="col-sm-12 text-center">
-            <p class="pay-info">Pay by Cash on delivery , Card or Paypal</p>
+            <p class="pay-info">Pay by Cash on delivery, Card or Paypal</p>
          </div>
       </div>
    </div>
@@ -214,8 +214,8 @@
                      <li><a href="#" class="selected" data-filter="*">Grill</a> </li>
                      <li><a href="#" data-filter=".pizza">Pizza</a> </li>
                      <li><a href="#" data-filter=".pasta">Pasta</a> </li>
-                     <li><a href="#" data-filter=".thaifood">thai food</a> </li>
-                     <li><a href="#" data-filter=".fish">fish</a> </li>
+                     <li><a href="#" data-filter=".thaifood">Thai food</a> </li>
+                     <li><a href="#" data-filter=".fish">Fish</a> </li>
                   </ul>
                </nav>
             </div>
@@ -235,7 +235,7 @@
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
                         <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
-                           <div class="cost"><i class="fa fa-check"></i> Min $ 10,00</div>
+                           <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
                            <div class="ratings"> <span>
                                  <i class="fa fa-star"></i>
@@ -263,7 +263,7 @@
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
                         <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
-                           <div class="cost"><i class="fa fa-check"></i> Min $ 10,00</div>
+                           <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
                            <div class="ratings"> <span>
                                  <i class="fa fa-star"></i>
@@ -291,7 +291,7 @@
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
                         <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
-                           <div class="cost"><i class="fa fa-check"></i> Min $ 10,00</div>
+                           <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
                            <div class="ratings"> <span>
                                  <i class="fa fa-star"></i>
@@ -319,7 +319,7 @@
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
                         <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
-                           <div class="cost"><i class="fa fa-check"></i> Min $ 10,00</div>
+                           <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
                            <div class="ratings"> <span>
                                  <i class="fa fa-star"></i>
@@ -347,7 +347,7 @@
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
                         <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
-                           <div class="cost"><i class="fa fa-check"></i> Min $ 10,00</div>
+                           <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
                            <div class="ratings"> <span>
                                  <i class="fa fa-star"></i>
@@ -375,7 +375,7 @@
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
                         <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
-                           <div class="cost"><i class="fa fa-check"></i> Min $ 10,00</div>
+                           <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
                            <div class="ratings"> <span>
                                  <i class="fa fa-star"></i>
@@ -397,7 +397,7 @@
       </div>
       <!-- restaurants listing ends -->
       <!-- add restaurant starts -->
-      <section class="add-restaurants">
+      <!-- <section class="add-restaurants">
          <div class="container">
             <div class="row">
                <div class="col-xs-12 col-sm-3 add-title">
@@ -409,38 +409,11 @@
                <div class="col-xs-12 col-sm-4 join-btn text-xs-right"><a href="#" class="btn theme-btn btn-lg">I‘m restaurant</a> </div>
             </div>
          </div>
-      </section>
+      </section> -->
       <!-- add restaurant ends -->
    </div>
 </section>
 <!-- Featured restaurants ends -->
-<section class="app-section">
-   <div class="app-wrap">
-      <div class="container">
-         <div class="row text-img-block text-xs-left">
-            <div class="container">
-               <div class="col-xs-12 col-sm-5 right-image text-center">
-                  <figure> <img src="{{ asset('images/app.png') }}" alt="Right Image" class="img-fluid"> </figure>
-               </div>
-               <div class="col-xs-12 col-sm-7 left-text">
-                  <h3>The Best Food Delivery App</h3>
-                  <p>Now you can make food happen pretty much wherever you are thanks to the free easy-to-use Food Delivery &amp; Takeout App.</p>
-                  <div class="social-btns">
-                     <a href="#" class="app-btn apple-button clearfix">
-                        <div class="pull-left"><i class="fa fa-apple"></i> </div>
-                        <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">App Store</span> </div>
-                     </a>
-                     <a href="#" class="app-btn android-button clearfix">
-                        <div class="pull-left"><i class="fa fa-android"></i> </div>
-                        <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">Play store</span> </div>
-                     </a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
 
 <!-- modal login -->
 
