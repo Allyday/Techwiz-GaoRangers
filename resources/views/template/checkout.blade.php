@@ -8,7 +8,7 @@
     <div class="top-links">
         <div class="container">
             <ul class="row links">
-                <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="index.html">Choose Your Location</a></li>
+                <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
                 <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="restaurants.html">Choose Restaurant</a></li>
                 <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="profile.html">Pick Your favorite food</a></li>
                 <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="checkout.html">Order and Pay online</a></li>
@@ -32,13 +32,15 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>First Name*</label>
-                                        <input type="text" class="form-control" placeholder="John"> </div>
+                                        <input type="text" class="form-control" placeholder="John">
+                                    </div>
                                     <!--/form-group-->
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Last Name*</label>
-                                        <input type="text" class="form-control" placeholder="Doe"> </div>
+                                        <input type="text" class="form-control" placeholder="Doe">
+                                    </div>
                                     <!--/form-group-->
                                 </div>
                             </div>
@@ -61,7 +63,8 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Company Name</label>
-                                        <input type="text" class="form-control" placeholder="Lorem ipsum"> </div>
+                                        <input type="text" class="form-control" placeholder="Lorem ipsum">
+                                    </div>
                                     <!--/form-group-->
                                 </div>
                             </div>
@@ -69,7 +72,8 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Full Address*</label>
-                                        <input type="text" class="form-control" placeholder="124, Lorem Street.."> </div>
+                                        <input type="text" class="form-control" placeholder="124, Lorem Street..">
+                                    </div>
                                     <!--/form-group-->
                                 </div>
                             </div>
@@ -77,13 +81,15 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>City / State*</label>
-                                        <input type="text" class="form-control" placeholder="Jaipur"> </div>
+                                        <input type="text" class="form-control" placeholder="Jaipur">
+                                    </div>
                                     <!--/form-group-->
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Zip/ Postal Code*</label>
-                                        <input type="text" class="form-control" placeholder="302012"> </div>
+                                        <input type="text" class="form-control" placeholder="302012">
+                                    </div>
                                     <!--/form-group-->
                                 </div>
                             </div>
@@ -91,13 +97,15 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>Email Address*</label>
-                                        <input type="text" class="form-control" placeholder="john@doe.com"> </div>
+                                        <input type="text" class="form-control" placeholder="john@doe.com">
+                                    </div>
                                     <!--/form-group-->
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label>phone*</label>
-                                        <input type="text" class="form-control" placeholder="123-345-3322"> </div>
+                                        <input type="text" class="form-control" placeholder="123-345-3322">
+                                    </div>
                                     <!--/form-group-->
                                 </div>
                             </div>

@@ -10,7 +10,7 @@
     <div class="top-links">
         <div class="container">
             <ul class="row links">
-                <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="#">Choose Your Location</a></li>
+                <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
                 <li class="col-xs-12 col-sm-3 link-item"><span>2</span><a href="#">Choose Restaurant</a></li>
                 <li class="col-xs-12 col-sm-3 link-item"><span>3</span><a href="#">Pick Your favorite food</a></li>
                 <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="#">Order and Pay online</a></li>
@@ -52,19 +52,24 @@
                                 <fieldset>
                                     <div class="row form-group">
                                         <div class="col-xs-6">
-                                            <input class="form-control" id="fname" name="fname" type="text" placeholder="First Name *" required=""> </div>
+                                            <input class="form-control" id="fname" name="fname" type="text" placeholder="First Name *" required="">
+                                        </div>
                                         <div class="col-xs-6">
-                                            <input class="form-control" id="lname" name="lname" type="text" placeholder="Last Name *" required=""> </div>
+                                            <input class="form-control" id="lname" name="lname" type="text" placeholder="Last Name *" required="">
+                                        </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col-xs-6">
-                                            <input class="form-control" id="email" name="email" type="email" placeholder="Email *" required=""> </div>
+                                            <input class="form-control" id="email" name="email" type="email" placeholder="Email *" required="">
+                                        </div>
                                         <div class="col-xs-6">
-                                            <input class="form-control" id="phone" name="phone" type="tel" placeholder="Phone"> </div>
+                                            <input class="form-control" id="phone" name="phone" type="tel" placeholder="Phone">
+                                        </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col-xs-12">
-                                            <input class="form-control" id="subject" name="subject" type="text" placeholder="Subject *" required=""> </div>
+                                            <input class="form-control" id="subject" name="subject" type="text" placeholder="Subject *" required="">
+                                        </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col-xs-12">

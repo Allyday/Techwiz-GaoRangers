@@ -8,7 +8,7 @@
    <div class="top-links">
       <div class="container">
          <ul class="row links">
-            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="index.html">Choose Your Location</a></li>
+            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
             <li class="col-xs-12 col-sm-3 link-item"><span>2</span><a href="restaurants.html">Choose Restaurant</a></li>
             <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="profile.html">Pick Your favorite food</a></li>
             <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="checkout.html">Order and Pay online</a></li>
@@ -384,7 +384,8 @@
                               </select>
                            </div>
                            <div class="col-xs-4">
-                              <input class="form-control" type="number" value="2" id="example-number-input"> </div>
+                              <input class="form-control" type="number" value="2" id="example-number-input">
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -400,7 +401,8 @@
                               </select>
                            </div>
                            <div class="col-xs-4">
-                              <input class="form-control" value="4" id="quant-input"> </div>
+                              <input class="form-control" value="4" id="quant-input">
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -463,7 +465,8 @@
                               </select>
                            </div>
                            <div class="col-xs-5">
-                              <input class="form-control" type="number" value="0" id="quant-input-2"> </div>
+                              <input class="form-control" type="number" value="0" id="quant-input-2">
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -494,7 +497,8 @@
                               </select>
                            </div>
                            <div class="col-xs-5">
-                              <input class="form-control" type="number" value="0" id="quant-input-3"> </div>
+                              <input class="form-control" type="number" value="0" id="quant-input-3">
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -525,7 +529,8 @@
                               </select>
                            </div>
                            <div class="col-xs-5">
-                              <input class="form-control" type="number" value="0" id="quant-input-4"> </div>
+                              <input class="form-control" type="number" value="0" id="quant-input-4">
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -556,7 +561,8 @@
                               </select>
                            </div>
                            <div class="col-xs-5">
-                              <input class="form-control" type="number" value="0" id="quant-input-5"> </div>
+                              <input class="form-control" type="number" value="0" id="quant-input-5">
+                           </div>
                         </div>
                      </div>
                   </div>
