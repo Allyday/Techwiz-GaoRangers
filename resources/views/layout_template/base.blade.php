@@ -17,10 +17,9 @@
    <link href="{{ asset('template/css/font-awesome.min.css') }}" rel="stylesheet">
    <link href="{{ asset('template/css/animsition.min.css') }}" rel="stylesheet">
    <link href="{{ asset('template/css/animate.css') }}" rel="stylesheet">
-   <!-- fontawesome cdn  -->
-   {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" > --}}
    <!-- Custom styles for this template -->
    <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
+   @yield('custom')
 </head>
 
 <body>
@@ -38,6 +37,7 @@
    <!-- Bootstrap core JavaScript
     ================================================== -->
    <script src="{{ asset('template/js/jquery.min.js') }}"></script>
+   <script src="{{ asset('template/js/jquery.js') }}"></script>
    <script src="{{ asset('template/js/tether.min.js') }}"></script>
    <script src="{{ asset('template/js/bootstrap.min.js') }}"></script>
    <script src="{{ asset('template/js/animsition.min.js') }}"></script>
@@ -45,6 +45,8 @@
    <script src="{{ asset('template/js/jquery.isotope.min.js') }}"></script>
    <script src="{{ asset('template/js/headroom.js') }}"></script>
    <script src="{{ asset('template/js/foodpicky.min.js') }}"></script>
+   
+
 </body>
 
 </html>

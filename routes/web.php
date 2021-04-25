@@ -10,12 +10,11 @@ use App\Http\Controllers\DishesController;
 
 // public
 Route::get('/', function () {
-    return view('template.home');
+    $access = false;
+    return view('template.home', compact('access',$access));
 })->name('home');
 
-Route::get('/food', function () {
-    return view('template.food_results');
-})->name('food_result');
+
 
 Route::get('/profile', function () {
     return view('template.profile');
@@ -25,6 +24,9 @@ Route::get('/restaurant', function () {
     return view('template.restaurants');
 })->name('restaurant');
 
+Route::get('/food', function () {
+    return view('template.food_results');
+})->name('food_result');
 
 Route::get('/contact', function () {
     return view('template.contact');
@@ -33,6 +35,10 @@ Route::get('/contact', function () {
 Route::get('/checkout', function () {
     return view('template.checkout');
 })->name('checkout');
+
+Route::get('/registration', function () {
+    return view('auth.register');
+})->name('registration');
 
 
 // Route::get('/adminaccount', [UserController::class, "index"])->name('adminaccount');
@@ -68,4 +74,6 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/product/type', [AdminController::class, 'type_product'])->name('staff.type');
 
     Route::get('/staff/account', [AdminController::class, 'setting_account'])->name('staff.account');
+
+    
 });

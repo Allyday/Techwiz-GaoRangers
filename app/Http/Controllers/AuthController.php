@@ -14,7 +14,8 @@ class AuthController extends Controller
 {
     function login()
     {
-        return view('auth.login');
+        $access = true;
+        return redirect(route('home', ['request' => $access]));
     }
 
     function check(Request $request)
@@ -34,7 +35,7 @@ class AuthController extends Controller
             // check password
 
             // if (!Hash::check($request->password, $user->password)) {
-                if (!($request->password == $user->password)) {
+            if (!($request->password == $user->password)) {
 
                 return back()->with('fail', 'Incorrect password');
             } else {
@@ -55,70 +56,67 @@ class AuthController extends Controller
 
     function register()
     {
-        return view('auth.register');
+        return view('auth.registration');
     }
 
     function save(ValidateRegisterRequest $request)
     {
+        dd($request->all());
         // validation request
         $request->validated();
 
-        // set default for column : `picture`
-        $picture = 'http://img/';
+        if (isset($request->repeatPass) && ($request->repeatPass == $request->password)) {
+            // set default for column : `picture`
+            $picture = 'http://img/';
 
-        if ($request->type == 1) {
-            // fix restaurantId
-            $restaurantId = 3;
-            // create user for staff
-            $user = User::create([
-                'phoneNumber' => $request->phoneNumber,
-                'userName' => '_' . $restaurantId . $request->userName,
-                'mail' => $request->mail,
-                'password' => Hash::make($request->password),
-                'gender' => $request->gender,
-                'firstName' => $request->firstname,
-                'lastName' => $request->lastname,
-                'type' => $request->type,
-                'picture' => $picture,
-                'restaurantId' => $restaurantId,
-            ]);
+            $user = new User;
+            $user->phoneNumber = $request->phoneNumber;
+            $user->mail = $request->mail;
+            $user->password = Hash::make($request->password);
+            $user->gender = $request->gender;
+            $user->firstName = $request->firstName;
+            $user->lastName = $request->lastName;
+            $user->type = $request->type;
+            $user->picture = $picture;
 
-            $save = $user->save();
 
-            if ($save) {
+            if ($request->type == 1) {
+                // fix restaurantId
+                $restaurantId = 3;
 
-                $request->session()->put('User', $user->id);
-                $request->session()->put('User_type', $user->type);
+                // create user for staff
+                $user->userName = '_' . $restaurantId . $request->userName;
+                $user->restaurantId = $restaurantId;
 
-                return redirect(route('staff'));
+                $save = $user->save();
+
+                if ($save) {
+
+                    $request->session()->put('User', $user->id);
+                    $request->session()->put('User_type', $user->type);
+
+                    return redirect(route('staff'));
+                } else {
+                    return back()->with('fail, Something went wrong, try again later !');
+                }
             } else {
-                return back()->with('fail, Something went wrong, try again later !');
+                // create user for customer
+                $user->userName = $request->userName;
+
+                $save = $user->save();
+
+                if ($save) {
+                    $request->session()->put('User', $user->id);
+                    $request->session()->put('User_type', $user->type);
+
+                    return redirect(route('home'));
+                } else {
+                    return back()->with('fail', 'Something went wrong, try again later !');
+                }
             }
+
         } else {
-
-            // insert to database 
-            $user = User::create([
-                'phoneNumber' => $request->phoneNumber,
-                'userName' => $request->userName,
-                'mail' => $request->mail,
-                'password' => Hash::make($request->password),
-                'gender' => $request->gender,
-                'firstName' => $request->firstname,
-                'lastName' => $request->lastname,
-                'type' => $request->type,
-                'picture' => $picture,
-            ]);
-
-            $save = $user->save();
-
-            if ($save) {
-                $request->session()->put('User', $user->id);
-                $request->session()->put('User_type', $user->type);
-
-                return redirect(route('home'));
-            } else {
-                return back()->with('fail', 'Something went wrong, try again later !');
-            }
+            return back()->with('fail', 'Check Repeat pass field !');
         }
     }
 
