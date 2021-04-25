@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     function index(){
         $dsusers = DB::select('select * from users where 1 = ? and id = ?', [1, session('User')]);
-        return view('view_admin.adminaccount', compact("dsusers"));
+        return view('view_admin.adminaccount', compact("dsusers", $dsusers ));
     }
 
 }

@@ -77,18 +77,18 @@
 
          {{-- first name --}}
          <div class="mb-3">
-            @error('firstname')
+            @error('firstName')
             <p class="text-danger w-100 mt-2 mb-2">{{ $message }}</p>
             @enderror
-            <input type="text" name="firstname" class="form-control" placeholder="First Name" value="{{ old('firstname') }}">
+            <input type="text" name="firstName" class="form-control" placeholder="First Name" value="{{ old('firstName') }}">
          </div>
 
          {{-- last name --}}
          <div class="mb-3">
-            @error('lastname')
+            @error('lastName')
             <p class="text-danger w-100 mt-2 mb-2">{{ $message }}</p>
             @enderror
-            <input type="text" class="form-control" name="lastname" placeholder="last name" value="{{ old('lastname') }}">
+            <input type="text" class="form-control" name="lastName" placeholder="last name" value="{{ old('lastName') }}">
          </div>
 
          <div class="mb-4">

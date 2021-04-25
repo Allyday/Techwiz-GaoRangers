@@ -113,7 +113,7 @@
                </li>
 
                <li>
-                  <a href="javascript: void(0)">
+                  <a href="{{ route('auth.logout') }}">
                      <i class="fas fa-sign-out-alt"></i>
                      <span>Đăng xuất</span>
                   </a>
