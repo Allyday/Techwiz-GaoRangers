@@ -19,10 +19,7 @@
    </div>
    <!-- end:Top links -->
    <!-- start: Inner page hero -->
-   <div class="inner-page-hero bg-image" data-image-src="http://placehold.it/1670x480">
-      <div class="container"> </div>
-      <!-- end:Container -->
-   </div>
+  
    <div class="result-show">
       <div class="container">
          <div class="row">

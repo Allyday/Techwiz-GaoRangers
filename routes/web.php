@@ -6,20 +6,19 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DishesController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PublicController;
-use Laravel\Sail\Console\PublishCommand;
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
+
 
 Route::get('/menu/{id}', [PublicController::class, 'menu'])->name('menu');
 
 Route::get('/restaurants', [PublicController::class, 'restaurants'])->name('restaurants');
 
-
-Route::get('/feedback', [PublicController::class, 'feedback'])->name('feedback');
-
-
+// post location
+Route::post('/save_location', [LocationController::class, 'save_location'])->name('save_location');
 
 // post feedback
 Route::post('submit/feedback', [PublicController::class, 'save_feedback'])->name('save_feedback');
@@ -44,6 +43,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('auth/login', [AuthController::class, 'login'])->name('auth.login');
     Route::get('auth/register', [AuthController::class, 'register'])->name('auth.register');
 
+    Route::get('/feedback', [PublicController::class, 'feedback'])->name('feedback');
 
     Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
 

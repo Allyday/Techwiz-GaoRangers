@@ -6,40 +6,7 @@
 @section('content')
 
 <div class="page-wrapper">
-    <!-- top Links -->
-    <div class="top-links">
-        <div class="container">
-            <ul class="row links">
-                <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
-                <li class="col-xs-12 col-sm-3 link-item"><span>2</span><a href="#">Choose Restaurant</a></li>
-                <li class="col-xs-12 col-sm-3 link-item"><span>3</span><a href="#">Pick Your favorite food</a></li>
-                <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="#">Order and Pay online</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- end:Top links -->
-    <!-- start: Inner page hero -->
-    <section class="bg-image space-md" data-image-src="http://placehold.it/1670x680">
-        <div class="profile">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-4  col-lg-4 profile-img">
-                        <h1 class="font-white">Contact us page</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end:Inner page hero -->
-    <div class="breadcrumb">
-        <div class="container">
-            <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Search results</a></li>
-                <li>Contact</li>
-            </ul>
-        </div>
-    </div>
+    
     <section class="contact-page inner-page">
         <div class="container">
             <div class="row">

@@ -43,23 +43,24 @@
          autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options);
 
          google.maps.event.addListener(autocomplete, 'place_changed', function() {
-            let addressUnits = autocomplete.getPlace().formatted_address.split(',');
+            let selectedLocation = autocomplete.getPlace();
+            let addressUnits = selectedLocation.formatted_address.split(', ');
+            // console.log('addressUnits', addressUnits);
+            
+            // submit form location modal from footer
+            $("#formLocation").submit();
+
             let municipality = removeAccents(addressUnits[addressUnits.length - 4]);
             let district = removeAccents(addressUnits[addressUnits.length - 3]);
-            console.log('municipality', municipality); // phường/xã
-            console.log('district', district); // quận/huyện
+
+            // console.log('municipality', municipality); // phường/xã
+            // console.log('district', district); // quận/huyện
             // nếu là đang chọn location ở trang home thì truyền vào tham số url (?) để query
             if (location.pathname == '/' || location.pathname == '/restaurants') {
                let municipalityParam = municipality ? `&mun=${municipality}` : '';
                let url = encodeURI(`restaurants?dis=${district}${municipalityParam}`)
-               location.href = url;
+               // location.href = url;
                // đọc url & xử lý để query ở màn restaurants 
-            }
-            $('document').ready(function() {
-               $('#locationModal').modal('hide');
-            });
-            // sau đó save vào session
-            // khi nào confirm đơn hàng (chuyển từ trạng thái 1 -> 2) thì đẩy lên db, lưu thành 1 bản ghi trong UserAddress
          });
 
          function removeAccents(str) {

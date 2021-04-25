@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- banner part starts -->
-<section class="hero bg-image" data-image-src="http://placehold.it/1670x680">
+<section class="hero bg-image" data-image-src="http://azexo.com/foodpicky/wp-content/uploads/2016/09/home.jpg">
    <div class="hero-inner">
       <div class="container text-center hero-text font-white">
          <h1>Order Delivery & Take-Out </h1>
@@ -18,10 +18,12 @@
                      <input type="text" class="form-control form-control-lg" style="width: 100%" id="exampleInputAmount" placeholder="I would like to eat....">
                   </div>
                </div>
+
+               {{-- check co location chua, co roi thi khong can nhap nua --}}
                @if (session('User'))
-               <a class="btn theme-btn btn-lg" href="{{ route('auth.logout') }}">Search food</a>
+               <a class="btn theme-btn btn-lg" href="javascript:void(0)">Search food</a>
                @else
-               <a class="btn theme-btn btn-lg" href="#" data-toggle="modal" data-target="#locationModal">Search food</a>
+               <a class="btn theme-btn btn-lg" href="javascript:void(0)" data-toggle="modal" data-target="#locationModal">Search food</a>
                @endif
 
             </form>
