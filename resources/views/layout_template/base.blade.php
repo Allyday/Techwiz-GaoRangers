@@ -26,15 +26,21 @@
       let autocomplete;
 
       function initAutocomplete() {
-         autocomplete = new google.maps.places.Autocomplete(
-            document.getElementById('autocomplete'), {
-               type: ['establishments'],
-               componentRestrictions: {
-                  'country': ['VN']
-               },
-               fields: ['formatted_address']
-            }
+         let hanoiBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(20.564437, 105.291530), // southwest
+            new google.maps.LatLng(21.387053, 106.001451) // northeast
          );
+
+         let options = {
+            bounds: hanoiBounds,
+            type: ['establishments'],
+            componentRestrictions: {
+               'country': ['VN']
+            },
+            fields: ['formatted_address'],
+         };
+
+         autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options);
 
          google.maps.event.addListener(autocomplete, 'place_changed', function() {
             let addressUnits = autocomplete.getPlace().formatted_address.split(',');
