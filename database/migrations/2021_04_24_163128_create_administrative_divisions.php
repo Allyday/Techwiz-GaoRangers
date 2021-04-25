@@ -18,7 +18,9 @@ class CreateAdministrativeDivisions extends Migration
             $table->string('name')->nullable();
             $table->tinyInteger('parentId')->default(0)->nullable();
             $table->tinyInteger('type')->default(0);
-            $table->string('nearBy')->nullable();
+            $table->integer('nearBy_1')->nullable();
+            $table->integer('nearBy_2')->nullable();
+            $table->integer('nearBy_3')->nullable();
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
