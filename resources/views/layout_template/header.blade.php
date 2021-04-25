@@ -27,7 +27,7 @@
                         </div>
                     </li>
                     @if (session('User'))
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('auth.logout') }}">Logout</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="javascript: void(0)" data-toggle="modal" data-target="#sureLogout">Logout</a> </li>
                     @else
                     <li class="nav-item"> <a class="nav-link" href="javascript:void(0)" data-toggle="modal" data-target="#modalLogin">Log in </a> </li>
                     @endif
@@ -40,3 +40,18 @@
     </nav>
     <!-- /.navbar -->
 </header>
+
+<div id="sureLogout" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure logout ?</h5>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <a href="{{ route('auth.logout') }}" type="button" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>

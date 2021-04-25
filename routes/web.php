@@ -21,6 +21,9 @@ Route::get('/feedback', [PublicController::class, 'feedback'])->name('feedback')
 
 
 
+// post feedback
+Route::post('submit/feedback', [PublicController::class, 'save_feedback'])->name('save_feedback');
+
 // post check log in
 Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
 // check register
@@ -41,7 +44,10 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('auth/login', [AuthController::class, 'login'])->name('auth.login');
     Route::get('auth/register', [AuthController::class, 'register'])->name('auth.register');
 
-    // add more route need authenticate
+
+    Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
+
+    // route for staff
     Route::get('/staff', [AdminController::class, 'index'])->name('staff');
 
     Route::get('/staff/menu', [AdminController::class, 'menu'])->name('staff.menu');
@@ -54,5 +60,4 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::post('/staff/editDish/{dish}', [DishesController::class, "update"]);
     Route::get('/staff/dish/create', [DishesController::class, "create"]);
     Route::get('/staff/dish/store', [DishesController::class, "store"]);
-    Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
 });

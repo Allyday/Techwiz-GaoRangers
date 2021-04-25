@@ -37,7 +37,7 @@
                      <div class="col-md-6">
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="FirstName">First Name</label>
+                              <label for="FirstName">First Name *</label>
                               @error('firstName')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -48,7 +48,7 @@
 
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Email">Email address</label>
+                              <label for="Email">Email address *</label>
                               @error('mail')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -58,7 +58,7 @@
 
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Username">Username</label>
+                              <label for="Username">Username *</label>
                               @error('userName')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -78,7 +78,7 @@
                      <div class="col-md-6">
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="LastName">Last Name</label>
+                              <label for="LastName">Last Name *</label>
                               @error('lastName')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -89,7 +89,7 @@
 
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Phonenumber">Phone number</label>
+                              <label for="Phonenumber">Phone number *</label>
                               @error('phoneNumber')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -99,7 +99,7 @@
 
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Password">Password</label>
+                              <label for="Password">Password *</label>
                               @error('password')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -109,7 +109,7 @@
 
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Repeatpassword">Repeat password</label>
+                              <label for="Repeatpassword">Repeat password *</label>
                               @if(Session::get('repeatPass'))
                               <p class="text-danger">{{ Session::get('repeatPass') }}</p>
                               @endif
