@@ -21,7 +21,7 @@
                @if (session('User'))
                <a class="btn theme-btn btn-lg" href="{{ route('auth.logout') }}">Search food</a>
                @else
-               <a class="btn theme-btn btn-lg" href="javascript:void(0)" data-toggle="modal" data-target="#locationModal">Search food</a>
+               <a class="btn theme-btn btn-lg" href="#" data-toggle="modal" data-target="#locationModal">Search food</a>
                @endif
 
             </form>
@@ -423,37 +423,5 @@
 </section>
 <!-- Featured restaurants ends -->
 
-<!-- start location modal -->
-
-<div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="locationModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header" style="text-align:center;">
-            <h2 class="modal-title" id="locationModalLabel">Enter your address</h2>
-         </div>
-         <form action="{{ route('auth.check') }}" method="POST">
-            <div class="modal-body" style="padding: 15px 50px">
-               <div class="form-group">
-                  <input class="form-control" id="autocomplete" placeholder="Enter your address" type="text">
-               </div>
-            </div>
-         </form>
-      </div>
-   </div>
-</div>
-
-<!-- end location modal -->
-
-{{-- script --}}
-@if (isset($_GET['location']))
-<script>
-   $('document').ready(function() {
-      $('#locationModal').modal('show')
-   });
-</script>
-@else
-
-@endif
-{{-- end script --}}
 
 @endsection

@@ -1,3 +1,36 @@
+<!-- start location modal -->
+
+<div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="locationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align:center;">
+                <h2 class="modal-title" id="locationModalLabel">Enter your address</h2>
+            </div>
+            <form action="{{ route('auth.check') }}" method="POST">
+                <div class="modal-body" style="padding: 15px 50px">
+                    <div class="form-group">
+                        <input class="form-control" id="autocomplete" placeholder="Enter your address" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- end location modal -->
+
+{{-- script --}}
+@if (isset($_GET['location']))
+<script>
+    $('document').ready(function() {
+        $('#locationModal').modal('show')
+    });
+</script>
+@else
+
+@endif
+{{-- end script --}}
+
 <!-- modal login -->
 
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true">

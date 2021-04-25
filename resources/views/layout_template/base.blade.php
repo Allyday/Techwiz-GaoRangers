@@ -42,15 +42,25 @@
             let district = removeAccents(addressUnits[addressUnits.length - 3]);
             console.log('municipality', municipality); // phường/xã
             console.log('district', district); // quận/huyện
-            let url = encodeURI(`restaurants?mun=${municipality}&dis=${district}`)
-            location.href = url;
+            // nếu là đang chọn location ở trang home thì truyền vào tham số url (?) để query
+            if (location.pathname == '/' || location.pathname == '/restaurants') {
+               let municipalityParam = municipality ? `&mun=${municipality}` : '';
+               let url = encodeURI(`restaurants?dis=${district}${municipalityParam}`)
+               location.href = url;
+               // đọc url & xử lý để query ở màn restaurants 
+            }
+            $('document').ready(function() {
+               $('#locationModal').modal('hide');
+            });
+            // sau đó save vào session
+            // khi nào confirm đơn hàng (chuyển từ trạng thái 1 -> 2) thì đẩy lên db, lưu thành 1 bản ghi trong UserAddress
          });
 
          function removeAccents(str) {
-            return str.normalize('NFD')
+            return str ? str.normalize('NFD')
                .replace(/[\u0300-\u036f]/g, '')
                .replace(/đ/g, 'd')
-               .replace(/Đ/g, 'D');
+               .replace(/Đ/g, 'D') : null;
          } // dùng cho các hàm search để nhập có dấu hay không dấu đều ra kết quả
 
       }
