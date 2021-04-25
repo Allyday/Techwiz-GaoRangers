@@ -9,7 +9,9 @@
    <meta name="description" content="">
    <meta name="author" content="">
    <link rel="icon" href="#">
-   <title>Starter Template for Bootstrap</title>
+   <title>
+      @yield('title')
+   </title>
    <!-- Bootstrap core CSS -->
    <link href="{{ asset('template/css/bootstrap.min.css') }}" rel="stylesheet">
    <link href="{{ asset('template/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -17,6 +19,7 @@
    <link href="{{ asset('template/css/animate.css') }}" rel="stylesheet">
    <!-- Custom styles for this template -->
    <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
+   @yield('custom')
 </head>
 
 <body>
@@ -25,7 +28,7 @@
       @include('layout_template.header')
 
       @yield('content')
-      
+
       @include('layout_template.footer')
 
    </div>
@@ -34,6 +37,7 @@
    <!-- Bootstrap core JavaScript
     ================================================== -->
    <script src="{{ asset('template/js/jquery.min.js') }}"></script>
+   <script src="{{ asset('template/js/jquery.js') }}"></script>
    <script src="{{ asset('template/js/tether.min.js') }}"></script>
    <script src="{{ asset('template/js/bootstrap.min.js') }}"></script>
    <script src="{{ asset('template/js/animsition.min.js') }}"></script>
@@ -41,6 +45,8 @@
    <script src="{{ asset('template/js/jquery.isotope.min.js') }}"></script>
    <script src="{{ asset('template/js/headroom.js') }}"></script>
    <script src="{{ asset('template/js/foodpicky.min.js') }}"></script>
+   
+
 </body>
 
 </html>

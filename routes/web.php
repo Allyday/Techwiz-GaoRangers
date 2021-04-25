@@ -10,14 +10,35 @@ use App\Http\Controllers\DishesController;
 
 // public
 Route::get('/', function () {
-    return view('template.home');
+    $access = false;
+    return view('template.home', compact('access',$access));
 })->name('home');
 
 
-Route::get('/adminaccount', [UserController::class, "index"])->name('adminaccount');
-Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
 
+Route::get('/profile', function () {
+    return view('template.profile');
+})->name('profile');
 
+Route::get('/restaurant', function () {
+    return view('template.restaurants');
+})->name('restaurant');
+
+Route::get('/food', function () {
+    return view('template.food_results');
+})->name('food_result');
+
+Route::get('/contact', function () {
+    return view('template.contact');
+})->name('contact');
+
+Route::get('/checkout', function () {
+    return view('template.checkout');
+})->name('checkout');
+
+Route::get('/registration', function () {
+    return view('auth.register');
+})->name('registration');
 
 // post check log in
 Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
@@ -47,6 +68,10 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/product/type', [AdminController::class, 'type_product'])->name('staff.type');
 
     Route::get('/staff/account', [AdminController::class, 'setting_account'])->name('staff.account');
-
-    
+    Route::get('/adminaccount', [UserController::class, "index"])->name('adminaccount');
+    Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
+    Route::get('/staff/{dish}/edit', [DishesController::class, "edit"]);
+    Route::post('/staff/editDish/{dish}', [DishesController::class, "update"]);
+    Route::get('/staff/dish/create', [DishesController::class, "create"]);
+    Route::get('/staff/dish/store', [DishesController::class, "store"]);
 });

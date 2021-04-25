@@ -2,32 +2,40 @@
 
 @section('content')
 
-<h2 class="text-center display-5 mb-4">DANH SÁCH TÀI KHOẢN</h2>
+<h2 class="text-center display-5 mb-4">DANH SÁCH MÓN ĂN</h2>
+<div class="row">
+   <div class="w-100 text-end">
+      
+       <a href="dish/create" class="btn btn-primary btn-rounded ml-auto">Thêm mới</a>
+
+   </div>
+</div>
 <div class=" mt-6">
    <table id="tableCustomer" class="table hover row-border" style="width:100%">
       <thead>
          <tr>
-            <th>User Name</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Restaurant</th>
+            <th>Category</th>
             <th>Picture</th>
-            <th>Mail</th>
-            <th>Phone Number</th>
             <th></th>
          </tr>
       </thead>
       <tbody>
-        @foreach ($dsusers as $row)
+        @foreach ($dsdishes as $row)
             <tr>
-                <td>{{ $row->userName }}</td>
-                <td>{{ $row->firstName }}</td>
-                <td>{{ $row->lastName }}</td>
-                <td>{{ $row->gender }}</td>
-                <td><img src="{{ $row->picture }}" alt="{{ $row->userName }}" style="max-width:100px"></td>
-                <td>{{ $row->mail }}</td>
-                <td>{{ $row->phoneNumber }}</td>
+                <td>{{ $row->name }}</td>
+                <td>{{ $row->description }}</td>
+                <td>{{ $row->price }}</td>
+                <td>{{ $row->categoryName }}</td>
+                <td>{{ $row->restaurantName }}</td>
+                <td><img src="{{ $row->photo }}" alt="{{ $row->name }}" style="max-width:100px"></td>
                 <td class="text-center">
+                  <a href ="{{$row->id}}/edit" class="btn-edit  btn-control text-success">
+                     <i class="far fa-edit"></i>
+                  </a>
                     <a href="" class="btn-delete btn-control text-danger">
                         <i class="far fa-times-circle"></i>
                     </a>
@@ -37,13 +45,12 @@
       </tbody>
       <tfoot>
         <tr>
-            <th>User Name</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Restaurant</th>
+            <th>Category</th>
             <th>Picture</th>
-            <th>Mail</th>
-            <th>Phone Number</th>
             <th></th>
          </tr>
       </tfoot>
@@ -54,10 +61,10 @@
    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
          <div class="modal-header">
-            <h5 class="modal-title" id="comfirmModalLable">Thêm loại sản phẩm</h5>
+            <h5 class="modal-title" id="comfirmModalLable">Thêm món ăn</h5>
          </div>
          <div class="modal-body">
-            <h3>Bạn có muốn xóa sản phẩm?</h3>
+            <h3>Bạn có muốn xóa món ăn?</h3>
          </div>
          <div class="modal-footer text-center">
             <button type="button" class="btn btn-secondary btn-comfirm" data-dismiss="modal">No</button>
