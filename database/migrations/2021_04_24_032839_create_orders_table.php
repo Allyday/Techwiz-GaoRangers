@@ -21,10 +21,16 @@ class CreateOrdersTable extends Migration
             $table->double('deliveryFee')->default(0)->nullable();
             $table->double('discountAmount')->default(0)->nullable();
             $table->unsignedInteger('discountCodeId')->nullable();
-            $table->string('city',500)->nullable();
-            $table->string('district',500)->nullable();
-            $table->string('municipality',500)->nullable();
-            $table->string('street',500)->nullable();
+            $table->string('address',500)->nullable();
+            $table->dateTime('timeCreated')->nullable();
+            $table->dateTime('timeAccepted')->nullable();
+            $table->dateTime('timeDoneCooking')->nullable();
+            $table->dateTime('timePickedUp')->nullable();
+            $table->dateTime('timeDelivered')->nullable();
+            $table->dateTime('timeRejected')->nullable();
+            $table->dateTime('timeCancelled')->nullable();
+            $table->string('acceptedBy')->nullable();
+            $table->string('doneCookingBy')->nullable();
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
             $table->foreign('userId')->references('id')

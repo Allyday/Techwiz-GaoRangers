@@ -56,7 +56,8 @@
                                 <ul>
                                     <li>
                                         <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Barbecuing and Grilling</span> </label>
+                                            <input type="checkbox" class="custom-control-input"> <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">Barbecuing and Grilling</span> </label>
                                     </li>
                                     <li>
                                         <label class="custom-control custom-checkbox">

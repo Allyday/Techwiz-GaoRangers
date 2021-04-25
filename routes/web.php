@@ -75,3 +75,5 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/dish/create', [DishesController::class, "create"]);
     Route::get('/staff/dish/store', [DishesController::class, "store"]);
 });
+
+
