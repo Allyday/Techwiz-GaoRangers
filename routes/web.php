@@ -40,7 +40,7 @@ Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
 // check register
 Route::post('auth/save', [AuthController::class, 'save'])->name('auth.save');
 // check change password
-Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
+Route::get('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 // log out
 Route::get('auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
@@ -77,6 +77,10 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::post('/staff/deleteDish/{dish}', [DishesController::class, "destroy"]);
     Route::get('/staff/orderStaff', [OrderController::class, "index"])->name('orderStaff');
     Route::post('/staff/orderStatus/{order}', [OrderController::class, "update"]);
+    Route::get('/staff/{order}/orderDetail', [OrderController::class, "show"]);
+    Route::get('/user/{user}/setting', [UserController::class, 'setting'])->name('setting');
+    Route::post('/user/settingUser/{user}', [UserController::class, "editpass"]);
+    // Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 
 });
 //test search
