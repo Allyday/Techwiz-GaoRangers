@@ -13,7 +13,7 @@ use App\Http\Controllers\PublicController;
 Route::get('/', [PublicController::class, 'index'])->name('home');
 
 
-Route::get('/menu/{id}', [PublicController::class, 'menu'])->name('menu');
+Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name('menu');
 
 Route::get('/restaurants', [PublicController::class, 'restaurants'])->name('restaurants');
 

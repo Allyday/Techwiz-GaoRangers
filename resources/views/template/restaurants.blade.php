@@ -12,7 +12,7 @@
          <ul class="row links">
             <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
             <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="restaurants.html">Choose Restaurant</a></li>
-            <li class="col-xs-12 col-sm-3 link-item"><span>3</span><a href="profile.html">Pick Your favorite food</a></li>
+            <li class="col-xs-12 col-sm-3 link-item"><span>3</span><a href="restaurant-details/1">Pick Your favorite food</a></li>
             <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="checkout.html">Order and Pay online</a></li>
          </ul>
       </div>
@@ -163,7 +163,7 @@
                         <div class="right-content bg-white">
                            <div class="right-review">
                               <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                              <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a>
+                              <p> 245 Reviews</p> <a href="restaurant-details/1" class="btn theme-btn-dash">View Menu</a>
                            </div>
                         </div>
                         <!-- end:right info -->
@@ -192,7 +192,7 @@
                         <div class="right-content bg-white">
                            <div class="right-review">
                               <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                              <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a>
+                              <p> 245 Reviews</p> <a href="restaurant-details/1" class="btn theme-btn-dash">View Menu</a>
                            </div>
                         </div>
                         <!-- end:right info -->
@@ -221,7 +221,7 @@
                         <div class="right-content bg-white">
                            <div class="right-review">
                               <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                              <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a>
+                              <p> 245 Reviews</p> <a href="restaurant-details/1" class="btn theme-btn-dash">View Menu</a>
                            </div>
                         </div>
                         <!-- end:right info -->
@@ -250,7 +250,7 @@
                         <div class="right-content bg-white">
                            <div class="right-review">
                               <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                              <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a>
+                              <p> 245 Reviews</p> <a href="restaurant-details/1" class="btn theme-btn-dash">View Menu</a>
                            </div>
                         </div>
                         <!-- end:right info -->
@@ -279,7 +279,7 @@
                         <div class="right-content bg-white">
                            <div class="right-review">
                               <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                              <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a>
+                              <p> 245 Reviews</p> <a href="restaurant-details/1" class="btn theme-btn-dash">View Menu</a>
                            </div>
                         </div>
                         <!-- end:right info -->
@@ -308,7 +308,7 @@
                         <div class="right-content bg-white">
                            <div class="right-review">
                               <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                              <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a>
+                              <p> 245 Reviews</p> <a href="restaurant-details/1" class="btn theme-btn-dash">View Menu</a>
                            </div>
                         </div>
                         <!-- end:right info -->
@@ -337,7 +337,7 @@
                         <div class="right-content bg-white">
                            <div class="right-review">
                               <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                              <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a>
+                              <p> 245 Reviews</p> <a href="restaurant-details/1" class="btn theme-btn-dash">View Menu</a>
                            </div>
                         </div>
                         <!-- end:right info -->
@@ -366,7 +366,7 @@
                         <div class="right-content bg-white">
                            <div class="right-review">
                               <div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
-                              <p> 245 Reviews</p> <a href="profile.html" class="btn theme-btn-dash">View Menu</a>
+                              <p> 245 Reviews</p> <a href="restaurant-details/1" class="btn theme-btn-dash">View Menu</a>
                            </div>
                         </div>
                         <!-- end:right info -->

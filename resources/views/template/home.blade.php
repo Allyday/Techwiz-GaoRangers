@@ -85,13 +85,13 @@
                   <div class="review pull-right"><a href="#">198 reviews</a> </div>
                </div>
                <div class="content">
-                  <h5><a href="profile.html">The South"s Best Fried Chicken</a></h5>
+                  <h5><a href="restaurant-details/1">The South"s Best Fried Chicken</a></h5>
                   <div class="product-name">Fried Chicken with cheese</div>
                   <div class="price-btn-block"> <span class="price">$15,99</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
                </div>
                <div class="restaurant-block">
                   <div class="left">
-                     <a class="pull-left" href="profile.html"> <img src="http://placehold.it/50x46" alt="Restaurant logo" /> </a>
+                     <a class="pull-left" href="restaurant-details/1"> <img src="http://placehold.it/50x46" alt="Restaurant logo" /> </a>
                      <div class="pull-left right-text"> <a href="#">Chicken Restaurant</a> <span>68 5th Avenue New York</span> </div>
                   </div>
                   <div class="right-like-part pull-right"> <i class="fa fa-heart-o"></i> <span>48</span> </div>
@@ -108,13 +108,13 @@
                   <div class="review pull-right"><a href="#">198 reviews</a> </div>
                </div>
                <div class="content">
-                  <h5><a href="profile.html">The South"s Best Fried Chicken</a></h5>
+                  <h5><a href="restaurant-details/1">The South"s Best Fried Chicken</a></h5>
                   <div class="product-name">Fried Chicken with cheese</div>
                   <div class="price-btn-block"> <span class="price">$18,49</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
                </div>
                <div class="restaurant-block">
                   <div class="left">
-                     <a class="pull-left" href="profile.html"> <img src="http://placehold.it/50x46" alt="Restaurant logo" /> </a>
+                     <a class="pull-left" href="restaurant-details/1"> <img src="http://placehold.it/50x46" alt="Restaurant logo" /> </a>
                      <div class="pull-left right-text"> <a href="#">Chicken Restaurant</a> <span>68 5th Avenue New York</span> </div>
                   </div>
                   <div class="right-like-part pull-right"> <i class="fa fa-heart-o"></i> <span>48</span> </div>
@@ -131,13 +131,13 @@
                   <div class="review pull-right"><a href="#">198 reviews</a> </div>
                </div>
                <div class="content">
-                  <h5><a href="profile.html">The South"s Best Fried Chicken</a></h5>
+                  <h5><a href="restaurant-details/1">The South"s Best Fried Chicken</a></h5>
                   <div class="product-name">Fried Chicken with cheese</div>
                   <div class="price-btn-block"> <span class="price">$21,19</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
                </div>
                <div class="restaurant-block">
                   <div class="left">
-                     <a class="pull-left" href="profile.html"> <img src="http://placehold.it/50x46" alt="Restaurant logo" /> </a>
+                     <a class="pull-left" href="restaurant-details/1"> <img src="http://placehold.it/50x46" alt="Restaurant logo" /> </a>
                      <div class="pull-left right-text"> <a href="#">Chicken Restaurant</a> <span>68 5th Avenue New York</span> </div>
                   </div>
                   <div class="right-like-part pull-right"> <i class="fa fa-heart-o"></i> <span>48</span> </div>
@@ -243,7 +243,7 @@
                      </div>
                      <!--end:col -->
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
-                        <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
+                        <h5><a href="restaurant-details/1">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
                            <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
@@ -271,7 +271,7 @@
                      </div>
                      <!--end:col -->
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
-                        <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
+                        <h5><a href="restaurant-details/1">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
                            <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
@@ -299,7 +299,7 @@
                      </div>
                      <!--end:col -->
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
-                        <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
+                        <h5><a href="restaurant-details/1">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
                            <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
@@ -327,7 +327,7 @@
                      </div>
                      <!--end:col -->
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
-                        <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
+                        <h5><a href="restaurant-details/1">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
                            <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
@@ -355,7 +355,7 @@
                      </div>
                      <!--end:col -->
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
-                        <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
+                        <h5><a href="restaurant-details/1">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
                            <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
@@ -383,7 +383,7 @@
                      </div>
                      <!--end:col -->
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
-                        <h5><a href="profile.html">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
+                        <h5><a href="restaurant-details/1">Maenaam Thai Restaurant</a></h5> <span>Burgers, American, Sandwiches, Fast Food, BBQ</span>
                         <div class="bottom-part">
                            <div class="cost"><i class="fa fa-check"></i> Min $10,00</div>
                            <div class="mins"><i class="fa fa-motorcycle"></i> 30 min</div>
