@@ -20,6 +20,8 @@ Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name(
 
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
 
+// add to cart
+Route::post('addToCard', [RestaurantController::class, 'addToCard'])->name('addToCard');
 
 // post location
 Route::post('/save_location', [LocationController::class, 'save_location'])->name('save_location');
@@ -54,6 +56,8 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('auth/register', [AuthController::class, 'register'])->name('auth.register');
 
     Route::get('/feedback', [PublicController::class, 'feedback'])->name('feedback');
+
+    Route::get('/order-history', [PublicController::class, 'history'])->name('order-history');
 
     Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
 

@@ -1,6 +1,6 @@
 @extends('layout_template.base')
 
-@section('title', 'Checkout')
+@section('title', 'My Orders')
 
 @section('content')
 
