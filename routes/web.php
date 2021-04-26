@@ -55,6 +55,8 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
     Route::get('/feedback', [PublicController::class, 'feedback'])->name('feedback');
 
+    Route::get('/order-history', [PublicController::class, 'history'])->name('order-history');
+
     Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
 
     // route for staff

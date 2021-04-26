@@ -20,10 +20,13 @@
 
                     @if (session('User'))
                     <li class="nav-item">
-                        <a class="nav-link @if(url()->current() == route('feedback')) active @endif" href="{{route('feedback')}}">Feedback</a>
+                        <a class="nav-link @if(url()->current() == route('order-history')) active @endif" href="{{route('order-history')}}">My Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @if(url()->current() == route('checkout')) active @endif" href="{{route('checkout')}}">My Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if(url()->current() == route('feedback')) active @endif" href="{{route('feedback')}}">Feedback</a>
                     </li>
 
                     <li class="nav-item"> <a class="nav-link" href="javascript: void(0)" data-toggle="modal" data-target="#sureLogout">Logout</a> </li>
