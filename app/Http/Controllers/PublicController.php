@@ -14,11 +14,17 @@ class PublicController extends Controller
     {
         $access = false;
 
-
         // get data home page
+        $data = [
+            array(
 
+                'name' => 'day la ten nha hang',
+                'address' => 'day la dia chi nha hang',
+                'star' => '3',
+            )
+        ];
 
-        return view('template.home', compact('access', $access));
+        return view('template.home', compact('access', 'data'));
     }
 
     function menu()
@@ -63,14 +69,15 @@ class PublicController extends Controller
         }
     }
 
-    public function search($keysearch=null, $tag = null, $cate = null, $price = null, $xeptheosao = null)
+    public function search($keysearch = null, $tag = null, $cate = null, $price = null, $xeptheosao = null)
     {
         //các biến lấy về từ request khi submit search
-        $searchTen = "" || $keysearch; //Lấy từ search theo tên - test = rice
-        $tags = [] || $tag; //mảng id của table food_tags - test = 15
-        $cate = 0 || $cate; //id của table dish_category test = 5
-        $price = "" || $price; //giá tiền;
-        $xeptheosao = 0 || $xeptheosao; // = 0 thi sap xep theo gan xa, = 1 thi sap xep theo stars
+        $keysearch = $keysearch || "";//Lấy từ search theo tên - test = rice
+        $tags = $tag || []; //mảng id của table food_tags - test = 15
+        $cate = $cate || 0; //id của table dish_category test = 5
+        $price = $price || ""; //giá tiền;
+        $xeptheosao = $xeptheosao || 0; // = 0 thi sap xep theo gan xa, = 1 thi sap xep theo stars
+
         $sql = "SELECT restaurants.id AS r_id,restaurants.name AS r_name,
                 dishes.id as d_id, dishes.name AS d_name,
                 dish_categories.id as c_id, dish_categories.name as c_name,
@@ -81,8 +88,8 @@ class PublicController extends Controller
                 LEFT JOIN dish_tags ON dishes.id = dish_tags.dishId
                 LEFT JOIN food_tags ON dish_tags.foodTagId = food_tags.id";
         //search theo ten:
-        if ($searchTen != null && strlen($searchTen) > 0) {
-            $sql .= " WHERE (restaurants.name like '%" . $searchTen . "%' OR dishes.name LIKE '%" . $searchTen . "%')";
+        if ($keysearch != null && strlen($keysearch) > 0) {
+            $sql .= " WHERE (restaurants.name like '%" . $keysearch . "%' OR dishes.name LIKE '%" . $keysearch . "%')";
         }
         //search theo dish_categoryId
         if ($cate > 0) {

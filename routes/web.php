@@ -12,6 +12,10 @@ use App\Http\Controllers\RestaurantController;
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
+// Route::get('/', function () {
+//     dd(session()->get('Cart'));
+//     return var_dump(session()->get('Cart'));
+// })->name('home');
 
 
 Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name('menu');
@@ -19,7 +23,7 @@ Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name(
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
 
 // add to cart
-Route::post('addToCard', [RestaurantController::class, 'addToCard'])->name('addToCard');
+Route::post('/addToCard', [RestaurantController::class, 'addToCard']);
 
 // post location
 Route::post('/save_location', [LocationController::class, 'save_location'])->name('save_location');
@@ -72,6 +76,4 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/dish/store', [DishesController::class, "store"]);
 });
 //test search
-Route::get('/test',[\App\Http\Controllers\testController::class,'index'],);
-
-
+Route::get('/test', [\App\Http\Controllers\testController::class, 'index'],);
