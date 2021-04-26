@@ -32,6 +32,19 @@ class PublicController extends Controller
         return view('template.menu');
     }
 
+    function history()
+    {
+        // return view('template.order-history');
+        if (!session('User')) {
+            $access = true;
+            return redirect(route('home', ['request' => $access]));
+        } else {
+            $user = User::where('id', session('User'))->first();
+
+            return view('template.order-history', compact('user', $user));
+        }
+    }
+
     function checkout()
     {
         return view('template.checkout');
