@@ -20,14 +20,14 @@
             <!-- /widget heading -->
             <div class="widget-heading">
                 <h2 class="text-dark">
-                    Cart Summary
+                    Current Order
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="widget-body">
                 <form method="post" action="#">
                     <div class="row menu-widget">
-                        <div class="col-sm-9 margin-b-30">
+                        <div class="col-xs-12 margin-b-30">
                             <div class="cart-table-header">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-lg-5">
@@ -106,92 +106,85 @@
                             </div>
                             <!-- end:food-item -->
                         </div>
-                        <div class="col-sm-3">
-                            <div class="cart-totals margin-b-20">
-                                <div class="cart-totals-fields">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>Cart Subtotal</td>
-                                                <td id="cart-subtotal">$29.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Delivery Fee</td>
-                                                <td id="delivery-fee">$2.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-color"><strong>Total</strong></td>
-                                                <td class="text-color"><strong id="cart-total">$31.00</strong></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="widget clearfix order-history">
+            <!-- /widget heading -->
+            <div class="widget-heading">
+                <h2 class="text-dark">
+                    Past Orders
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="widget-body">
+                <form method="post" action="#">
+                    <div class="row menu-widget">
+                        <div class="col-xs-12 margin-b-30">
+                            <div class="cart-table-header">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-3">
+                                        <h5 class="cart-table-heading">ORDERED FROM</h5>
+                                    </div>
+                                    <!-- end:col -->
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
+                                        <h5 class="cart-table-heading">TIME</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
+                                        <h5 class="cart-table-heading">DELIVERED TO</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                        <h5 class="cart-table-heading">STATUS</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-1 item-cart-info">
+                                        <h5 class="cart-table-heading">TOTAL</h5>
+                                    </div>
                                 </div>
+                                <!-- end:row -->
                             </div>
-                            <!--cart summary-->
-                            <div class="payment-option">
-                                <ul class=" list-unstyled">
-                                    <li>
-                                        <label class="custom-control custom-radio  m-b-20">
-                                            <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Cash on delivery</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-control custom-radio  m-b-10">
-                                            <input name="radio-stacked" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Paypal <img src="{{asset('images/paypal.jpg')}}" alt="" width="90"></span> </label>
-                                    </li>
-                                </ul>
-                                <p class="text-xs-center"> <a href="#" class="btn btn-outline-success btn-block">Pay now</a> </p>
+                            <div class="food-item">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-3">
+                                        <div class="rest-logo pull-left">
+                                            <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/80x64" alt="Food logo"></a>
+                                        </div>
+                                        <!-- end:Logo -->
+                                        <div class="rest-descr">
+                                            <h6><a href="#">Veg Extravaganza</a></h6>
+                                            <p> 3 items </p>
+                                        </div>
+                                        <!-- end:Description -->
+                                    </div>
+                                    <!-- end:col -->
+                                    <div class="col-xs-12 col-sm-12 col-lg-3">
+                                        <span class="">Time ordered: 02/01/2020 20:09</span>
+                                        <br />
+                                        <span class="">Time delivered: 02/01/2020 20:41</span>
+                                    </div>
+                                    <!-- end:col -->
+                                    <div class="col-xs-12 col-sm-12 col-lg-3">
+                                        <span class="order-address">8 Ton That Thuyet, My Dinh, Cau Giay, Hanoi, Vietnam</span>
+                                    </div>
+                                    <!-- end:col -->
+
+                                    <div class="col-xs-12 col-sm-12 col-lg-2">
+                                        <div class="status">Completed</div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-1">
+                                        <span class="price order-total">$ 9.50</span>
+                                        <br />
+                                        <span class="payment-method">Cash</span>
+                                    </div>
+                                </div>
+                                <!-- end:row -->
                             </div>
+                            <!-- end:food-item -->
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-    {{-- script --}}
-    <script src="{{ asset('template/js/jquery.js') }}"></script>
-    <script>
-        $('.quantity-btn').on('click', function() {
-
-            var $button = $(this);
-            var oldQuantity = $button.parent().find('input').val();
-            var price = +$button.parent().parent().find('.item-price').html().split(' ')[1];
-
-            if ($button.text() == '+') {
-                var newQuantity = parseFloat(oldQuantity) + 1;
-            } else {
-                // Don't allow decrementing below zero
-                if (oldQuantity > 0) {
-                    var newQuantity = parseFloat(oldQuantity) - 1;
-                } else {
-                    newQuantity = 0;
-                }
-            }
-            var newTotal = Math.round(price * newQuantity * 100) / 100;
-
-            // update item UI
-            $button.parent().find('input').val(newQuantity);
-            $button.parent().parent().find('.item-total').html('$ ' + newTotal)
-
-            updateCartTotal();
-        });
-
-        function updateCartTotal() {
-            var itemTotalElements = $('.item-total');
-            var subtotal = 0;
-            var deliveryFee = +$('#delivery-fee').html().substring(1);
-
-            for (var i = 0; i < itemTotalElements.length; i++) {
-                var itemTotal = +itemTotalElements[i].innerHTML.split(' ')[1];
-                subtotal = Math.round((subtotal + itemTotal) * 100) / 100;
-            }
-
-            var cartTotal = subtotal + deliveryFee;
-            $('#cart-subtotal').html(`$${subtotal}`);
-            $('#cart-total').html(`$${cartTotal}`);
-        }
-    </script>
-    {{-- end script --}}
 
     @endsection
