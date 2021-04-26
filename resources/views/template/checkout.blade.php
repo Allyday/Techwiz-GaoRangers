@@ -1,6 +1,6 @@
 @extends('layout_template.base')
 
-@section('title', 'Checkout Page')
+@section('title', 'Checkout')
 
 @section('content')
 
@@ -19,102 +19,95 @@
         <div class="widget clearfix">
             <!-- /widget heading -->
             <div class="widget-heading">
-                <h3 class="widget-title text-dark">
-                    Cart summary
-                </h3>
+                <h2 class="text-dark">
+                    Cart Summary
+                </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="widget-body">
                 <form method="post" action="#">
-                    <div class="row">
-                        <div class="col-sm-6 margin-b-30">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>First Name*</label>
-                                        <input type="text" class="form-control" placeholder="John">
+                    <div class="row menu-widget">
+                        <div class="col-sm-9 margin-b-30">
+                            <div class="cart-table-header">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-5">
+                                        <h5 class="cart-table-heading">ITEM</h5>
                                     </div>
-                                    <!--/form-group-->
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Last Name*</label>
-                                        <input type="text" class="form-control" placeholder="Doe">
+                                    <!-- end:col -->
+                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                        <h5 class="cart-table-heading">PRICE</h5>
                                     </div>
-                                    <!--/form-group-->
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
+                                        <h5 class="cart-table-heading">QUANTITY</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                        <h5 class="cart-table-heading">TOTAL</h5>
+                                    </div>
                                 </div>
+                                <!-- end:row -->
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Country*</label>
-                                        <select class="form-control">
-                                            <option>India</option>
-                                            <option>USA</option>
-                                            <option>UK</option>
-                                            <option>Australia</option>
-                                            <option>Japan</option>
-                                            <option>Columbia</option>
-                                            <option>Poland</option>
-                                        </select>
+                            <div class="food-item">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-5">
+                                        <div class="rest-logo pull-left">
+                                            <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
+                                        </div>
+                                        <!-- end:Logo -->
+                                        <div class="rest-descr">
+                                            <h6><a href="#">Veg Extravaganza</a></h6>
+                                            <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
+                                        </div>
+                                        <!-- end:Description -->
                                     </div>
-                                    <!--/form-group-->
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Company Name</label>
-                                        <input type="text" class="form-control" placeholder="Lorem ipsum">
+                                    <!-- end:col -->
+                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                        <span class="price pull-left">$ 19.99</span>
                                     </div>
-                                    <!--/form-group-->
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
+                                        <div class="btn btn-small btn-secondary quantity-btn dec">&#8722;</div>
+                                        <input class="quantity-input" type="number" class="cart-item-quantity" value="1">
+                                        <div class="btn btn-small btn-secondary quantity-btn inc">&#43;</div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                        <span class="price pull-left">$ 39.99</span>
+                                    </div>
                                 </div>
+                                <!-- end:row -->
                             </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label>Full Address*</label>
-                                        <input type="text" class="form-control" placeholder="124, Lorem Street..">
+                            <!-- end:food-item -->
+
+                            <div class="food-item">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-5">
+                                        <div class="rest-logo pull-left">
+                                            <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
+                                        </div>
+                                        <!-- end:Logo -->
+                                        <div class="rest-descr">
+                                            <h6><a href="#">Veg Extravaganza</a></h6>
+                                            <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
+                                        </div>
+                                        <!-- end:Description -->
                                     </div>
-                                    <!--/form-group-->
+                                    <!-- end:col -->
+                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                        <span class="price pull-left">$ 19.99</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
+                                        <div class="btn btn-small btn-secondary quantity-btn dec">&#8722;</div>
+                                        <input class="quantity-input" type="number" class="cart-item-quantity" value="1">
+                                        <div class="btn btn-small btn-secondary quantity-btn inc">&#43;</div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                        <span class="price pull-left">$ 39.99</span>
+                                    </div>
                                 </div>
+                                <!-- end:row -->
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>City / State*</label>
-                                        <input type="text" class="form-control" placeholder="Jaipur">
-                                    </div>
-                                    <!--/form-group-->
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Zip/ Postal Code*</label>
-                                        <input type="text" class="form-control" placeholder="302012">
-                                    </div>
-                                    <!--/form-group-->
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>Email Address*</label>
-                                        <input type="text" class="form-control" placeholder="john@doe.com">
-                                    </div>
-                                    <!--/form-group-->
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label>phone*</label>
-                                        <input type="text" class="form-control" placeholder="123-345-3322">
-                                    </div>
-                                    <!--/form-group-->
-                                </div>
-                            </div>
+                            <!-- end:food-item -->
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-3">
                             <div class="cart-totals margin-b-20">
-                                <div class="cart-totals-title">
-                                    <h4>Cart Summary</h4>
-                                </div>
                                 <div class="cart-totals-fields">
                                     <table class="table">
                                         <tbody>
@@ -139,8 +132,8 @@
                                 <ul class=" list-unstyled">
                                     <li>
                                         <label class="custom-control custom-radio  m-b-20">
-                                            <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Payment on delivery</span>
-                                            <br> <span>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</span> </label>
+                                            <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Cash on delivery</span>
+                                        </label>
                                     </li>
                                     <li>
                                         <label class="custom-control custom-radio  m-b-10">
@@ -155,5 +148,31 @@
             </div>
         </div>
     </div>
+
+    {{-- script --}}
+    <script src="{{ asset('template/js/jquery.js') }}"></script>
+    <script>
+        $('.quantity-btn').on('click', function() {
+
+            var $button = $(this);
+            var oldValue = $button.parent().find('input').val();
+            console.log('$button', $button)
+            console.log('oldValue', oldValue)
+            if ($button.text() == '+') {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 0) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 0;
+                }
+            }
+
+            $button.parent().find('input').val(newVal);
+
+        });
+    </script>
+    {{-- end script --}}
 
     @endsection
