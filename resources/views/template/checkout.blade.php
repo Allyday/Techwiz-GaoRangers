@@ -61,7 +61,7 @@
                                     </div>
                                     <!-- end:col -->
                                     <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <span class="price pull-left">$ 19.99</span>
+                                        <span class="price pull-left item-price">$ 9.50</span>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
                                         <div class="btn btn-small btn-secondary quantity-btn dec">&#8722;</div>
@@ -69,7 +69,7 @@
                                         <div class="btn btn-small btn-secondary quantity-btn inc">&#43;</div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <span class="price pull-left">$ 39.99</span>
+                                        <span class="price pull-left item-total">$ 9.50</span>
                                     </div>
                                 </div>
                                 <!-- end:row -->
@@ -91,15 +91,15 @@
                                     </div>
                                     <!-- end:col -->
                                     <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <span class="price pull-left">$ 19.99</span>
+                                        <span class="price pull-left item-price">$ 4.99</span>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
                                         <div class="btn btn-small btn-secondary quantity-btn dec">&#8722;</div>
-                                        <input class="quantity-input" type="number" class="cart-item-quantity" value="1">
+                                        <input class="quantity-input" type="number" class="cart-item-quantity" value="5">
                                         <div class="btn btn-small btn-secondary quantity-btn inc">&#43;</div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <span class="price pull-left">$ 39.99</span>
+                                        <span class="price pull-left item-total">$ 24.95</span>
                                     </div>
                                 </div>
                                 <!-- end:row -->
@@ -113,15 +113,15 @@
                                         <tbody>
                                             <tr>
                                                 <td>Cart Subtotal</td>
-                                                <td>$29.00</td>
+                                                <td id="cart-subtotal">$29.00</td>
                                             </tr>
                                             <tr>
-                                                <td>Shipping &amp; Handling</td>
-                                                <td>$2.00</td>
+                                                <td>Delivery Fee</td>
+                                                <td id="delivery-fee">$2.00</td>
                                             </tr>
                                             <tr>
                                                 <td class="text-color"><strong>Total</strong></td>
-                                                <td class="text-color"><strong>$31.00</strong></td>
+                                                <td class="text-color"><strong id="cart-total">$31.00</strong></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -155,23 +155,42 @@
         $('.quantity-btn').on('click', function() {
 
             var $button = $(this);
-            var oldValue = $button.parent().find('input').val();
-            console.log('$button', $button)
-            console.log('oldValue', oldValue)
+            var oldQuantity = $button.parent().find('input').val();
+            var price = +$button.parent().parent().find('.item-price').html().split(' ')[1];
+
             if ($button.text() == '+') {
-                var newVal = parseFloat(oldValue) + 1;
+                var newQuantity = parseFloat(oldQuantity) + 1;
             } else {
                 // Don't allow decrementing below zero
-                if (oldValue > 0) {
-                    var newVal = parseFloat(oldValue) - 1;
+                if (oldQuantity > 0) {
+                    var newQuantity = parseFloat(oldQuantity) - 1;
                 } else {
-                    newVal = 0;
+                    newQuantity = 0;
                 }
             }
+            var newTotal = Math.round(price * newQuantity * 100) / 100;
 
-            $button.parent().find('input').val(newVal);
+            // update item UI
+            $button.parent().find('input').val(newQuantity);
+            $button.parent().parent().find('.item-total').html('$ ' + newTotal)
 
+            updateCartTotal();
         });
+
+        function updateCartTotal() {
+            var itemTotalElements = $('.item-total');
+            var subtotal = 0;
+            var deliveryFee = +$('#delivery-fee').html().substring(1);
+
+            for (var i = 0; i < itemTotalElements.length; i++) {
+                var itemTotal = +itemTotalElements[i].innerHTML.split(' ')[1];
+                subtotal = Math.round((subtotal + itemTotal) * 100) / 100;
+            }
+
+            var cartTotal = subtotal + deliveryFee;
+            $('#cart-subtotal').html(`$${subtotal}`);
+            $('#cart-total').html(`$${cartTotal}`);
+        }
     </script>
     {{-- end script --}}
 
