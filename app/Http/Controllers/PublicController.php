@@ -18,7 +18,7 @@ class PublicController extends Controller
 
     function menu()
     {
-        return view('template.profile');
+        return view('template.menu');
     }
     function restaurants()
     {
