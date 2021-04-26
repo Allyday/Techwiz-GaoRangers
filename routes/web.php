@@ -9,6 +9,8 @@ use App\Http\Controllers\DishesController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\OrderController;
+
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
@@ -68,6 +70,10 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::post('/staff/editDish/{dish}', [DishesController::class, "update"]);
     Route::get('/staff/dish/create', [DishesController::class, "create"]);
     Route::get('/staff/dish/store', [DishesController::class, "store"]);
+    Route::post('/staff/deleteDish/{dish}', [DishesController::class, "destroy"]);
+    Route::get('/staff/orderStaff', [OrderController::class, "index"])->name('orderStaff');
+    Route::post('/staff/orderStatus/{order}', [OrderController::class, "update"]);
+
 });
 //test search
 Route::get('/test',[\App\Http\Controllers\testController::class,'index'],);
