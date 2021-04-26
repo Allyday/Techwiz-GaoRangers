@@ -15,18 +15,17 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link @if(url()->current() == route('restaurants')) active @endif" href="{{ route('restaurants') }}">Restaurants</a>
+                        <a class="nav-link @if(url()->current() == route('restaurants')) active @endif" href="{{ route('restaurants') }}">All Restaurants</a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{route('feedback')}}">Feedback</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('checkout')}}">Checkout</a>
-                        </div>
-                    </li>
                     @if (session('User'))
+                    <li class="nav-item">
+                        <a class="nav-link @if(url()->current() == route('feedback')) active @endif" href="{{route('feedback')}}">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if(url()->current() == route('checkout')) active @endif" href="{{route('checkout')}}">My Cart</a>
+                    </li>
+
                     <li class="nav-item"> <a class="nav-link" href="javascript: void(0)" data-toggle="modal" data-target="#sureLogout">Logout</a> </li>
                     @else
                     <li class="nav-item"> <a class="nav-link" href="javascript:void(0)" data-toggle="modal" data-target="#modalLogin">Log in </a> </li>
