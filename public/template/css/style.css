@@ -126,6 +126,36 @@ hr {
 * Foms
 *===================================*/
 
+/* start cart*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.cart-table-header {
+    padding: 15px;
+    border-bottom: 1px solid #373a3c;
+}
+
+.quantity-input {
+    width: 20%;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.btn.btn-small.btn-secondary.quantity-btn {
+    margin-bottom: 3px;
+}
+
+/* end cart*/
+
 .pac-container {
     /* make sure Google Maps autocomplete fields floats*/
     z-index: 10000 !important;
