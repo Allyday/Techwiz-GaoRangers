@@ -13,7 +13,7 @@ class testController extends Controller
 {
     public function index(){
         $searchTen = "rice";
-        $tags = [15];
+        $tags = [15,5];
         $cate = 5;
         $price = "";
         $xeptheosao = 0;
@@ -38,23 +38,49 @@ class testController extends Controller
         if($price > 0){
             $sql .=" AND dishes.price > ".$price."";
         }
-        //sap xep theo so sao
-        if($xeptheosao = 1){
-            $sql .=" ORDER BY restaurants.stars DESC";
-        }
+
         //search theo dish_tagID
-        if(is_array($tags)){
-            foreach ($tags as $tagId){
-                if($tagId > 0 ){
-                    $sql .= " AND food_tags.id = ".$tagId."";
+        $temp = "";
+        if (is_array($tags)) {
+            foreach ($tags as $key=>$tagId) {
+                if($tagId > 0 && $key == 0){
+                    $temp .= $tagId;
+                }elseif($tagId > 0) {
+                    $temp .= ",".$tagId;
                 }
             }
+
+            $sql .=" AND dishes.id in (
+                    SELECT dish_tags.dishId
+				    FROM dish_tags
+				    GROUP BY dish_tags.dishId
+				    HAVING GROUP_CONCAT(dish_tags.foodTagId) = '".$temp."')";
+        }
+        //sap xep theo so sao
+        if ($xeptheosao = 1) {
+            $sql .= " ORDER BY restaurants.stars DESC";
         }
         $table = DB::select($sql);
+        dd($temp);
         dd($table);
         return view('test.test');
     }
-    public function search($name, $cateId, $tag,$price){
-
+    public function topQuanDatNhieuNhat($top){
+        $top = 0;
+//        $sql = "SELECT restaurants.id as r_id, restaurants.name, COUNT(orders.id) AS doanhso
+//                FROM restaurants
+//                LEFT JOIN orders ON restaurants.id = orders.restaurantId
+//                GROUP BY orders.restaurantId
+//                ORDER BY doanhso DESC LIMIT 3";
+        $table = DB::table('restaurants')
+            ->leftJoin('orders','restaurants.id','orders.restaurantId')
+            ->select(DB::raw('count(orders.id) as count, orders.restaurantId as restaurantId'))
+            ->groupBy('orders.restaurantId')
+            ->orderBy('count','desc')
+            ->limit($top)
+            ->get();
+        dd($table);
+        return;
     }
+
 }
