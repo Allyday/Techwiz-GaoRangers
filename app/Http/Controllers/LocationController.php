@@ -8,14 +8,13 @@ class LocationController extends Controller
 {
     function save_location(Request $request)
     {
-        $location = $request->location;
-        // dd($location);
-        $request->session()->put('Location', $location);
-        
-        // xoa trong session
-        // session()->flush();
-
-        return redirect(route('restaurants', ['location' => $location]));
+        if ($request->ajax()) {
+            $location = $request->location;
+            // session()->flush();
+            $request->session()->put('Location', $location);
+            return 1;
+            // return redirect(route('restaurants'));
+        }
 
     }
 }

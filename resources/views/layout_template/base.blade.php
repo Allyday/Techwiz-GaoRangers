@@ -20,8 +20,10 @@
    <!-- Custom styles for this template -->
    <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
    @yield('custom')
+
    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9Kkq2wKQ-xgWw1SyeBFceSfPCZb8Pm70&libraries=places&callback=initAutocomplete">
    </script>
+
    <script>
       let autocomplete;
 
@@ -48,7 +50,22 @@
             // console.log('addressUnits', addressUnits);
             
             // submit form location modal from footer
-            $("#formLocation").submit();
+            // $("#formLocation").submit();
+
+            let keysearch = $('#InputSearch').val();
+
+               // submit with ajax
+            $.ajax({
+                  type: 'POST',
+                  url: '/save_location',
+                  data: $("#formLocation").serialize(), 
+                  success: function(res) { 
+                     if(res==1){
+                        window.location = `/restaurants?search=${keysearch}`;
+                     }
+                  }
+             });
+            // end submit
 
             let municipality = removeAccents(addressUnits[addressUnits.length - 4]);
             let district = removeAccents(addressUnits[addressUnits.length - 3]);
@@ -58,9 +75,10 @@
             // nếu là đang chọn location ở trang home thì truyền vào tham số url (?) để query
             if (location.pathname == '/' || location.pathname == '/restaurants') {
                let municipalityParam = municipality ? `&mun=${municipality}` : '';
-               let url = encodeURI(`restaurants?dis=${district}${municipalityParam}`)
+               let url = encodeURI(`restaurants?dis=${district}${municipalityParam}`);
                // location.href = url;
                // đọc url & xử lý để query ở màn restaurants 
+            }
          });
 
          function removeAccents(str) {
@@ -72,6 +90,7 @@
 
       }
    </script>
+
 </head>
 
 <body>

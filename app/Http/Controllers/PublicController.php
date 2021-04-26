@@ -12,6 +12,11 @@ class PublicController extends Controller
     function index()
     {
         $access = false;
+
+
+        // get data home page
+
+
         return view('template.home', compact('access', $access));
     }
 
@@ -19,12 +24,7 @@ class PublicController extends Controller
     {
         return view('template.profile');
     }
-    function restaurants()
-    {
-        return view('template.restaurants');
-    }
-
-
+   
     function checkout()
     {
         return view('template.checkout');

@@ -125,8 +125,15 @@ hr {
 /*==================================
 * Foms
 *===================================*/
-.pac-container { /* make sure Google Maps autocomplete fields floats*/
+
+.pac-container {
+    /* make sure Google Maps autocomplete fields floats*/
     z-index: 10000 !important;
+}
+
+.custom-control-input:checked~.custom-control-label {
+    color: red;
+    font-weight: 700;
 }
 
 .custom-control-input:checked~.custom-control-indicator {
@@ -404,7 +411,7 @@ hr {
     .navbar-nav .nav-item {
         display: block;
     }
-    .navbar-nav .nav-item + .nav-item {
+    .navbar-nav .nav-item+.nav-item {
         margin-left: 0;
     }
     .dropdown-menu {

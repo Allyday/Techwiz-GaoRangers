@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DishesController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\RestaurantController;
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
@@ -15,14 +16,21 @@ Route::get('/', [PublicController::class, 'index'])->name('home');
 
 Route::get('/menu/{id}', [PublicController::class, 'menu'])->name('menu');
 
-Route::get('/restaurants', [PublicController::class, 'restaurants'])->name('restaurants');
+Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
+
 
 // post location
 Route::post('/save_location', [LocationController::class, 'save_location'])->name('save_location');
 
+// post search restaurant from home
+Route::post('search/restaurants', [RestaurantController::class, 'searchFromHome'])->name('search_restaurants');
+
+// post filter restaurant from restauranta
+Route::post('filter/restaurants', [RestaurantController::class, 'filter'])->name('filter_restaurants');
+
+
 // post feedback
 Route::post('submit/feedback', [PublicController::class, 'save_feedback'])->name('save_feedback');
-
 // post check log in
 Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
 // check register
