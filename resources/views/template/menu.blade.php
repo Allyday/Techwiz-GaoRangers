@@ -194,14 +194,7 @@
             console.log(test); 
       }
 
-      function postByAjax(cart){
-         // $.ajax({
-         //       type: 'POST',
-         //       url: "/addToCard",
-         //       data: { cart: cart, _token: '{{csrf_token()}}' },
-         //       success: function(resultData) { console.log(resultData) }
-         // });
-      }
+      
 
    </script>
    <!-- end:Js -->

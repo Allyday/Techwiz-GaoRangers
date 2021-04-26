@@ -80,7 +80,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Cart Subtotal</td>
-                                                <td id="cart-subtotal" class="text-end">$29.00</td>
+                                                <td>$ <span id="cart-subtotal" class="text-end">29.00</span></td>
                                             </tr>
                                             <tr>
                                                 <td>Delivery Fee</td>
@@ -226,10 +226,9 @@
             }
 
             var cartTotal = Math.round((subtotal + deliveryFee) * 100) / 100;
-            $('#cart-subtotal').html(`$${subtotal}`);
+            $('#cart-subtotal').html(`${subtotal}`);
             $('#cart-total').html(`$${cartTotal}`);
         }
-
 
         function pay_now() {
             var aray = JSON.parse(window.sessionStorage.getItem("cart")) || [];
@@ -239,12 +238,29 @@
             var delivary = 2;
 
 
-
         }
 
+        function postByAjax(ipdata) {
+            $.ajax({
+                type: 'POST',
+                url: "add/record/order",
+                data: {
+                    data: ipdata,
+                    _token: '{{csrf_token()}}'
+                },
+                success: function(res) {
+                    console.log(res);
+
+                }
+            });
+        }
         // add order
         $('#pay_now').on('click', () => {
-            console.log('done pay now')
+            // console.log(pay_now());
+
+            // location.href = '<?= route('home') ?>';
+            postByAjax(pay_now());
+
         })
     </script>
     {{-- end script --}}
