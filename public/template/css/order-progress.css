@@ -156,5 +156,9 @@
 
 #cancel-btn {
     color: #9da4ae;
+}
+
+#cancel-btn:hover,
+#cancel-btn:active {
     text-decoration: underline;
 }
