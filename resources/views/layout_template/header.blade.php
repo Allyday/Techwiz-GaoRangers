@@ -1,3 +1,12 @@
+<?php 
+
+use App\Models\User;
+
+if (session('User')) {
+    $user = User::where('id', session('User'))->first();
+}
+?>
+
 <!--header starts-->
 <header id="header" class="header-scroll top-header headrom">
     <!-- .navbar -->
@@ -19,6 +28,7 @@
                     </li>
 
                     @if (session('User'))
+
                     <li class="nav-item">
                         <a class="nav-link @if(url()->current() == route('order-history')) active @endif" href="{{route('order-history')}}">My Orders</a>
                     </li>
@@ -29,8 +39,10 @@
                         <a class="nav-link @if(url()->current() == route('feedback')) active @endif" href="{{route('feedback')}}">Feedback</a>
                     </li>
 
+
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello, Hien Anh!</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello, {{ $user->userName }}</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="javascript:void(0)">Account Settings</a>
                             <div class="dropdown-divider"></div>

@@ -92,55 +92,12 @@
                         <!-- end:col -->
                         <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info">
                            <span class="price pull-left">$ 19.99</span>
-                           <a onclick="addCart(1, 'Veg Extravaganza', '19,99', './images/app.png', 1)" class="btn btn-small btn btn-secondary pull-right">&#43;</a>
+                           <a onclick="addCart(1, 'Veg Extravaganza', '19,99', './images/app.png', 1, 'Burgers, American, Sandwiches, Fast Food, BBQ')" class="btn btn-small btn btn-secondary pull-right">&#43;</a>
                         </div>
                      </div>
                      <!-- end:row -->
                   </div>
 
-                  <div class="food-item white">
-                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-lg-8">
-                           <div class="rest-logo pull-left">
-                              <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
-                           </div>
-                           <!-- end:Logo -->
-                           <div class="rest-descr">
-                              <h6><a href="#">Veg Extravaganza</a></h6>
-                              <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                           </div>
-                           <!-- end:Description -->
-                        </div>
-                        <!-- end:col -->
-                        <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info">
-                           <span class="price pull-left">$ 19.99</span>
-                           <a onclick="addCart(2, 'Extravaganza', '29,99', './images/app1.png', 1)" class="btn btn-small btn btn-secondary pull-right">&#43;</a>
-                        </div>
-                     </div>
-                     <!-- end:row -->
-                  </div>
-
-                  <div class="food-item white">
-                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-lg-8">
-                           <div class="rest-logo pull-left">
-                              <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
-                           </div>
-                           <!-- end:Logo -->
-                           <div class="rest-descr">
-                              <h6><a href="#">Veg Extravaganza</a></h6>
-                              <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                           </div>
-                           <!-- end:Description -->
-                        </div>
-                        <!-- end:col -->
-                        <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info">
-                           <span class="price pull-left">$ 19.99</span>
-                           <a onclick="addCart(3, 'Pizzs', '33,99', './images/pizza.png', 1)" class="btn btn-small btn btn-secondary pull-right">&#43;</a>
-                        </div>
-                     </div>
-                     <!-- end:row -->
-                  </div>
                   <!-- end for loop here -->
 
                </div>
@@ -204,22 +161,46 @@
    <script src="{{ asset('template/js/jquery.js') }}"></script>
    <script>
       // add to cart
-      function addCart(id, name, price, image, sl) {
-         let cart = {
-                     id: id,
-                     ten: name,
-                     gia: price,
-                     img: image,
-                     quantity: sl
-               };
+      function addCart(id,name,price,image, quantity, tag) {
+         // sessionStorage.clear();
+         // console.log('done')
+            var test = [];
+            let temp = {
+                  id: id,
+                  ten:name,
+                  quantity: quantity,
+                  gia: price,
+                  img: image,
+                  tag: tag
+            };
+            let cart = JSON.parse(sessionStorage.getItem("cart"));
+            // console.log(cart);
+            if (cart == null) {
+                  cart = [];
+                  cart.push(temp);
+            } else {
+                  let index = cart.findIndex((e) => {
+                     if (e.id === id) return true;
+                  });
+                  if (index <= -1) {
+                     cart.push(temp);
+                  }else {
+                     cart[index].quantity += 1;
+                  }
 
-         $.ajax({
-            url: 'addToCard',
-            method: 'POST',
-            data: cart
-         });
+            }
+            test = cart;
+            window.sessionStorage.setItem("cart", JSON.stringify(test));
+            console.log(test); 
+      }
 
-         
+      function postByAjax(cart){
+         // $.ajax({
+         //       type: 'POST',
+         //       url: "/addToCard",
+         //       data: { cart: cart, _token: '{{csrf_token()}}' },
+         //       success: function(resultData) { console.log(resultData) }
+         // });
       }
 
    </script>

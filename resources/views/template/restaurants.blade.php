@@ -140,7 +140,7 @@
                   </div>
                </div>
                <!-- end:Widget -->
-               <button type="submit" class="btn btn-primary w-100">filter</button>
+               <button type="submit" class="btn btn-primary w-100" style="background-color:#f30;">filter</button>
             </div>
 
             </form>

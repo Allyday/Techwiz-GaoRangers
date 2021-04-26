@@ -5,16 +5,6 @@
 @section('content')
 
 <div class="page-wrapper">
-    <div class="top-links">
-        <div class="container">
-            <ul class="row links">
-                <li class="col-xs-12 col-sm-3 link-item active"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
-                <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="restaurants">Choose Restaurant</a></li>
-                <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="restaurant-details/1">Pick Your favorite food</a></li>
-                <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="checkout">Order and Pay online</a></li>
-            </ul>
-        </div>
-    </div>
     <div class="container m-t-30">
         <div class="widget clearfix">
             <!-- /widget heading -->
