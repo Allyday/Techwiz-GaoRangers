@@ -11,11 +11,11 @@
             <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
                 <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link @if(url()->current() == route('home')) active @endif" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('restaurants') }}">Restaurants</a>
+                        <a class="nav-link @if(url()->current() == route('restaurants')) active @endif" href="{{ route('restaurants') }}">Restaurants</a>
                     </li>
 
                     <li class="nav-item dropdown">
