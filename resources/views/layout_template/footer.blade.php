@@ -34,7 +34,8 @@
 @else
 <script>
     $('document').ready(function() {
-        $('#locationModal').modal('show')
+        if (location.pathname.indexOf('setting') == -1)
+            $('#locationModal').modal('show')
     });
 </script>
 @endif
