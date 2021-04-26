@@ -152,30 +152,48 @@
     {{-- script --}}
     <script src="{{ asset('template/js/jquery.js') }}"></script>
     <script>
+        $('.quantity-input').on('change', function() {
+            var $input = $(this);
+            var newQuantity = $input.val();
+
+            // Don't allow input below 1
+            if (newQuantity < 1) {
+                $input.val(1);
+                newQuantity = 1;
+            }
+
+            updateItemTotal($input, newQuantity);
+            updateCartTotal();
+        });
+
         $('.quantity-btn').on('click', function() {
 
             var $button = $(this);
             var oldQuantity = $button.parent().find('input').val();
-            var price = +$button.parent().parent().find('.item-price').html().split(' ')[1];
 
             if ($button.text() == '+') {
                 var newQuantity = parseFloat(oldQuantity) + 1;
             } else {
                 // Don't allow decrementing below zero
-                if (oldQuantity > 0) {
+                if (oldQuantity > 1) {
                     var newQuantity = parseFloat(oldQuantity) - 1;
                 } else {
-                    newQuantity = 0;
+                    newQuantity = 1;
                 }
             }
-            var newTotal = Math.round(price * newQuantity * 100) / 100;
 
             // update item UI
             $button.parent().find('input').val(newQuantity);
-            $button.parent().parent().find('.item-total').html('$ ' + newTotal)
 
+            updateItemTotal($button, newQuantity);
             updateCartTotal();
         });
+
+        function updateItemTotal($element, quantity) {
+            var price = +$element.parent().parent().find('.item-price').html().split(' ')[1];
+            var newTotal = Math.round(price * quantity * 100) / 100;
+            $element.parent().parent().find('.item-total').html('$ ' + newTotal)
+        }
 
         function updateCartTotal() {
             var itemTotalElements = $('.item-total');
@@ -187,7 +205,7 @@
                 subtotal = Math.round((subtotal + itemTotal) * 100) / 100;
             }
 
-            var cartTotal = subtotal + deliveryFee;
+            var cartTotal = Math.round((subtotal + deliveryFee) * 100) / 100;
             $('#cart-subtotal').html(`$${subtotal}`);
             $('#cart-total').html(`$${cartTotal}`);
         }
