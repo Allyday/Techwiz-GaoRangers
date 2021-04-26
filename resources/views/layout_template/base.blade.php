@@ -61,6 +61,7 @@
                let url = encodeURI(`restaurants?dis=${district}${municipalityParam}`)
                // location.href = url;
                // đọc url & xử lý để query ở màn restaurants 
+            }
          });
 
          function removeAccents(str) {
