@@ -7,7 +7,7 @@
     <div class="top-links">
         <div class="container">
             <ul class="row links">
-                <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="index.html">Choose Your Location</a></li>
+                <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
                 <li class="col-xs-12 col-sm-3 link-item"><span>2</span><a href="restaurants.html">Choose Restaurant</a></li>
                 <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="profile.html">Pick Your favorite food</a></li>
                 <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="checkout.html">Order and Pay online</a></li>
@@ -51,7 +51,8 @@
                             <div class="input-group">
                                 <input type="text" class="form-control search-field" placeholder="Search your favorite food"> <span class="input-group-btn">
                                     <button class="btn btn-secondary search-btn" type="button"><i class="fa fa-search"></i></button>
-                                </span> </div>
+                                </span>
+                            </div>
                             <form>
                                 <ul>
                                     <li>
@@ -104,7 +105,8 @@
                         <div class="widget-body">
                             <div class="range-slider m-b-10"> <span id="ex2CurrentSliderValLabel"> Filter by price:<span id="ex2SliderVal"><strong>35</strong></span>€</span>
                                 <br>
-                                <input id="ex2" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="35" /> </div>
+                                <input id="ex2" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="35" />
+                            </div>
                         </div>
                     </div>
                     <!-- end:Pricing widget -->
@@ -295,6 +297,7 @@
             </div>
         </div>
     </section>
+<<<<<<< HEAD
     <section class="app-section">
         <div class="app-wrap">
             <div class="container">
@@ -323,3 +326,6 @@
         </div>
     </section>
     @endsection
+=======
+    @endsection
+>>>>>>> f8bcf91b0ec743fb048211a3e77b9d94e8a25a9f

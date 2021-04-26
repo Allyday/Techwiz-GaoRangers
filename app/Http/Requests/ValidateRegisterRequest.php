@@ -29,9 +29,10 @@ class ValidateRegisterRequest extends FormRequest
             'userName' => ['required', 'min:5', new StaffRule(), 'unique:users'],
             'mail' => 'required | email | unique:users',
             'password' => 'required | max: 12 | min:4',
+            'repeatPass' => 'required | max: 12 | min:4',
             'gender' => 'required',
-            'firstname' => 'required | min:3',
-            'lastname' => 'required | min:3',
+            'firstName' => 'required | min:3',
+            'lastName' => 'required | min:3',
         ];
     }
 }

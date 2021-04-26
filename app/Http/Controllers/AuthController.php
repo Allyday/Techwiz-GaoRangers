@@ -27,26 +27,25 @@ class AuthController extends Controller
         ]);
 
         $user = User::get()->where('userName', '=', $request->username)->first();
-        print_r($user);
+        
 
         if (!$user) {
             return back()->with('fail', 'We do not recognize your email address !');
         } else {
             // check password
 
-            // if (!Hash::check($request->password, $user->password)) {
-            if (!($request->password == $user->password)) {
+            if (!Hash::check($request->password, $user->password)) {
 
                 return back()->with('fail', 'Incorrect password');
             } else {
                 if ($user->type == 2) {
                     $request->session()->put('User', $user->id);
-
                     return redirect(route('home'));
                 }
 
                 $request->session()->put('User', $user->id);
                 $request->session()->put('User_type', $user->type);
+                
                 return redirect(route('staff'));
             }
         }
@@ -61,32 +60,28 @@ class AuthController extends Controller
 
     function save(ValidateRegisterRequest $request)
     {
-        dd($request->all());
         // validation request
         $request->validated();
 
-        if (isset($request->repeatPass) && ($request->repeatPass == $request->password)) {
+        if ($request->repeatPass == $request->password) {
             // set default for column : `picture`
             $picture = 'http://img/';
 
-            $user = new User;
-            $user->phoneNumber = $request->phoneNumber;
-            $user->mail = $request->mail;
-            $user->password = Hash::make($request->password);
-            $user->gender = $request->gender;
-            $user->firstName = $request->firstName;
-            $user->lastName = $request->lastName;
-            $user->type = $request->type;
-            $user->picture = $picture;
-
 
             if ($request->type == 1) {
-                // fix restaurantId
-                $restaurantId = 3;
-
                 // create user for staff
-                $user->userName = '_' . $restaurantId . $request->userName;
-                $user->restaurantId = $restaurantId;
+                $user = new User();
+
+                $user->phoneNumber = $request->phoneNumber;
+                $user->mail = $request->mail;
+                $user->password = Hash::make($request->password);
+                $user->gender = $request->gender;
+                $user->firstName = $request->firstName;
+                $user->lastName = $request->lastName;
+                $user->type = $request->type;
+                $user->picture = $picture;
+                $user->userName = '_' . $request->restaurantId . $request->userName;
+                $user->restaurantId = $request->restaurantId;
 
                 $save = $user->save();
 
@@ -101,6 +96,16 @@ class AuthController extends Controller
                 }
             } else {
                 // create user for customer
+                $user = new User();
+
+                $user->phoneNumber = $request->phoneNumber;
+                $user->mail = $request->mail;
+                $user->password = Hash::make($request->password);
+                $user->gender = $request->gender;
+                $user->firstName = $request->firstName;
+                $user->lastName = $request->lastName;
+                $user->type = $request->type;
+                $user->picture = $picture;
                 $user->userName = $request->userName;
 
                 $save = $user->save();
@@ -114,9 +119,8 @@ class AuthController extends Controller
                     return back()->with('fail', 'Something went wrong, try again later !');
                 }
             }
-
         } else {
-            return back()->with('fail', 'Check Repeat pass field !');
+            return back()->with('repeatPass', 'Check Repeat pass field !');
         }
     }
 

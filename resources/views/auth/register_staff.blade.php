@@ -7,7 +7,7 @@
 @section('content')
 <div class="row">
    <div class="col-md-12 d-flex justify-content-around mt-4 mb-3">
-      <h1>Register account</h1>
+      <h1>Register account staff</h1>
    </div>
 
    <div class="col-md-12 mt-3 d-flex justify-content-around">
@@ -60,6 +60,13 @@
             @enderror
             <input type="password" class="form-control" name="password" placeholder="Password" value="{{ old('password') }}">
          </div>
+         
+         <div class="mb-4">
+            @error('repeatPass')
+            <p class="text-danger w-100 mt-2 mb-2">{{ $message }}</p>
+            @enderror
+            <input type="password" class="form-control" name="repeatPass" placeholder="repeatPass" value="{{ old('repeatPass') }}">
+         </div>
 
          {{-- gender --}}
          <div class="mb-3">
@@ -74,18 +81,18 @@
 
          {{-- first name --}}
          <div class="mb-3">
-            @error('firstname')
+            @error('firstName')
             <p class="text-danger w-100 mt-2 mb-2">{{ $message }}</p>
             @enderror
-            <input type="text" name="firstname" class="form-control" placeholder="First Name" value="{{ old('firstname') }}">
+            <input type="text" name="firstName" class="form-control" placeholder="First Name" value="{{ old('firstName') }}">
          </div>
 
          {{-- last name --}}
          <div class="mb-3">
-            @error('lastname')
+            @error('lastName')
             <p class="text-danger w-100 mt-2 mb-2">{{ $message }}</p>
             @enderror
-            <input type="text" class="form-control" name="lastname" placeholder="last name" value="{{ old('lastname') }}">
+            <input type="text" class="form-control" name="lastName" placeholder="last name" value="{{ old('lastName') }}">
          </div>
 
          <div class="mb-4">

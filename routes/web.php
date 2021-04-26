@@ -6,39 +6,22 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DishesController;
-
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PublicController;
 
 // public
-Route::get('/', function () {
-    $access = false;
-    return view('template.home', compact('access',$access));
-})->name('home');
+Route::get('/', [PublicController::class, 'index'])->name('home');
 
 
+Route::get('/menu/{id}', [PublicController::class, 'menu'])->name('menu');
 
-Route::get('/profile', function () {
-    return view('template.profile');
-})->name('profile');
+Route::get('/restaurants', [PublicController::class, 'restaurants'])->name('restaurants');
 
-Route::get('/restaurant', function () {
-    return view('template.restaurants');
-})->name('restaurant');
+// post location
+Route::post('/save_location', [LocationController::class, 'save_location'])->name('save_location');
 
-Route::get('/food', function () {
-    return view('template.food_results');
-})->name('food_result');
-
-Route::get('/contact', function () {
-    return view('template.contact');
-})->name('contact');
-
-Route::get('/checkout', function () {
-    return view('template.checkout');
-})->name('checkout');
-
-Route::get('/registration', function () {
-    return view('auth.register');
-})->name('registration');
+// post feedback
+Route::post('submit/feedback', [PublicController::class, 'save_feedback'])->name('save_feedback');
 
 // post check log in
 Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
@@ -60,20 +43,25 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('auth/login', [AuthController::class, 'login'])->name('auth.login');
     Route::get('auth/register', [AuthController::class, 'register'])->name('auth.register');
 
-    // add more route need authenticate
+    Route::get('/feedback', [PublicController::class, 'feedback'])->name('feedback');
+
+    Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
+
+    // route for staff
     Route::get('/staff', [AdminController::class, 'index'])->name('staff');
 
     Route::get('/staff/menu', [AdminController::class, 'menu'])->name('staff.menu');
 
     Route::get('/staff/product/type', [AdminController::class, 'type_product'])->name('staff.type');
 
-    Route::get('/staff/account', [AdminController::class, 'setting_account'])->name('staff.account');
-    Route::get('/adminaccount', [UserController::class, "index"])->name('adminaccount');
+    Route::get('/staff/account', [UserController::class, "index"])->name('adminaccount');
     Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
     Route::get('/staff/{dish}/edit', [DishesController::class, "edit"]);
     Route::post('/staff/editDish/{dish}', [DishesController::class, "update"]);
     Route::get('/staff/dish/create', [DishesController::class, "create"]);
     Route::get('/staff/dish/store', [DishesController::class, "store"]);
 });
+//test search
+Route::get('/test',[\App\Http\Controllers\testController::class,'index'],);
 
 

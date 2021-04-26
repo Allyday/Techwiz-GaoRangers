@@ -10,7 +10,7 @@
    <div class="top-links">
       <div class="container">
          <ul class="row links">
-            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="index.html">Choose Your Location</a></li>
+            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
             <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="restaurants.html">Choose Restaurant</a></li>
             <li class="col-xs-12 col-sm-3 link-item"><span>3</span><a href="profile.html">Pick Your favorite food</a></li>
             <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="checkout.html">Order and Pay online</a></li>
@@ -19,10 +19,7 @@
    </div>
    <!-- end:Top links -->
    <!-- start: Inner page hero -->
-   <div class="inner-page-hero bg-image" data-image-src="http://placehold.it/1670x480">
-      <div class="container"> </div>
-      <!-- end:Container -->
-   </div>
+  
    <div class="result-show">
       <div class="container">
          <div class="row">
@@ -54,7 +51,8 @@
                      <div class="input-group">
                         <input type="text" class="form-control search-field" placeholder="Search your favorite food"> <span class="input-group-btn">
                            <button class="btn btn-secondary search-btn" type="button"><i class="fa fa-search"></i></button>
-                        </span> </div>
+                        </span>
+                     </div>
                      <form>
                         <ul>
                            <li>
@@ -106,7 +104,8 @@
                   <div class="widget-body">
                      <div class="range-slider m-b-10"> <span id="ex2CurrentSliderValLabel"> Filter by price:<span id="ex2SliderVal"><strong>35</strong></span>€</span>
                         <br>
-                        <input id="ex2" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="35" /> </div>
+                        <input id="ex2" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="35" />
+                     </div>
                   </div>
                </div>
                <!-- end:Pricing widget -->
@@ -380,32 +379,4 @@
          </div>
       </div>
    </section>
-   <section class="app-section">
-      <div class="app-wrap">
-         <div class="container">
-            <div class="row text-img-block text-xs-left">
-               <div class="container">
-                  <div class="col-xs-12 col-sm-6 hidden-xs-down right-image text-center">
-                     <figure> <img src="{{ asset('images/app.png') }}" alt="Right Image"> </figure>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 left-text">
-                     <h3>The Best Food Delivery App</h3>
-                     <p>Now you can make food happen pretty much wherever you are thanks to the free easy-to-use Food Delivery &amp; Takeout App.</p>
-                     <div class="social-btns">
-                        <a href="#" class="app-btn apple-button clearfix">
-                           <div class="pull-left"><i class="fa fa-apple"></i> </div>
-                           <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">App Store</span> </div>
-                        </a>
-                        <a href="#" class="app-btn android-button clearfix">
-                           <div class="pull-left"><i class="fa fa-android"></i> </div>
-                           <div class="pull-right"> <span class="text">Available on the</span> <span class="text-2">Play store</span> </div>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
-
    @endsection

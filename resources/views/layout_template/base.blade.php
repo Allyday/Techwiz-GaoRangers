@@ -20,6 +20,58 @@
    <!-- Custom styles for this template -->
    <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
    @yield('custom')
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9Kkq2wKQ-xgWw1SyeBFceSfPCZb8Pm70&libraries=places&callback=initAutocomplete">
+   </script>
+   <script>
+      let autocomplete;
+
+      function initAutocomplete() {
+         let hanoiBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(20.564437, 105.291530), // southwest
+            new google.maps.LatLng(21.387053, 106.001451) // northeast
+         );
+
+         let options = {
+            bounds: hanoiBounds,
+            type: ['establishments'],
+            componentRestrictions: {
+               'country': ['VN']
+            },
+            fields: ['formatted_address'],
+         };
+
+         autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), options);
+
+         google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            let selectedLocation = autocomplete.getPlace();
+            let addressUnits = selectedLocation.formatted_address.split(', ');
+            // console.log('addressUnits', addressUnits);
+            
+            // submit form location modal from footer
+            $("#formLocation").submit();
+
+            let municipality = removeAccents(addressUnits[addressUnits.length - 4]);
+            let district = removeAccents(addressUnits[addressUnits.length - 3]);
+
+            // console.log('municipality', municipality); // phường/xã
+            // console.log('district', district); // quận/huyện
+            // nếu là đang chọn location ở trang home thì truyền vào tham số url (?) để query
+            if (location.pathname == '/' || location.pathname == '/restaurants') {
+               let municipalityParam = municipality ? `&mun=${municipality}` : '';
+               let url = encodeURI(`restaurants?dis=${district}${municipalityParam}`)
+               // location.href = url;
+               // đọc url & xử lý để query ở màn restaurants 
+         });
+
+         function removeAccents(str) {
+            return str ? str.normalize('NFD')
+               .replace(/[\u0300-\u036f]/g, '')
+               .replace(/đ/g, 'd')
+               .replace(/Đ/g, 'D') : null;
+         } // dùng cho các hàm search để nhập có dấu hay không dấu đều ra kết quả
+
+      }
+   </script>
 </head>
 
 <body>
@@ -45,7 +97,36 @@
    <script src="{{ asset('template/js/jquery.isotope.min.js') }}"></script>
    <script src="{{ asset('template/js/headroom.js') }}"></script>
    <script src="{{ asset('template/js/foodpicky.min.js') }}"></script>
-   
+   <script>
+      $(document).ready(function() {
+         $("#autocomplete").val('Hanoi | ');
+      });
+
+      $("#autocomplete").keydown(function(
+         event) {
+         var localeKeyword = 'Hanoi | '
+         var localeKeywordLen = localeKeyword.length;
+         var keyword = $("#autocomplete").val();
+         var keywordLen = keyword.length;
+
+         if (keywordLen == localeKeywordLen) {
+            var e = event || window.event;
+            var key = e.keyCode || e.which;
+
+            if (key == Number(46) || key == Number(8) || key == Number(37)) {
+               e.preventDefault();
+            } //Here I am restricting user to delete city name (Restricting use of delete/backspace/left arrow) if length == city-name provided
+
+            if (keyword != localeKeyword) {
+               $("#autocomplete").val(localeKeyword);
+            } //If input-text does not contain city-name put it there
+         }
+
+         if (!(keyword.includes(localeKeyword))) {
+            $("#autocomplete").val(localeKeyword);
+         } //If keyword not includes city name put it there
+      });
+   </script>
 
 </body>
 
