@@ -80,16 +80,6 @@
                </div>
                <!-- end:Sidebar nav -->
                <div class="widget-delivery">
-                  <form>
-                     <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
-                        <label class="custom-control custom-radio">
-                           <input id="radio1" name="radio" type="radio" class="custom-control-input" checked=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Delivery</span> </label>
-                     </div>
-                     <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
-                        <label class="custom-control custom-radio">
-                           <input id="radio2" name="radio" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Takeout</span> </label>
-                     </div>
-                  </form>
                </div>
             </div>
             <!-- end:Left Sidebar -->
@@ -407,18 +397,6 @@
                      </div>
                   </div>
                   <!-- end:Order row -->
-                  <div class="widget-delivery clearfix">
-                     <form>
-                        <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6 b-t-0">
-                           <label class="custom-control custom-radio">
-                              <input id="radio4" name="radio" type="radio" class="custom-control-input" checked=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Delivery</span> </label>
-                        </div>
-                        <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6 b-t-0">
-                           <label class="custom-control custom-radio">
-                              <input id="radio3" name="radio" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Takeout</span> </label>
-                        </div>
-                     </form>
-                  </div>
                   <div class="widget-body">
                      <div class="price-wrap text-xs-center">
                         <p>TOTAL</p>
