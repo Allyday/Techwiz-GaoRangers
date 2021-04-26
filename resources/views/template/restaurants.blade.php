@@ -55,45 +55,34 @@
 
                         <div class="input-group">
                            <input name="keysearch" type="text" class="form-control search-field" placeholder="Search your favorite food"> <span class="input-group-btn">
-                              <button class="btn btn-secondary search-btn" type="button"><i class="fa fa-search"></i></button>
+                              <button class="btn btn-secondary search-btn" type="submit"><i class="fa fa-search"></i></button>
                            </span>
                         </div>
                         <ul>
+
+                           {{-- for loop here --}}
                            <li>
                               <label class="custom-control custom-checkbox">
-                                 <input name="cat[]" value="1" type="checkbox" class="custom-control-input">
+                                 <input name="cat[]" value="Barbecuing" type="checkbox" class="custom-control-input">
                                  <span class="custom-control-indicator"></span>
                                  <span class="custom-control-description">Barbecuing and Grilling</span>
                               </label>
                            </li>
                            <li>
                               <label class="custom-control custom-checkbox">
-                                 <input name="cat[]" value="2" type="checkbox" class="custom-control-input">
+                                 <input name="cat[]" value="Grilling" type="checkbox" class="custom-control-input">
                                  <span class="custom-control-indicator"></span>
-                                 <span class="custom-control-description">Appetizers</span>
+                                 <span class="custom-control-description">Barbecuing and Grilling</span>
                               </label>
                            </li>
                            <li>
                               <label class="custom-control custom-checkbox">
-                                 <input name="cat[]" value="3" type="checkbox" class="custom-control-input">
+                                 <input name="cat[]" value="and" type="checkbox" class="custom-control-input">
                                  <span class="custom-control-indicator"></span>
-                                 <span class="custom-control-description">Soup and salads</span>
+                                 <span class="custom-control-description">Barbecuing and Grilling</span>
                               </label>
                            </li>
-                           <li>
-                              <label class="custom-control custom-checkbox">
-                                 <input name="cat[]" value="4" type="checkbox" class="custom-control-input">
-                                 <span class="custom-control-indicator"></span>
-                                 <span class="custom-control-description">Seafood</span>
-                              </label>
-                           </li>
-                           <li>
-                              <label class="custom-control custom-checkbox">
-                                 <input name="cat[]" value="5" type="checkbox" class="custom-control-input">
-                                 <span class="custom-control-indicator"></span>
-                                 <span class="custom-control-description">Beverages</span>
-                              </label>
-                           </li>
+
                         </ul>
                         <div class="clearfix"></div>
                   </div>
@@ -110,7 +99,7 @@
                   <div class="widget-body">
                      <div class="range-slider m-b-10"> <span id="ex2CurrentSliderValLabel"> Filter by price:<span id="ex2SliderVal"><strong>35</strong></span>€</span>
                         <br>
-                        <input name="price" value="" id="ex2" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="35" />
+                        <input name="price" value="" id="ex2" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="36" />
                      </div>
                   </div>
                </div>
@@ -126,15 +115,27 @@
                   <div class="widget-body">
                      <ul class="tags">
 
-                        <!-- for loop get tag table -->
+                        <!-- for loop  here get tag table -->
                         <li>
                            <label class="tag custom-checkbox">
                               <input name="tag[]" value="salad" type="checkbox" class="custom-control-input">
                               <span class="custom-control-label">Salad</span>
                            </label>
                         </li>
+                        <li>
+                           <label class="tag custom-checkbox">
+                              <input name="tag[]" value="meat" type="checkbox" class="custom-control-input">
+                              <span class="custom-control-label">meat</span>
+                           </label>
+                        </li>
+                        <li>
+                           <label class="tag custom-checkbox">
+                              <input name="tag[]" value="fork" type="checkbox" class="custom-control-input">
+                              <span class="custom-control-label">fork</span>
+                           </label>
+                        </li>
                         <!-- end get tag table -->
-                        
+
                      </ul>
                   </div>
                </div>

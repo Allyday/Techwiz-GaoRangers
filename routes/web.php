@@ -18,6 +18,8 @@ Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name(
 
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
 
+// add to cart
+Route::post('addToCard', [RestaurantController::class, 'addToCard'])->name('addToCard');
 
 // post location
 Route::post('/save_location', [LocationController::class, 'save_location'])->name('save_location');
