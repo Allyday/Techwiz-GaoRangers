@@ -1937,7 +1937,7 @@ a.more-link {
 }
 
 .menu-widget .food-item:first-of-type {
-    border-bottom: none
+    border-bottom: 1px solid #eaebeb;
 }
 
 .menu-widget .food-item .restaurant-logo {
