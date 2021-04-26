@@ -10,7 +10,7 @@
          <ul class="row links">
             <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
             <li class="col-xs-12 col-sm-3 link-item"><span>2</span><a href="restaurants.html">Choose Restaurant</a></li>
-            <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="profile.html">Pick Your favorite food</a></li>
+            <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="restaurant-details/1">Pick Your favorite food</a></li>
             <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="checkout.html">Order and Pay online</a></li>
          </ul>
       </div>
@@ -80,16 +80,6 @@
                </div>
                <!-- end:Sidebar nav -->
                <div class="widget-delivery">
-                  <form>
-                     <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
-                        <label class="custom-control custom-radio">
-                           <input id="radio1" name="radio" type="radio" class="custom-control-input" checked=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Delivery</span> </label>
-                     </div>
-                     <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
-                        <label class="custom-control custom-radio">
-                           <input id="radio2" name="radio" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Takeout</span> </label>
-                     </div>
-                  </form>
                </div>
             </div>
             <!-- end:Left Sidebar -->
@@ -407,18 +397,6 @@
                      </div>
                   </div>
                   <!-- end:Order row -->
-                  <div class="widget-delivery clearfix">
-                     <form>
-                        <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6 b-t-0">
-                           <label class="custom-control custom-radio">
-                              <input id="radio4" name="radio" type="radio" class="custom-control-input" checked=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Delivery</span> </label>
-                        </div>
-                        <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6 b-t-0">
-                           <label class="custom-control custom-radio">
-                              <input id="radio3" name="radio" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Takeout</span> </label>
-                        </div>
-                     </form>
-                  </div>
                   <div class="widget-body">
                      <div class="price-wrap text-xs-center">
                         <p>TOTAL</p>

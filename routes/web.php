@@ -14,7 +14,7 @@ use App\Http\Controllers\RestaurantController;
 Route::get('/', [PublicController::class, 'index'])->name('home');
 
 
-Route::get('/menu/{id}', [PublicController::class, 'menu'])->name('menu');
+Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name('menu');
 
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
 
@@ -69,3 +69,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/dish/create', [DishesController::class, "create"]);
     Route::get('/staff/dish/store', [DishesController::class, "store"]);
 });
+//test search
+Route::get('/test',[\App\Http\Controllers\testController::class,'index'],);
+
+

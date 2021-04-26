@@ -86,13 +86,13 @@
                   <div class="review pull-right"><a href="#">198 reviews</a> </div>
                </div>
                <div class="content">
-                  <h5><a href="profile.html">The South"s Best Fried Chicken</a></h5>
+                  <h5><a href="restaurant-details/1">The South"s Best Fried Chicken</a></h5>
                   <div class="product-name">Fried Chicken with cheese</div>
                   <div class="price-btn-block"> <span class="price">$15,99</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
                </div>
                <div class="restaurant-block">
                   <div class="left">
-                     <a class="pull-left" href="profile.html"> <img src="http://placehold.it/50x46" alt="Restaurant logo" /> </a>
+                     <a class="pull-left" href="restaurant-details/1"> <img src="http://placehold.it/50x46" alt="Restaurant logo" /> </a>
                      <div class="pull-left right-text"> <a href="#">Chicken Restaurant</a> <span>68 5th Avenue New York</span> </div>
                   </div>
                   <div class="right-like-part pull-right"> <i class="fa fa-heart-o"></i> <span>48</span> </div>
@@ -100,7 +100,6 @@
             </div>
          </div>
          <!-- Each popular food item starts -->
-
       </div>
    </div>
 </section>

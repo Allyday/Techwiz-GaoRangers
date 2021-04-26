@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class DishTag extends Model
 {
     use HasFactory;
+    protected $table = 'dish_tags';
 }
