@@ -27,7 +27,7 @@
             <div class="widget-body">
                 <form method="post" action="#">
                     <div class="row menu-widget">
-                        <div class="col-sm-9 margin-b-30">
+                        <div class="col-sm-9 margin-b-30" id="myBody">
                             <div class="cart-table-header">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-lg-5">
@@ -46,20 +46,18 @@
                                 </div>
                                 <!-- end:row -->
                             </div>
+                            {{--                             
                             <div class="food-item">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-lg-5">
                                         <div class="rest-logo pull-left">
                                             <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
                                         </div>
-                                        <!-- end:Logo -->
                                         <div class="rest-descr">
                                             <h6><a href="#">Veg Extravaganza</a></h6>
                                             <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
                                         </div>
-                                        <!-- end:Description -->
                                     </div>
-                                    <!-- end:col -->
                                     <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
                                         <span class="price pull-left item-price">$ 9.50</span>
                                     </div>
@@ -72,38 +70,7 @@
                                         <span class="price pull-left item-total">$ 9.50</span>
                                     </div>
                                 </div>
-                                <!-- end:row -->
-                            </div>
-                            <!-- end:food-item -->
-
-                            <div class="food-item">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-lg-5">
-                                        <div class="rest-logo pull-left">
-                                            <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
-                                        </div>
-                                        <!-- end:Logo -->
-                                        <div class="rest-descr">
-                                            <h6><a href="#">Veg Extravaganza</a></h6>
-                                            <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                                        </div>
-                                        <!-- end:Description -->
-                                    </div>
-                                    <!-- end:col -->
-                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <span class="price pull-left item-price">$ 4.99</span>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
-                                        <div class="btn btn-small btn-secondary quantity-btn dec">&#8722;</div>
-                                        <input class="quantity-input" type="number" class="cart-item-quantity" value="5">
-                                        <div class="btn btn-small btn-secondary quantity-btn inc">&#43;</div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <span class="price pull-left item-total">$ 24.95</span>
-                                    </div>
-                                </div>
-                                <!-- end:row -->
-                            </div>
+                            </div> --}}
                             <!-- end:food-item -->
                         </div>
                         <div class="col-sm-3">
@@ -140,7 +107,7 @@
                                             <input name="radio-stacked" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Paypal <img src="{{asset('images/paypal.jpg')}}" alt="" width="90"></span> </label>
                                     </li>
                                 </ul>
-                                <p class="text-xs-center"> <a href="#" class="btn btn-outline-success btn-block">Pay now</a> </p>
+                                <p class="text-xs-center"> <a id="pay_now" href="javascript:void(0)" class="btn btn-outline-success btn-block">Pay now</a> </p>
                             </div>
                         </div>
                     </div>
@@ -152,6 +119,42 @@
     {{-- script --}}
     <script src="{{ asset('template/js/jquery.js') }}"></script>
     <script>
+        var aray = JSON.parse(window.sessionStorage.getItem("cart")) || [];
+
+        // assign array js to html table
+        aray.map((e) => {
+            var row = `<div class="food-item">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-lg-5">
+                                    <div class="rest-logo pull-left">
+                                        <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
+                                    </div>
+                                    <div class="rest-descr">
+                                        <h6><a href="#">${e.ten}</a></h6>
+                                        <p>${e.tag}</p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                    <span class="price pull-left item-price">$ ${parseFloat(e.gia)}</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
+                                    <div class="btn btn-small btn-secondary quantity-btn dec">&#8722;</div>
+                                    <div style="display:none;" class="id">${e.id}</div>
+                                    <input class="quantity-input" type="number" class="cart-item-quantity" value="${e.quantity}">
+                                    <div class="btn btn-small btn-secondary quantity-btn inc">&#43;</div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                    <span class="price pull-left item-total">$ 9.50</span>
+                                </div>
+                            </div>
+                        </div> `;
+                
+
+            document.getElementById("myBody").innerHTML += row;
+
+        });
+
+
         $('.quantity-input').on('change', function() {
             var $input = $(this);
             var newQuantity = $input.val();
@@ -167,7 +170,6 @@
         });
 
         $('.quantity-btn').on('click', function() {
-
             var $button = $(this);
             var oldQuantity = $button.parent().find('input').val();
 
@@ -187,12 +189,30 @@
 
             updateItemTotal($button, newQuantity);
             updateCartTotal();
+
+            let id = parseInt($button.parent().find('div.id').text());
+            updateQuantity(id, newQuantity);
+
         });
 
         function updateItemTotal($element, quantity) {
             var price = +$element.parent().parent().find('.item-price').html().split(' ')[1];
             var newTotal = Math.round(price * quantity * 100) / 100;
             $element.parent().parent().find('.item-total').html('$ ' + newTotal)
+        }
+
+
+        function updateQuantity(id, quantity){
+            var aray = JSON.parse(window.sessionStorage.getItem("cart"));
+            if(aray!=null){
+                let index = aray.findIndex((e) => {
+                                if (e.id == id) return true;
+                            });
+                aray[index].quantity = parseInt(quantity);
+                sessionStorage.setItem("cart", JSON.stringify(aray));
+                // console.log('change: ', JSON.parse(window.sessionStorage.getItem("cart")))
+            }
+
         }
 
         function updateCartTotal() {
@@ -209,6 +229,24 @@
             $('#cart-subtotal').html(`$${subtotal}`);
             $('#cart-total').html(`$${cartTotal}`);
         }
+
+
+        function pay_now(){
+            var aray = JSON.parse(window.sessionStorage.getItem("cart")) || [];
+            var time_created = new Date();
+            var status = 2 ;
+            var user_id = <?php session('User')?>;
+            var delivary = 2;
+            
+
+
+        }
+
+        // add order
+        $('#pay_now').on('click', ()=>{
+            console.log('done pay now')
+        })
+
     </script>
     {{-- end script --}}
 

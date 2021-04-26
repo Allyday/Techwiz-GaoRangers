@@ -12,15 +12,21 @@ use App\Http\Controllers\RestaurantController;
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
-// Route::get('/', function () {
-//     dd(session()->get('Cart'));
-//     return var_dump(session()->get('Cart'));
-// })->name('home');
-
 
 Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name('menu');
 
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
+
+// Route::get('/', function () {
+
+//     session()->flush()('Location');
+//     dd(session()->get('Location'));
+//     return var_dump(session()->get('Cart'));
+// })->name('home');
+
+
+// add order
+Route::post('add/record/order', [RestaurantController::class, 'pay_now']);
 
 // add to cart
 Route::post('/addToCard', [RestaurantController::class, 'addToCard']);

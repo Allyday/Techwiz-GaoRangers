@@ -29,7 +29,9 @@
     })
 </script>
 
-@if (session('Location') || route('home') == url()->current())
+@if ((session('Location') && session('Location')!=null ) || route('home') == url()->current())
+{{-- 
+@elseif(route('staff') == url()->current()) --}}
 
 @else
 <script>
