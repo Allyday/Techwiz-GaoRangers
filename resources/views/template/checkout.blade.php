@@ -46,7 +46,7 @@
                                 </div>
                                 <!-- end:row -->
                             </div>
-                            {{--                             
+                            {{--
                             <div class="food-item">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-lg-5">
@@ -80,15 +80,15 @@
                                         <tbody>
                                             <tr>
                                                 <td>Cart Subtotal</td>
-                                                <td id="cart-subtotal">$29.00</td>
+                                                <td id="cart-subtotal" class="text-end">$29.00</td>
                                             </tr>
                                             <tr>
                                                 <td>Delivery Fee</td>
-                                                <td id="delivery-fee">$2.00</td>
+                                                <td id="delivery-fee" class="text-end">$2.00</td>
                                             </tr>
                                             <tr>
                                                 <td class="text-color"><strong>Total</strong></td>
-                                                <td class="text-color"><strong id="cart-total">$31.00</strong></td>
+                                                <td class="text-color text-end"><strong id="cart-total">$31.00</strong></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                         </div> `;
-                
+
 
             document.getElementById("myBody").innerHTML += row;
 
@@ -202,12 +202,12 @@
         }
 
 
-        function updateQuantity(id, quantity){
+        function updateQuantity(id, quantity) {
             var aray = JSON.parse(window.sessionStorage.getItem("cart"));
-            if(aray!=null){
+            if (aray != null) {
                 let index = aray.findIndex((e) => {
-                                if (e.id == id) return true;
-                            });
+                    if (e.id == id) return true;
+                });
                 aray[index].quantity = parseInt(quantity);
                 sessionStorage.setItem("cart", JSON.stringify(aray));
                 // console.log('change: ', JSON.parse(window.sessionStorage.getItem("cart")))
@@ -231,22 +231,21 @@
         }
 
 
-        function pay_now(){
+        function pay_now() {
             var aray = JSON.parse(window.sessionStorage.getItem("cart")) || [];
             var time_created = new Date();
-            var status = 2 ;
-            var user_id = <?php session('User')?>;
+            var status = 2;
+            var user_id = <?php session('User') ?>;
             var delivary = 2;
-            
+
 
 
         }
 
         // add order
-        $('#pay_now').on('click', ()=>{
+        $('#pay_now').on('click', () => {
             console.log('done pay now')
         })
-
     </script>
     {{-- end script --}}
 
