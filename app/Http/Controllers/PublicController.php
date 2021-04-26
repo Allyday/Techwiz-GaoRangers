@@ -80,7 +80,7 @@ class PublicController extends Controller
     {
         //các biến lấy về từ request khi submit search
         $searchTen = "" || $keysearch; //Lấy từ search theo tên - test = rice
-        $tags = [] || $tag; //mảng id của table food_tags - test = 15
+        $tags = [15,5] || $tag; //mảng id của table food_tags - test = 15
         $cate = 0 || $cate; //id của table dish_category test = 5
         $price = "" || $price; //giá tiền;
         $xeptheosao = 0 || $xeptheosao; // = 0 thi sap xep theo gan xa, = 1 thi sap xep theo stars
@@ -106,12 +106,19 @@ class PublicController extends Controller
             $sql .= " AND dishes.price > " . $price . "";
         }
         //search theo dish_tagID
+        $temp = "";
         if (is_array($tags)) {
             foreach ($tags as $tagId) {
                 if ($tagId > 0) {
-                    $sql .= " AND food_tags.id = " . $tagId . "";
+                    $temp .= ",".$tagId;
                 }
             }
+
+            $sql .=" AND dishes.id in (
+                    SELECT dish_tags.dishId
+				    FROM dish_tags
+				    GROUP BY dish_tags.dishId
+				    HAVING GROUP_CONCAT(dish_tags.foodTagId) = '".$temp."')";
         }
         //sap xep theo so sao
         if ($xeptheosao = 1) {
@@ -122,5 +129,22 @@ class PublicController extends Controller
         $table = DB::select($sql);
         // dd($table);
         return $table;
+    }
+    public function topQuanDatNhieuNhat($top){
+        $top = 0;
+//        $sql = "SELECT restaurants.id as r_id, restaurants.name, COUNT(orders.id) AS doanhso
+//                FROM restaurants
+//                LEFT JOIN orders ON restaurants.id = orders.restaurantId
+//                GROUP BY orders.restaurantId
+//                ORDER BY doanhso DESC LIMIT 3";
+        $table = DB::table('restaurants')
+            ->leftJoin('orders','restaurants.id','orders.restaurantId')
+            ->select(DB::raw('count(orders.id) as count, orders.restaurantId as restaurantId'))
+            ->groupBy('orders.restaurantId')
+            ->orderBy('count','desc')
+            ->limit($top)
+            ->get();
+        dd($table);
+        return;
     }
 }
