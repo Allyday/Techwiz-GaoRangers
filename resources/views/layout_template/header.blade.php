@@ -39,12 +39,16 @@ if (session('User')) {
                         <a class="nav-link @if(url()->current() == route('feedback')) active @endif" href="{{route('feedback')}}">Feedback</a>
                     </li>
 
-
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello, {{ $user->firstName }}</a>
                         <div class="dropdown-menu">
+
+                            @if (session("User_type") && session('User_type') == 1)
+                            <a class="dropdown-item" href="{{route('staff', 'day')}}">Only Staff</a>
+                            @endif
+
                             <a class="dropdown-item" href="{{route('setting', $user->id)}}">Account Settings</a>
+
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#sureLogout">Log out</a>
                         </div>

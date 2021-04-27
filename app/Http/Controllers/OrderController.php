@@ -12,6 +12,9 @@ class OrderController extends Controller
 {
     public function index()
     {
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $dsorders = DB::select('Select orders.*, users.firstName, users.lastName from orders INNER JOIN users on orders.userId = users.id WHERE orders.restaurantId = (SELECT restaurantId from users WHERE id = ?);', [session('User')]);
         return view('view_staff.order', compact("dsorders"));
     }
@@ -28,6 +31,9 @@ class OrderController extends Controller
 
     public function show($id)
     {
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $order = Order::find($id);
         $dsdish = DB::select('SELECT * FROM orderdish inner join orders on orderdish.orderId = orders.id INNER JOIN dishes on orderdish.dishId = dishes.id where orderId =  ?', [$id]);
         $ttorder = DB::select('Select orders.*, users.firstName, users.lastName from orders INNER JOIN users on orders.userId = users.id WHERE orders.id = ?', [$id]);
@@ -41,6 +47,9 @@ class OrderController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $time = now();
         if ($request->input('orderStatus') == 3) {
             $order = Order::where('id',$id)
@@ -73,6 +82,9 @@ class OrderController extends Controller
 
     public function search(Request $request)
     {   
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $search = $request->input('search');
         $dsorders = DB::select('Select orders.*, users.firstName, users.lastName from orders INNER JOIN users on orders.userId = users.id WHERE orders.restaurantId = (SELECT restaurantId from users WHERE id = ?) and orders.id = ?;', [session('User'), $search]);
         return view('view_staff.orderSearch', compact("dsorders"));
@@ -80,6 +92,9 @@ class OrderController extends Controller
 
     public function searchStatus(Request $request)
     {   
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $dsorders = ['không có dữ liệu'];
         if ($request->search == 2) {
             $dsorders = DB::select('Select orders.*, users.firstName, users.lastName from orders INNER JOIN users on orders.userId = users.id WHERE orders.restaurantId = (SELECT restaurantId from users WHERE id = ?) and orders.orderStatus = ?;', [session('User'), 2]);

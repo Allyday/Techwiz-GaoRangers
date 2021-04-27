@@ -17,6 +17,9 @@ class DishesController extends Controller
      */
     public function index()
     {
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $dsdishes = DB::select('select dishes.*,dish_categories.name as categoryName, restaurants.name as restaurantName from dishes inner join dish_categories on dishes.dishCategoryId = dish_categories.id inner join restaurants on dishes.restaurantId = restaurants.id where restaurants.id in (select restaurants.id from users inner join restaurants on users.restaurantId = restaurants.id where users.id = ?) and dishes.is_active = ?', [session('User'), 1]);
         return view('view_staff.dishes', compact("dsdishes"));
     }
@@ -29,6 +32,9 @@ class DishesController extends Controller
      */
     public function create()
     {   
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $restaurant = DB::select('select restaurantId from users where id = ?', [session('User')]);
         $category = DB::select('select * from dish_categories where 1 = ?', [1]);
         return view('view_staff.createDish', compact("restaurant", "category"));
@@ -42,6 +48,9 @@ class DishesController extends Controller
      */
     public function store(Request $request)
     {
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $dish = Dish::create([
             'name'=>$request->input('name'),
             'dishCategoryId'=>$request->input('categoryId'),
@@ -73,6 +82,9 @@ class DishesController extends Controller
      */
     public function edit($id)
     {
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $dish = Dish::find($id);
         $restaurant = DB::select('select restaurants.id as restaurantsId, restaurants.name as restaurantName, dish_categories.id as categoryId, dish_categories.name as categoryName from dishes inner join restaurants on dishes.restaurantId = restaurants.id inner join dish_categories on dishes.dishCategoryId = dish_categories.id where dishes.id = ?', [$id]);
         $category = DB::select('select * from dish_categories where 1 = ?', [1]);
@@ -89,6 +101,9 @@ class DishesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $dish = Dish::where('id',$id)
             ->update([
                 'name'=>$request->input('name'),
@@ -108,6 +123,9 @@ class DishesController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $dish = Dish::where('id',$id)
         ->update([
             'is_active'=>$request->input('is_active'),

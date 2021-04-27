@@ -16,12 +16,18 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     function index(){
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $dsusers = DB::select('select * from users where 1 = ? and id = ?', [1, session('User')]);
         return view('view_admin.adminaccount', compact("dsusers", $dsusers ));
     }
 
     public function edit($id)
     {
+        if (!session('User_type') || session('User_type') != 1) {
+            return redirect(route('home'));
+        }
         $user = User::find($id);
         $restaurant = DB::select('select users.*, restaurant.name from user inner join restaurants on user.restaurantId = restaurants.id where users.id = ?', [session('User')]);
         return view('view_staff.editDish', compact("restaurant", "category"))->with('dish', $user, $restaurant);

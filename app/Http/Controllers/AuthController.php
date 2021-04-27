@@ -50,8 +50,10 @@ class AuthController extends Controller
                     }
 
                     $request->session()->put('User', $user->id);
-                    return redirect(route('home'));
+                    // return redirect(route('home'));
+                    return back();
                 }
+
                 // staff
                 // lay user id tim trong user address
                 // neu co thi them vao session
@@ -62,7 +64,8 @@ class AuthController extends Controller
                 $request->session()->put('User', $user->id);
                 $request->session()->put('User_type', $user->type);
 
-                return redirect(route('staff', 'day'));
+                return back();
+                // return redirect(route('staff', 'day'));
             }
         }
     }
@@ -128,7 +131,6 @@ class AuthController extends Controller
 
                 if ($save) {
                     $request->session()->put('User', $user->id);
-                    $request->session()->put('User_type', $user->type);
 
                     return redirect(route('home'));
                 } else {

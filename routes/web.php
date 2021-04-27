@@ -14,20 +14,10 @@ use App\Http\Controllers\OrderController;
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
-// Route::get('/abc', [PublicController::class, 'search']);
-
 
 Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name('menu');
 
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
-
-// Route::get('/', function () {
-
-//     // dd(session()->get('Location'));
-//     session()->flush();
-//     return 'done';
-// })->name('home');
-
 
 // add order
 Route::post('add/record/order', [RestaurantController::class, 'pay_now']);
@@ -72,23 +62,24 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
 
     // route for staff
+    Route::get('/user/{user}/setting', [UserController::class, 'setting'])->name('setting');
+    
+    
+    
     Route::get('/staff/index/{option}', [AdminController::class, 'index'])->name('staff');
-
     Route::get('/staff/menu', [AdminController::class, 'menu'])->name('staff.menu');
-
     Route::get('/staff/product/type', [AdminController::class, 'type_product'])->name('staff.type');
-
     Route::get('/staff/account', [UserController::class, "index"])->name('adminaccount');
     Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
     Route::get('/staff/{dish}/edit', [DishesController::class, "edit"]);
-    Route::post('/staff/editDish/{dish}', [DishesController::class, "update"]);
     Route::get('/staff/dish/create', [DishesController::class, "create"]);
     Route::get('/staff/dish/store', [DishesController::class, "store"]);
-    Route::post('/staff/deleteDish/{dish}', [DishesController::class, "destroy"]);
     Route::get('/staff/orderStaff', [OrderController::class, "index"])->name('orderStaff');
-    Route::post('/staff/orderStatus/{order}', [OrderController::class, "update"]);
     Route::get('/staff/{order}/orderDetail', [OrderController::class, "show"]);
-    Route::get('/user/{user}/setting', [UserController::class, 'setting'])->name('setting');
+    
+    Route::post('/staff/editDish/{dish}', [DishesController::class, "update"]);
+    Route::post('/staff/deleteDish/{dish}', [DishesController::class, "destroy"]);
+    Route::post('/staff/orderStatus/{order}', [OrderController::class, "update"]);
     Route::post('/user/settingUser/{user}', [UserController::class, "editpass"]);
     Route::post('/staff/searchOrder', [OrderController::class, "search"]);
     Route::post('/staff/status/searchOrder', [OrderController::class, "searchStatus"]);

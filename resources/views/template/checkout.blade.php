@@ -275,7 +275,9 @@
             // location.reload();
             innerHtml();
             checkNull();
-            console.log(array);
+            if(array.length==0){
+                location.href = '<?= route('restaurants') ?>';
+            }
         }
 
         function pay_now() {
