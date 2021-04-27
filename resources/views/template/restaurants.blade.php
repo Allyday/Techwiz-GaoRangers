@@ -54,35 +54,22 @@
                         @csrf
 
                         <div class="input-group">
-                           <input name="keysearch" type="text" class="form-control search-field" placeholder="Search your favorite food"> <span class="input-group-btn">
+                           <input name="keysearch"  @if(isset($dataFrom) && $dataForm['ks']!=null)  value="{{ $dataForm['ks'] }}" @endif type="text" class="form-control search-field" placeholder="Search your favorite food"> <span class="input-group-btn">
                               <button class="btn btn-secondary search-btn" type="submit"><i class="fa fa-search"></i></button>
                            </span>
                         </div>
                         <ul>
 
                            {{-- for loop here --}}
+                           @foreach ($nameDishCat as $item)
                            <li>
                               <label class="custom-control custom-checkbox">
-                                 <input name="cat[]" value="Barbecuing" type="checkbox" class="custom-control-input">
-                                 <span class="custom-control-indicator"></span>
-                                 <span class="custom-control-description">Barbecuing and Grilling</span>
+                                 <input name="cat" value="{{$item['id']}}" type="radio" class="custom-control-input">
+                                 <span class="custom-control-indicator" style="background-color: transperant"></span>
+                                 <span class="custom-control-description">{{$item['name']}}</span>
                               </label>
                            </li>
-                           <li>
-                              <label class="custom-control custom-checkbox">
-                                 <input name="cat[]" value="Grilling" type="checkbox" class="custom-control-input">
-                                 <span class="custom-control-indicator"></span>
-                                 <span class="custom-control-description">Barbecuing and Grilling</span>
-                              </label>
-                           </li>
-                           <li>
-                              <label class="custom-control custom-checkbox">
-                                 <input name="cat[]" value="and" type="checkbox" class="custom-control-input">
-                                 <span class="custom-control-indicator"></span>
-                                 <span class="custom-control-description">Barbecuing and Grilling</span>
-                              </label>
-                           </li>
-
+                           @endforeach
                         </ul>
                         <div class="clearfix"></div>
                   </div>
@@ -99,7 +86,7 @@
                   <div class="widget-body">
                      <div class="range-slider m-b-10"> <span id="ex2CurrentSliderValLabel"> Filter by price:<span id="ex2SliderVal"><strong>35</strong></span>€</span>
                         <br>
-                        <input name="price" value="" id="ex2" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="36" />
+                        <input name="price" value="" id="ex2" type="text" data-slider-min="9" data-slider-max="70" data-slider-step="2" data-slider-value="36" />
                      </div>
                   </div>
                </div>
@@ -116,31 +103,21 @@
                      <ul class="tags">
 
                         <!-- for loop  here get tag table -->
+                        @foreach ($nameFoodTag as $item)
                         <li>
                            <label class="tag custom-checkbox">
-                              <input name="tag[]" value="salad" type="checkbox" class="custom-control-input">
-                              <span class="custom-control-label">Salad</span>
+                              <input name="tag[]" value="{{$item['id']}}" type="checkbox" class="custom-control-input">
+                              <span class="custom-control-label">{{$item['name']}}</span>
                            </label>
                         </li>
-                        <li>
-                           <label class="tag custom-checkbox">
-                              <input name="tag[]" value="meat" type="checkbox" class="custom-control-input">
-                              <span class="custom-control-label">meat</span>
-                           </label>
-                        </li>
-                        <li>
-                           <label class="tag custom-checkbox">
-                              <input name="tag[]" value="fork" type="checkbox" class="custom-control-input">
-                              <span class="custom-control-label">fork</span>
-                           </label>
-                        </li>
+                        @endforeach
                         <!-- end get tag table -->
 
                      </ul>
                   </div>
                </div>
                <!-- end:Widget -->
-               <button type="submit" class="btn btn-primary w-100" style="background-color:#f30;">filter</button>
+               <button type="submit" class="btn btn-primary w-100" style="background-color:#f30; border:none">filter</button>
             </div>
 
             </form>
@@ -153,7 +130,7 @@
                @include('template.dataRes')
                <!-- end:Restaurant entry -->
                <!-- Loader spinner -->
-               <div class="col-md-12 " style="text-align: center; display: none" id="loader-spinner">
+               <div class="col-md-12 " style="text-align: center; display: none">
                   <div class="lds-roller">
                      <div></div>
                      <div></div>

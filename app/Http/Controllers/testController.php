@@ -68,7 +68,7 @@ class testController extends Controller
         return view('test.test');
     }
 
-    
+
     public function topQuanDatNhieuNhat(){
         $table = DB::table('restaurants')
             ->leftJoin('orders','restaurants.id','orders.restaurantId')
@@ -77,6 +77,21 @@ class testController extends Controller
             ->orderBy('count','desc')
             ->limit(6)
             ->get();
+        dd($table);
         return;
+    }
+    public function random(){
+        //insert orderdish
+        $orderdish = DB::table('orderdish');
+        for($i=0;$i <20; $i++){
+            $sql ="";
+            $idOr = DB::select('SELECT * FROM orders ORDER BY RAND() LIMIT 1');
+//            $tp1 = $idOr->;
+            $tp1 = ((array)$idOr[0])['id'];
+            $idd = DB::select('SELECT id FROM dishes ORDER BY RAND() LIMIT 1');
+            $tp2 = ((array)$idd[0])['id'];
+            $sql .= "INSERT INTO orderdish (orderId, dishId) VALUES (".$tp1.",".$tp2.")";
+            DB::insert($sql);
+        }
     }
 }

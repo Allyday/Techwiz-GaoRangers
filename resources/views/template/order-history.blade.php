@@ -9,7 +9,9 @@
     <div class="container padding-bottom-3x mb-1">
         <div class="widget-heading">
             <h2 class="text-dark">
-                Current Order
+                <span style="border-bottom: 2px solid #ff3300">
+                    Current Order
+                </span>
             </h2>
         </div>
         <div class="card">
@@ -165,15 +167,18 @@
     <div class="container m-t-30">
         <!-- /widget heading -->
         <div class="widget-heading">
-            <h2 class="text-dark">
-                Past Orders
+            <h2 class="text-dark " id="toglle_colapse">
+                <span style="border-bottom: 2px solid #ff3300">
+                    Past Orders
+                </span>
             </h2>
             <div class="clearfix"></div>
         </div>
-        <div class="widget clearfix order-history">
-            <div class="widget-body">
+
+        <div id="collapsePastOrder" class="collapse widget clearfix order-history">
+            <div class=" widget-body">
                 <div class="row menu-widget">
-                    <div class="col-xs-12 margin-b-30">
+                    <div class="col-xs-12 margin-b-30" id="myBody">
                         <div class="cart-table-header">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-lg-3">
@@ -195,7 +200,9 @@
                             </div>
                             <!-- end:row -->
                         </div>
-                        <div class="food-item">
+
+
+                        {{-- <div class="food-item">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-lg-3">
                                     <div class="rest-logo pull-left">
@@ -221,7 +228,7 @@
                                 <!-- end:col -->
 
                                 <div class="col-xs-12 col-sm-12 col-lg-2">
-                                    <div class="status">Completed</div>
+                                    <div class="status font-weight-bold text-success">Completed</div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-lg-1">
                                     <span class="price order-total">$ 9.50</span>
@@ -230,48 +237,82 @@
                                 </div>
                             </div>
                             <!-- end:row -->
-                        </div>
+                        </div> --}}
                         <!-- end:food-item -->
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
 
+
 <script src="{{ asset('template/js/jquery.js') }}"></script>
 <script>
-    var aray = JSON.parse(window.sessionStorage.getItem("cart")) || [];
-
-    // assign array js to html table
-    aray.map((e) => {
-        var row = `<div class="food-item">
+    function innerPastOrder(array){
+        array.map((e) => {
+            var row = `<div class="food-item">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-lg-5">
+                            <div class="col-xs-12 col-sm-12 col-lg-3">
                                 <div class="rest-logo pull-left">
-                                    <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
+                                    <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/80x64" alt="Food logo"></a>
                                 </div>
                                 <div class="rest-descr">
-                                    <h6><a href="#">${e.ten}</a></h6>
-                                    <p>${e.tag}</p>
+                                    <h6><a href="#">Veg Extravaganza</a></h6>
+                                    <p> 3 items </p>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                <span class="price pull-left item-price">$ ${parseFloat(e.gia)}</span>
+                            <div class="col-xs-12 col-sm-12 col-lg-3">
+                                <span class="">Time ordered: 02/01/2020 20:09</span>
+                                <br />
+                                <span class="">Time delivered: 02/01/2020 20:41</span>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
-                                <div style="display:none;" class="id">${e.id}</div>
-                                    <input disabled class="quantity-input" type="number" class="cart-item-quantity" value="${e.quantity}">
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                    <span class="price pull-left item-total">$ ${Math.round(parseFloat(e.gia) * parseInt(e.quantity))}</span>
-                                </div>
+                            <div class="col-xs-12 col-sm-12 col-lg-3">
+                                <span class="order-address">8 Ton That Thuyet, My Dinh, Cau Giay, Hanoi, Vietnam</span>
                             </div>
-                        </div> 
-                    </div>`;
 
-        document.getElementById("myBody").innerHTML += row;
-        return e;
-    });
+                            <div class="col-xs-12 col-sm-12 col-lg-2">
+                                <div class="status font-weight-bold text-success">Completed</div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-lg-1">
+                                <span class="price order-total">$ 9.50</span>
+                                <br />
+                                <span class="payment-method">Cash</span>
+                            </div>
+                        </div>
+                    </div>`;
+            document.getElementById("myBody").innerHTML += row;
+
+            });
+    }
+
+
+    function postByAjax() {
+            $.ajax({
+                type: 'GET',
+                url: "get/all/past/order"
+            })
+            .done( function(res) {
+                // nhan 1 array, 
+                innerPastOrder([1,2]);
+                // collapse
+                $('#collapsePastOrder').collapse('show')
+            })
+            .fail( (jqXHR, ajaxOptions, thrownError) => {
+               console.log('oop...error')
+            })
+        }
+
+    var count=0;
+    $('#toglle_colapse').on('click', () => {
+        count++;
+        if(count<=1){
+            // postByAjax();
+            innerPastOrder([1,2]);
+            $('#collapsePastOrder').collapse('show')
+        }
+
+    })
 </script>
 @endsection

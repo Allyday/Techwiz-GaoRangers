@@ -7,64 +7,164 @@ use Illuminate\Http\Request;
 
 use App\Models\Dish;
 use App\Models\Order;
+use App\Models\Restaurant;
 use App\Models\OrderDish;
+use App\Models\DishCategory;
+use App\Models\FoodTag;
 
 
 class RestaurantController extends Controller
 {
+    function convertObjToArray($obj)
+    {
+        // convert obj to array
+        $array = array_map(function ($value) {
+            return (array)$value;
+        }, $obj);
+        return $array;
+    }
+
+    function convertRestaurant($ar)
+    {
+        // input obj from table db
+        $array = $this->convertObjToArray($ar);
+
+        $data = [];
+        foreach ($array as $item) {
+            $res = Restaurant::where('id', $item['r_id'])->first();
+            $id = $res['id'];
+            // $img = $res['img'];
+            $name = $res['name'];
+            $stars = (int)$res['stars'];
+            $address = $res['street'] . ' ' . $res['municipality'] . ' ' . $res['district'] . ' ' . $res['city'];
+            $wrap = array(
+                'id' => $id,
+                'name' => $name,
+                'stars' => $stars,
+                'address' => $address,
+            );
+            array_push($data, $wrap);
+        }
+        return $data;
+    }
+
+    function get_dish_cat()
+    {
+        // get dish category
+        $dishCategory = DishCategory::all();
+        $nameDishCat = [];
+
+        foreach ($dishCategory as $k => $dish) {
+            if ($k >= 5) {
+                break;
+            }
+            $id = $dish->id;
+            $name = $dish->name;
+            $subDish = [
+                'id' => $id,
+                'name' => $name
+            ];
+            // dd($subDish);
+            array_push($nameDishCat, $subDish);
+        }
+        return $nameDishCat;
+    }
+
+    function get_food_tag()
+    {
+        // get food tag
+        $foodTag = FoodTag::all();
+
+        $nameFoodTag = [];
+        foreach ($foodTag as $k => $tag) {
+            if ($k >= 8) {
+                break;
+            }
+            $id = $tag->id;
+            $name = $tag->name;
+            $subTag = [
+                'id' => $id,
+                'name' => $name
+            ];
+            array_push($nameFoodTag, $subTag);
+        }
+        return $nameFoodTag;
+    }
 
     function restaurants(Request $request)
     {
-        $publicController = new PublicController;
+        // get category and tag
+        $nameDishCat = $this->get_dish_cat();
+        $nameFoodTag = $this->get_food_tag();
 
         // get full data
-        $data = $publicController->search();
-        // return var_dump($data);
+        $publicController = new PublicController();
+        $rs = $publicController->search();
 
-
-        if ($request->ajax()) {
-            // $loop = 3;
-            $view = view('template.dataRes', compact('loop'))->render();
-
-            return response()->json(['html' => $view]);
-        }
+        // convert data obj to array
+        $data = $this->convertRestaurant($rs);
 
         if (isset($_GET['search'])) {
             // get data with keysearch
-            $done = $_GET['search'];
-            // $location = session('Location');
-            // return "done: $done , location: $location";
-
-            $data = $publicController->search($done);
-            $loop = 6;
-            return view('template.restaurants', compact('loop'));
-            dd($data);
+            $keysearch = $_GET['search'];
+            $rs = $publicController->search($keysearch = $keysearch);
+            $data = $this->convertRestaurant($rs);
         };
 
-        $loop = 6;
-        return view('template.restaurants', compact('loop'));
-        // return view('template.restaurants', compact('data'));
+        if (isset($_GET['page'])) {
+            // get page number
+            $page = $_GET['page'];
+            // $data = $publicController->search($keysearch = $page);
+            // return view('template.restaurants', compact('data'));
+        };
+
+        // return 
+        if ($request->ajax()) {
+            $view = view('template.dataRes', compact('data'))->render();
+            return response()->json(['html' => $view]);
+        }
+
+        return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
     }
 
+    public function filter(Request $request)
+    {
+        // get category and tag
+        $nameDishCat = $this->get_dish_cat();
+        $nameFoodTag = $this->get_food_tag();
 
+        $ks = $request->keysearch;
+        $cat = $request->cat;
+        $prices = $request->price;
+        $tags = $request->tag;
+        // dd($tags);
+        $dataForm = [
+            'ks' => $ks,
+            'cat' => $cat,
+            'prices' => $prices,
+            'tags' => $tags
+        ];
+
+        $publicController = new PublicController();
+        // get full data
+        $rs = $publicController->search($keysearch = $ks, $tag = $tags, $cate = $cat, $price = $prices);
+        $data = $this->convertRestaurant($rs);
+
+// dd($dataForm);
+        // return back()
+        //     ->with('dataForm', $dataForm)
+        //     ->with('data', $data)
+        //     ->with('nameDishCat', $nameDishCat)
+        //     ->with('nameFoodTag', $nameFoodTag);
+
+        return view('template.restaurants', compact('data', 'dataForm', 'nameDishCat', 'nameFoodTag'));
+    }
 
     public function searchFromHome(Request $request)
     {
         $keysearch = $request->keysearch;
-        // dd($request->all());
         return redirect()->route('restaurants', ['search' => $keysearch]);
     }
-
-
-
-    public function filter(Request $request)
-    {
-        // dd($request->all());
-
-        $keysearch = $request->keysearch;
-        return redirect()->route('restaurants', ['search' => $keysearch]);
-    }
-
 
     function pay_now(Request $request)
     {
@@ -75,6 +175,8 @@ class RestaurantController extends Controller
         $status = 2;
         $delivery = 2;
         $timeCreated = date('m/d/Y h:i:s ', time());
+
+        // bi chet o day vi chua co data
         $res_id = Dish::where('id', $array[0]['id'])->first()->restaurantId;
 
         $order = Order::create([
@@ -97,7 +199,7 @@ class RestaurantController extends Controller
             };
             return 200;
         }
-        
+
         return 500;
     }
 }
