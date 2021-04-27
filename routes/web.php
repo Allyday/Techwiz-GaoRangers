@@ -83,5 +83,5 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/dish/create', [DishesController::class, "create"]);
     Route::get('/staff/dish/store', [DishesController::class, "store"]);
 });
-//test search
-Route::get('/test', [\App\Http\Controllers\testController::class, 'index'],);
+//test phan trang
+Route::get('/test', [\App\Http\Controllers\testController::class, 'index']);
