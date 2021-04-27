@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dish;
 use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Feedback;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Dish;
 use App\Models\Order;
 use App\Models\OrderDish;
 use App\Models\Restaurant;
@@ -18,7 +19,12 @@ class PublicController extends Controller
     function index()
     {
         $access = false;
-
+        //get dish home
+        $dishhome = DB::select('Select dishes.id,dishes.photo , dishes.name,restaurants.id as rId,restaurants.name as rName,
+                       	dishes.price, dishes.description,restaurants.city as city,restaurants.district as dis,
+                        restaurants.municipality as mini, restaurants.street
+                        from dishes inner join restaurants on dishes.restaurantId = restaurants.id
+                        where dishes.id in (88,97,98)');
         // get data home page
         $data = [
             array(
@@ -184,7 +190,7 @@ class PublicController extends Controller
             ->orderBy('count', 'desc')
             ->limit(6)
             ->get();
-        // dd($table);
+        dd($table);
         return $table;
     }
 }

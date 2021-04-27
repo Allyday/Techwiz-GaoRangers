@@ -165,6 +165,38 @@ input[type=number] {
     z-index: 10000 !important;
 }
 
+.optional-label {
+    font-size: 14px;
+}
+
+/* start bootstrap */
+
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important
+}
+
+.bg-dark {
+    background-color: #343a40 !important;
+}
+
+.p-4 {
+    padding: 1.5rem !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+/* end bootstrap */
+
 .custom-control-input:checked~.custom-control-label {
     color: red;
     font-weight: 700;

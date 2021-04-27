@@ -96,4 +96,4 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('get/all/past/order', [PublicController::class, 'get_past_order']);
 });
 //test phan trang
-Route::get('/test', [\App\Http\Controllers\testController::class, 'index']);
+Route::get('/test', [\App\Http\Controllers\testController::class, 'topQuanDatNhieuNhat']);
