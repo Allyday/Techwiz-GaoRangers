@@ -8,10 +8,10 @@
    <div class="top-links">
       <div class="container">
          <ul class="row links">
-            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
-            <li class="col-xs-12 col-sm-3 link-item"><span>2</span><a href="restaurants">Choose Restaurant</a></li>
-            <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="restaurant-details/1">Pick Your favorite food</a></li>
-            <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="checkout">Order and Pay online</a></li>
+            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="javasctip:void(0)" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
+            <li class="col-xs-12 col-sm-3 link-item"><span>2</span><a href="{{ route('restaurants') }}">Choose Restaurant</a></li>
+            <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="{{ route('menu', 1) }}">Pick Your favorite food</a></li>
+            <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="{{ route('checkout') }}">Order and Pay online</a></li>
          </ul>
       </div>
    </div>

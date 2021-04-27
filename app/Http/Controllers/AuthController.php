@@ -27,7 +27,7 @@ class AuthController extends Controller
         ]);
 
         $user = User::get()->where('userName', '=', $request->username)->first();
-        
+
 
         if (!$user) {
             return back()->with('fail', 'We do not recognize your email address !');
@@ -45,7 +45,7 @@ class AuthController extends Controller
 
                 $request->session()->put('User', $user->id);
                 $request->session()->put('User_type', $user->type);
-                
+
                 return redirect(route('staff'));
             }
         }

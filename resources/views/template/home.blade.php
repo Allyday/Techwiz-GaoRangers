@@ -166,25 +166,10 @@
 <section class="featured-restaurants">
    <div class="container">
       <div class="row">
-         <div class="col-sm-4">
-            <div class="title-block pull-left">
-               <h4>Featured restaurants</h4>
+         <div class="col-md-12" style="text-align: center;">
+            <div class="title-block mb-3">
+               <h2>Featured restaurants</h2>
             </div>
-         </div>
-         <div class="col-sm-8">
-            <!-- restaurants filter nav starts -->
-            <div class="restaurants-filter pull-right">
-               <nav class="primary pull-left">
-                  <ul>
-                     <li><a href="#" class="selected" data-filter="*">Grill</a> </li>
-                     <li><a href="#" data-filter=".pizza">Pizza</a> </li>
-                     <li><a href="#" data-filter=".pasta">Pasta</a> </li>
-                     <li><a href="#" data-filter=".thaifood">Thai food</a> </li>
-                     <li><a href="#" data-filter=".fish">Fish</a> </li>
-                  </ul>
-               </nav>
-            </div>
-            <!-- restaurants filter nav ends -->
          </div>
       </div>
       <!-- restaurants listing starts -->

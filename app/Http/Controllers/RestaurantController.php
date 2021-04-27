@@ -59,49 +59,10 @@ class RestaurantController extends Controller
 
     public function filter(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
 
         $keysearch = $request->keysearch;
-        // dd($request->all());
         return redirect()->route('restaurants', ['search' => $keysearch]);
-    }
-
-
-    function addToCard(Request $request)
-    {
-
-        if ($request->ajax()) {
-
-            $data = $request->cart;
-
-
-            if (session()->has('Cart')) {
-                $cart = session()->get('Cart');
-
-                $index = -1;
-
-                foreach ($cart as $k => $item) {
-                    if (strcmp($item['id'], $data['id']) === 0) {
-                        $index = $k;
-                        break;
-                    }
-                }
-
-                if ($index <= -1) {
-                    array_push($cart, $data);
-                    return 'them moi';
-                } else {
-                    $cart[$index]['quantity'] = (int)$cart[$index]['quantity'] + 1;
-                    return $cart[$index]['quantity'];
-                }
-            } else {
-                $cart = [];
-                array_push($cart, $data);
-                $request->session()->put('Cart', $cart);
-            }
-
-            return $cart;
-        }
     }
 
 

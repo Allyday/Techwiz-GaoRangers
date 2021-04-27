@@ -29,9 +29,9 @@
     })
 </script>
 
-@if ((session('Location') && session('Location')!=null ) || route('home') == url()->current())
-{{-- 
-@elseif(route('staff') == url()->current()) --}}
+@if ((session('Location') && session('Location')!=null )  )
+
+@elseif(url()->current() == route('home'))
 
 @else
 <script>
@@ -98,7 +98,7 @@
 
 {{-- script --}}
 <script src="{{ asset('template/js/jquery.js') }}"></script>
-@if (isset($_GET['request']))
+@if (isset($_GET['request']) && !session('User'))
 <script>
     $('document').ready(function() {
         $('#modalLogin').modal('show')
