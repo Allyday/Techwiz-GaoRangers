@@ -19,6 +19,11 @@
             <!-- setting -->
             <div class="col-md-12">
 
+               <div class="text-center w-100 p-4">
+                  <h1 class="page-title">Account Information</h1>
+                  <p>Change your personal information here. Your name & phone number will be seen by restaurant and delivery staffs.</p>
+               </div>
+
                <form action="/user/settingUser/{{ $user->id }}" method="POST">
                   @csrf
                   {{-- user_type --}}
@@ -135,10 +140,10 @@
                   </div>
                   <div class="row" style="text-align:center;">
                      <div class="col-md-12">
-                        <p> <button style="padding: 10px 30px" type="submit" class="btn btn-danger">OK</button> </p>
+                        <p> <button style="padding: 10px 30px" type="submit" class="btn btn-danger">Save changes</button> </p>
                      </div>
                      <div class="col-sm-12">
-                        <a style="padding:10px" href="{{ route('home', ['request'=>true]) }}" class="">Huy</a>
+                        <a style="padding:10px" href="{{ route('home', ['request'=>true]) }}" class="">Cancel</a>
                      </div>
 
                   </div>
