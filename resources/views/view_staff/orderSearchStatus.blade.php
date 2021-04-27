@@ -9,34 +9,31 @@
          @csrf
          @method('POST')        
       <label>Search:<input type="number" name="search" class="" placeholder="" aria-controls="table"></label>
-      
-      <button type="submit" class="btn btn-success fw-bold" id="btn-update"><i class="fas fa-search"></i>
-
+      <button type="submit" class="btn btn-success fw-bold" id="btn-update"><i class="fas fa-search"></i></a>
       </button>
       </form>
       <form action="/staff/status/searchOrder" method="post">
          @csrf
          @method('POST')        
          <input type="hidden" name="search" value="2">
-         <button type="submit" class="btn btn-warning fw-bold" id="btn-update">Waiting for reception
-         </button>
-      
+      <button type="submit" class="btn btn-success fw-bold" id="btn-update"><i class="fas fa-search"></i></a>
+      </button>
       </form>
       <form action="/staff/status/searchOrder" method="post">
          @csrf
          @method('POST') 
          <input type="hidden" name="search" value="3">
-         <button type="submit" class="btn btn-secondary fw-bold" id="btn-update">Cooking
-         </button>
-      
+       
+      <button type="submit" class="btn btn-success fw-bold" id="btn-update"><i class="fas fa-search"></i></a>
+      </button>
       </form>
       <form action="/staff/status/searchOrder" method="post">
          @csrf
          @method('POST') 
          <input type="hidden" name="search" value="4">
-         <button type="submit" class="btn btn-primary fw-bold" id="btn-update">Ready!!!
-         </button>
- 
+       
+      <button type="submit" class="btn btn-success fw-bold" id="btn-update"><i class="fas fa-search"></i></a>
+      </button>
       </form>
    </div>
    <table id="tableCustomer" class="table hover row-border" style="width:100%">

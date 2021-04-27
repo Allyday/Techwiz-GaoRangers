@@ -69,7 +69,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
 
     // route for staff
-    Route::get('/staff', [AdminController::class, 'index'])->name('staff');
+    Route::get('/staff/index/{option}', [AdminController::class, 'index'])->name('staff');
 
     Route::get('/staff/menu', [AdminController::class, 'menu'])->name('staff.menu');
 
@@ -87,6 +87,9 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/{order}/orderDetail', [OrderController::class, "show"]);
     Route::get('/user/{user}/setting', [UserController::class, 'setting'])->name('setting');
     Route::post('/user/settingUser/{user}', [UserController::class, "editpass"]);
+    Route::post('/staff/searchOrder', [OrderController::class, "search"]);
+    Route::post('/staff/status/searchOrder', [OrderController::class, "searchStatus"]);
+
     // Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 
 });

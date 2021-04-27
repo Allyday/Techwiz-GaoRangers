@@ -74,10 +74,10 @@ $(document).ready(function() {
     // }
 
 
-    $.fn.setEventChangePage();
-    $('.paginate_button').on('click', function() {
-        $.fn.setEventChangePage();
-    });
+    // $.fn.setEventChangePage();
+    // $('.paginate_button').on('click', function() {
+    //     $.fn.setEventChangePage();
+    // });
 
 
 
