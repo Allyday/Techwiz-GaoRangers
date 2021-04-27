@@ -149,6 +149,9 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="text-color text-center cancel-btn-container">
+                                                <p style="font-size: 14px">Deliver to:
+                                                    <b class="delivery-address">8 Ton That Thuyet, My Dinh, Cau Giay, Hanoi, Vietnam</b>
+                                                </p>
                                                 <a href="javascript:void(0)" id="cancel-btn">Cancel Order</a>
                                             </td>
                                         </tr>
@@ -250,7 +253,7 @@
 
 <script src="{{ asset('template/js/jquery.js') }}"></script>
 <script>
-    function innerPastOrder(array){
+    function innerPastOrder(array) {
         array.map((e) => {
             var row = `<div class="food-item">
                         <div class="row">
@@ -284,32 +287,32 @@
                     </div>`;
             document.getElementById("myBody").innerHTML += row;
 
-            });
+        });
     }
 
 
     function postByAjax() {
-            $.ajax({
+        $.ajax({
                 type: 'GET',
                 url: "get/all/past/order"
             })
-            .done( function(res) {
+            .done(function(res) {
                 // nhan 1 array, 
-                innerPastOrder([1,2]);
+                innerPastOrder([1, 2]);
                 // collapse
                 $('#collapsePastOrder').collapse('show')
             })
-            .fail( (jqXHR, ajaxOptions, thrownError) => {
-               console.log('oop...error')
+            .fail((jqXHR, ajaxOptions, thrownError) => {
+                console.log('oop...error')
             })
-        }
+    }
 
-    var count=0;
+    var count = 0;
     $('#toglle_colapse').on('click', () => {
         count++;
-        if(count<=1){
+        if (count <= 1) {
             // postByAjax();
-            innerPastOrder([1,2]);
+            innerPastOrder([1, 2]);
             $('#collapsePastOrder').collapse('show')
         }
 

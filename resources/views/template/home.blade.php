@@ -96,7 +96,6 @@
                      <a class="pull-left" href=""> <img style="width: 50px;height: 46px" src="{{$dish['photo']}}" alt="Restaurant logo" /> </a>
                      <div class="pull-left right-text"> <a href="{{route('menu',$dish['rId'])}}">{{$dish['rName']}}</a> <span>{{$dish['street']." - ".$dish['mini']." - ".$dish['dis']}}</span> </div>
                   </div>
-                  <div class="right-like-part pull-right"> <i class="fa fa-heart-o"></i> <span>48</span> </div>
                </div>
             </div>
          </div>
