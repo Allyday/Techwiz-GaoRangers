@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dish;
 use App\Models\DishCategory;
 use App\Models\Restaurant;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -61,26 +62,21 @@ class testController extends Controller
             $sql .= " ORDER BY restaurants.stars DESC";
         }
         $table = DB::select($sql);
+        $table = DB::
         dd($temp);
         dd($table);
         return view('test.test');
     }
-    public function topQuanDatNhieuNhat($top){
-        $top = 0;
-//        $sql = "SELECT restaurants.id as r_id, restaurants.name, COUNT(orders.id) AS doanhso
-//                FROM restaurants
-//                LEFT JOIN orders ON restaurants.id = orders.restaurantId
-//                GROUP BY orders.restaurantId
-//                ORDER BY doanhso DESC LIMIT 3";
+
+    
+    public function topQuanDatNhieuNhat(){
         $table = DB::table('restaurants')
             ->leftJoin('orders','restaurants.id','orders.restaurantId')
             ->select(DB::raw('count(orders.id) as count, orders.restaurantId as restaurantId'))
             ->groupBy('orders.restaurantId')
             ->orderBy('count','desc')
-            ->limit($top)
+            ->limit(6)
             ->get();
-        dd($table);
         return;
     }
-
 }

@@ -10,10 +10,10 @@
    <div class="top-links">
       <div class="container">
          <ul class="row links">
-            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="#" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
-            <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="restaurants">Choose Restaurant</a></li>
-            <li class="col-xs-12 col-sm-3 link-item"><span>3</span><a href="restaurant-details/1">Pick Your favorite food</a></li>
-            <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="checkout">Order and Pay online</a></li>
+            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="javasctip:void(0)" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
+            <li class="col-xs-12 col-sm-3 link-item active"><span>2</span><a href="{{ route('restaurants') }}">Choose Restaurant</a></li>
+            <li class="col-xs-12 col-sm-3 link-item"><span>3</span><a href="{{ route('menu', 1) }}">Pick Your favorite food</a></li>
+            <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="{{ route('checkout') }}">Order and Pay online</a></li>
          </ul>
       </div>
    </div>
@@ -27,14 +27,14 @@
                <p><span class="primary-color"><strong>124</strong></span> Results so far
             </div>
             </p>
-            <div class="col-sm-9">
+            {{-- <div class="col-sm-9">
                <select class="custom-select pull-right">
                   <option selected>Open this select menu</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                </select>
-            </div>
+            </div> --}}
          </div>
       </div>
    </div>

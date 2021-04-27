@@ -30,16 +30,13 @@ Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('
 // add order
 Route::post('add/record/order', [RestaurantController::class, 'pay_now']);
 
-// add to cart
-Route::post('/addToCard', [RestaurantController::class, 'addToCard']);
-
 // post location
 Route::post('/save_location', [LocationController::class, 'save_location'])->name('save_location');
 
 // post search restaurant from home
 Route::post('search/restaurants', [RestaurantController::class, 'searchFromHome'])->name('search_restaurants');
 
-// post filter restaurant from restauranta
+// post filter restaurant from restaurant
 Route::post('filter/restaurants', [RestaurantController::class, 'filter'])->name('filter_restaurants');
 
 
@@ -93,5 +90,5 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     // Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 
 });
-//test search
-Route::get('/test', [\App\Http\Controllers\testController::class, 'index'],);
+//test phan trang
+Route::get('/test', [\App\Http\Controllers\testController::class, 'index']);
