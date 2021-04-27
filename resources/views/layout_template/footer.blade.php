@@ -29,16 +29,14 @@
     })
 </script>
 
-@if ((session('Location') && session('Location')!=null )  )
-
-@elseif(url()->current() == route('home'))
-
-@else
+@if (!session('Location') && session('Location') == null && url()->current() == route('restaurants'))
 <script>
     $('document').ready(function() {
         $('#locationModal').modal('show')
     });
 </script>
+@else
+
 @endif
 {{-- end script --}}
 

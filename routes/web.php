@@ -17,10 +17,10 @@ Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name(
 
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
 
-// Route::get('/', function () {
+// Route::get('/restaurants', function () {
 
-//     session()->flush()('Location');
 //     dd(session()->get('Location'));
+//     session()->flush()('Location');
 //     return var_dump(session()->get('Cart'));
 // })->name('home');
 
