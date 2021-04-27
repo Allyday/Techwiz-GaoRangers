@@ -68,7 +68,7 @@ class testController extends Controller
         return view('test.test');
     }
 
-    
+
     public function topQuanDatNhieuNhat(){
         $table = DB::table('restaurants')
             ->leftJoin('orders','restaurants.id','orders.restaurantId')
@@ -77,6 +77,7 @@ class testController extends Controller
             ->orderBy('count','desc')
             ->limit(6)
             ->get();
+        dd($table);
         return;
     }
 }
