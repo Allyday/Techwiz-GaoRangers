@@ -54,7 +54,7 @@
                         @csrf
 
                         <div class="input-group">
-                           <input name="keysearch"  @if(isset($dataFrom) && $dataForm['ks']!=null)  value="{{ $dataForm['ks'] }}" @endif type="text" class="form-control search-field" placeholder="Search your favorite food"> <span class="input-group-btn">
+                           <input name="keysearch" type="text" class="form-control search-field" placeholder="Search your favorite food"> <span class="input-group-btn">
                               <button class="btn btn-secondary search-btn" type="submit"><i class="fa fa-search"></i></button>
                            </span>
                         </div>

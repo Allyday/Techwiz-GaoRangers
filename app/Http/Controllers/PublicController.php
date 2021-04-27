@@ -25,6 +25,13 @@ class PublicController extends Controller
                         restaurants.municipality as mini, restaurants.street
                         from dishes inner join restaurants on dishes.restaurantId = restaurants.id
                         where dishes.id in (88,97,98)');
+
+        $dishhome = array_map(function ($value) {
+            return (array)$value;
+        }, $dishhome);
+
+        // var_dump($dishhome);
+        // dd($dishhome);
         // get data home page
         $data = [
             array(
@@ -36,7 +43,7 @@ class PublicController extends Controller
 
         $data = $this->topQuanDatNhieuNhat();
 
-        return view('template.home', compact('access', 'dishhome','data'));
+        return view('template.home', compact('access', 'dishhome', 'data'));
     }
 
     function menu()
@@ -131,14 +138,14 @@ class PublicController extends Controller
         }
     }
 
-    public function search($keysearch = null, $tag = null, $cate = null, $price = null, $xeptheosao = null)
+    public function search($keysearch = null, $tag = null, $cate = null, $price = null,  $pg = 1)
     {
         //các biến lấy về từ request khi submit search
         $keysearch = $keysearch || ""; //Lấy từ search theo tên - test = rice
         $tags = $tag || []; //mảng id của table food_tags - test = 15
         $cate = $cate || 0; //id của table dish_category test = 5
         $price = $price || ""; //giá tiền;
-        $xeptheosao = $xeptheosao || 0; // = 0 thi sap xep theo gan xa, = 1 thi sap xep theo stars
+        $page = $pg;
 
         $sql = "SELECT restaurants.id AS r_id,restaurants.name AS r_name,
                 dishes.id as d_id, dishes.name AS d_name,
@@ -176,9 +183,14 @@ class PublicController extends Controller
 				    GROUP BY dish_tags.dishId
 				    HAVING GROUP_CONCAT(dish_tags.foodTagId) like '" . $temp . "')";
         }
-        //sap xep theo so sao
-        if ($xeptheosao = 1) {
-            $sql .= " ORDER BY restaurants.stars DESC";
+        
+        // paginate
+        if ($page <= 1) {
+            $page = 0;
+            $sql .= "  LIMIT 5 OFFSET *$page ";
+        } else {
+            $page = ($page-1)*5;
+            $sql .= " LIMIT 5  OFFSET $page ";
         }
 
 

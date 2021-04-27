@@ -114,8 +114,9 @@ class RestaurantController extends Controller
         if (isset($_GET['page'])) {
             // get page number
             $page = $_GET['page'];
-            // $data = $publicController->search($keysearch = $page);
-            // return view('template.restaurants', compact('data'));
+            $rs = $publicController->search($pg=$page);
+            $data = $this->convertRestaurant($rs);
+            return view('template.restaurants', compact('data'));
         };
 
         // return 

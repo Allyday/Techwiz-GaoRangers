@@ -20,11 +20,11 @@ Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name(
 
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
 
-// Route::get('/restaurants', function () {
+// Route::get('/', function () {
 
-//     dd(session()->get('Location'));
-//     session()->flush()('Location');
-//     return var_dump(session()->get('Cart'));
+//     // dd(session()->get('Location'));
+//     session()->flush();
+//     return 'done';
 // })->name('home');
 
 

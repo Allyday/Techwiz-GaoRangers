@@ -1,25 +1,37 @@
--- phpMyAdmin SQL Dump
--- version 5.1.0
--- https://www.phpmyadmin.net/
---
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 27, 2021 lúc 04:06 AM
--- Phiên bản máy phục vụ: 10.4.18-MariaDB
--- Phiên bản PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Cơ sở dữ liệu: `techwiz`
 --
+
+INSERT INTO `restaurants` (`id`, `name`, `city`, `district`, `municipality`, `street`, `houseNumber`, `stars`, `keywords`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Kitchen of Nang Tho - Office Rice Online', 'Ha Noi', 'Bac Tu Liem', 'Xuan Dinh', '255 Xuan Dinh', '0000000001', 5.00, 'rice', 1, NULL, NULL),
+(7, 'Uncle Tieu - Toast With Chili Salt & Sauce', 'Ha Noi', 'Bac Tu Liem', 'Phu Dien', '382 Phu Dien', '0000000002', 5.00, '', 1, NULL, NULL),
+(8, 'Delicious Porridge Every Day', 'Ha Noi', 'Bac Tu Liem', 'Xuan Dinh', '335 Xuan Dinh', '0000000003', 5.00, '', 1, NULL, NULL),
+(9, 'Minh Hang - Delicious Xoi & Snacks', 'Ha Noi', 'Bac Tu Liem', 'Duc Thang', '15 Thuong Thu', '0000000004', 5.00, '', 1, NULL, NULL),
+(10, 'Royaltea - 119 Co Nhue Alley', 'Ha Noi', 'Bac Tu Liem', 'Co Nhue 2', '311 Phu Dien', '0000000005', 5.00, '', 1, NULL, NULL),
+(11, 'Roasted Duck Sticky Rice 88 - Snails, Hot Pot & Snacks', 'Ha Noi', 'Bac Tu Liem', 'Co Nhue 1', '123 Co Nhue 1', '0000000006', 5.00, '', 1, NULL, NULL),
+(48, 'Tiger Sugar - Pham Tuan Tai', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654321', 5.00, '', 1, NULL, NULL),
+(49, 'Bun Cha Trang Huy', 'Ha Noi', 'Cau Giay', 'Quan Hoa', '123 Pham Tuan Tai', '0987654221', 5.00, '', 1, NULL, NULL),
+(50, 'Ha Long Pearl Yogurt', 'Ha Noi', 'Cau Giay', 'Yen Hoa', 'Nguyen Khang', '0987654657', 5.00, '', 1, NULL, NULL),
+(51, 'Teens Food - Snacks', 'Ha Noi', 'Cau Giay', 'Trung Hoa', '123 Pham Tuan Tai', '09372838283', 5.00, '', 1, NULL, NULL),
+(52, 'Korean Kitchen - Bếp Hàn Online', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', 'Tran Quoc Hoan', '0003054321', 5.00, '', 1, NULL, NULL),
+(53, 'Chimico - Cơm Trộn & Kim Chi Tỏi Đen', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654392', 5.00, '', 1, NULL, NULL),
+(54, 'Snow Hotpot - Tomyum Thai Hotpot & Barbecue Buffet', 'Ha Noi', 'Cau Giay', 'Quan Hoa', '123 Pham Tuan Tai', '09999999991', 5.00, '', 1, NULL, NULL),
+(55, 'Alo Sushi - Ham Nghi', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '9382761532', 5.00, '', 1, NULL, NULL),
+(56, 'Fuji Bin - Japanese Restaurant', 'Ha Noi', 'Cau Giay', 'Yen Hoa', '123 Pham Tuan Tai', '0987654323', 5.00, '', 1, NULL, NULL),
+(57, 'XP Veggie - Đồ Ăn Chay Homemade Online', 'Ha Noi', 'Cau Giay', 'Yen Hoa', '123 Pham Tuan Tai', '0987654324', 5.00, '', 1, NULL, NULL),
+(58, 'Chay Riệu Thiện - Đồ Ăn Vặt Online', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654325', 5.00, '', 1, NULL, NULL),
+(59, 'Khanh Ngoc - Steamed Rice & Fast Food - Shop Online', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654326', 5.00, '', 1, NULL, NULL),
+(60, 'Kim Lien - Vermicelli, Vermicelli & Crab Cake', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654327', 5.00, '', 1, NULL, NULL),
+(61, 'Chinese Snacks', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654328', 5.00, '', 1, NULL, NULL),
+(62, 'Food Vi Thien - Chinese Cuisine', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Viet Xuan', '0987654338', 5.00, '', 1, NULL, NULL),
+(63, 'Great Wall - Chinese Delivery', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Tran Duy Hung', '0987654348', 5.00, '', 1, NULL, NULL),
+(64, 'Burger +++ - Shop Online', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Dung Tuy', '0987654331', 5.00, '', 1, NULL, NULL),
+(65, 'Fish Noodles Minh Soc', 'Ha Noi', 'Cau Giay', 'Quan Hoa', '123 Pham Tuan Tai', '094354328', 5.00, '', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -27,18 +39,14 @@ SET time_zone = "+00:00";
 -- Cấu trúc bảng cho bảng `administrativedivisions`
 --
 
-CREATE TABLE `administrativedivisions` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parentId` tinyint(4) DEFAULT 0,
-  `type` tinyint(4) NOT NULL DEFAULT 0,
-  `nearBy_1` int(11) DEFAULT NULL,
-  `nearBy_2` int(11) DEFAULT NULL,
-  `nearBy_3` int(11) DEFAULT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `dish_categories` (`id`, `name`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'soup & salads', 1, NULL, NULL),
+(2, 'seafood', 1, NULL, NULL),
+(3, 'drinks', 1, NULL, NULL),
+(4, 'desserts', 1, NULL, NULL),
+(5, 'snacks', 1, NULL, NULL),
+(6, 'main dish', 1, NULL, NULL),
+(7, 'side dish', 1, NULL, NULL);
 
 --
 -- Đang đổ dữ liệu cho bảng `administrativedivisions`
@@ -231,43 +239,6 @@ INSERT INTO `administrativedivisions` (`id`, `name`, `parentId`, `type`, `nearBy
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `discount_codes`
---
-
-CREATE TABLE `discount_codes` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `discountType` tinyint(4) NOT NULL DEFAULT 1,
-  `amountDiscounted` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `percentDiscounted` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `orderMin` double DEFAULT NULL,
-  `startDate` datetime DEFAULT NULL,
-  `endDate` datetime DEFAULT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `dishes`
---
-
-CREATE TABLE `dishes` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `photo` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `restaurantId` int(10) UNSIGNED NOT NULL,
-  `dishCategoryId` int(10) UNSIGNED DEFAULT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
 -- Đang đổ dữ liệu cho bảng `dishes`
 --
 
@@ -371,43 +342,22 @@ INSERT INTO `dishes` (`id`, `name`, `description`, `price`, `photo`, `restaurant
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `dish_categories`
---
-
-CREATE TABLE `dish_categories` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `dish_categories`
---
-
-INSERT INTO `dish_categories` (`id`, `name`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'soup & salads', 1, NULL, NULL),
-(2, 'seafood', 1, NULL, NULL),
-(3, 'drinks', 1, NULL, NULL),
-(4, 'desserts', 1, NULL, NULL),
-(5, 'snacks', 1, NULL, NULL),
-(6, 'main dish', 1, NULL, NULL),
-(7, 'side dish', 1, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `dish_tags`
---
-
-CREATE TABLE `dish_tags` (
-  `dishId` int(10) UNSIGNED NOT NULL,
-  `foodTagId` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `food_tags` (`id`, `name`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'vegetarian', 1, NULL, NULL),
+(2, 'vegan', 1, NULL, NULL),
+(3, 'gluten-free', 1, NULL, NULL),
+(4, 'dairy-free', 1, NULL, NULL),
+(5, 'Vietnamese', 1, NULL, NULL),
+(6, 'Chinese', 1, NULL, NULL),
+(7, 'Thai', 1, NULL, NULL),
+(8, 'Japanese', 1, NULL, NULL),
+(9, 'Korean', 1, NULL, NULL),
+(10, 'sushi', 1, NULL, NULL),
+(11, 'fish', 1, NULL, NULL),
+(12, 'beef', 1, NULL, NULL),
+(13, 'chicken', 1, NULL, NULL),
+(14, 'pork', 1, NULL, NULL),
+(15, 'deep-fried', 1, NULL, NULL);
 
 --
 -- Đang đổ dữ liệu cho bảng `dish_tags`
@@ -456,252 +406,7 @@ INSERT INTO `dish_tags` (`dishId`, `foodTagId`, `created_at`, `updated_at`) VALU
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `failed_jobs`
---
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 -- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `feedback`
---
-
-CREATE TABLE `feedback` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `userId` int(10) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `food_tags`
---
-
-CREATE TABLE `food_tags` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `food_tags`
---
-
-INSERT INTO `food_tags` (`id`, `name`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'vegetarian', 1, NULL, NULL),
-(2, 'vegan', 1, NULL, NULL),
-(3, 'gluten-free', 1, NULL, NULL),
-(4, 'dairy-free', 1, NULL, NULL),
-(5, 'Vietnamese', 1, NULL, NULL),
-(6, 'Chinese', 1, NULL, NULL),
-(7, 'Thai', 1, NULL, NULL),
-(8, 'Japanese', 1, NULL, NULL),
-(9, 'Korean', 1, NULL, NULL),
-(10, 'sushi', 1, NULL, NULL),
-(11, 'fish', 1, NULL, NULL),
-(12, 'beef', 1, NULL, NULL),
-(13, 'chicken', 1, NULL, NULL),
-(14, 'pork', 1, NULL, NULL),
-(15, 'deep-fried', 1, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_100000_create_password_resets_table', 1),
-(2, '2019_08_19_000000_create_failed_jobs_table', 1),
-(5, '2021_04_24_022344_create_user_addresses_table', 1),
-(7, '2021_04_24_024856_create_food_tags_table', 1),
-(8, '2021_04_24_025202_create_dishes_table', 1),
-(9, '2021_04_24_025427_create_dish_tags_table', 1),
-(10, '2021_04_24_030941_create_discount_codes_table', 1),
-(11, '2021_04_24_032839_create_orders_table', 1),
-(12, '2021_04_24_033601_create_order_dishes', 1),
-(13, '2021_04_24_163128_create_administrative_divisions', 1),
-(14, '2021_04_25_034847_create_feedback_table', 1),
-(15, '2021_04_25_161951_create_reviews_table', 1),
-(16, '2021_04_24_024002_create_dish_categories_table', 2),
-(17, '2021_04_24_013431_create_restaurants_table', 3),
-(18, '2021_04_24_014843_create_users_table', 4);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `orderdish`
---
-
-CREATE TABLE `orderdish` (
-  `orderId` int(10) UNSIGNED NOT NULL,
-  `dishId` int(10) UNSIGNED NOT NULL,
-  `note` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dishQuantity` int(11) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `orders`
---
-
-CREATE TABLE `orders` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `userId` int(10) UNSIGNED NOT NULL,
-  `restaurantId` int(10) UNSIGNED NOT NULL,
-  `totalDishPrice` double DEFAULT 0,
-  `deliveryFee` double DEFAULT 0,
-  `discountAmount` double DEFAULT 0,
-  `discountCodeId` int(10) UNSIGNED DEFAULT NULL,
-  `address` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `timeCreated` datetime DEFAULT NULL,
-  `timeAccepted` datetime DEFAULT NULL,
-  `timeDoneCooking` datetime DEFAULT NULL,
-  `timePickedUp` datetime DEFAULT NULL,
-  `timeDelivered` datetime DEFAULT NULL,
-  `timeRejected` datetime DEFAULT NULL,
-  `timeCancelled` datetime DEFAULT NULL,
-  `acceptedBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `doneCookingBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `restaurants`
---
-
-CREATE TABLE `restaurants` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `city` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `district` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `municipality` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `street` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `houseNumber` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `stars` double(8,2) DEFAULT 5.00,
-  `keywords` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `restaurants`
---
-
-INSERT INTO `restaurants` (`id`, `name`, `city`, `district`, `municipality`, `street`, `houseNumber`, `stars`, `keywords`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Kitchen of Nang Tho - Office Rice Online', 'Ha Noi', 'Bac Tu Liem', 'Xuan Dinh', '255 Xuan Dinh', '0000000001', 5.00, 'rice', 1, NULL, NULL),
-(7, 'Uncle Tieu - Toast With Chili Salt & Sauce', 'Ha Noi', 'Bac Tu Liem', 'Phu Dien', '382 Phu Dien', '0000000002', 5.00, '', 1, NULL, NULL),
-(8, 'Delicious Porridge Every Day', 'Ha Noi', 'Bac Tu Liem', 'Xuan Dinh', '335 Xuan Dinh', '0000000003', 5.00, '', 1, NULL, NULL),
-(9, 'Minh Hang - Delicious Xoi & Snacks', 'Ha Noi', 'Bac Tu Liem', 'Duc Thang', '15 Thuong Thu', '0000000004', 5.00, '', 1, NULL, NULL),
-(10, 'Royaltea - 119 Co Nhue Alley', 'Ha Noi', 'Bac Tu Liem', 'Co Nhue 2', '311 Phu Dien', '0000000005', 5.00, '', 1, NULL, NULL),
-(11, 'Roasted Duck Sticky Rice 88 - Snails, Hot Pot & Snacks', 'Ha Noi', 'Bac Tu Liem', 'Co Nhue 1', '123 Co Nhue 1', '0000000006', 5.00, '', 1, NULL, NULL),
-(48, 'Tiger Sugar - Pham Tuan Tai', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654321', 5.00, '', 1, NULL, NULL),
-(49, 'Bun Cha Trang Huy', 'Ha Noi', 'Cau Giay', 'Quan Hoa', '123 Pham Tuan Tai', '0987654221', 5.00, '', 1, NULL, NULL),
-(50, 'Ha Long Pearl Yogurt', 'Ha Noi', 'Cau Giay', 'Yen Hoa', 'Nguyen Khang', '0987654657', 5.00, '', 1, NULL, NULL),
-(51, 'Teens Food - Snacks', 'Ha Noi', 'Cau Giay', 'Trung Hoa', '123 Pham Tuan Tai', '09372838283', 5.00, '', 1, NULL, NULL),
-(52, 'Korean Kitchen - Bếp Hàn Online', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', 'Tran Quoc Hoan', '0003054321', 5.00, '', 1, NULL, NULL),
-(53, 'Chimico - Cơm Trộn & Kim Chi Tỏi Đen', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654392', 5.00, '', 1, NULL, NULL),
-(54, 'Snow Hotpot - Tomyum Thai Hotpot & Barbecue Buffet', 'Ha Noi', 'Cau Giay', 'Quan Hoa', '123 Pham Tuan Tai', '09999999991', 5.00, '', 1, NULL, NULL),
-(55, 'Alo Sushi - Ham Nghi', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '9382761532', 5.00, '', 1, NULL, NULL),
-(56, 'Fuji Bin - Japanese Restaurant', 'Ha Noi', 'Cau Giay', 'Yen Hoa', '123 Pham Tuan Tai', '0987654323', 5.00, '', 1, NULL, NULL),
-(57, 'XP Veggie - Đồ Ăn Chay Homemade Online', 'Ha Noi', 'Cau Giay', 'Yen Hoa', '123 Pham Tuan Tai', '0987654324', 5.00, '', 1, NULL, NULL),
-(58, 'Chay Riệu Thiện - Đồ Ăn Vặt Online', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654325', 5.00, '', 1, NULL, NULL),
-(59, 'Khanh Ngoc - Steamed Rice & Fast Food - Shop Online', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654326', 5.00, '', 1, NULL, NULL),
-(60, 'Kim Lien - Vermicelli, Vermicelli & Crab Cake', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654327', 5.00, '', 1, NULL, NULL),
-(61, 'Chinese Snacks', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Tuan Tai', '0987654328', 5.00, '', 1, NULL, NULL),
-(62, 'Food Vi Thien - Chinese Cuisine', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Pham Viet Xuan', '0987654338', 5.00, '', 1, NULL, NULL),
-(63, 'Great Wall - Chinese Delivery', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Tran Duy Hung', '0987654348', 5.00, '', 1, NULL, NULL),
-(64, 'Burger +++ - Shop Online', 'Ha Noi', 'Cau Giay', 'Dich Vong Hau', '123 Dung Tuy', '0987654331', 5.00, '', 1, NULL, NULL),
-(65, 'Fish Noodles Minh Soc', 'Ha Noi', 'Cau Giay', 'Quan Hoa', '123 Pham Tuan Tai', '094354328', 5.00, '', 1, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `reviews`
---
-
-CREATE TABLE `reviews` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `userId` int(10) UNSIGNED NOT NULL,
-  `restaurantId` int(10) UNSIGNED NOT NULL,
-  `orderId` int(10) UNSIGNED NOT NULL,
-  `stars` double(8,2) DEFAULT 0.00,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `users`
---
-
-CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `phoneNumber` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `userName` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `firstName` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lastName` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gender` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `picture` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `restaurantId` int(10) UNSIGNED DEFAULT NULL,
-  `type` tinyint(4) NOT NULL DEFAULT 1,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `users`
---
 
 INSERT INTO `users` (`id`, `phoneNumber`, `userName`, `firstName`, `lastName`, `password`, `gender`, `picture`, `mail`, `restaurantId`, `type`, `is_active`) VALUES
 (1, '0987654321', '_1admin1', 'Hoang', 'Hoang', '$2y$10$O6GuHaSnQahQMf/10ym2oOp1HA5V5DzsniACtTj3foy31BfOqcoMi', 'male', 'http://img/', 'admin1@gmail.com', 1, 1, 1),
@@ -742,24 +447,6 @@ INSERT INTO `users` (`id`, `phoneNumber`, `userName`, `firstName`, `lastName`, `
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `user_addresses`
---
-
-CREATE TABLE `user_addresses` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `userId` int(10) UNSIGNED NOT NULL,
-  `address` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
-  `isDefault` tinyint(4) NOT NULL DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `user_addresses`
---
-
 INSERT INTO `user_addresses` (`id`, `userId`, `address`, `is_active`, `isDefault`, `created_at`, `updated_at`) VALUES
 (30, 66, '124 Duong Hoang Mai ,Cong Vi, Ba Dinh, Ha Noi', 1, 0, NULL, NULL),
 (31, 38, '124 Duong Nam Giang,Cong Vi, Ba Dinh, Ha Noi', 1, 0, NULL, NULL),
@@ -792,265 +479,3 @@ INSERT INTO `user_addresses` (`id`, `userId`, `address`, `is_active`, `isDefault
 (58, 65, '124 ,Cong Vi, Buoi, Tay Ho', 1, 0, NULL, NULL);
 
 --
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng `administrativedivisions`
---
-ALTER TABLE `administrativedivisions`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `discount_codes`
---
-ALTER TABLE `discount_codes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `dishes`
---
-ALTER TABLE `dishes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `dishes_restaurantid_foreign` (`restaurantId`),
-  ADD KEY `dishes_dishcategoryid_foreign` (`dishCategoryId`);
-
---
--- Chỉ mục cho bảng `dish_categories`
---
-ALTER TABLE `dish_categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `dish_tags`
---
-ALTER TABLE `dish_tags`
-  ADD KEY `dish_tags_dishid_foreign` (`dishId`),
-  ADD KEY `dish_tags_foodtagid_foreign` (`foodTagId`);
-
---
--- Chỉ mục cho bảng `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
--- Chỉ mục cho bảng `feedback`
---
-ALTER TABLE `feedback`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `feedback_userid_foreign` (`userId`);
-
---
--- Chỉ mục cho bảng `food_tags`
---
-ALTER TABLE `food_tags`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `orderdish`
---
-ALTER TABLE `orderdish`
-  ADD KEY `orderdish_orderid_foreign` (`orderId`),
-  ADD KEY `orderdish_dishid_foreign` (`dishId`);
-
---
--- Chỉ mục cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `orders_userid_foreign` (`userId`),
-  ADD KEY `orders_restaurantid_foreign` (`restaurantId`),
-  ADD KEY `orders_discountcodeid_foreign` (`discountCodeId`);
-
---
--- Chỉ mục cho bảng `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Chỉ mục cho bảng `restaurants`
---
-ALTER TABLE `restaurants`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `restaurants_housenumber_unique` (`houseNumber`);
-
---
--- Chỉ mục cho bảng `reviews`
---
-ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `reviews_orderid_unique` (`orderId`),
-  ADD KEY `reviews_userid_foreign` (`userId`),
-  ADD KEY `reviews_restaurantid_foreign` (`restaurantId`);
-
---
--- Chỉ mục cho bảng `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_phonenumber_unique` (`phoneNumber`),
-  ADD UNIQUE KEY `users_username_unique` (`userName`),
-  ADD UNIQUE KEY `users_mail_unique` (`mail`),
-  ADD KEY `users_restaurantid_foreign` (`restaurantId`);
-
---
--- Chỉ mục cho bảng `user_addresses`
---
-ALTER TABLE `user_addresses`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_addresses_userid_foreign` (`userId`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `administrativedivisions`
---
-ALTER TABLE `administrativedivisions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
-
---
--- AUTO_INCREMENT cho bảng `discount_codes`
---
-ALTER TABLE `discount_codes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `dishes`
---
-ALTER TABLE `dishes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
-
---
--- AUTO_INCREMENT cho bảng `dish_categories`
---
-ALTER TABLE `dish_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT cho bảng `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `feedback`
---
-ALTER TABLE `feedback`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `food_tags`
---
-ALTER TABLE `food_tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT cho bảng `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT cho bảng `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT cho bảng `restaurants`
---
-ALTER TABLE `restaurants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
-
---
--- AUTO_INCREMENT cho bảng `reviews`
---
-ALTER TABLE `reviews`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
-
---
--- AUTO_INCREMENT cho bảng `user_addresses`
---
-ALTER TABLE `user_addresses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
-
---
--- Các ràng buộc cho các bảng đã đổ
---
-
---
--- Các ràng buộc cho bảng `dishes`
---
-ALTER TABLE `dishes`
-  ADD CONSTRAINT `dishes_dishcategoryid_foreign` FOREIGN KEY (`dishCategoryId`) REFERENCES `dish_categories` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `dishes_restaurantid_foreign` FOREIGN KEY (`restaurantId`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `dish_tags`
---
-ALTER TABLE `dish_tags`
-  ADD CONSTRAINT `dish_tags_dishid_foreign` FOREIGN KEY (`dishId`) REFERENCES `dishes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `dish_tags_foodtagid_foreign` FOREIGN KEY (`foodTagId`) REFERENCES `food_tags` (`id`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `feedback`
---
-ALTER TABLE `feedback`
-  ADD CONSTRAINT `feedback_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `orderdish`
---
-ALTER TABLE `orderdish`
-  ADD CONSTRAINT `orderdish_dishid_foreign` FOREIGN KEY (`dishId`) REFERENCES `dishes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `orderdish_orderid_foreign` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_discountcodeid_foreign` FOREIGN KEY (`discountCodeId`) REFERENCES `discount_codes` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `orders_restaurantid_foreign` FOREIGN KEY (`restaurantId`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `orders_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `reviews`
---
-ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_orderid_foreign` FOREIGN KEY (`orderId`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `reviews_restaurantid_foreign` FOREIGN KEY (`restaurantId`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `reviews_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_restaurantid_foreign` FOREIGN KEY (`restaurantId`) REFERENCES `restaurants` (`id`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `user_addresses`
---
-ALTER TABLE `user_addresses`
-  ADD CONSTRAINT `user_addresses_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
