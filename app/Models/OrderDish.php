@@ -10,5 +10,5 @@ class OrderDish extends Model
     use HasFactory;
     protected $table = 'orderdish';
 
-    public $fillable = [];
+    public $fillable = ['orderId', 'dishId', 'dishQuantity'];
 }

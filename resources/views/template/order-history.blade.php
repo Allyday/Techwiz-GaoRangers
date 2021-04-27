@@ -3,53 +3,87 @@
 @section('title', 'My Orders')
 
 @section('content')
+<link href="{{ asset('template/css/order-progress.css') }}" rel="stylesheet">
 
 <div class="page-wrapper">
-    <div class="container m-t-30">
-        <div class="widget clearfix">
-            <!-- /widget heading -->
-            <div class="widget-heading">
-                <h2 class="text-dark">
-                    Current Order
-                </h2>
-                <div class="clearfix"></div>
+    <div class="container padding-bottom-3x mb-1">
+        <div class="widget-heading">
+            <h2 class="text-dark">
+                Current Order
+            </h2>
+        </div>
+        <div class="card">
+            <div class="p-4 text-center text-white text-lg bg-dark rounded-top">
+                <span class="text-uppercase">Ordering from </span><span class="text-medium">4P's Pizza</span>
             </div>
-            <div class="widget-body">
-                <form method="post" action="#">
-                    <div class="row menu-widget">
-                        <div class="col-xs-12 margin-b-30">
-                            <div class="cart-table-header">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-lg-5">
-                                        <h5 class="cart-table-heading">ITEM</h5>
-                                    </div>
-                                    <!-- end:col -->
-                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <h5 class="cart-table-heading">PRICE</h5>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
-                                        <h5 class="cart-table-heading">QUANTITY</h5>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <h5 class="cart-table-heading">TOTAL</h5>
-                                    </div>
+            <div class="card-body">
+                <div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+                    <div class="step completed">
+                        <div class="step-icon-wrap">
+                            <div class="step-icon"><i class="fa fa-shopping-cart"></i></div>
+                        </div>
+                        <h4 class="step-title">Confirmed Order</h4>
+                        <h5>20:41 06/09/2019</h5>
+
+                    </div>
+                    <div class="step completed">
+                        <div class="step-icon-wrap">
+                            <div class="step-icon"><i class="fa fa-cog"></i></div>
+                        </div>
+                        <h4 class="step-title">Preparing Order</h4>
+                        <h5>20:51 06/09/2019</h5>
+
+                    </div>
+                    <div class="step completed">
+                        <div class="step-icon-wrap">
+                            <div class="step-icon"><i class="fa fa-check"></i></div>
+                        </div>
+                        <h4 class="step-title">Finished Preparing</h4>
+                        <h5>20:56 06/09/2019</h5>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon-wrap">
+                            <div class="step-icon"><i class="fa fa-car"></i></div>
+                        </div>
+                        <h4 class="step-title">Order in Delivery</h4>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon-wrap">
+                            <div class="step-icon"><i class="fa fa-home"></i></div>
+                        </div>
+                        <h4 class="step-title">Order Delivered</h4>
+                    </div>
+                </div>
+                <div class="row menu-widget current-order-item">
+                    <div class="col-xs-9 margin-b-30" id="myBody">
+                        <div class="cart-table-header" >
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-lg-5">
+                                    <h5 class="cart-table-heading">ITEM</h5>
                                 </div>
-                                <!-- end:row -->
+                                <!-- end:col -->
+                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                    <h5 class="cart-table-heading">PRICE</h5>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
+                                    <h5 class="cart-table-heading">QUANTITY</h5>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                    <h5 class="cart-table-heading">TOTAL</h5>
+                                </div>
                             </div>
+                            {{-- 
                             <div class="food-item">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-lg-5">
                                         <div class="rest-logo pull-left">
                                             <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
                                         </div>
-                                        <!-- end:Logo -->
                                         <div class="rest-descr">
                                             <h6><a href="#">Veg Extravaganza</a></h6>
                                             <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
                                         </div>
-                                        <!-- end:Description -->
                                     </div>
-                                    <!-- end:col -->
                                     <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
                                         <span class="price pull-left item-price">$ 9.50</span>
                                     </div>
@@ -62,54 +96,57 @@
                                         <span class="price pull-left item-total">$ 9.50</span>
                                     </div>
                                 </div>
-                                <!-- end:row -->
-                            </div>
-                            <!-- end:food-item -->
+                            </div> --}}
 
-                            <div class="food-item">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-lg-5">
-                                        <div class="rest-logo pull-left">
-                                            <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
-                                        </div>
-                                        <!-- end:Logo -->
-                                        <div class="rest-descr">
-                                            <h6><a href="#">Veg Extravaganza</a></h6>
-                                            <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                                        </div>
-                                        <!-- end:Description -->
-                                    </div>
-                                    <!-- end:col -->
-                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <span class="price pull-left item-price">$ 4.99</span>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
-                                        <div class="btn btn-small btn-secondary quantity-btn dec">&#8722;</div>
-                                        <input class="quantity-input" type="number" class="cart-item-quantity" value="5">
-                                        <div class="btn btn-small btn-secondary quantity-btn inc">&#43;</div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <span class="price pull-left item-total">$ 24.95</span>
-                                    </div>
-                                </div>
-                                <!-- end:row -->
-                            </div>
-                            <!-- end:food-item -->
                         </div>
+                        <!-- end:food-item -->
                     </div>
-                </form>
+                    <!-- end:current-order-details -->
+                    <div class="col-sm-3">
+                        <div class="cart-totals margin-b-20">
+                            <div class="cart-totals-fields">
+                                <table class="table">
+                                    <tbody>
+                                        <tr id="cart-summary-top-row">
+                                            <td>Cart Subtotal</td>
+                                            <td id="cart-subtotal" class="text-end">$29.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Delivery Fee</td>
+                                            <td id="delivery-fee" class="text-end">$2.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-color"><strong>Total</strong></td>
+                                            <td class="text-color text-end"><strong id="cart-total">$31.00</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-color text-center cancel-btn-container">
+                                                <a href="javascript:void(0)" id="cancel-btn">Cancel Order</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <!--cart summary-->
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="container m-t-30">
+        <!-- /widget heading -->
+        <div class="widget-heading">
+            <h2 class="text-dark">
+                Past Orders
+            </h2>
+            <div class="clearfix"></div>
+        </div>
         <div class="widget clearfix order-history">
-            <!-- /widget heading -->
-            <div class="widget-heading">
-                <h2 class="text-dark">
-                    Past Orders
-                </h2>
-                <div class="clearfix"></div>
-            </div>
             <div class="widget-body">
-                <form method="post" action="#">
+                <form >
                     <div class="row menu-widget">
                         <div class="col-xs-12 margin-b-30">
                             <div class="cart-table-header">
@@ -128,38 +165,39 @@
                                         <h5 class="cart-table-heading">STATUS</h5>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-lg-1 item-cart-info">
-                                        <h5 class="cart-table-heading">TOTAL</h5>
+                                        <h5  class="cart-table-heading">TOTAL</h5>
                                     </div>
                                 </div>
-                                <!-- end:row -->
                             </div>
-                            <div class="food-item">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-lg-3">
-                                        <div class="rest-logo pull-left">
-                                            <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/80x64" alt="Food logo"></a>
-                                        </div>
-                                        <!-- end:Logo -->
-                                        <div class="rest-descr">
-                                            <h6><a href="#">Veg Extravaganza</a></h6>
-                                            <p> 3 items </p>
-                                        </div>
-                                        <!-- end:Description -->
+                            <!-- end:row -->
+                        </div>
+                        <div class="food-item">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-lg-3">
+                                    <div class="rest-logo pull-left">
+                                        <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/80x64" alt="Food logo"></a>
                                     </div>
-                                    <!-- end:col -->
-                                    <div class="col-xs-12 col-sm-12 col-lg-3">
-                                        <span class="">Time ordered: 02/01/2020 20:09</span>
-                                        <br />
-                                        <span class="">Time delivered: 02/01/2020 20:41</span>
+                                    <!-- end:Logo -->
+                                    <div class="rest-descr">
+                                        <h6><a href="#">Veg Extravaganza</a></h6>
+                                        <p> 3 items </p>
                                     </div>
-                                    <!-- end:col -->
-                                    <div class="col-xs-12 col-sm-12 col-lg-3">
-                                        <span class="order-address">8 Ton That Thuyet, My Dinh, Cau Giay, Hanoi, Vietnam</span>
-                                    </div>
-                                    <!-- end:col -->
+                                    <!-- end:Description -->
+                                </div>
+                                <!-- end:col -->
+                                <div class="col-xs-12 col-sm-12 col-lg-3">
+                                    <span class="">Time ordered: 02/01/2020 20:09</span>
+                                    <br />
+                                    <span class="">Time delivered: 02/01/2020 20:41</span>
+                                </div>
+                                <!-- end:col -->
+                                <div class="col-xs-12 col-sm-12 col-lg-3">
+                                    <span class="order-address">8 Ton That Thuyet, My Dinh, Cau Giay, Hanoi, Vietnam</span>
+                                </div>
+                                <!-- end:col -->
 
                                     <div class="col-xs-12 col-sm-12 col-lg-2">
-                                        <div class="status">Completed</div>
+                                        <div class="status status text-success font-weight-bold">Completed</div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-lg-1">
                                         <span class="price order-total">$ 9.50</span>
@@ -167,14 +205,50 @@
                                         <span class="payment-method">Cash</span>
                                     </div>
                                 </div>
-                                <!-- end:row -->
                             </div>
-                            <!-- end:food-item -->
+                            <!-- end:row -->
                         </div>
+                        <!-- end:food-item -->
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
+
+    <script src="{{ asset('template/js/jquery.js') }}"></script>
+    <script>
+        var aray = JSON.parse(window.sessionStorage.getItem("cart")) || [];
+
+        // assign array js to html table
+        aray.map((e) => {
+            var row = `<div class="food-item">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-lg-5">
+                                    <div class="rest-logo pull-left">
+                                        <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
+                                    </div>
+                                    <div class="rest-descr">
+                                        <h6><a href="#">${e.ten}</a></h6>
+                                        <p>${e.tag}</p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                    <span class="price pull-left item-price">$ ${parseFloat(e.gia)}</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
+                                    <div style="display:none;" class="id">${e.id}</div>
+                                    <input disabled class="quantity-input" type="number" class="cart-item-quantity" value="${e.quantity}">
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                    <span class="price pull-left item-total">$ ${Math.round(parseFloat(e.gia) * parseInt(e.quantity))}</span>
+                                </div>
+                            </div>
+                        </div> `;
+                
+
+            document.getElementById("myBody").innerHTML += row;
+        });
+    </script>
     @endsection
