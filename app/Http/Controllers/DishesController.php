@@ -17,9 +17,10 @@ class DishesController extends Controller
      */
     public function index()
     {
-        $dsdishes = DB::select('select dishes.*,dish_categories.name as categoryName, restaurants.name as restaurantName from dishes inner join dish_categories on dishes.dishCategoryId = dish_categories.id inner join restaurants on dishes.restaurantId = restaurants.id where restaurants.id in (select restaurants.id from users inner join restaurants on users.restaurantId = restaurants.id where users.id = ?)', [session('User')]);
+        $dsdishes = DB::select('select dishes.*,dish_categories.name as categoryName, restaurants.name as restaurantName from dishes inner join dish_categories on dishes.dishCategoryId = dish_categories.id inner join restaurants on dishes.restaurantId = restaurants.id where restaurants.id in (select restaurants.id from users inner join restaurants on users.restaurantId = restaurants.id where users.id = ?) and dishes.is_active = ?', [session('User'), 1]);
         return view('view_staff.dishes', compact("dsdishes"));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -105,8 +106,12 @@ class DishesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $dish = Dish::where('id',$id)
+        ->update([
+            'is_active'=>$request->input('is_active'),
+        ]);
+        return redirect('/staff/dishes');
     }
 }

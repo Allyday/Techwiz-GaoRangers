@@ -25,23 +25,51 @@
       </thead>
       <tbody>
         @foreach ($dsdishes as $row)
+        
             <tr>
                 <td>{{ $row->name }}</td>
                 <td>{{ $row->description }}</td>
                 <td>{{ $row->price }}</td>
-                <td>{{ $row->categoryName }}</td>
                 <td>{{ $row->restaurantName }}</td>
+                <td>{{ $row->categoryName }}</td>
                 <td><img src="{{ $row->photo }}" alt="{{ $row->name }}" style="max-width:100px"></td>
                 <td class="text-center">
                   <a href ="{{$row->id}}/edit" class="btn-edit  btn-control text-success">
                      <i class="far fa-edit"></i>
                   </a>
-                    <a href="" class="btn-delete btn-control text-danger">
-                        <i class="far fa-times-circle"></i>
-                    </a>
+                  <a title="Xoa" class="btn-delete  btn-control text-danger" data-toggle="modal" data-target="#exampleModal{{ $row->id }}">
+                     <i class="far fa-times-circle"></i>
+                 </a>
                 </td>
             </tr>
+            
+               <div class="modal fade" id="exampleModal{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                           Mày đã chắc chắn chưa! Mày muốn xóa {{ $row->name }}
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="/staff/deleteDish/{{$row->id}}" method="post">
+                           @csrf
+                           @method('POST') 
+                           <input type="hidden" value="0" name="is_active">
+                           <button type="submit" class="btn btn-primary">Bố chắc</button>
+                        </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
         @endforeach
+
       </tbody>
       <tfoot>
         <tr>
@@ -55,31 +83,53 @@
          </tr>
       </tfoot>
    </table>
-</div>
+</div>          
 
-<div class="modal fade" id="comfirmModal" tabindex="-1" aria-labelledby="comfirmModalLable" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="comfirmModalLable">Thêm món ăn</h5>
-         </div>
-         <div class="modal-body">
-            <h3>Bạn có muốn xóa món ăn?</h3>
-         </div>
-         <div class="modal-footer text-center">
-            <button type="button" class="btn btn-secondary btn-comfirm" data-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary btn-comfirm">Yes</button>
-         </div>
-      </div>
-   </div>
-</div>
+   
+
 
 <script>
    $(document).ready(function() {
-        $('.table').DataTable({
+        var table = $('.table').DataTable({
             responsive: true,
             className: 'dt-body-center',
             "pageLength": 50
+        });
+
+        var row;
+        var id = "";
+
+        // Remove record
+        $(".btn-comfirm").click(function(event) {
+            var yes = $(this).text();
+            if (yes == 'Yes') {
+                $.ajax({
+                    url: "admin_productsAll.php",
+                    type: "POST",
+                    cache: false,
+                    data: {
+                        deleteId: id
+                    },
+                    success: function(data) {
+                        row.remove().draw(false)
+                        row = null;
+                    }
+                });
+           
+                $('#removeModal').modal('hide');
+            }
+        });
+        $.fn.setEventChangePage = function() {
+            $(".btn-delete").click(function(event) {
+                row = table.row($(this).parents('tr'));
+                id = row.data()[0];
+            });
+        }
+
+
+        $.fn.setEventChangePage();
+        $('.paginate_button').on('click', function() {
+            $.fn.setEventChangePage();
         });
     });
 </script>
