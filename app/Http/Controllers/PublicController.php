@@ -53,7 +53,8 @@ class PublicController extends Controller
     function menu($id)
     {
         $res = DB::select('select * from restaurants where id = ?', [$id]);
-        $dishes = DB::select('select restaurants.*, dishes.name as dishName, dishes.photo as photoDish, dishes.price as dishPrice from restaurants inner join dishes on restaurants.id = dishes.restaurantId where restaurants.id = ?', [$id]);
+        $dishes = DB::select('select restaurants.*, dishes.name as dishName, dishes.id as dishId , dishes.photo as photoDish, dishes.price as dishPrice from restaurants inner join dishes on restaurants.id = dishes.restaurantId where restaurants.id = ?', [$id]);
+        
         return view('template.menu', compact('res', 'dishes'));
     }
 

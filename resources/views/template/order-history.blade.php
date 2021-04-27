@@ -281,7 +281,7 @@
                 $('#collapsePastOrder').collapse('show')
             })
             .fail((jqXHR, ajaxOptions, thrownError) => {
-                console.log('oop...error')
+                // console.log('oop...error')
             })
     }
 

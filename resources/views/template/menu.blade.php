@@ -48,24 +48,16 @@
                   </div>
                </div>
                @endforeach
-               
+
             </div>
          </div>
       </div>
    </section>
    <!-- end:Inner page hero -->
-   <div class="breadcrumb">
-      <div class="container">
-         <ul>
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">Search results</a></li>
-            <li>Profile</li>
-         </ul>
-      </div>
-   </div>
+
    <div class="container m-t-30">
       <div class="row">
-         @foreach ($dishes as $d)
+
          <div class="col-md-8">
             <div class="menu-widget m-b-30">
                <div class="widget-heading">
@@ -78,9 +70,9 @@
                   <div class="clearfix"></div>
                </div>
                <div class="collapse in" id="1">
-
+                  @foreach ($dishes as $d)
                   <!-- for loop here -->
-                  <div class="food-item white">
+                  <div class="food-item white" style="border-bottom: 1px solid #eaebeb">
                      <div class="row">
                         <div class="col-xs-12 col-sm-12 col-lg-8">
                            <div class="rest-logo pull-left">
@@ -88,7 +80,7 @@
                            </div>
                            <!-- end:Logo -->
                            <div class="rest-descr">
-                              <h6><a href="#">{{ $d->dishName }}</a></h6>
+                              <h6><a href="javascript:void(0)">{{ $d->dishName }}</a></h6>
                               <p> {{ $r->city }}, {{ $r->district }}, {{ $r->municipality }}, {{ $r->street }}</p>
                            </div>
                            <!-- end:Description -->
@@ -96,23 +88,23 @@
                         <!-- end:col -->
                         <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info">
                            <span class="price pull-left">$ {{ $d->dishPrice }}</span>
-                           <a onclick="addCart(1, 'Veg Extravaganza', '19,99', './images/app.png', 1, 'Burgers, American, Sandwiches, Fast Food, BBQ')" class="btn btn-small btn btn-secondary pull-right">&#43;</a>
+                           <a onclick="addCart({{$d->dishId}}, '{{ $d->dishName }}', {{ $d->dishPrice }}, '{{ $d->photoDish }}', 1, '{{ $d->name }}')" class="btn btn-small btn btn-secondary pull-right">&#43;</a>
                         </div>
                      </div>
                      <!-- end:row -->
                   </div>
-
+                  @endforeach
                   <!-- end for loop here -->
 
                </div>
                <!-- end:Collapse -->
             </div>
          </div>
-         @endforeach
-         
+
+
 
          <!-- Bar right -->
-         <div class="col-md-4">
+         <div class="col-md-4" id="totalCart">
             <div class="sidebar-wrap">
                <div class="widget widget-cart">
                   <div class="widget-heading">
@@ -131,24 +123,6 @@
                      </div>
                   </div>
 
-
-                  <div class="order-row bg-white">
-                     <div class="widget-body">
-                        <div class="title-row">Pizza Quatro Stagione <a href="javascript:void(0)" onclick="removeCart()"><i class="fa fa-trash pull-right"></i></a></div>
-                        <div class="form-group row no-gutter">
-                           <div class="col-xs-8">
-                              <select class="form-control b-r-0" id="exampleSelect1">
-                                 <option>Size SM</option>
-                                 <option>Size LG</option>
-                                 <option>Size XL</option>
-                              </select>
-                           </div>
-                           <div class="col-xs-4">
-                              <input class="form-control" type="number" value="2" id="example-number-input">
-                           </div>
-                        </div>
-                     </div>
-                  </div>
                   <!-- end:Order row -->
                </div>
             </div>
@@ -166,10 +140,30 @@
    <!-- js -->
    <script src="{{ asset('template/js/jquery.js') }}"></script>
    <script>
+      // Get the navbar
+      var navbar = document.getElementById("totalCart");
+
+      // Get the offset position of the navbar
+      var sticky = navbar.offsetTop;
+
+      // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+      function myFunction() {
+         if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+         } else {
+            navbar.classList.remove("sticky");
+         }
+      }
+
+      // When the user scrolls the page, execute myFunction
+      window.onscroll = function() {
+            myFunction()
+      };
+   </script>
+   <script>
       // add to cart
       function addCart(id,name,price,image, quantity, tag) {
          // sessionStorage.clear();
-         // console.log('done')
             var test = [];
             let temp = {
                   id: id,
@@ -179,6 +173,9 @@
                   img: image,
                   tag: tag
             };
+
+            // console.log(temp);
+
             let cart = JSON.parse(sessionStorage.getItem("cart"));
             // console.log(cart);
             if (cart == null) {
@@ -197,7 +194,7 @@
             }
             test = cart;
             window.sessionStorage.setItem("cart", JSON.stringify(test));
-            console.log(test); 
+            // console.log(test); 
       }
 
       

@@ -163,9 +163,7 @@
            } 
          })
          .done( (data) => {
-            console.log(page, data)
             if(data.html == " "){
-               
                $('#loader-spinner').html('No more records found');
                return;
             }
@@ -184,7 +182,6 @@
       $(window).scroll( () => {
    
          if( $(window).scrollTop() + $(window).height() >= $(document).height() - 100 ){
-            console.log(page, 'touch bottom')
             page++;
             load_more_data(page);
          }

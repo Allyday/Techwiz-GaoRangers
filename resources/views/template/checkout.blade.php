@@ -128,7 +128,7 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-lg-5">
                                     <div class="rest-logo pull-left">
-                                        <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
+                                        <a class="restaurant-logo pull-left" href="javascript:voi(0)"><img style="width:100px;height:80px"  src="${e.img}" alt="Food logo"></a>
                                     </div>
                                     <div class="rest-descr">
                                         <h6><a href="#">${e.ten}</a></h6>
