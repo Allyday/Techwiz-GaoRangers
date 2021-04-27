@@ -11,7 +11,7 @@ use App\Models\Restaurant;
 use App\Models\OrderDish;
 use App\Models\DishCategory;
 use App\Models\FoodTag;
-
+use Carbon\Carbon;
 
 class RestaurantController extends Controller
 {
@@ -51,10 +51,10 @@ class RestaurantController extends Controller
                 'stars' => $stars,
                 'address' => $address,
                 'photo' => $photo,
-                'arrayName'=>$arrayName,
-                'arrayPrice'=>$arrayPrice,
-                'arrayPhoto'=>$arrayPhoto,
-                'arrayId'=>$arrayId,
+                'arrayName' => $arrayName,
+                'arrayPrice' => $arrayPrice,
+                'arrayPhoto' => $arrayPhoto,
+                'arrayId' => $arrayId,
             );
             array_push($data, $wrap);
         }
@@ -201,25 +201,28 @@ class RestaurantController extends Controller
         $address = session('Location');
         $status = 2;
         $delivery = 2;
-        $timeCreated = date('m/d/Y h:i:s ', time());
-
+        $timeCreated = Carbon::now();
         // bi chet o day vi chua co data
         $res_id = Dish::where('id', $array[0]['id'])->first()->restaurantId;
 
-        $order = Order::create([
-            'userId' =>  $user_id,
-            'restaurantId' => $res_id,
-            'timeCreated' => $timeCreated,
-            'address' =>  $address,
-            'orderStatus' => $status,
-            'totalDishPrice' => $subtotal,
-            'deliveryFee' => $delivery
-        ]);
+        $order = new Order;
+        $order->userId =  $user_id;
+        $order->restaurantId = $res_id;
+        $order->timeCreated = $timeCreated;
+        $order->address =  $address;
+        $order->orderStatus = $status;
+        $order->totalDishPrice = $subtotal;
+        $order->deliveryFee = $delivery;
+
+        $order->save();
+        // return $array[0]['quantity'];
+
 
         if ($order) {
             foreach ($array as $item) {
+                // return $item;
                 $orderDish = OrderDish::create([
-                    'orderId' => (int)$order['id'],
+                    'orderId' => (int)$order->id,
                     'dishId' => (int)$item['id'],
                     'dishQuantity' => (int)$item['quantity']
                 ]);

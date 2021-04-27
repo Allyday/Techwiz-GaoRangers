@@ -248,15 +248,15 @@
                 },
                 success: function(res) {
                     console.log(res);
-
+                    if(res==200){
+                        location.href = '<?= route('order-history') ?>';
+                    }
                 }
             });
         }
         // add order
         $('#pay_now').on('click', () => {
             // console.log(pay_now());
-
-            // location.href = '<?= route('home') ?>';
             postByAjax(pay_now());
 
         })

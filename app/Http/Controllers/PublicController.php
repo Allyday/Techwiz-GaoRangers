@@ -61,31 +61,63 @@ class PublicController extends Controller
     {
         // get order
         // $order = Order::where('orderStatus', '<', 6)->first();
-        // $order_id = $order->id;
 
+
+        $order = Order::where('userId', '=', session('User'))
+            ->where('orderStatus', '<', 6)
+            ->orderBy('timeCreated', 'DESC')
+            // ->limit(1)
+            ->first();
+        $order_id = $order->id;
         // get order dish
-        // $order_dish = OrderDish::where('orderId', $order_id)->all();
+        $order_dish = OrderDish::where('orderId', $order_id)->get();
+        
+        // dd($order_dish);
+        $arrayDish = [];
 
-        // $data = [
-        //     'order'=> $order,
-        //     'order_dish'=> $order_dish,
-        // ];
+        foreach ($order_dish as $orderDish) {
+            $id = $orderDish['dishId'];
+            $sl = $orderDish['dishQuantity'];
+            $dish = Dish::where('id', $id)->first();
+            $temp = [
+                'dish' => $dish,
+                'sl' => $sl
+            ];
+            array_push($arrayDish, $temp);
+        }
+        // dd($arrayDish[0]['dish']);
+        $data = [
+            'order' => $order,
+            'arrayDish' => $arrayDish,
+        ];
+        // dd($data['order_dish']);
+        // dd($data['order']['orderStatus']);
 
-        return view('template.order-history');
+        return view('template.order-history')->with('data', $data);
     }
 
     function get_past_order(Request $request)
     {
         if ($request->ajax()) {
+
             $data = [];
+
             // get order
-            $order = Order::where('orderStatus', '=', 6);
-            $order = $order->to_array();
-            $res = Restaurant::where('id', $order['restaurantId'])->first();
+            $order = Order::where('userId', '=', session('User'))
+                ->where('orderStatus', '=', 6)
+                ->orderBy('timeCreated', 'DESC')
+                ->limit(2)
+                ->get();
+
+
+            $res = Restaurant::where('id', $order[0]['restaurantId'])->first();
+
             $res_name = $res['name'];
+            $res_photo = $res['photo'];
+            $res_id = $res['id'];
 
             foreach ($order as $od) {
-                $order_dish = OrderDish::where('orderId', $order['id'])->all()->to_array();
+                $order_dish = OrderDish::where('orderId', $od['id'])->get();
                 $soluongmon = count($order_dish);
                 $timeCreated = $od['timeCreated'];
                 $timeDelivered = $od['timeDelivered'];
@@ -93,7 +125,9 @@ class PublicController extends Controller
                 $totalDishPrice = $od['totalDishPrice'];
 
                 $item = [
+                    'res_id' => $res_id,
                     'resName' => $res_name,
+                    'resPhoto' => $res_photo,
                     'soluongmon' => $soluongmon,
                     'timeCreated' => $timeCreated,
                     'timeDelivered' => $timeDelivered,
@@ -102,7 +136,6 @@ class PublicController extends Controller
                 ];
                 array_push($data, $item);
             }
-
             return $data;
         }
     }
@@ -198,9 +231,9 @@ class PublicController extends Controller
 
             $page = ($page - 1) * 8;
         }
-        $new_sql = "select a.* from (".$sql.") a ";
-            $new_sql .= " LIMIT $page, 8";
-            // dd($page);
+        $new_sql = "select a.* from (" . $sql . ") a ";
+        $new_sql .= " LIMIT $page, 8";
+        // dd($page);
 
         $table = DB::select($new_sql);
 
@@ -214,7 +247,7 @@ class PublicController extends Controller
             ->select(DB::raw('count(orders.id) as count, orders.restaurantId as restaurantId'))
             ->groupBy('orders.restaurantId')
             ->orderBy('count', 'desc')
-            ->limit(6)
+            ->limit(5)
             ->get();
         // dd($table);
         return $table;

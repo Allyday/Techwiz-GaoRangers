@@ -39,14 +39,18 @@ class AuthController extends Controller
                 return back()->with('fail', 'Incorrect password');
             } else {
                 if ($user->type == 2) {
+                    // customer
+
+                    // lay user id tim trong user address
+                    // neu co thi them vao session
                     $request->session()->put('User', $user->id);
                     return redirect(route('home'));
                 }
-
+                // staff
                 $request->session()->put('User', $user->id);
                 $request->session()->put('User_type', $user->type);
 
-                return redirect(route('staff','day'));
+                return redirect(route('staff', 'day'));
             }
         }
     }

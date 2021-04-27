@@ -17,7 +17,8 @@
    </div>
    <!-- end:Top links -->
    <!-- start: Inner page hero -->
-   <section class="inner-page-hero bg-image" data-image-src="http://placehold.it/1670x480">
+   <section class="inner-page-hero bg-image" data-image-src="http://azexo.com/foodpicky/wp-content/uploads/2016/09/middle1.jpg" style="position: relative">
+      <div style="position: absolute;width:100%;height:100%; background-color:rgba(0,0,0,0.5);top:0;"></div>
       <div class="profile">
          <div class="container">
             <div class="row">

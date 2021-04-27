@@ -28,7 +28,7 @@
                         <h5>20:41 06/09/2019</h5>
 
                     </div>
-                    <div class="step completed">
+                    <div class="step @if($data['order']['orderStatus'] >=3 ) completed @endif">
                         <div class="step-icon-wrap">
                             <div class="step-icon"><i class="fa fa-cog"></i></div>
                         </div>
@@ -36,20 +36,20 @@
                         <h5>20:51 06/09/2019</h5>
 
                     </div>
-                    <div class="step completed">
+                    <div class="step @if($data['order']['orderStatus'] >=4 ) completed @endif">
                         <div class="step-icon-wrap">
                             <div class="step-icon"><i class="fa fa-check"></i></div>
                         </div>
-                        <h4 class="step-title">Finished Preparing</h4>
+                        <h4 class="step-title ">Finished Preparing</h4>
                         <h5>20:56 06/09/2019</h5>
                     </div>
-                    <div class="step">
+                    <div class="step @if($data['order']['orderStatus'] >=5 ) completed @endif">
                         <div class="step-icon-wrap">
                             <div class="step-icon"><i class="fa fa-car"></i></div>
                         </div>
                         <h4 class="step-title">Order in Delivery</h4>
                     </div>
-                    <div class="step">
+                    <div class="step @if($data['order']['orderStatus'] >=6 ) completed @endif">
                         <div class="step-icon-wrap">
                             <div class="step-icon"><i class="fa fa-home"></i></div>
                         </div>
@@ -76,57 +76,34 @@
                             </div>
                             <!-- end:row -->
                         </div>
+                        @foreach ($data['arrayDish'] as $it)
+
                         <div class="food-item">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-lg-5">
                                     <div class="rest-logo pull-left">
-                                        <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
+                                        <a class="restaurant-logo pull-left" href="#"><img style="width: 100px;height:80px" src="{{ $it['dish']['photo'] }}" alt="Food logo"></a>
                                     </div>
                                     <!-- end:Logo -->
                                     <div class="rest-descr">
-                                        <h6><a href="#">Veg Extravaganza</a></h6>
-                                        <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
+                                        <h6><a href="#">{{ $it['dish']['name'] }}</a></h6>
+                                        <p> {{ $it['dish']['description'] }}</p>
                                     </div>
                                     <!-- end:Description -->
                                 </div>
                                 <!-- end:col -->
                                 <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                    <span class="price item-price">$ 9.50</span>
+                                    <span class="price item-price">$ {{$it['dish']['price']}}</span>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
-                                    <span class="price item-quantity">1</span>
+                                    <span class="price item-quantity">{{ $it['sl'] }}</span>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                    <span class="price item-total">$ 9.50</span>
+                                    <span class="price item-total">$ {{$it['dish']['price'] * $it['sl']}}</span>
                                 </div>
                             </div>
                         </div>
-                        <!-- end:food-item -->
-                        <div class="food-item">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-lg-5">
-                                    <div class="rest-logo pull-left">
-                                        <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
-                                    </div>
-                                    <!-- end:Logo -->
-                                    <div class="rest-descr">
-                                        <h6><a href="#">Veg Extravaganza</a></h6>
-                                        <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
-                                    </div>
-                                    <!-- end:Description -->
-                                </div>
-                                <!-- end:col -->
-                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                    <span class="price item-price">$ 9.50</span>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
-                                    <span class="price item-quantity">1</span>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                    <span class="price item-total">$ 9.50</span>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                         <!-- end:food-item -->
                     </div>
                     <!-- end:current-order-details -->
@@ -137,20 +114,20 @@
                                     <tbody>
                                         <tr id="cart-summary-top-row">
                                             <td>Cart Subtotal</td>
-                                            <td id="cart-subtotal" class="text-end">$29.00</td>
+                                            <td id="cart-subtotal" class="text-end price item-price">${{ $data['order']->totalDishPrice }}</td>
                                         </tr>
                                         <tr>
                                             <td>Delivery Fee</td>
-                                            <td id="delivery-fee" class="text-end">$2.00</td>
+                                            <td id="delivery-fee" class="text-end price item-price">$2.00</td>
                                         </tr>
                                         <tr>
                                             <td class="text-color"><strong>Total</strong></td>
-                                            <td class="text-color text-end"><strong id="cart-total">$31.00</strong></td>
+                                            <td class="text-color text-end price item-price"><strong id="cart-total">${{ (int)$data['order']->totalDishPrice+2 }}</strong></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="text-color text-center cancel-btn-container">
                                                 <p style="font-size: 14px">Deliver to:
-                                                    <b class="delivery-address">8 Ton That Thuyet, My Dinh, Cau Giay, Hanoi, Vietnam</b>
+                                                    <b class="delivery-address">{{ $data['order']->address }}</b>
                                                 </p>
                                                 <a href="javascript:void(0)" id="cancel-btn">Cancel Order</a>
                                             </td>
@@ -171,7 +148,7 @@
         <!-- /widget heading -->
         <div class="widget-heading">
             <h2 class="text-dark " id="toglle_colapse">
-                <span style="border-bottom: 2px solid #ff3300">
+                <span style="border-bottom: 2px solid #ff3300;cursor:pointer;">
                     Past Orders
                 </span>
             </h2>
@@ -259,27 +236,27 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-lg-3">
                                 <div class="rest-logo pull-left">
-                                    <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/80x64" alt="Food logo"></a>
+                                    <a class="restaurant-logo pull-left" href="/restaurant-details/${e.res_id}"><img style="width:80px;height:64px;" src="${e.resPhoto}" alt="Food logo"></a>
                                 </div>
                                 <div class="rest-descr">
-                                    <h6><a href="#">Veg Extravaganza</a></h6>
-                                    <p> 3 items </p>
+                                    <h6><a href="/restaurant-details/${e.res_id}">${e.resName}</a></h6>
+                                    <p> ${e.soluongmon} items </p>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-lg-3">
-                                <span class="">Time ordered: 02/01/2020 20:09</span>
+                                <span class="">Time ordered: ${e.timeCreated}</span>
                                 <br />
-                                <span class="">Time delivered: 02/01/2020 20:41</span>
+                                <span class="">Time delivered: ${e.timeDelivered}</span>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-lg-3">
-                                <span class="order-address">8 Ton That Thuyet, My Dinh, Cau Giay, Hanoi, Vietnam</span>
+                                <span class="order-address">${e.address}</span>
                             </div>
 
                             <div class="col-xs-12 col-sm-12 col-lg-2">
                                 <div class="status font-weight-bold text-success">Completed</div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-lg-1">
-                                <span class="price order-total">$ 9.50</span>
+                                <span class="price order-total">$ ${e.totalDishPrice}</span>
                                 <br />
                                 <span class="payment-method">Cash</span>
                             </div>
@@ -298,7 +275,8 @@
             })
             .done(function(res) {
                 // nhan 1 array, 
-                innerPastOrder([1, 2]);
+                // console.log(res);
+                innerPastOrder(res);
                 // collapse
                 $('#collapsePastOrder').collapse('show')
             })
@@ -311,9 +289,7 @@
     $('#toglle_colapse').on('click', () => {
         count++;
         if (count <= 1) {
-            // postByAjax();
-            innerPastOrder([1, 2]);
-            $('#collapsePastOrder').collapse('show')
+            postByAjax();
         }
 
     })

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    protected $primaryKey   = 'id';
     protected $table = 'orders';
-
-    public $fillable = ['userId', 'restaurantId', 'timeCreated', 'address', 'orderStatus', 'totalDishPrice', 'deliveryFee'];
+    public $timestamps = false;
+    protected $fillable = ['userId', 'restaurantId', 'timeCreated', 'address', 'orderStatus', 'totalDishPrice', 'deliveryFee'];
 }
