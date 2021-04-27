@@ -95,7 +95,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     // Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 
 
-    // load all order (is_active==6)
+    // load all order (orderStatus==6)
     Route::get('get/all/past/order', [PublicController::class, 'get_past_order']);
 });
 //test phan trang

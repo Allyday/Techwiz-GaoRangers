@@ -26,13 +26,13 @@
          
         @foreach ($dsorders as $row)
             @php
-               $status = $row->is_active;
+               $status = $row->orderStatus;
                $status++;
             @endphp
             <script>
                function status(status) {
                   if (status == 10) {
-                     return $('#is_active').val(6);
+                     return $('#orderStatus').val(6);
                   }
                }
                
@@ -41,14 +41,14 @@
                <td>{{ $row->id }}</td>
                <td>{{ $row->firstName }} {{ $row->lastName }}</td>
                <td>@php
-                echo getStatusOrderTag($row->is_active);               
+                echo getStatusOrderTag($row->orderStatus);               
                 @endphp</td>
                <td>{{ $row->timeCreated }}</td>
                <td class="text-center">
                   <form action="/staff/orderStatus/{{$row->id}}" method="post">
                      @csrf
                      @method('POST')   
-                     <input type="hidden" id="is_active" name="is_active" value="{{ $status }}">
+                     <input type="hidden" id="orderStatus" name="orderStatus" value="{{ $status }}">
                      <a href="/staff/{{ $row->id }}/orderDetail" class="btn btn-primary"><i class="fas fa-search-dollar"></i></a>
                      <button type="submit" class="btn btn-success fw-bold" onclick="setTimeout(status({{ $status }}), 5000)" id="btn-update"><i class="far fa-share-square"></i></button>
                   </form>

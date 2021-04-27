@@ -20,6 +20,7 @@ class PublicController extends Controller
     {
         $access = false;
         //get dish home
+
         $dishhome = DB::select('Select dishes.id,dishes.photo , dishes.name,restaurants.id as rId,restaurants.name as rName,
                        	dishes.price, dishes.description,restaurants.city as city,restaurants.district as dis,
                         restaurants.municipality as mini, restaurants.street
@@ -40,7 +41,6 @@ class PublicController extends Controller
                 'star' => '3',
             )
         ];
-
         $data = $this->topQuanDatNhieuNhat();
 
         return view('template.home', compact('access', 'dishhome', 'data'));
@@ -54,7 +54,7 @@ class PublicController extends Controller
     function history()
     {
         // get order
-        // $order = Order::where('is_active', '<', 6)->first();
+        // $order = Order::where('orderStatus', '<', 6)->first();
         // $order_id = $order->id;
 
         // get order dish
@@ -73,7 +73,7 @@ class PublicController extends Controller
         if ($request->ajax()) {
             $data = [];
             // get order
-            $order = Order::where('is_active', '=', 6);
+            $order = Order::where('orderStatus', '=', 6);
             $order = $order->to_array();
             $res = Restaurant::where('id', $order['restaurantId'])->first();
             $res_name = $res['name'];

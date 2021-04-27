@@ -10,19 +10,19 @@ class AdminController extends Controller
     function index($option)
     {
         if ($option == 'day') {
-            $thongke = DB::select('SELECT DATE(timeDelivered) AS label, SUM(totalDishPrice) AS y FROM orders where 1 = ? and is_active = ? and restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY DATE(timeDelivered)', [1,5,session('User')]);
+            $thongke = DB::select('SELECT DATE(timeDelivered) AS label, SUM(totalDishPrice) AS y FROM orders where 1 = ? and orderStatus = ? and restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY DATE(timeDelivered)', [1,5,session('User')]);
         
          } elseif ($option == 'month') {
-            $thongke = DB::select("SELECT DATE(timeDelivered) AS label, SUM(totalDishPrice) AS y FROM orders where 1 = ? and is_active = ? and DATE(timeDelivered) LIKE '%2021-04%' and restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY DATE(timeDelivered)", [1,5,session('User')]);
+            $thongke = DB::select("SELECT DATE(timeDelivered) AS label, SUM(totalDishPrice) AS y FROM orders where 1 = ? and orderStatus = ? and DATE(timeDelivered) LIKE '%2021-04%' and restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY DATE(timeDelivered)", [1,5,session('User')]);
          } elseif ($option == 'quarter') {
-            $thongke = DB::select("SELECT DATE(timeDelivered) AS label, SUM(totalDishPrice) AS y FROM orders where 1 = ? and is_active = ? and DATE(timeDelivered) LIKE '%2021-04%' or DATE(timeDelivered) LIKE '%2021-03%' or DATE(timeDelivered) LIKE '%2021-02%' and restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY DATE(timeDelivered)", [1,5,session('User')]);
+            $thongke = DB::select("SELECT DATE(timeDelivered) AS label, SUM(totalDishPrice) AS y FROM orders where 1 = ? and orderStatus = ? and DATE(timeDelivered) LIKE '%2021-04%' or DATE(timeDelivered) LIKE '%2021-03%' or DATE(timeDelivered) LIKE '%2021-02%' and restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY DATE(timeDelivered)", [1,5,session('User')]);
          } elseif ($option == 'year') {
-            $thongke = DB::select('SELECT DATE(timeDelivered) AS label, SUM(totalDishPrice) AS y FROM orders where 1 = ? and is_active = ? and DATE(timeDelivered) LIKE "%2021%" and restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY DATE(timeDelivered)', [1,5,session('User')]);
+            $thongke = DB::select('SELECT DATE(timeDelivered) AS label, SUM(totalDishPrice) AS y FROM orders where 1 = ? and orderStatus = ? and DATE(timeDelivered) LIKE "%2021%" and restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY DATE(timeDelivered)', [1,5,session('User')]);
          } else return null;
 
-        $hoanthanh = DB::select('SELECT COUNT(id) as c from orders WHERE is_active = ? or is_active = ? and restaurantId = (SELECT restaurantId from users WHERE id = ?)', [4,5,session('User')]);
-        $bihuy = DB::select('SELECT COUNT(id) as c from orders WHERE is_active = ? and restaurantId = (SELECT restaurantId from users WHERE id = ?)', [6,session('User')]);
-        $tuchoi = DB::select('SELECT COUNT(id) as c from orders WHERE is_active = ? and restaurantId = (SELECT restaurantId from users WHERE id = ?)', [7,session('User')]);
+        $hoanthanh = DB::select('SELECT COUNT(id) as c from orders WHERE orderStatus = ? or orderStatus = ? and restaurantId = (SELECT restaurantId from users WHERE id = ?)', [4,5,session('User')]);
+        $bihuy = DB::select('SELECT COUNT(id) as c from orders WHERE orderStatus = ? and restaurantId = (SELECT restaurantId from users WHERE id = ?)', [6,session('User')]);
+        $tuchoi = DB::select('SELECT COUNT(id) as c from orders WHERE orderStatus = ? and restaurantId = (SELECT restaurantId from users WHERE id = ?)', [7,session('User')]);
         $khachhang = DB::select('SELECT COUNT(userId) as c from orders WHERE restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY userId', [session('User')]);
 
   
