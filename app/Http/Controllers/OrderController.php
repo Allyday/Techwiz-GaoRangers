@@ -42,24 +42,24 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         $time = now();
-        if ($request->input('is_active') == 3) {
+        if ($request->input('orderStatus') == 3) {
             $order = Order::where('id',$id)
                 ->update([
-                    'is_active'=>$request->input('is_active'),
+                    'orderStatus'=>$request->input('orderStatus'),
                     'timeAccepted'=>$time
                 ]);
         }
-        elseif ($request->input('is_active') == 4){
+        elseif ($request->input('orderStatus') == 4){
             $order = Order::where('id',$id)
                 ->update([
-                    'is_active'=>$request->input('is_active'),
+                    'orderStatus'=>$request->input('orderStatus'),
                     'timeDoneCooking'=>$time
                 ]);
         }
-        // elseif ($request->input('is_active') == 5){
+        // elseif ($request->input('orderStatus') == 5){
         //     $order = Order::where('id',$id)
         //         ->update([
-        //             'is_active'=>$request->input('is_active'),
+        //             'orderStatus'=>$request->input('orderStatus'),
         //             'timePickedUp'=>$time
         //         ]);
         // }
@@ -82,17 +82,17 @@ class OrderController extends Controller
     {   
         $dsorders = ['không có dữ liệu'];
         if ($request->search == 2) {
-            $dsorders = DB::select('Select orders.*, users.firstName, users.lastName from orders INNER JOIN users on orders.userId = users.id WHERE orders.restaurantId = (SELECT restaurantId from users WHERE id = ?) and orders.is_active = ?;', [session('User'), 2]);
+            $dsorders = DB::select('Select orders.*, users.firstName, users.lastName from orders INNER JOIN users on orders.userId = users.id WHERE orders.restaurantId = (SELECT restaurantId from users WHERE id = ?) and orders.orderStatus = ?;', [session('User'), 2]);
             return view('view_staff.orderSearchStatus', compact("dsorders"));
 
         }
         if ($request->search == 3) {
-            $dsorders = DB::select('Select orders.*, users.firstName, users.lastName from orders INNER JOIN users on orders.userId = users.id WHERE orders.restaurantId = (SELECT restaurantId from users WHERE id = ?) and orders.is_active = ?;', [session('User'), 3]);
+            $dsorders = DB::select('Select orders.*, users.firstName, users.lastName from orders INNER JOIN users on orders.userId = users.id WHERE orders.restaurantId = (SELECT restaurantId from users WHERE id = ?) and orders.orderStatus = ?;', [session('User'), 3]);
             return view('view_staff.orderSearchStatus', compact("dsorders"));
 
         }
         if ($request->search == 4) {
-            $dsorders = DB::select('Select orders.*, users.firstName, users.lastName from orders INNER JOIN users on orders.userId = users.id WHERE orders.restaurantId = (SELECT restaurantId from users WHERE id = ?) and orders.is_active >= ?;', [session('User'), 4]);
+            $dsorders = DB::select('Select orders.*, users.firstName, users.lastName from orders INNER JOIN users on orders.userId = users.id WHERE orders.restaurantId = (SELECT restaurantId from users WHERE id = ?) and orders.orderStatus >= ?;', [session('User'), 4]);
             return view('view_staff.orderSearchStatus', compact("dsorders"));
 
         }

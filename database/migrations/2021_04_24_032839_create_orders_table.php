@@ -31,7 +31,7 @@ class CreateOrdersTable extends Migration
             $table->dateTime('timeCancelled')->nullable();
             $table->string('acceptedBy')->nullable();
             $table->string('doneCookingBy')->nullable();
-            $table->tinyInteger('is_active')->default(1);
+            $table->tinyInteger('orderStatus')->default(1);
             $table->timestamps();
             $table->foreign('userId')->references('id')
                 ->on('users')
