@@ -4,7 +4,7 @@
    <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
          <div class="entry-logo">
-            <a class="img-fluid" href="#"><img style="widows: 110px; height: 110px;" src="http://placehold.it/110x110" alt="Food logo"></a>
+            <a class="img-fluid" href="#"><img style="widows: 110px; height: 110px;" src="{{ $item['photo'] }}" alt="Food logo"></a>
          </div>
          <!-- end:Logo -->
          <div class="entry-dscr">

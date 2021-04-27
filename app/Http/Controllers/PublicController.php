@@ -142,19 +142,22 @@ class PublicController extends Controller
         }
     }
 
-    public function search($keysearch = null, $tag = null, $cate = null, $price = null,  $pg = 1)
+    public function search($keysearch = '', $tag = [], $cate = 0, $price = 10,  $pg = 1)
     {
         //các biến lấy về từ request khi submit search
         $keysearch = $keysearch || ""; //Lấy từ search theo tên - test = rice
         $tags = $tag || []; //mảng id của table food_tags - test = 15
         $cate = $cate || 0; //id của table dish_category test = 5
         $price = $price || ""; //giá tiền;
-        $page = $pg;
+        $page = (int)$pg;
 
-        $sql = "SELECT restaurants.id AS r_id,restaurants.name AS r_name,
-                dishes.id as d_id, dishes.name AS d_name,
-                dish_categories.id as c_id, dish_categories.name as c_name,
-                food_tags.id as t_id
+        $sql = "SELECT restaurants.id AS r_id, 
+                restaurants.name,
+                restaurants.photo,
+                GROUP_CONCAT(dishes.id) arrayId,
+                GROUP_CONCAT(dishes.name) arrayName,
+                GROUP_CONCAT(dishes.price) arrayPrice,
+                GROUP_CONCAT(dishes.photo) arrayPhoto
                 FROM restaurants
                 LEFT JOIN dishes ON restaurants.id = dishes.restaurantId
                 LEFT JOIN dish_categories ON dishes.dishCategoryId = dish_categories.id
@@ -187,18 +190,17 @@ class PublicController extends Controller
 				    GROUP BY dish_tags.dishId
 				    HAVING GROUP_CONCAT(dish_tags.foodTagId) like '" . $temp . "')";
         }
-
+        $sql .= " GROUP by restaurants.id, restaurants.name, restaurants.photo ";
         // paginate
-        if ($page <= 1) {
-            $page = 0;
-            $sql .= "  LIMIT 8 OFFSET 0 ";
-        } else {
-            $page = ($page - 1) * 5;
-            $sql .= " LIMIT 8  OFFSET $page ";
+        if ($page > 0) {
+
+            $page = ($page - 1) * 8;
         }
+        $new_sql = "select a.* from (".$sql.") a ";
+            $new_sql .= " LIMIT $page, 8";
+            // dd($page);
 
-
-        $table = DB::select($sql);
+        $table = DB::select($new_sql);
 
         return $table;
     }
@@ -210,7 +212,7 @@ class PublicController extends Controller
             ->select(DB::raw('count(orders.id) as count, orders.restaurantId as restaurantId'))
             ->groupBy('orders.restaurantId')
             ->orderBy('count', 'desc')
-            ->limit(5)
+            ->limit(4)
             ->get();
         // dd($table);
         return $table;

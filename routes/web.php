@@ -14,6 +14,7 @@ use App\Http\Controllers\OrderController;
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
+// Route::get('/abc', [PublicController::class, 'search']);
 
 
 Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name('menu');

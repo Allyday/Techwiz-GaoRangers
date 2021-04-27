@@ -28,7 +28,6 @@ class RestaurantController extends Controller
     {
         // input obj from table db
         $array = $this->convertObjToArray($ar);
-
         $data = [];
         foreach ($array as $item) {
             $res = Restaurant::where('id', $item['r_id'])->first();
@@ -36,12 +35,14 @@ class RestaurantController extends Controller
             // $img = $res['img'];
             $name = $res['name'];
             $stars = (int)$res['stars'];
+            $photo = $res['photo'];
             $address = $res['street'] . ' ' . $res['municipality'] . ' ' . $res['district'] . ' ' . $res['city'];
             $wrap = array(
                 'id' => $id,
                 'name' => $name,
                 'stars' => $stars,
                 'address' => $address,
+                'photo' => $photo,
             );
             array_push($data, $wrap);
         }
@@ -93,44 +94,51 @@ class RestaurantController extends Controller
 
     function restaurants(Request $request)
     {
+        // get full data
+        $publicController = new PublicController();
+
         // get category and tag
         $nameDishCat = $this->get_dish_cat();
         $nameFoodTag = $this->get_food_tag();
-
-        // get full data
-        $publicController = new PublicController();
-        $rs = $publicController->search();
-
-        // convert data obj to array
-        $data = $this->convertRestaurant($rs);
-
-        if (isset($_GET['search'])) {
-            // get data with keysearch
-            $keysearch = $_GET['search'];
-            $rs = $publicController->search($keysearch = $keysearch);
-            $data = $this->convertRestaurant($rs);
-        };
-
-        if (isset($_GET['page'])) {
-            // get page number
-            $page = $_GET['page'];
-            $rs = $publicController->search($pg = $page);
-            $data = $this->convertRestaurant($rs);
-            return view('template.restaurants', compact('data'));
-        };
-
         // return 
         if ($request->ajax()) {
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
-                
-                $rs = $publicController->search($pg = $page);
+                $page = (int)$page;
+                // dd($page);
+                $rs = $publicController->search('', [], 0, 10, $page);
+                // dd($rs);
                 $data = $this->convertRestaurant($rs);
 
                 $view = view('template.dataRes', compact('data'))->render();
                 return response()->json(['html' => $view]);
             };
         }
+
+        if (isset($_GET['page'])) {
+            // get page number
+            $page = $_GET['page'];
+            $page = (int)$page;
+            // dd($page);
+            $rs = $publicController->search('', [], 0, 10, $page);
+            $data = $this->convertRestaurant($rs);
+            // dd($data);
+            return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
+        };
+
+
+
+        if (isset($_GET['search'])) {
+            // get data with keysearch
+            $keysearch = $_GET['search'];
+            $rs = $publicController->search($keysearch, [], '', '', '', 1);
+            $data = $this->convertRestaurant($rs);
+        };
+
+
+        $rs = $publicController->search();
+        // convert data obj to array
+        $data = $this->convertRestaurant($rs);
 
         return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
     }
@@ -155,7 +163,7 @@ class RestaurantController extends Controller
 
         $publicController = new PublicController();
         // get full data
-        $rs = $publicController->search($keysearch = $ks, $tag = $tags, $cate = $cat, $price = $prices);
+        $rs = $publicController->search($keysearch = $ks, $tag = $tags, $cate = $cat, $price = $prices, 1);
         $data = $this->convertRestaurant($rs);
 
         // dd($dataForm);
