@@ -91,4 +91,4 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
 });
 //test phan trang
-Route::get('/test', [\App\Http\Controllers\testController::class, 'topQuanDatNhieuNhat']);
+Route::get('/test', [\App\Http\Controllers\testController::class, 'random']);
