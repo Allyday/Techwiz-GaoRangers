@@ -6,7 +6,7 @@
    <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
          <div class="sidebar-brand">
-            <a href="/">Food mate</a>
+            <a href="/staff/index/day">Food mate</a>
             <div id="close-sidebar">
                <i class="fas fa-times"></i>
             </div>
