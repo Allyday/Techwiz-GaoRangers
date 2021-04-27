@@ -32,7 +32,8 @@
 @if (!session('Location') && session('Location') == null && url()->current() == route('restaurants'))
 <script>
     $('document').ready(function() {
-        $('#locationModal').modal('show')
+        if (location.pathname.indexOf('setting') == -1)
+            $('#locationModal').modal('show')
     });
 </script>
 @else

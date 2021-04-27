@@ -20,7 +20,67 @@
             </div>
          </div>
 
+         @php
+            function getRevenue($option)
+            {
+               if ($option == 'day') {
+                  $query = "SELECT DATE(date_order) AS label, SUM(total_bill) AS y FROM bill GROUP BY DATE(date_order)";
+               } elseif ($option == 'month') {
+                  $query = "SELECT CONCAT(MONTH( DATE(date_order)),' - ',YEAR( DATE(date_order))) AS label , SUM(total_bill) AS y FROM bill GROUP BY MONTH( DATE(date_order)),YEAR( DATE(date_order))";
+               } elseif ($option == 'quarter') {
+                  $query = "SELECT CONCAT('Quý ',QUARTER(date_order),' - ',YEAR( DATE(date_order))) AS label , SUM(total_bill) AS y FROM bill GROUP BY QUARTER( date_order),YEAR( DATE(date_order))";
+               } elseif ($option == 'year') {
+                  $query = "SELECT YEAR( DATE(date_order)) AS label, SUM(total_bill) AS y FROM bill GROUP BY YEAR( DATE(date_order))";
+               } else return null;
 
+               global $db;
+               $stmt = $db->prepare($query);
+               $stmt->execute(array());
+               return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+            $dataPoints = getRevenue("day");
+
+         @endphp
+
+            
+<script>
+
+   window.onload = function() {
+
+       var chart = new CanvasJS.Chart("chartRevenue", {
+           animationEnabled: true,
+
+           title: {
+               text: "Doanh thu bán hàng"
+           },
+           axisX: {
+               crosshair: {
+                   enabled: true,
+                   snapToDataPoint: true
+               }
+           },
+           axisY: {
+               includeZero: true,
+               crosshair: {
+                   enabled: true,
+                   snapToDataPoint: true,
+
+               },
+               suffix: "VNĐ"
+           },
+           toolTip: {
+               enabled: false
+           },
+           data: [{
+               type: "area",
+               xValueType: "dateTime",
+               dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+           }]
+       });
+       chart.render();
+
+   }
+</script>
 
       </div>
    </main>

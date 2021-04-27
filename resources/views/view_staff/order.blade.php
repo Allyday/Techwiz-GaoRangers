@@ -2,70 +2,123 @@
 
 @section('content')
 
-<h2 class="text-center display-5 mb-4">DANH SÁCH TÀI KHOẢN</h2>
+<h2 class="text-center display-5 mb-4">DANH SÁCH ORDER</h2>
 <div class=" mt-6">
    <table id="tableCustomer" class="table hover row-border" style="width:100%">
       <thead>
          <tr>
-            <th>User Name</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
-            <th>Picture</th>
-            <th>Mail</th>
-            <th>Phone Number</th>
+            <th>Id Dish</th>
+            <th>Orderer</th>
+            <th>Status</th>
+            <th>Time Create</th>
             <th></th>
          </tr>
       </thead>
       <tbody>
-        @foreach ($dsusers as $row)
+         
+        @foreach ($dsorders as $row)
+            @php
+               $status = $row->is_active;
+               $status++;
+            @endphp
             <tr>
-                <td>{{ $row->userName }}</td>
-                <td>{{ $row->firstName }}</td>
-                <td>{{ $row->lastName }}</td>
-                <td>{{ $row->gender }}</td>
-                <td><img src="{{ $row->picture }}" alt="{{ $row->userName }}" style="max-width:100px"></td>
-                <td>{{ $row->mail }}</td>
-                <td>{{ $row->phoneNumber }}</td>
-                <td class="text-center">
-                    <a href="" class="btn-delete btn-control text-danger">
-                        <i class="far fa-times-circle"></i>
-                    </a>
-                </td>
+               <td>{{ $row->id }}</td>
+               <td>{{ $row->firstName }} {{ $row->lastName }}</td>
+               <td>@php
+                echo getStatusOrderTag($row->is_active);               
+                @endphp</td>
+               <td>{{ $row->timeCreated }}</td>
+               <td class="text-center">
+                  <form action="/staff/orderStatus/{{$row->id}}" method="post">
+                     @csrf
+                     @method('POST')   
+                     <input type="hidden" id="is_active" name="is_active" value="{{ $status }}">
+                     <a href="/staff/{{ $row->id }}/orderDetail" class="btn btn-primary"><i class="fas fa-search-dollar"></i></a>
+                     <button type="submit" class="btn btn-success fw-bold" id="btn-update"><i class="far fa-share-square"></i></button>
+                  </form>
+                  {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                     <i class="fas fa-search-dollar"></i>                   </button> --}}
+               </td>
+               {{-- <td>
+               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Order details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        {{$row->id}}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               </td> --}}
             </tr>
+            
         @endforeach
-      </tbody>
+        @php
+           function getStatusOrderTag($id_status)
+            {
+               switch ($id_status) {
+                  case 1:
+                        return '<span class="btn-warning p-1 ">Waiting for reception</span>';
+                        break;
+                  case 2:
+                        return '<span class="btn-secondary p-1 ">Cooking</span>';
+                        break;
+                  default:
+                        return '<span class="btn-primary p-1 ">Ready!!!</span>';
+                        break;
+               }
+            }
+            // function model($ds)
+            // {
+            //    foreach ($ds as $k) {
+            //       echo '<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            //          <div class="modal-dialog" role="document">
+            //          <div class="modal-content">
+            //             <div class="modal-header">
+            //                <h5 class="modal-title" id="exampleModalLabel">Order details</h5>
+            //                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            //                <span aria-hidden="true">&times;</span>
+            //                </button>
+            //             </div>
+            //             <div class="modal-body">
+            //                '.$k->id.'
+            //             </div>
+            //             <div class="modal-footer">
+            //                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            //             </div>
+            //          </div>
+            //          </div>
+            //       </div>';
+            //    } 
+            // }
+        @endphp
+      </tbody> 
       <tfoot>
         <tr>
-            <th>User Name</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
-            <th>Picture</th>
-            <th>Mail</th>
-            <th>Phone Number</th>
+            <th>Id Dish</th>
+            <th>Orderer</th>
+            <th>Status</th>
+            <th>Time Create</th>
             <th></th>
          </tr>
       </tfoot>
    </table>
 </div>
 
-<div class="modal fade" id="comfirmModal" tabindex="-1" aria-labelledby="comfirmModalLable" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="comfirmModalLable">Thêm loại sản phẩm</h5>
-         </div>
-         <div class="modal-body">
-            <h3>Bạn có muốn xóa sản phẩm?</h3>
-         </div>
-         <div class="modal-footer text-center">
-            <button type="button" class="btn btn-secondary btn-comfirm" data-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary btn-comfirm">Yes</button>
-         </div>
-      </div>
-   </div>
-</div>
+
+{{-- @php
+   echo model($dsorders);               
+@endphp --}}
+
 
 <script>
    $(document).ready(function() {
