@@ -14,6 +14,7 @@ use App\Http\Controllers\OrderController;
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
+// Route::get('/', [PublicController::class, 'topQuanDatNhieuNhat'])->name('home');
 
 Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name('menu');
 
@@ -29,6 +30,7 @@ Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('
 
 // add order
 Route::post('add/record/order', [RestaurantController::class, 'pay_now']);
+
 
 // post location
 Route::post('/save_location', [LocationController::class, 'save_location'])->name('save_location');
@@ -89,6 +91,9 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::post('/user/settingUser/{user}', [UserController::class, "editpass"]);
     // Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 
+
+    // load all order (is_active==6)
+    Route::get('get/all/past/order', [PublicController::class, 'get_past_order']);
 });
 //test phan trang
 Route::get('/test', [\App\Http\Controllers\testController::class, 'random']);
