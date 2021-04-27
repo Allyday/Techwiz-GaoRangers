@@ -84,7 +84,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::post('/staff/searchOrder', [OrderController::class, "search"]);
     Route::post('/staff/status/searchOrder', [OrderController::class, "searchStatus"]);
     Route::post('/user/{users}/delete', [UserController::class, "destroy"])->name("destroyUser");
-
+    Route::post('/staff/{order}/orderCancel', [OrderController::class, "cancel"]);
 
     // Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 

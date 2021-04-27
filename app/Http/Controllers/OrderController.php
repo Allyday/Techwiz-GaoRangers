@@ -112,4 +112,16 @@ class OrderController extends Controller
 
         }
     }
+
+    public function cancel(Request $request, $id)
+    {
+        $time = now();
+        $order = Order::where('id',$id)
+            ->update([
+                'orderStatus'=>$request->input('orderCancel'),
+                'timeRejected'=>$time
+            ]);
+
+        return redirect('/staff/orderStaff');
+    }
 }
