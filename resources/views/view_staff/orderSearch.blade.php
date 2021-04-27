@@ -64,7 +64,89 @@
                }
                
             </script>
+            @if ($row->orderStatus == 2)
             <tr>
+               <td>{{ $row->id }}</td>
+               <td>{{ $row->firstName }} {{ $row->lastName }}</td>
+               <td>@php
+                echo getStatusOrderTag($row->orderStatus);               
+                @endphp</td>
+               <td>{{ $row->timeCreated }}</td>
+               <td class="text-center" style="width:400px">
+                  <form action="/staff/orderStatus/{{$row->id}}" method="post" style="float: left;width:70%">
+                     @csrf
+                     @method('POST')   
+                     <input type="hidden" id="orderStatus" name="orderStatus" value="{{ $status }}">
+                     <a style="float: left;margin:10px" href="/staff/{{ $row->id }}/orderDetail" class="btn btn-primary"><i class="fas fa-search-dollar"></i></a>
+                     <button type="submit" class="btn btn-success fw-bold" onclick="setTimeout(status({{ $status }}), 5000)" id="btn-update"><i class="fa fa-angle-double-right"></i></button>
+                  </form>
+            
+                     <a  style="float: left;width:20%;margin:7px" title="Xoa" class="btn btn-danger" data-toggle="modal" data-target="#cancelModal{{ $row->id }}">
+                     <i class="fa fa-times-circle"></i>
+                     </a>
+                     <div class="modal fade" id="cancelModal{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                           <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                           </button>
+                           </div>
+                           <div class="modal-body">
+                              Delete order {{ $row->id }}? This action cannot be reversed
+                           </div>
+                           <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                           <form action="/staff/{{$row->id}}/orderCancel" method="post">
+                              @csrf
+                              @method('POST') 
+                              <input type="hidden" id="orderCancel" name="orderCancel" value="8">
+                              <button type="submit" class="btn btn-primary">Delete</button>
+                           </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  </form>
+               </td>
+            </tr>
+
+
+            @endif
+            @if ($row->orderStatus >2 && $row->orderStatus < 8)
+            <tr>
+               <td>{{ $row->id }}</td>
+               <td>{{ $row->firstName }} {{ $row->lastName }}</td>
+               <td>@php
+                echo getStatusOrderTag($row->orderStatus);               
+                @endphp</td>
+               <td>{{ $row->timeCreated }}</td>
+               <td class="text-center" style="width:400px">
+                  <form action="/staff/orderStatus/{{$row->id}}" method="post" style="float: left;width:70%">
+                     @csrf
+                     @method('POST')   
+                     <input type="hidden" id="orderStatus" name="orderStatus" value="{{ $status }}">
+                     <a style="float: left;margin:10px" href="/staff/{{ $row->id }}/orderDetail" class="btn btn-primary"><i class="fas fa-search-dollar"></i></a>
+                     <button type="submit" class="btn btn-success fw-bold" onclick="setTimeout(status({{ $status }}), 5000)" id="btn-update"><i class="fa fa-angle-double-right"></i></button>
+                  </form>
+               </td>
+            </tr>
+            @endif
+            @if ($row->orderStatus == 8)
+            <tr>
+               <td>{{ $row->id }}</td>
+               <td>{{ $row->firstName }} {{ $row->lastName }}</td>
+               <td>@php
+                echo getStatusOrderTag($row->orderStatus);               
+                @endphp</td>
+               <td>{{ $row->timeCreated }}</td>
+               <td class="text-center" style="width:400px">
+                     <a style="float: left;margin:10px" href="/staff/{{ $row->id }}/orderDetail" class="btn btn-primary"><i class="fas fa-search-dollar"></i></a>
+               </td>
+            </tr>
+            @endif
+             {{-- <tr>
                <td>{{ $row->id }}</td>
                <td>{{ $row->firstName }} {{ $row->lastName }}</td>
                <td>@php
@@ -79,9 +161,10 @@
                      <a href="/staff/{{ $row->id }}/orderDetail" class="btn btn-primary"><i class="fas fa-search-dollar"></i></a>
                      <button type="submit" class="btn btn-success fw-bold" onclick="setTimeout(status({{ $status }}), 5000)" id="btn-update"><i class="fa fa-angle-double-right"></i></button>
                   </form>
-                  {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                     <i class="fas fa-search-dollar"></i>                   </button> --}}
+                 
                </td>
+            </tr> --}}
+
                {{-- <td>
                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -102,7 +185,6 @@
                   </div>
                 </div>
                </td> --}}
-            </tr>
             
         @endforeach
         @php
@@ -114,6 +196,9 @@
                         break;
                   case 3:
                         return '<span class="btn-secondary p-1 ">Cooking</span>';
+                        break;
+                  case 8:
+                        return '<span class="btn-danger p-1 ">Cancel</span>';
                         break;
                   default:
                         return '<span class="btn-primary p-1 ">Ready!!!</span>';
