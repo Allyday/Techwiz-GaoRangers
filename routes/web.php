@@ -91,6 +91,8 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::post('/user/settingUser/{user}', [UserController::class, "editpass"]);
     Route::post('/staff/searchOrder', [OrderController::class, "search"]);
     Route::post('/staff/status/searchOrder', [OrderController::class, "searchStatus"]);
+    Route::post('/user/{users}/delete', [UserController::class, "destroy"])->name("destroyUser");
+
 
     // Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 
