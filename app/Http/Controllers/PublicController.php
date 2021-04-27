@@ -46,8 +46,8 @@ class PublicController extends Controller
             array_push($data, $temp);
         }
         // dd($data);
-
-        return view('template.home', compact('access', 'dishhome', 'data'));
+        $resCount = Restaurant::all()->count('id');
+        return view('template.home', compact('access', 'dishhome', 'data','resCount'));
     }
 
     function menu($id)
@@ -146,14 +146,15 @@ class PublicController extends Controller
 
     public function search($keysearch = '', $tag = [], $cate = 0, $price = 10,  $pg = 1)
     {
+//        dd($keysearch, $tag, $cate);
         //các biến lấy về từ request khi submit search
-        $keysearch = $keysearch || ""; //Lấy từ search theo tên - test = rice
-        $tags = $tag || []; //mảng id của table food_tags - test = 15
-        $cate = $cate || 0; //id của table dish_category test = 5
-        $price = $price || ""; //giá tiền;
+        $keysearch = $keysearch; //Lấy từ search theo tên - test = rice
+        $tags = $tag ; //mảng id của table food_tags - test = 15
+        $cate = $cate; //id của table dish_category test = 5
+        $price = $price; //giá tiền;
         $page = (int)$pg;
-
-        $sql = "SELECT restaurants.id AS r_id, 
+//        dd($keysearch);
+        $sql = "SELECT restaurants.id AS r_id,
                 restaurants.name,
                 restaurants.photo,
                 GROUP_CONCAT(dishes.id) arrayId,
@@ -175,7 +176,7 @@ class PublicController extends Controller
         }
         //search theo gia
         if ($price > 0) {
-            $sql .= " AND dishes.price > " . $price . "";
+            $sql .= " AND dishes.price <= " . $price . "";
         }
         //search theo dish_tagID
         $temp = "";
@@ -201,7 +202,7 @@ class PublicController extends Controller
         $new_sql = "select a.* from (".$sql.") a ";
             $new_sql .= " LIMIT $page, 8";
             // dd($page);
-
+//        dd($new_sql);
         $table = DB::select($new_sql);
 
         return $table;
