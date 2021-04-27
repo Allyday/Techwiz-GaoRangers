@@ -37,7 +37,7 @@
                              animationEnabled: true,
                   
                              title: {
-                                 text: "Doanh thu bán hàng"
+                                 text: "Total Revenue"
                              },
                              axisX: {
                                  crosshair: {
@@ -52,7 +52,7 @@
                                      snapToDataPoint: true,
                   
                                  },
-                                 suffix: "VNĐ"
+                                 suffix: "$"
                              },
                              toolTip: {
                                  enabled: false
