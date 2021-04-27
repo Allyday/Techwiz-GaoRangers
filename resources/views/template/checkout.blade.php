@@ -68,6 +68,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
                                         <span class="price pull-left item-total">$ 9.50</span>
+                                        <i class="fa fa-times pull-right delete-item-btn" style="font-size: 30px"></i>
                                     </div>
                                 </div>
                             </div> --}}
@@ -80,7 +81,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Cart Subtotal</td>
-                                                <td>$ <span id="cart-subtotal" class="text-end">29.00</span></td>
+                                                <td class="text-end">$ <span id="cart-subtotal">29.00</span></td>
                                             </tr>
                                             <tr>
                                                 <td>Delivery Fee</td>
