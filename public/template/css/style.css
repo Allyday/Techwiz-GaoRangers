@@ -169,6 +169,30 @@ input[type=number] {
     font-size: 14px;
 }
 
+/* start search */
+.food-item-search {
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+
+.first-food-item {
+    border-right: 1px solid #eee;
+}
+
+.item-photo {
+    margin-right: 15px;
+}
+
+.item-name {
+    font-size: 14px;
+}
+
+.item-price {
+    font-size: 18px;
+    font-weight: 600;
+}
+/* end search */
+
 /* start bootstrap */
 
 .d-flex {

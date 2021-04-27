@@ -31,5 +31,26 @@
       </div>
    </div>
    <!--end:row -->
+   <div class="row food-item-search">
+      <div class="col-xs-12 col-sm-12 col-lg-6 first-food-item">
+         <div class="item-photo pull-left">
+            <img src="http://placehold.it/60x48" alt="Food logo">
+         </div>
+         <h6 class="item-name">Veg Extravaganza</h6>
+         <span class="item-price">$
+            9.50</span>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-lg-6">
+         <div class="item-photo pull-left">
+            <img src="http://placehold.it/60x48" alt="Food logo">
+         </div>
+         <div class="">
+            <h6 class="item-name">Veg Extravaganza</h6>
+            <span class="item-price">$
+               9.50</span>
+         </div>
+      </div>
+   </div>
+   <!--end:food-item-search -->
 </div>
 @endforeach
