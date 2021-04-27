@@ -153,7 +153,7 @@
                @include('template.dataRes')
                <!-- end:Restaurant entry -->
                <!-- Loader spinner -->
-               <div class="col-md-12 " style="text-align: center; display: none" id="loader-spinner">
+               <div class="col-md-12 " style="text-align: center; display: none" >
                   <div class="lds-roller">
                      <div></div>
                      <div></div>
