@@ -42,7 +42,7 @@ if (session('User')) {
 
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello, {{ $user->userName }}</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello, {{ $user->firstName }}</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="javascript:void(0)">Account Settings</a>
                             <div class="dropdown-divider"></div>
