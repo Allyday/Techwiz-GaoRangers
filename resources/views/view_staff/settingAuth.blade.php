@@ -16,7 +16,7 @@
    <section class="contact-page inner-page">
       <div class="container">
          <div class="row">
-            <!-- REGISTER -->
+            <!-- setting -->
             <div class="col-md-12">
 
                <form action="/user/settingUser/{{ $user->id }}" method="POST">
@@ -37,7 +37,7 @@
                      <div class="col-md-6">
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="FirstName">First Name *</label>
+                              <label for="FirstName">First name</label>
                               @error('firstName')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -48,7 +48,7 @@
 
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Email">Email address *</label>
+                              <label for="Email">Email address</label>
                               @error('mail')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -58,7 +58,7 @@
 
                         {{-- <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Username">Username *</label>
+                              <label for="Username">Username</label>
                               @error('userName')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -67,7 +67,7 @@
                         </div> --}}
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Password">Password *</label>
+                              <label for="Password">Password</label>
                               @error('password')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -75,7 +75,7 @@
                            <input name="password" value="{{ old('password') }}" required type="password" class="form-control" id="Password" placeholder="Password" @error('password')style=" border-color:red;" @enderror>
                         </div>
                         <div class="form-group col-md-12">
-                           <label>Gender</label>
+                           <label>Gender <i class="optional-label text-muted">(Optional)</i></label>
                            <select class="custom-select w-100" name="gender">
                               <option value="{{ $user->gender }}" selected>{{ $user->gender }}</option>
                               <option value="male">Male</option>
@@ -83,12 +83,11 @@
                               <option value="other">Other</option>
                            </select>
                         </div>
-
                      </div>
                      <div class="col-md-6">
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="LastName">Last Name *</label>
+                              <label for="LastName">Last name</label>
                               @error('lastName')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -96,21 +95,18 @@
 
                            <input name="lastName" value="{{ $user->lastName }}" required class="form-control" type="text" placeholder="{{ $user->lastName }}" id="LastName" @error('lastName')style=" border-color:red;" @enderror>
                         </div>
-
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Phonenumber">Phone number *</label>
+                              <label for="Phonenumber">Phone number</label>
                               @error('phoneNumber')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
                            </div>
-                           <input name="phoneNumber" value="{{ $user->phoneNumber }}" required class="form-control" type="text" placeholder="{{ $user->phoneNumber }}" id="Phonenumber" @error('phoneNumber')style=" border-color:red;" @enderror> <small class="form-text text-muted">We"ll never share your email with anyone else.</small>
+                           <input name="phoneNumber" value="{{ $user->phoneNumber }}" required class="form-control" type="text" placeholder="{{ $user->phoneNumber }}" id="Phonenumber" @error('phoneNumber')style=" border-color:red;" @enderror> <small class="form-text text-muted">We"ll never share your phone number with anyone else.</small>
                         </div>
-                        
-
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Password">New Password *</label>
+                              <label for="Password">New password</label>
                               @error('newpass')
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
@@ -120,7 +116,7 @@
 
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
-                              <label for="Repeatpassword">Repeat password *</label>
+                              <label for="Repeatpassword">Repeat password</label>
                               @if(Session::get('confirmpass'))
                               <p class="text-danger">{{ Session::get('confirmpass') }}</p>
                               @endif
@@ -128,19 +124,15 @@
 
                            <input name="confirmpass" value="{{ old('confirmpass') }}" required type="password" class="form-control" id="Repeatpassword" placeholder="Repeat password" @if(Session::get('confirmpass'))style=" border-color:red;" @endif >
                         </div>
-                        
-                       
-
                      </div>
                      <div class="form-group col-md-12" style="padding: 0 29px">
-                        <label for="Repeatpassword">Address *</label>
+                        <label for="Repeatpassword">Address</label>
                         @foreach ($dsusers as $row)
                            <input style="width: 100%" autofocus name="address" class="form-control" placeholder="{{ $row->address }}" type="text" value="{{ $row->address }}">
                         @endforeach
                      </div>
 
                   </div>
-
                   <div class="row" style="text-align:center;">
                      <div class="col-md-12">
                         <p> <button style="padding: 10px 30px" type="submit" class="btn btn-danger">OK</button> </p>
@@ -151,8 +143,7 @@
 
                   </div>
                </form>
-
-               <!-- /REGISTER -->
+               <!-- /setting -->
             </div>
 
          </div>

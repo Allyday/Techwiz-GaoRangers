@@ -165,6 +165,10 @@ input[type=number] {
     z-index: 10000 !important;
 }
 
+.optional-label {
+    font-size: 14px;
+}
+
 .custom-control-input:checked~.custom-control-label {
     color: red;
     font-weight: 700;
