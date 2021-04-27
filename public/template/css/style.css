@@ -158,6 +158,13 @@ input[type=number] {
     margin-bottom: 3px;
 }
 
+.delete-item-btn {
+    
+}
+
+.delete-item-btn:hover {
+    cursor: pointer;
+}
 /* end cart*/
 
 .pac-container {

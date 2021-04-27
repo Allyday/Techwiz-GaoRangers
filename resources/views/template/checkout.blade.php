@@ -68,6 +68,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
                                         <span class="price pull-left item-total">$ 9.50</span>
+                                        <i class="fa fa-times pull-right delete-item-btn" style="font-size: 30px"></i>
                                     </div>
                                 </div>
                             </div> --}}
