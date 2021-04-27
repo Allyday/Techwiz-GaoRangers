@@ -102,6 +102,9 @@
     $('document').ready(function() {
         $('#modalLogin').modal('show')
     });
+    $('document').ready(function() {
+        $('#staticBackdrop').modal('show')
+    });
 </script>
 @else
 

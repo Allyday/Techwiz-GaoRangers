@@ -21,15 +21,16 @@
       <div class="profile">
          <div class="container">
             <div class="row">
+               @foreach ($res as $r)
                <div class="col-xs-12 col-sm-12  col-md-4 col-lg-4 profile-img">
                   <div class="image-wrap">
-                     <figure><img src="http://placehold.it/240x140" alt="Profile Image"></figure>
+                     <figure><img src="{{ $r->photo }}" alt="Profile Image"></figure>
                   </div>
                </div>
                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 profile-desc">
                   <div class="pull-left right-text white-txt">
-                     <h6><a href="#">Maenaam Thai Restaurant</a></h6> <a class="btn btn-small btn-green">Open</a>
-                     <p>Burgers, American, Sandwiches, Fast Food, BBQ</p>
+                     <h6><a href="">{{ $r->name }}</a></h6> <a class="btn btn-small btn-green">Open</a>
+                     <p>{{ $r->city }}, {{ $r->district }}, {{ $r->municipality }}, {{ $r->street }}</p>
                      <ul class="nav nav-inline">
                         <li class="nav-item"> <a class="nav-link active" href="#"><i class="fa fa-check"></i> Min $ 10,00</a> </li>
                         <li class="nav-item"> <a class="nav-link" href="#"><i class="fa fa-motorcycle"></i> 30 min</a> </li>
@@ -45,6 +46,8 @@
                      </ul>
                   </div>
                </div>
+               @endforeach
+               
             </div>
          </div>
       </div>
@@ -61,7 +64,7 @@
    </div>
    <div class="container m-t-30">
       <div class="row">
-
+         @foreach ($dishes as $d)
          <div class="col-md-8">
             <div class="menu-widget m-b-30">
                <div class="widget-heading">
@@ -80,18 +83,18 @@
                      <div class="row">
                         <div class="col-xs-12 col-sm-12 col-lg-8">
                            <div class="rest-logo pull-left">
-                              <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/100x80" alt="Food logo"></a>
+                              <a class="restaurant-logo pull-left" href="#"><img src="{{ $d->photoDish }}" alt="Food logo"></a>
                            </div>
                            <!-- end:Logo -->
                            <div class="rest-descr">
-                              <h6><a href="#">Veg Extravaganza</a></h6>
-                              <p> Burgers, American, Sandwiches, Fast Food, BBQ</p>
+                              <h6><a href="#">{{ $d->dishName }}</a></h6>
+                              <p> {{ $r->city }}, {{ $r->district }}, {{ $r->municipality }}, {{ $r->street }}</p>
                            </div>
                            <!-- end:Description -->
                         </div>
                         <!-- end:col -->
                         <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info">
-                           <span class="price pull-left">$ 19.99</span>
+                           <span class="price pull-left">$ {{ $d->dishPrice }}</span>
                            <a onclick="addCart(1, 'Veg Extravaganza', '19,99', './images/app.png', 1, 'Burgers, American, Sandwiches, Fast Food, BBQ')" class="btn btn-small btn btn-secondary pull-right">&#43;</a>
                         </div>
                      </div>
@@ -104,6 +107,8 @@
                <!-- end:Collapse -->
             </div>
          </div>
+         @endforeach
+         
 
          <!-- Bar right -->
          <div class="col-md-4">

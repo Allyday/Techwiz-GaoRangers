@@ -96,19 +96,11 @@
                                 </div>
                             </div>
                             <!--cart summary-->
-                            <div class="payment-option">
-                                <ul class=" list-unstyled">
-                                    <li>
-                                        <label class="custom-control custom-radio  m-b-20">
-                                            <input id="radioStacked1" name="radio-stacked" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Cash on delivery</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="custom-control custom-radio  m-b-10">
-                                            <input name="radio-stacked" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Paypal <img src="{{asset('images/paypal.jpg')}}" alt="" width="90"></span> </label>
-                                    </li>
-                                </ul>
-
+                            <div class="delivery-address-container">
+                                <p style="font-size: 14px">Deliver to:
+                                    <b class="delivery-address">8 Ton That Thuyet, My Dinh, Cau Giay, Hanoi, Vietnam</b>
+                                    <a data-toggle="modal" data-target="#locationModal" href="javascript:void(0)">Change</a>
+                                </p>
 
                                 {{-- check co location chua, co roi thi khong can nhap nua --}}
                                 @if (session('Location') && session('Location')!=null)

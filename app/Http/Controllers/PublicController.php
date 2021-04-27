@@ -50,9 +50,11 @@ class PublicController extends Controller
         return view('template.home', compact('access', 'dishhome', 'data','resCount'));
     }
 
-    function menu()
+    function menu($id)
     {
-        return view('template.menu');
+        $res = DB::select('select * from restaurants where id = ?', [$id]);
+        $dishes = DB::select('select restaurants.*, dishes.name as dishName, dishes.photo as photoDish, dishes.price as dishPrice from restaurants inner join dishes on restaurants.id = dishes.restaurantId where restaurants.id = ?', [$id]);
+        return view('template.menu', compact('res', 'dishes'));
     }
 
     function history()
@@ -213,7 +215,7 @@ class PublicController extends Controller
             ->select(DB::raw('count(orders.id) as count, orders.restaurantId as restaurantId'))
             ->groupBy('orders.restaurantId')
             ->orderBy('count', 'desc')
-            ->limit(4)
+            ->limit(6)
             ->get();
         // dd($table);
         return $table;

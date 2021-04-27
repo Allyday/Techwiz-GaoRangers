@@ -28,9 +28,9 @@
                 <td>{{ $row->mail }}</td>
                 <td>{{ $row->phoneNumber }}</td>
                 <td class="text-center">
-                    <a href="" class="btn-delete btn-control text-danger">
-                        <i class="far fa-times-circle"></i>
-                    </a>
+                    <a href="{{ route('setting', $row->id) }}" class="btn-delete btn-control text-danger">
+                     <i class="fas fa-cog"></i>
+                       </a>
                 </td>
             </tr>
         @endforeach
