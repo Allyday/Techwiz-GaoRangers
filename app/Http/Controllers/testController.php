@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dish;
 use App\Models\DishCategory;
 use App\Models\Restaurant;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -61,6 +62,7 @@ class testController extends Controller
             $sql .= " ORDER BY restaurants.stars DESC";
         }
         $table = DB::select($sql);
+        $table = DB::
         dd($temp);
         dd($table);
         return view('test.test');
@@ -75,8 +77,6 @@ class testController extends Controller
             ->orderBy('count','desc')
             ->limit(6)
             ->get();
-        dd($table);
         return;
     }
-
 }
