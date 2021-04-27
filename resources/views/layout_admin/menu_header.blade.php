@@ -6,7 +6,7 @@
    <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
          <div class="sidebar-brand">
-            <a href="/staff/index/day">Food mate</a>
+            <a href="/staff/index/day">FoodMate</a>
             <div id="close-sidebar">
                <i class="fas fa-times"></i>
             </div>
@@ -55,12 +55,12 @@
                <li class="sidebar-dropdown">
                   <a href="#">
                      <i class="fas fa-clipboard-list"></i>
-                     <span>Đơn hàng</span>
+                     <span>Orders</span>
                   </a>
                   <div class="sidebar-submenu">
                      <ul>
                         <li>
-                           <a href="{{ route('orderStaff') }}"><i class="fas fa-clipboard-check"></i>Danh sách đơn hàng</a>
+                           <a href="{{ route('orderStaff') }}"><i class="fas fa-clipboard-check"></i>All Orders</a>
                         </li>
                      </ul>
                   </div>
@@ -68,18 +68,18 @@
                <li>
                   <a href="./admin_customer.php">
                      <i class="fas fa-user"></i>
-                     <span>Khách hàng</span>
+                     <span>Customers</span>
                   </a>
                </li>
                <li class="sidebar-dropdown">
                   <a href="javascript: void(0)">
                      <i class="fab fa-shopify"></i>
-                     <span>Sản phẩm</span>
+                     <span>Items</span>
                   </a>
                   <div class="sidebar-submenu">
                      <ul>
                         <li>
-                           <a href="{{ route('dishes') }}"><i class="fas fa-shopping-basket"></i>Danh sách sản phẩm</a>
+                           <a href="{{ route('dishes') }}"><i class="fas fa-shopping-basket"></i>Menu</a>
                         </li>
                         <li>
                            {{-- <a href="{{ route('view_staff.type') }}"><i class="fas fa-layer-group"></i>Loại sản phẩm</a> --}}
@@ -94,13 +94,13 @@
                <li class="sidebar-dropdown">
                   <a href="javascript: void(0)">
                      <i class="fas fa-chart-line"></i>
-                     <span>Báo cáo</span>
+                     <span>Reports & Statistics</span>
                   </a>
 
                   <div class="sidebar-submenu">
                      <ul>
                         <li>
-                           <a href="javascript: void(0)"><i class="fas fa-calendar-day"></i>Báo cáo bán hàng</a>
+                           <a href="javascript: void(0)"><i class="fas fa-calendar-day"></i>Sales Report</a>
                         </li>
                         <li>
                            <a href="javascript: void(0)"><i class="fas fa-store"></i>Báo cáo kho</a>
@@ -112,7 +112,7 @@
                <li>
                   <a href="{{ route('auth.logout') }}">
                      <i class="fas fa-sign-out-alt"></i>
-                     <span>Đăng xuất</span>
+                     <span>Log out</span>
                   </a>
                </li>
             </ul>

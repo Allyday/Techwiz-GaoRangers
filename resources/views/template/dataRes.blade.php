@@ -31,26 +31,35 @@
       </div>
    </div>
    <!--end:row -->
+   @if (!empty($item['arrayPrice'][0]) && !empty($item['arrayPhoto'][0]) && !empty($item['arrayName'][0]))
+
+
+
    <div class="row food-item-search">
       <div class="col-xs-12 col-sm-12 col-lg-6 first-food-item">
          <div class="item-photo pull-left">
-            <img src="http://placehold.it/60x48" alt="Food logo">
+            <img style="width: 60px; height:48px" src="{{ $item['arrayPhoto'][0] }}" alt="Food logo">
          </div>
-         <h6 class="item-name">Veg Extravaganza</h6>
+         <h6 class="item-name">{{ $item['arrayName'][0] }}</h6>
          <span class="item-price">$
-            9.50</span>
+            {{ $item['arrayPrice'][0] }}  </span>
       </div>
+      @if (count($item['arrayPhoto'])>2)
+
       <div class="col-xs-12 col-sm-12 col-lg-6">
          <div class="item-photo pull-left">
-            <img src="http://placehold.it/60x48" alt="Food logo">
+            <img style="width: 60px; height:48px" src="{{$item['arrayPhoto'][2] }}" alt="Food logo">
          </div>
          <div class="">
-            <h6 class="item-name">Veg Extravaganza</h6>
+            <h6 class="item-name">{{ $item['arrayName'][2] }}</h6>
             <span class="item-price">$
-               9.50</span>
+               {{ $item['arrayPrice'][0] }}</span>
          </div>
       </div>
+      @endif
+
    </div>
+   @endif
    <!--end:food-item-search -->
 </div>
 @endforeach

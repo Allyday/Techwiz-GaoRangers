@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2 class="text-center display-5 mb-4">DANH SÁCH MÓN ĂN</h2>
+<h2 class="text-center display-5 mb-4">Menu</h2>
 <div class="row">
    <div class="w-100 text-end">
       
@@ -47,21 +47,21 @@
                   <div class="modal-dialog" role="document">
                      <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                            <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
                         <div class="modal-body">
-                           Mày đã chắc chắn chưa! Mày muốn xóa {{ $row->name }}
+                           Delete {{ $row->name }}? This action cannot be reversed
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         <form action="/staff/deleteDish/{{$row->id}}" method="post">
                            @csrf
                            @method('POST') 
                            <input type="hidden" value="0" name="is_active">
-                           <button type="submit" class="btn btn-primary">Bố chắc</button>
+                           <button type="submit" class="btn btn-primary">Delete</button>
                         </form>
                         </div>
                      </div>
