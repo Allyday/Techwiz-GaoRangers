@@ -65,7 +65,7 @@
 <!-- banner part ends -->
 <!-- location match part starts -->
 <div class="location-match text-xs-center">
-   <div class="container"> <span>356 restaurants in your city: <span class="primary-color">Hanoi, Vietnam</span> </span>
+   <div class="container"> <span>{{$resCount + 100}} restaurants in your city: <span class="primary-color">Hanoi, Vietnam</span> </span>
    </div>
 </div>
 <!-- location match part ends -->
@@ -125,7 +125,7 @@
                         </svg>
                      </div>
                      <h3>Choose a restaurant</h3>
-                     <p>We"ve got your covered with menus from over 345 delivery restaurants online.</p>
+                     <p>We"ve got your covered with menus from over {{ $resCount + 100 }} delivery restaurants online.</p>
                   </div>
                </div>
             </div>
@@ -139,7 +139,7 @@
                      </svg>
                   </div>
                   <h3>Choose a tasty dish</h3>
-                  <p>We"ve got your covered with menus from over 345 delivery restaurants online.</p>
+                  <p>We"ve got your covered with menus from over {{ $resCount + 100}} delivery restaurants online.</p>
                </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 how-it-works-steps white-txt col3">

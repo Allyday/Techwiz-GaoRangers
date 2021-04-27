@@ -113,7 +113,7 @@ class RestaurantController extends Controller
         // get category and tag
         $nameDishCat = $this->get_dish_cat();
         $nameFoodTag = $this->get_food_tag();
-        // return 
+        // return
         if ($request->ajax()) {
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
@@ -151,6 +151,7 @@ class RestaurantController extends Controller
         // convert data obj to array
         $data = $this->convertRestaurant($rs);
 
+
         return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
     }
 
@@ -159,22 +160,21 @@ class RestaurantController extends Controller
         // get category and tag
         $nameDishCat = $this->get_dish_cat();
         $nameFoodTag = $this->get_food_tag();
-
         $ks = $request->keysearch;
         $cat = $request->cat;
         $prices = $request->price;
         $tags = $request->tag;
-        // dd($tags);
         $dataForm = [
             'ks' => $ks,
             'cat' => $cat,
             'prices' => $prices,
             'tags' => $tags
         ];
-
+//        dd($dataForm);
         $publicController = new PublicController();
         // get full data
         $rs = $publicController->search($keysearch = $ks, $tag = $tags, $cate = $cat, $price = $prices, 1);
+//        dd($rs);
         $data = $this->convertRestaurant($rs);
 
         // dd($dataForm);
