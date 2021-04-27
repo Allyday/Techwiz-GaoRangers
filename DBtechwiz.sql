@@ -593,7 +593,7 @@ CREATE TABLE `orders` (
   `timeCancelled` datetime DEFAULT NULL,
   `acceptedBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `doneCookingBy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_active` tinyint(4) NOT NULL DEFAULT 1,
+  `orderStatus` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

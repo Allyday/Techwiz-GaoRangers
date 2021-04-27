@@ -184,7 +184,7 @@ class RestaurantController extends Controller
             'restaurantId' => $res_id,
             'timeCreated' => $timeCreated,
             'address' =>  $address,
-            'is_active' => $status,
+            'orderStatus' => $status,
             'totalDishPrice' => $subtotal,
             'deliveryFee' => $delivery
         ]);
