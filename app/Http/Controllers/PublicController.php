@@ -36,7 +36,7 @@ class PublicController extends Controller
 
         // $data = $this->topQuanDatNhieuNhat();
 
-        return view('template.home', compact('access', 'data'));
+        return view('template.home', compact('access', 'dishhome','data'));
     }
 
     function menu()
