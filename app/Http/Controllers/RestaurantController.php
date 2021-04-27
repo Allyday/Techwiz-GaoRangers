@@ -55,7 +55,7 @@ class RestaurantController extends Controller
         $nameDishCat = [];
 
         foreach ($dishCategory as $k => $dish) {
-            if ($k >= 5) {
+            if ($k >= 4) {
                 break;
             }
             $id = $dish->id;
@@ -114,15 +114,22 @@ class RestaurantController extends Controller
         if (isset($_GET['page'])) {
             // get page number
             $page = $_GET['page'];
-            $rs = $publicController->search($pg=$page);
+            $rs = $publicController->search($pg = $page);
             $data = $this->convertRestaurant($rs);
             return view('template.restaurants', compact('data'));
         };
 
         // return 
         if ($request->ajax()) {
-            $view = view('template.dataRes', compact('data'))->render();
-            return response()->json(['html' => $view]);
+            if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+                
+                $rs = $publicController->search($pg = $page);
+                $data = $this->convertRestaurant($rs);
+
+                $view = view('template.dataRes', compact('data'))->render();
+                return response()->json(['html' => $view]);
+            };
         }
 
         return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
@@ -151,7 +158,7 @@ class RestaurantController extends Controller
         $rs = $publicController->search($keysearch = $ks, $tag = $tags, $cate = $cat, $price = $prices);
         $data = $this->convertRestaurant($rs);
 
-// dd($dataForm);
+        // dd($dataForm);
         // return back()
         //     ->with('dataForm', $dataForm)
         //     ->with('data', $data)

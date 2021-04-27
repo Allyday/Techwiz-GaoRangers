@@ -31,17 +31,21 @@ class PublicController extends Controller
             return (array)$value;
         }, $dishhome);
 
-        // var_dump($dishhome);
-        // dd($dishhome);
+        // var_dump($dishhome[0]);
+        // dd($dishhome[0]['photo']);
+
         // get data home page
-        $data = [
-            array(
-                'name' => 'day la ten nha hang',
-                'address' => 'day la dia chi nha hang',
-                'star' => '3',
-            )
-        ];
-        $data = $this->topQuanDatNhieuNhat();
+        $rs = $this->topQuanDatNhieuNhat()->toArray();
+
+        $rs = array_map(function ($value) {
+            return (array)$value;
+        }, $rs);
+        $data = [];
+        foreach ($rs as $i) {
+            $temp = Restaurant::where('id', $i['restaurantId'])->first();
+            array_push($data, $temp);
+        }
+        // dd($data);
 
         return view('template.home', compact('access', 'dishhome', 'data'));
     }
@@ -183,14 +187,14 @@ class PublicController extends Controller
 				    GROUP BY dish_tags.dishId
 				    HAVING GROUP_CONCAT(dish_tags.foodTagId) like '" . $temp . "')";
         }
-        
+
         // paginate
         if ($page <= 1) {
             $page = 0;
-            $sql .= "  LIMIT 5 OFFSET *$page ";
+            $sql .= "  LIMIT 8 OFFSET 0 ";
         } else {
-            $page = ($page-1)*5;
-            $sql .= " LIMIT 5  OFFSET $page ";
+            $page = ($page - 1) * 5;
+            $sql .= " LIMIT 8  OFFSET $page ";
         }
 
 
@@ -198,6 +202,7 @@ class PublicController extends Controller
 
         return $table;
     }
+
     public function topQuanDatNhieuNhat()
     {
         $table = DB::table('restaurants')
@@ -205,7 +210,7 @@ class PublicController extends Controller
             ->select(DB::raw('count(orders.id) as count, orders.restaurantId as restaurantId'))
             ->groupBy('orders.restaurantId')
             ->orderBy('count', 'desc')
-            ->limit(6)
+            ->limit(5)
             ->get();
         // dd($table);
         return $table;
