@@ -214,7 +214,7 @@ class PublicController extends Controller
             ->select(DB::raw('count(orders.id) as count, orders.restaurantId as restaurantId'))
             ->groupBy('orders.restaurantId')
             ->orderBy('count', 'desc')
-            ->limit(6)
+            ->limit(5)
             ->get();
         // dd($table);
         return $table;

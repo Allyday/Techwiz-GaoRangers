@@ -33,7 +33,7 @@
                 <td>Total money:</td>
                 <td></td>
                 @foreach ($ttorder as $row)
-                <td>{{ $row->totalDishPrice }}</td>
+                <td>$ {{ $row->totalDishPrice }}</td>
                 @endforeach
             </tr>
        </tbody>

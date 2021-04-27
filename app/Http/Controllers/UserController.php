@@ -65,7 +65,7 @@ class UserController extends Controller
     function setting($id)
     {
         $user = User::find($id);
-        $dsusers = DB::select('select users.*,user_addresses.address from users inner join user_addresses on users.id = user_addresses.userId where 1 = ? and users.id = ?', [1, session('User')]);
+        $dsusers = DB::select('select users.*, user_addresses.address from users inner join user_addresses on users.id = user_addresses.userId where 1 = ? and users.id = ?', [1, session('User')]);
         return view('view_staff.settingAuth', compact("dsusers"))->with('user', $user);
     }
 

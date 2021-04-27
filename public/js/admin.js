@@ -29,7 +29,7 @@ $(document).ready(function() {
     });
 
     $('#desc').summernote({
-        placeholder: 'Nhập thông tin chi tiết sản phẩm....'
+        placeholder: 'Enter description...'
     });
 
     $("#input-res-1").fileinput({

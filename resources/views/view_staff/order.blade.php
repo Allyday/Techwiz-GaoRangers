@@ -2,10 +2,10 @@
 
 @section('content')
 
-<h2 class="text-center display-5 mb-4">DANH SÁCH ORDER</h2>
+<h2 class="text-center display-5 mb-4">All Orders</h2>
 <div class=" mt-6">
    <div id="table_filter" class="dataTables_filter">
-      <form action="/staff/searchOrder" method="post">
+      <form action="/staff/searchOrder" method="post" style="width:37%;float:left">
          @csrf
          @method('POST')        
       <label>Search:<input type="number" name="search" class="" placeholder="" aria-controls="table"></label>
@@ -14,7 +14,7 @@
 
       </button>
       </form>
-      <form action="/staff/status/searchOrder" method="post">
+      <form action="/staff/status/searchOrder" method="post" style="width:27%;float:left">
          @csrf
          @method('POST')        
          <input type="hidden" name="search" value="2">
@@ -22,7 +22,7 @@
          </button>
       
       </form>
-      <form action="/staff/status/searchOrder" method="post">
+      <form action="/staff/status/searchOrder" method="post" style="width:16%;float:left">
          @csrf
          @method('POST') 
          <input type="hidden" name="search" value="3">
@@ -30,7 +30,7 @@
          </button>
       
       </form>
-      <form action="/staff/status/searchOrder" method="post">
+      <form action="/staff/status/searchOrder" method="post" style="width:16%;float:left">
          @csrf
          @method('POST') 
          <input type="hidden" name="search" value="4">

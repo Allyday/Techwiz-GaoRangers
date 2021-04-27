@@ -5,7 +5,7 @@
 <h2 class="text-center display-5 mb-4">DANH SÁCH LOẠI SẢN PHẨM</h2>
 <div class="row">
    <div class="w-100 text-end">
-      <a href="./admin_create_product.php" class="btn btn-primary btn-rounded ml-auto" id="btn-add" data-toggle="modal" data-target="#addModal">Thêm mới</a>
+      <a href="./admin_create_product.php" class="btn btn-primary btn-rounded ml-auto" id="btn-add" data-toggle="modal" data-target="#addModal">Add</a>
    </div>
 </div>
 

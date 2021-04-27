@@ -6,7 +6,7 @@
 <div class="row">
    <div class="w-100 text-end">
       
-       <a href="dish/create" class="btn btn-primary btn-rounded ml-auto">Thêm mới</a>
+       <a href="dish/create" class="btn btn-primary btn-rounded ml-auto">Add</a>
 
    </div>
 </div>
