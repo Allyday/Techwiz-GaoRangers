@@ -151,10 +151,13 @@ class PublicController extends Controller
         $price = $price || ""; //giá tiền;
         $page = $pg;
 
-        $sql = "SELECT restaurants.id AS r_id,restaurants.name AS r_name,
-                dishes.id as d_id, dishes.name AS d_name,
-                dish_categories.id as c_id, dish_categories.name as c_name,
-                food_tags.id as t_id
+        $sql = "SELECT restaurants.id AS r_id, 
+ 		        restaurants.name,
+                restaurants.photo,
+ 		        GROUP_CONCAT(dishes.id) arrayId,
+                GROUP_CONCAT(dishes.name) arrayName,
+                GROUP_CONCAT(dishes.price) arrayPrice,
+                GROUP_CONCAT(dishes.photo) arrayPhoto
                 FROM restaurants
                 LEFT JOIN dishes ON restaurants.id = dishes.restaurantId
                 LEFT JOIN dish_categories ON dishes.dishCategoryId = dish_categories.id
