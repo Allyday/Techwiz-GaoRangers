@@ -20,6 +20,7 @@ class PublicController extends Controller
     {
         $access = false;
         //get dish home
+
         $dishhome = DB::select('Select dishes.id,dishes.photo , dishes.name,restaurants.id as rId,restaurants.name as rName,
                        	dishes.price, dishes.description,restaurants.city as city,restaurants.district as dis,
                         restaurants.municipality as mini, restaurants.street
@@ -33,9 +34,12 @@ class PublicController extends Controller
                 'star' => '3',
             )
         ];
-
         $data = $this->topQuanDatNhieuNhat();
-
+//        $tp = [];
+//        foreach ($data as $obj){
+//            $tp = (array)$obj['restaurantId'];
+//        }
+//        dd($data);
         return view('template.home', compact('access', 'dishhome','data'));
     }
 
@@ -190,9 +194,9 @@ class PublicController extends Controller
     {
         $table = DB::table('restaurants')
             ->leftJoin('orders', 'restaurants.id', 'orders.restaurantId')
-            ->select(DB::raw('count(orders.id) as count, orders.restaurantId as restaurantId'))
+            ->select(DB::raw('orders.restaurantId as restaurantId'))
             ->groupBy('orders.restaurantId')
-            ->orderBy('count', 'desc')
+            ->orderBy('count(orders.id)', 'desc')
             ->limit(6)
             ->get();
         // dd($table);
