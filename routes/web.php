@@ -9,6 +9,8 @@ use App\Http\Controllers\DishesController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\OrderController;
+
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
@@ -17,10 +19,10 @@ Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name(
 
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
 
-// Route::get('/', function () {
+// Route::get('/restaurants', function () {
 
-//     session()->flush()('Location');
 //     dd(session()->get('Location'));
+//     session()->flush()('Location');
 //     return var_dump(session()->get('Cart'));
 // })->name('home');
 
@@ -45,7 +47,7 @@ Route::post('auth/check', [AuthController::class, 'check'])->name('auth.check');
 // check register
 Route::post('auth/save', [AuthController::class, 'save'])->name('auth.save');
 // check change password
-Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
+Route::get('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 // log out
 Route::get('auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
@@ -79,6 +81,14 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::post('/staff/editDish/{dish}', [DishesController::class, "update"]);
     Route::get('/staff/dish/create', [DishesController::class, "create"]);
     Route::get('/staff/dish/store', [DishesController::class, "store"]);
+    Route::post('/staff/deleteDish/{dish}', [DishesController::class, "destroy"]);
+    Route::get('/staff/orderStaff', [OrderController::class, "index"])->name('orderStaff');
+    Route::post('/staff/orderStatus/{order}', [OrderController::class, "update"]);
+    Route::get('/staff/{order}/orderDetail', [OrderController::class, "show"]);
+    Route::get('/user/{user}/setting', [UserController::class, 'setting'])->name('setting');
+    Route::post('/user/settingUser/{user}', [UserController::class, "editpass"]);
+    // Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
+
 });
 //test phan trang
 Route::get('/test', [\App\Http\Controllers\testController::class, 'index']);

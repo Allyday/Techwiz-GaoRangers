@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
 
 
+
 <!-- Custom styles for this template -->
 <link href="{{ asset('/css/dashboard.css') }}" rel="stylesheet">
 

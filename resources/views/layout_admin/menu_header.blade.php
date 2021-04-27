@@ -60,10 +60,7 @@
                   <div class="sidebar-submenu">
                      <ul>
                         <li>
-                           <a href="#"><i class="fas fa-clipboard-check"></i>Danh sách đơn hàng</a>
-                        </li>
-                        <li>
-                           <a href="#"><i class="fas fa-reply"></i>Trả hàng</a>
+                           <a href="{{ route('orderStaff') }}"><i class="fas fa-clipboard-check"></i>Danh sách đơn hàng</a>
                         </li>
                      </ul>
                   </div>

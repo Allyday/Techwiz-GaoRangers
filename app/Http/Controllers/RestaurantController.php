@@ -68,6 +68,7 @@ class RestaurantController extends Controller
 
     function pay_now(Request $request)
     {
+
         $array = $request->data['array'];
         $subtotal = $request->data['subtotal'];
         $user_id = session('User');
@@ -75,6 +76,8 @@ class RestaurantController extends Controller
         $status = 2;
         $delivery = 2;
         $timeCreated = date('m/d/Y h:i:s ', time());
+
+        // bi chet o day vi chua co data
         $res_id = Dish::where('id', $array[0]['id'])->first()->restaurantId;
 
         $order = Order::create([
@@ -97,7 +100,7 @@ class RestaurantController extends Controller
             };
             return 200;
         }
-        
+
         return 500;
     }
 }

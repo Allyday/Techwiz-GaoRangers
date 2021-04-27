@@ -107,7 +107,15 @@
                                             <input name="radio-stacked" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Paypal <img src="{{asset('images/paypal.jpg')}}" alt="" width="90"></span> </label>
                                     </li>
                                 </ul>
+
+
+                                {{-- check co location chua, co roi thi khong can nhap nua --}}
+                                @if (session('Location') && session('Location')!=null)
                                 <p class="text-xs-center"> <a id="pay_now" href="javascript:void(0)" class="btn btn-outline-success btn-block">Pay now</a> </p>
+                                @else
+                                <p class="text-xs-center"> <a data-toggle="modal" data-target="#locationModal" href="javascript:void(0)" class="btn btn-outline-success btn-block">Pay now</a> </p>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -231,13 +239,10 @@
         }
 
         function pay_now() {
-            var aray = JSON.parse(window.sessionStorage.getItem("cart")) || [];
-            var time_created = new Date();
-            var status = 2;
-            var user_id = <?php session('User') ?>;
-            var delivary = 2;
-
-
+            let array = JSON.parse(window.sessionStorage.getItem("cart")) || [];
+            let subtotal = parseFloat($('#cart-subtotal').text());
+            var data = {'array': array, 'subtotal': subtotal};
+            return data;
         }
 
         function postByAjax(ipdata) {
