@@ -150,7 +150,7 @@
                   </form>
 
                      <a data-toggle="modal" data-target="#staticBackdrop">
-                        Delete
+                        Delete account
                      </a>
                       
                       <!-- Modal -->

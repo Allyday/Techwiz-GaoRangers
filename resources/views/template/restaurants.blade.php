@@ -84,7 +84,7 @@
                      <div class="clearfix"></div>
                   </div>
                   <div class="widget-body">
-                     <div class="range-slider m-b-10"> <span id="ex2CurrentSliderValLabel"> Filter by price:<span id="ex2SliderVal"><strong>35</strong></span>€</span>
+                     <div class="range-slider m-b-10"> <span id="ex2CurrentSliderValLabel"> Filter by price:<span id="ex2SliderVal"><strong>35</strong></span>$</span>
                         <br>
                         <input name="price" value="" id="ex2" type="text" data-slider-min="9" data-slider-max="70" data-slider-step="2" data-slider-value="36" />
                      </div>
