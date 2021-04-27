@@ -170,21 +170,18 @@ class RestaurantController extends Controller
             'prices' => $prices,
             'tags' => $tags
         ];
-//        dd($dataForm);
+        //        dd($dataForm);
         $publicController = new PublicController();
         // get full data
         $rs = $publicController->search($keysearch = $ks, $tag = $tags, $cate = $cat, $price = $prices, 1);
-//        dd($rs);
+        //        dd($rs);
         $data = $this->convertRestaurant($rs);
-
-        // dd($dataForm);
-        // return back()
-        //     ->with('dataForm', $dataForm)
-        //     ->with('data', $data)
-        //     ->with('nameDishCat', $nameDishCat)
-        //     ->with('nameFoodTag', $nameFoodTag);
-
-        return view('template.restaurants', compact('data', 'dataForm', 'nameDishCat', 'nameFoodTag'));
+        // return view('template.restaurants', compact('data', 'dataForm', 'nameDishCat', 'nameFoodTag'));
+        return back()
+            ->with('data', $data)
+            ->with('dataForm', $dataForm)
+            ->with('nameDishCat', $nameDishCat)
+            ->with('nameFoodTag', $nameFoodTag);
     }
 
     public function searchFromHome(Request $request)

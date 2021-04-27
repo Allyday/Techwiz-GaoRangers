@@ -121,7 +121,7 @@
                   <div class="widget-body" style="border-bottom: 1px solid #eaebeb">
                      <div class="price-wrap text-xs-center">
                         <p>TOTAL</p>
-                        <h3 class="value"><strong>$ 25,49</strong></h3>
+                        <h3 class="value"><strong>$ <span id="tongtien"></span> </strong></h3>
                         <p>Free Shipping</p>
                         <a href="{{ route('checkout') }}" class="btn theme-btn btn-lg">Checkout</a>
                      </div>
@@ -165,6 +165,10 @@
       };
    </script>
    <script>
+      $( document ).ready(function() {
+         let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+         $('#tongtien').text(total(cart));
+      });
       // add to cart
       function addCart(id, name, price, image, quantity, tag) {
          // sessionStorage.clear();
@@ -194,6 +198,19 @@
             } else {
                cart[index].quantity += 1;
             }
+            test = cart;
+            window.sessionStorage.setItem("cart", JSON.stringify(test));
+            $('#tongtien').text(total(cart));
+      }
+
+      function total(test){
+         let sum = 0;
+         test.forEach(item => {
+            sum += item.gia * item.quantity;
+         });
+         return sum;
+      }
+      
 
          }
          test = cart;
