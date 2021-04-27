@@ -33,6 +33,7 @@
 <script>
     $('document').ready(function() {
         if (location.pathname.indexOf('setting') == -1)
+        location.href = '<?= route('home') ?>';
             $('#locationModal').modal('show')
     });
 </script>
