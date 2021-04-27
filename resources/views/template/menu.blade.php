@@ -88,7 +88,11 @@
                         <!-- end:col -->
                         <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info">
                            <span class="price pull-left">$ {{ $d->dishPrice }}</span>
+                           @if (session('User'))
                            <a onclick="addCart({{$d->dishId}}, '{{ $d->dishName }}', {{ $d->dishPrice }}, '{{ $d->photoDish }}', 1, '{{ $d->name }}')" class="btn btn-small btn btn-secondary pull-right">&#43;</a>
+                           @else
+                           <a href="javascript:void(0)" data-toggle="modal" data-target="#modalLogin" class="btn btn-small btn-secondary pull-right">&#43;</a>
+                           @endif
                         </div>
                      </div>
                      <!-- end:row -->
@@ -157,7 +161,7 @@
 
       // When the user scrolls the page, execute myFunction
       window.onscroll = function() {
-            myFunction()
+         myFunction()
       };
    </script>
    <script>
@@ -166,35 +170,33 @@
          $('#tongtien').text(total(cart));
       });
       // add to cart
-      function addCart(id,name,price,image, quantity, tag) {
+      function addCart(id, name, price, image, quantity, tag) {
          // sessionStorage.clear();
-            var test = [];
-            let temp = {
-                  id: id,
-                  ten:name,
-                  quantity: quantity,
-                  gia: price,
-                  img: image,
-                  tag: tag
-            };
+         var test = [];
+         let temp = {
+            id: id,
+            ten: name,
+            quantity: quantity,
+            gia: price,
+            img: image,
+            tag: tag
+         };
 
-            // console.log(temp);
+         // console.log(temp);
 
-            let cart = JSON.parse(sessionStorage.getItem("cart"));
-            // // console.log(cart);
-            if (cart == null) {
-                  cart = [];
-                  cart.push(temp);
+         let cart = JSON.parse(sessionStorage.getItem("cart"));
+         // console.log(cart);
+         if (cart == null) {
+            cart = [];
+            cart.push(temp);
+         } else {
+            let index = cart.findIndex((e) => {
+               if (e.id === id) return true;
+            });
+            if (index <= -1) {
+               cart.push(temp);
             } else {
-                  let index = cart.findIndex((e) => {
-                     if (e.id === id) return true;
-                  });
-                  if (index <= -1) {
-                     cart.push(temp);
-                  }else {
-                     cart[index].quantity += 1;
-                  }
-
+               cart[index].quantity += 1;
             }
             test = cart;
             window.sessionStorage.setItem("cart", JSON.stringify(test));
@@ -210,6 +212,11 @@
       }
       
 
+         }
+         test = cart;
+         window.sessionStorage.setItem("cart", JSON.stringify(test));
+         // console.log(test); 
+      }
    </script>
    <!-- end:Js -->
 

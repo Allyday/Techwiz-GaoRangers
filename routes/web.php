@@ -101,5 +101,4 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     // load all order (orderStatus==6)
     Route::get('get/all/past/order', [PublicController::class, 'get_past_order']);
 });
-//test phan trang
-Route::get('/test', [\App\Http\Controllers\testController::class, 'random']);
+
