@@ -89,7 +89,7 @@
                <div class="content">
                   <h5><a href="restaurant-details/1">{{$dish->name}}</a></h5>
                   <div class="product-name">{{$dish->description}}</div>
-                  <div class="price-btn-block"> <span class="price">{{($dish->price)}} VND</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
+                  <div class="price-btn-block"> <span class="price">$ {{($dish->price)}}</span> <a href="#" class="btn theme-btn-dash pull-right">Order Now</a> </div>
                </div>
                <div class="restaurant-block">
                   <div class="left">
