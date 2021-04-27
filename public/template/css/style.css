@@ -150,6 +150,10 @@ input[type=number] {
     text-align: center;
 }
 
+.text-end {
+    text-align: end !important;
+}
+
 .btn.btn-small.btn-secondary.quantity-btn {
     margin-bottom: 3px;
 }
