@@ -21,10 +21,10 @@
          <div class="row">
             <div class="col-2  m-auto">
                <div class="d-flex justify-content-between flex-column">
-                  <a href="./day" class="fw-bold btn btn-primary">Theo ngày</a>
-                  <a href="./month" class="fw-bold btn btn-secondary">Theo tháng</a>
-                  <a href="./quarter" class="fw-bold btn btn-warning">Theo quý</a>
-                  <a href="./year" class="fw-bold btn btn-success">Theo năm</a>
+                  <a href="./day" class="fw-bold btn btn-primary">Daily</a>
+                  <a href="./month" class="fw-bold btn btn-secondary">Monthly</a>
+                  <a href="./quarter" class="fw-bold btn btn-warning">Quarterly</a>
+                  <a href="./year" class="fw-bold btn btn-success">Yearly</a>
                </div>
             </div>
             <div class="col-10">
