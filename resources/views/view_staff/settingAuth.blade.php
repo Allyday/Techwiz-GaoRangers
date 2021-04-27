@@ -142,16 +142,16 @@
                   </div>
                   <div class="row" style="text-align:center;">
                      <div class="col-md-12">
-                        <p> <button style="padding: 10px 30px" type="submit" class="btn btn-danger">Save changes</button> </p>
+                        <p> <button style="padding: 10px 30px;width:200px" type="submit" class="btn btn-primary">Save changes</button> </p>
                      </div>
                      <div class="col-sm-12">
-                        <a style="padding:10px" href="{{ route('home', ['request'=>true]) }}" class="">Cancel</a>
+                        <a style="padding:10px;margin:15px;width:200px" class="btn btn-danger" href="{{ route('home', ['request'=>true]) }}" class="">Cancel</a>
                      </div>
                   </form>
 
-                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                        Launch static backdrop modal
-                      </button>
+                     <a data-toggle="modal" data-target="#staticBackdrop">
+                        Delete
+                     </a>
                       
                       <!-- Modal -->
                       <div id="staticBackdrop" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">

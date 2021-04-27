@@ -12,9 +12,9 @@
             </div>
          </div>
          <div class="sidebar-header">
-            <div class="user-pic">
+            {{-- <div class="user-pic">
                <img class="img-responsive img-rounded" src="../assets/img/user.png" alt="User picture">
-            </div>
+            </div> --}}
             <div class="user-info">
                <span class="user-name">
                   <strong>Administrator</strong>
@@ -45,68 +45,31 @@
          <div class="sidebar-menu">
             <ul>
                <li class="header-menu">
-                  <span>QUẢN LÝ HỆ THỐNG</span>
+                  <span>RESTAURANT MANAGER
+                  </span>
                </li>
                <li>
-                  <a href="{{ route('adminaccount') }}">
-                     <i class="fas fa-users"></i> Quản lý tài khoản
-                  </a>
-               </li>
-               <li class="sidebar-dropdown">
-                  <a href="#">
-                     <i class="fas fa-clipboard-list"></i>
-                     <span>Orders</span>
-                  </a>
-                  <div class="sidebar-submenu">
-                     <ul>
-                        <li>
-                           <a href="{{ route('orderStaff') }}"><i class="fas fa-clipboard-check"></i>All Orders</a>
-                        </li>
-                     </ul>
-                  </div>
-               </li>
-               <li>
-                  <a href="./admin_customer.php">
-                     <i class="fas fa-user"></i>
-                     <span>Customers</span>
-                  </a>
-               </li>
-               <li class="sidebar-dropdown">
-                  <a href="javascript: void(0)">
-                     <i class="fab fa-shopify"></i>
-                     <span>Items</span>
-                  </a>
-                  <div class="sidebar-submenu">
-                     <ul>
-                        <li>
-                           <a href="{{ route('dishes') }}"><i class="fas fa-shopping-basket"></i>Menu</a>
-                        </li>
-                        <li>
-                           {{-- <a href="{{ route('view_staff.type') }}"><i class="fas fa-layer-group"></i>Loại sản phẩm</a> --}}
-                        </li>
-                        <li>
-                           <a href="./admin_productsInStore.php"><i class="fas fa-store"></i>Kho</a>
-                        </li>
-                     </ul>
-                  </div>
-               </li>
-
-               <li class="sidebar-dropdown">
-                  <a href="javascript: void(0)">
+                  <a href="{{ route('staff', 'day') }}">
                      <i class="fas fa-chart-line"></i>
-                     <span>Reports & Statistics</span>
+                     <span>Dashboard</span>
                   </a>
-
-                  <div class="sidebar-submenu">
-                     <ul>
-                        <li>
-                           <a href="javascript: void(0)"><i class="fas fa-calendar-day"></i>Sales Report</a>
-                        </li>
-                        <li>
-                           <a href="javascript: void(0)"><i class="fas fa-store"></i>Báo cáo kho</a>
-                        </li>
-                     </ul>
-                  </div>
+               </li>
+               <li>
+                  <a href="{{ route('orderStaff') }}">
+                     <i class="fas fa-clipboard-list"></i>
+                     <span>All Orders</span>
+                  </a>
+               </li>
+               <li>
+                  <a href="{{ route('dishes') }}">
+                     <i class="fas fa-shopping-basket"></i>
+                     <span>Manage Menu</span>
+                  </a>
+               </li>
+               <li>
+                  <a href="{{ route('setting', session('User')) }}">
+                     <i class="fas fa-users"></i> Account Settings
+                  </a>
                </li>
 
                <li>

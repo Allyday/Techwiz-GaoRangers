@@ -1,7 +1,7 @@
 @extends('layout_admin.base')
 
 @section('content')
-<h2 class="text-center">CẬP NHẬT SẢN PHẨM</h2>
+<h2 class="text-center">UPDATE DISH</h2>
 
 <div class="panel-form my-5">
     <form action="/staff/editDish/{{$dish->id}}" method="post">
@@ -47,13 +47,13 @@
             </div>
             <!-- Text area editor -->
             <div class="mb-3">
-                <label for="desc" class="form-label fw-bold">Chi tiết sản phẩm</label>
+                <label for="desc" class="form-label fw-bold">Detailed dishes</label>
                 <textarea id="desc" name="description" required ></textarea>
             </div>
             <div class="mb-3">
                 <div class="row mt-3">
                     <div class="col">
-                        <label for="import_price" class="form-label fw-bold">Giá bán</label>
+                        <label for="import_price" class="form-label fw-bold">Price</label>
                         <input name="price" type="number" class="form-control" id="price" placeholder="Giá bán" required value="{{ $dish->price }}">
                     </div>
                 </div>
@@ -65,8 +65,8 @@
             <hr class="my-4 py-1">
             <div class="row">
                 <div class="text-end">
-                    <a href="./dish"  class="btn btn-danger fw-bold" name="cancel">Hủy</a>
-                    <button type="submit" class="btn btn-success fw-bold" id="btn-update">Cập nhật sản phẩm</a>
+                    <a href="./dish"  class="btn btn-danger fw-bold" name="cancel">Cancel</a>
+                    <button type="submit" class="btn btn-success fw-bold" id="btn-update">Update dish</a>
                 </div>
             </div>
         </div>

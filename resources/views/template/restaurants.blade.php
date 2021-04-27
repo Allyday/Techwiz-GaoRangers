@@ -54,7 +54,7 @@
                         @csrf
 
                         <div class="input-group">
-                           <input name="keysearch" type="text" class="form-control search-field" placeholder="Search your favorite food"> <span class="input-group-btn">
+                           <input name="keysearch" type="text" class="form-control search-field" placeholder="Search your favorite food" value="{{ isset($_GET['search'])?$_GET['search']:""}}"> <span class="input-group-btn">
                               <button class="btn btn-secondary search-btn" type="submit"><i class="fa fa-search"></i></button>
                            </span>
                         </div>
@@ -160,7 +160,7 @@
            type: 'get',
            beforeSend: ()=>{
               $('#loader-spinner').show();
-           } 
+           }
          })
          .done( (data) => {
             if(data.html == " "){
@@ -169,23 +169,23 @@
             }
             $('#loader-spinner').hide();
             $('#res-data').append(data.html);
-            
+
          })
          .fail( (jqXHR, ajaxOptions, thrownError) => {
             $('#loader-spinner').html('Server not responding....');
          })
       }
-   
-   // event touch bottom 
+
+   // event touch bottom
       var page = 1;
-   
+
       $(window).scroll( () => {
-   
+
          if( $(window).scrollTop() + $(window).height() >= $(document).height() - 100 ){
             page++;
             load_more_data(page);
          }
       })
-   
+
    </script>
    @endsection

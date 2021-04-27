@@ -23,7 +23,7 @@ class AdminController extends Controller
         $hoanthanh = DB::select('SELECT COUNT(id) as c from orders WHERE orderStatus = ? or orderStatus = ? and restaurantId = (SELECT restaurantId from users WHERE id = ?)', [6,7,session('User')]);
         $bihuy = DB::select('SELECT COUNT(id) as c from orders WHERE orderStatus = ? and restaurantId = (SELECT restaurantId from users WHERE id = ?)', [8,session('User')]);
         $tuchoi = DB::select('SELECT SUM(totalDishPrice) as c from orders WHERE restaurantId = (SELECT restaurantId from users WHERE id = ?)', [session('User')]);
-        $khachhang = DB::select('SELECT COUNT(userId) as c from orders WHERE restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY userId', [session('User')]);
+        $khachhang = DB::select('SELECT COUNT(userId) as c from orders WHERE restaurantId = (SELECT restaurantId from users WHERE id = ?) GROUP BY restaurantId', [session('User')]);
 
   
         return view('view_admin.index', compact('thongke', 'tuchoi', 'bihuy', 'hoanthanh', 'khachhang'));

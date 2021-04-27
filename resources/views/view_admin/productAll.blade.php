@@ -6,7 +6,7 @@
 <div class="row">
     <div class="w-100 text-end">
        
-        <a href="./admin_createProduct.php" class="btn btn-primary btn-rounded ml-auto" id="btn-add">Thêm mới</a>
+        <a href="./admin_createProduct.php" class="btn btn-primary btn-rounded ml-auto" id="btn-add">Add</a>
 
     </div>
 </div>
