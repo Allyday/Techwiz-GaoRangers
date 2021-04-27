@@ -29,6 +29,7 @@ class RestaurantController extends Controller
         // input obj from table db
         $array = $this->convertObjToArray($ar);
         $data = [];
+
         foreach ($array as $item) {
             $res = Restaurant::where('id', $item['r_id'])->first();
             $id = $res['id'];
@@ -37,15 +38,27 @@ class RestaurantController extends Controller
             $stars = (int)$res['stars'];
             $photo = $res['photo'];
             $address = $res['street'] . ' ' . $res['municipality'] . ' ' . $res['district'] . ' ' . $res['city'];
+
+            $arrayName = explode(',', $item['arrayName']);
+            $arrayPrice = explode(',', $item['arrayPrice']);
+            $arrayPhoto = explode(',', $item['arrayPhoto']);
+            $arrayId = explode(',', $item['arrayId']);
+            // dd($item);
+
             $wrap = array(
                 'id' => $id,
                 'name' => $name,
                 'stars' => $stars,
                 'address' => $address,
                 'photo' => $photo,
+                'arrayName'=>$arrayName,
+                'arrayPrice'=>$arrayPrice,
+                'arrayPhoto'=>$arrayPhoto,
+                'arrayId'=>$arrayId,
             );
             array_push($data, $wrap);
         }
+        // var_dump($array[0]['arrayId']);
         return $data;
     }
 
@@ -125,8 +138,6 @@ class RestaurantController extends Controller
             // dd($data);
             return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
         };
-
-
 
         if (isset($_GET['search'])) {
             // get data with keysearch
