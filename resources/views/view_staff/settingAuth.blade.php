@@ -53,7 +53,7 @@
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
                            </div>
-                           <input name="mail" value="{{ $user->mail }}" required type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="{{ $user->mail }}" @error('mail')style=" border-color:red;" @enderror> <small id="emailHelp" class="form-text text-muted">We"ll never share your email with anyone else.</small>
+                           <input name="mail" value="{{ $user->mail }}" required type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="{{ $user->mail }}" @error('mail')style=" border-color:red;" @enderror> <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
 
                         {{-- <div class="form-group col-md-12">
@@ -102,7 +102,7 @@
                               <p class="text-danger">{{ $message }}</p>
                               @enderror
                            </div>
-                           <input name="phoneNumber" value="{{ $user->phoneNumber }}" required class="form-control" type="text" placeholder="{{ $user->phoneNumber }}" id="Phonenumber" @error('phoneNumber')style=" border-color:red;" @enderror> <small class="form-text text-muted">We"ll never share your phone number with anyone else.</small>
+                           <input name="phoneNumber" value="{{ $user->phoneNumber }}" required class="form-control" type="text" placeholder="{{ $user->phoneNumber }}" id="Phonenumber" @error('phoneNumber')style=" border-color:red;" @enderror> <small class="form-text text-muted">We'll never share your phone number with anyone else.</small>
                         </div>
                         <div class="form-group col-md-12">
                            <div style="display: flex; justify-content: space-between;">
