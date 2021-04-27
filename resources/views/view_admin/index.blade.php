@@ -5,19 +5,31 @@
 
 
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-         <h2 class="text-center display-5 mb-4 font-weight-bold">THỐNG KÊ BÁN HÀNG</h2>
-         @foreach ($hoanthanh as $r)
-            <p>Hoàn thành: {{ $r->c }}</p>
-         @endforeach
-         @foreach ($tuchoi as $r)
-         <p>Từ chối: {{ $r->c }}</p>
-      @endforeach
-      @foreach ($bihuy as $r)
-      <p>bị hủy: {{ $r->c }}</p>
-   @endforeach
-   @foreach ($khachhang as $r)
-      <p>số khách hàng đã order: {{ $r->c }}</p>
-   @endforeach
+<h2 class="text-center display-5 mb-4 font-weight-bold">Statistics & Reports</h2>
+@foreach ($khachhang as $r)
+<div class="report-number-container text-center">
+   <div class="report-number">{{ $r->c }}</div>
+   <p class="report-label">Unique Customers</p>
+</div>
+@endforeach
+@foreach ($hoanthanh as $r)
+<div class="report-number-container text-center">
+   <div class="report-number">{{ $r->c }}</div>
+   <p class="report-label">Completed Orders</p>
+</div>
+@endforeach
+@foreach ($tuchoi as $r)
+<div class="report-number-container text-center">
+   <div class="report-number">{{ $r->c }}</div>
+   <p class="report-label">Total Revenue</p>
+</div>
+@endforeach
+@foreach ($bihuy as $r)
+<div class="report-number-container text-center">
+   <div class="report-number">{{ $r->c }}</div>
+   <p class="report-label">Cancelled Orders</p>
+</div>
+@endforeach
          <div class="row">
             <div class="col-2  m-auto">
                <div class="d-flex justify-content-between flex-column">
