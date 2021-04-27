@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dish;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -147,5 +148,10 @@ class PublicController extends Controller
             ->get();
         // dd($table);
         return $table;
+    }
+    public function dishHome(){
+        $dish1 = DB::table('dishes')->find(88);
+        $dish2 = DB::table('dishes')->find(89);
+        $dish3 = DB::table('dishes')->find(90);
     }
 }
