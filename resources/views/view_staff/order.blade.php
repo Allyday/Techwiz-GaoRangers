@@ -18,7 +18,7 @@
          @csrf
          @method('POST')        
          <input type="hidden" name="search" value="2">
-         <button type="submit" class="btn btn-warning fw-bold" id="btn-update">Waiting for reception
+         <button type="submit" class="btn btn-warning fw-bold" id="btn-update">Pending
          </button>
       
       </form>
@@ -110,7 +110,7 @@
             {
                switch ($id_status) {
                   case 2:
-                        return '<span class="btn-warning p-1 ">Waiting for reception</span>';
+                        return '<span class="btn-warning p-1 ">Pending</span>';
                         break;
                   case 3:
                         return '<span class="btn-secondary p-1 ">Cooking</span>';
