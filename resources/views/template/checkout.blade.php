@@ -80,7 +80,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Cart Subtotal</td>
-                                                <td>$ <span id="cart-subtotal" class="text-end">29.00</span></td>
+                                                <td class="text-end">$ <span id="cart-subtotal">29.00</span></td>
                                             </tr>
                                             <tr>
                                                 <td>Delivery Fee</td>
