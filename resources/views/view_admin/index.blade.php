@@ -6,12 +6,11 @@
 
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <h2 class="text-center display-5 mb-4 font-weight-bold">Statistics & Reports</h2>
-<div class="d-flex justify-content-between flex-column" style="width:100%;float:left">
-   <div style="width: 100%;float:left;height:50px"></div>
-   <a href="./day" class="fw-bold btn btn-primary" style="width: 15%;float: left;">Daily</a>
-   <a href="./month" class="fw-bold btn btn-secondary" style="width: 15%;float: left;">Monthly</a>
-   <a href="./quarter" class="fw-bold btn btn-warning" style="width: 15%;float: left;">Quarterly</a>
-   <a href="./year" class="fw-bold btn btn-success" style="width: 15%;float: left;">Yearly</a>
+<div class="d-flex justify-content-between flex-row" style="width:100%;float:left">
+   <a href="./day" class="fw-bold btn btn-primary" style="width: 20%;float: left;">Daily</a>
+   <a href="./month" class="fw-bold btn btn-secondary" style="width: 20%;float: left;">Monthly</a>
+   <a href="./quarter" class="fw-bold btn btn-warning" style="width: 20%;float: left;">Quarterly</a>
+   <a href="./year" class="fw-bold btn btn-success" style="width: 20%;float: left;">Yearly</a>
 </div>
          <div class="row">
             <div class="col-2  m-auto">
