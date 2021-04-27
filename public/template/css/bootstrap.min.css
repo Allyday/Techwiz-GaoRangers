@@ -4019,7 +4019,7 @@ tbody.collapse.in {
 }
 
 .custom-checkbox .custom-control-input:indeterminate~.custom-control-indicator {
-    background-color: #0074d9;
+    /* background-color: #0074d9; */
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4'%3E%3Cpath stroke='#fff' d='M0 2h4'/%3E%3C/svg%3E")
 }
 

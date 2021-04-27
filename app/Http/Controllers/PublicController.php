@@ -34,7 +34,7 @@ class PublicController extends Controller
             )
         ];
 
-        // $data = $this->topQuanDatNhieuNhat();
+        $data = $this->topQuanDatNhieuNhat();
 
         return view('template.home', compact('access', 'dishhome','data'));
     }
@@ -52,6 +52,11 @@ class PublicController extends Controller
 
         // get order dish
         // $order_dish = OrderDish::where('orderId', $order_id)->all();
+
+        // $data = [
+        //     'order'=> $order,
+        //     'order_dish'=> $order_dish,
+        // ];
 
         return view('template.order-history');
     }
@@ -169,7 +174,7 @@ class PublicController extends Controller
                     SELECT dish_tags.dishId
 				    FROM dish_tags
 				    GROUP BY dish_tags.dishId
-				    HAVING GROUP_CONCAT(dish_tags.foodTagId) = '" . $temp . "')";
+				    HAVING GROUP_CONCAT(dish_tags.foodTagId) like '" . $temp . "')";
         }
         //sap xep theo so sao
         if ($xeptheosao = 1) {
@@ -190,7 +195,7 @@ class PublicController extends Controller
             ->orderBy('count', 'desc')
             ->limit(6)
             ->get();
-        dd($table);
+        // dd($table);
         return $table;
     }
 }
