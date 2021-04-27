@@ -129,7 +129,11 @@
                                                 <p style="font-size: 14px">Deliver to:
                                                     <b class="delivery-address">{{ $data['order']->address }}</b>
                                                 </p>
+
+                                                @if($data['order']['orderStatus'] <=2 ) 
                                                 <a href="javascript:void(0)" id="cancel-btn">Cancel Order</a>
+                                                @endif
+
                                             </td>
                                         </tr>
                                     </tbody>

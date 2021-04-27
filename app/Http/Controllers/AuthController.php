@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\UserAddress;
 use App\Rules\StaffRule;
 use App\Http\Requests\ValidateRegisterRequest;
 
@@ -43,10 +44,21 @@ class AuthController extends Controller
 
                     // lay user id tim trong user address
                     // neu co thi them vao session
+                    $user_address = UserAddress::where('userId', $user->id)->first();
+                    if ($user_address) {
+                        $request->session()->put('Location', $user_address->address);
+                    }
+
                     $request->session()->put('User', $user->id);
                     return redirect(route('home'));
                 }
                 // staff
+                // lay user id tim trong user address
+                // neu co thi them vao session
+                $user_address = UserAddress::where('userId', $user->id)->first();
+                if ($user_address) {
+                    $request->session()->put('Location', $user_address->address);
+                }
                 $request->session()->put('User', $user->id);
                 $request->session()->put('User_type', $user->type);
 

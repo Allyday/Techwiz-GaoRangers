@@ -42,7 +42,7 @@
    <section class="restaurants-page">
       <div class="container">
          <div class="row">
-            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-3">
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-3" style="margin-bottom:20px">
                <div class="sidebar clearfix m-b-20">
                   <div class="main-block">
                      <div class="sidebar-title white-txt">
@@ -160,7 +160,11 @@
            type: 'get',
            beforeSend: ()=>{
               $('#loader-spinner').show();
-           }
+           },error: function (xhr, ajaxOptions, thrownError) {
+               // console.log(xhr.status);
+               // console.log(thrownError);
+               // return;
+            }
          })
          .done( (data) => {
             if(data.html == " "){

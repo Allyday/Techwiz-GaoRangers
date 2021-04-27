@@ -98,8 +98,12 @@
                             <!--cart summary-->
                             <div class="delivery-address-container">
                                 <p style="font-size: 14px">Deliver to:
-                                    <b class="delivery-address">8 Ton That Thuyet, My Dinh, Cau Giay, Hanoi, Vietnam</b>
+                                    @if (session('Location') && session('Location')!=null)
+                                    <b class="delivery-address">
+                                        {{ session('Location') }}
+                                    </b>
                                     <a data-toggle="modal" data-target="#locationModal" href="javascript:void(0)">Change</a>
+                                    @endif
                                 </p>
 
                                 {{-- check co location chua, co roi thi khong can nhap nua --}}
@@ -120,81 +124,109 @@
     {{-- script --}}
     <script src="{{ asset('template/js/jquery.js') }}"></script>
     <script>
-        var aray = JSON.parse(window.sessionStorage.getItem("cart")) || [];
+        $( document ).ready(function() {
+            var array = JSON.parse(window.sessionStorage.getItem("cart")) || [];
 
-        // assign array js to html table
-        aray.map((e) => {
-            var row = `<div class="food-item">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-lg-5">
-                                    <div class="rest-logo pull-left">
-                                        <a class="restaurant-logo pull-left" href="javascript:voi(0)"><img style="width:100px;height:80px"  src="${e.img}" alt="Food logo"></a>
-                                    </div>
-                                    <div class="rest-descr">
-                                        <h6><a href="#">${e.ten}</a></h6>
-                                        <p>${e.tag}</p>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                    <span class="price pull-left item-price">$ ${parseFloat(e.gia)}</span>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
-                                    <div class="btn btn-small btn-secondary quantity-btn dec">&#8722;</div>
-                                    <div style="display:none;" class="id">${e.id}</div>
-                                    <input class="quantity-input" type="number" class="cart-item-quantity" value="${e.quantity}">
-                                    <div class="btn btn-small btn-secondary quantity-btn inc">&#43;</div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                    <span class="price pull-left item-total">$ 9.50</span>
-                                </div>
-                            </div>
-                        </div> `;
+        if(array.length==0){
+            location.href = '<?= route('restaurants') ?>';
+        }
 
-
-            document.getElementById("myBody").innerHTML += row;
-
-        });
-
-
-        $('.quantity-input').on('change', function() {
-            var $input = $(this);
-            var newQuantity = $input.val();
-
-            // Don't allow input below 1
-            if (newQuantity < 1) {
-                $input.val(1);
-                newQuantity = 1;
-            }
-
-            updateItemTotal($input, newQuantity);
+            console.log(array);
+            checkNull();
+            innerHtml();
             updateCartTotal();
-        });
+            $('.quantity-btn').on('click', function() {
+                var $button = $(this);
+                var oldQuantity = $button.parent().find('input').val();
 
-        $('.quantity-btn').on('click', function() {
-            var $button = $(this);
-            var oldQuantity = $button.parent().find('input').val();
-
-            if ($button.text() == '+') {
-                var newQuantity = parseFloat(oldQuantity) + 1;
-            } else {
-                // Don't allow decrementing below zero
-                if (oldQuantity > 1) {
-                    var newQuantity = parseFloat(oldQuantity) - 1;
+                if ($button.text() == '+') {
+                    var newQuantity = parseFloat(oldQuantity) + 1;
                 } else {
+                    // Don't allow decrementing below zero
+                    if (oldQuantity > 1) {
+                        var newQuantity = parseFloat(oldQuantity) - 1;
+                    } else {
+                        newQuantity = 1;
+                    }
+                }
+
+                // update item UI
+                $button.parent().find('input').val(newQuantity);
+
+                updateItemTotal($button, newQuantity);
+                updateCartTotal();
+                checkNull();
+
+                let id = parseInt($button.parent().find('div.id').text());
+                updateQuantity(id, newQuantity);
+
+            });
+
+            $('.quantity-input').on('change', function() {
+                var $input = $(this);
+                var newQuantity = $input.val();
+
+                // Don't allow input below 1
+                if (newQuantity < 1) {
+                    $input.val(1);
                     newQuantity = 1;
                 }
-            }
 
-            // update item UI
-            $button.parent().find('input').val(newQuantity);
+                updateItemTotal($input, newQuantity);
+                updateCartTotal();
+                checkNull();
+            });
 
-            updateItemTotal($button, newQuantity);
-            updateCartTotal();
-
-            let id = parseInt($button.parent().find('div.id').text());
-            updateQuantity(id, newQuantity);
-
+            
         });
+
+        function checkNull(){
+            var array = JSON.parse(window.sessionStorage.getItem("cart")) || [];
+            if(array.length == 0){
+                $('#cart-subtotal').text('0');
+                $('#cart-total').html('0');
+                $('#delivery-fee').html('0');
+            }
+        }
+
+        function innerHtml(){
+            var aray = JSON.parse(window.sessionStorage.getItem("cart")) || [];
+        // assign array js to html table
+            aray.map((e) => {
+                var row = `<div class="food-item">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-lg-5">
+                                        <div class="rest-logo pull-left">
+                                                <a class="restaurant-logo pull-left" href="javascript:voi(0)"><img style="width:100px;height:80px"  src="${e.img}" alt="Food logo"></a>
+                                        </div>
+                                        <div class="rest-descr">
+                                            <h6><a href="#">${e.ten}</a></h6>
+                                            <p>${e.tag}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                        <span class="price pull-left item-price">$ ${parseFloat(e.gia)}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 item-cart-info">
+                                        <div class="btn btn-small btn-secondary quantity-btn dec">&#8722;</div>
+                                        <div style="display:none;" class="id">${e.id}</div>
+                                        <input class="quantity-input" type="number" class="cart-item-quantity" value="${e.quantity}">
+                                        <div class="btn btn-small btn-secondary quantity-btn inc">&#43;</div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
+                                        <span class="price pull-left item-total">$ ${parseFloat(parseFloat(e.gia) * e.quantity)}</span>
+                                        <i onclick="removeCart(${e.id})" class="fa fa-times pull-right delete-item-btn" style="font-size: 30px"></i>
+                                    </div>
+                                </div>
+                            </div> `;
+
+                document.getElementById("myBody").innerHTML += row;
+            });
+
+        }
+       
+
+        
 
         function updateItemTotal($element, quantity) {
             var price = +$element.parent().parent().find('.item-price').html().split(' ')[1];
@@ -231,6 +263,21 @@
             $('#cart-total').html(`$${cartTotal}`);
         }
 
+        function removeCart(id) {
+            let array = JSON.parse(window.sessionStorage.getItem("cart")) || [];
+            let index = array.findIndex((e) => {
+                if (e.id == id) return true;
+            });
+            array.splice(index, 1);
+            sessionStorage.setItem("cart", JSON.stringify(array));
+            updateCartTotal();
+            document.getElementById("myBody").innerHTML = "";
+            // location.reload();
+            innerHtml();
+            checkNull();
+            console.log(array);
+        }
+
         function pay_now() {
             let array = JSON.parse(window.sessionStorage.getItem("cart")) || [];
             let subtotal = parseFloat($('#cart-subtotal').text());
@@ -249,6 +296,7 @@
                 success: function(res) {
                     console.log(res);
                     if(res==200){
+                        sessionStorage.removeItem('cart');
                         location.href = '<?= route('order-history') ?>';
                     }
                 }
@@ -256,7 +304,6 @@
         }
         // add order
         $('#pay_now').on('click', () => {
-            // console.log(pay_now());
             postByAjax(pay_now());
 
         })
