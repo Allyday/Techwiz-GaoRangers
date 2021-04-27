@@ -26,10 +26,11 @@
                      <figure><img src="http://placehold.it/240x140" alt="Profile Image"></figure>
                   </div>
                </div>
+               @foreach ($res as $r)
                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 profile-desc">
                   <div class="pull-left right-text white-txt">
-                     <h6><a href="#">Maenaam Thai Restaurant</a></h6> <a class="btn btn-small btn-green">Open</a>
-                     <p>Burgers, American, Sandwiches, Fast Food, BBQ</p>
+                     <h6><a href="#">{{ $r->name }}</a></h6> <a class="btn btn-small btn-green">Open</a>
+                     <p>{{ $r->city }}, {{ $r->district }}, {{ $r->municipality }}, {{ $r->street }}</p>
                      <ul class="nav nav-inline">
                         <li class="nav-item"> <a class="nav-link active" href="#"><i class="fa fa-check"></i> Min $ 10,00</a> </li>
                         <li class="nav-item"> <a class="nav-link" href="#"><i class="fa fa-motorcycle"></i> 30 min</a> </li>
@@ -45,6 +46,8 @@
                      </ul>
                   </div>
                </div>
+               @endforeach
+               
             </div>
          </div>
       </div>

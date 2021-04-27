@@ -6,7 +6,17 @@
 
 <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <h2 class="text-center display-5 mb-4 font-weight-bold">Statistics & Reports</h2>
-@foreach ($khachhang as $r)
+<div class="d-flex justify-content-between flex-column" style="width:100%;float:left">
+   <div style="width: 100%;float:left;height:50px"></div>
+   <a href="./day" class="fw-bold btn btn-primary" style="width: 15%;float: left;">Daily</a>
+   <a href="./month" class="fw-bold btn btn-secondary" style="width: 15%;float: left;">Monthly</a>
+   <a href="./quarter" class="fw-bold btn btn-warning" style="width: 15%;float: left;">Quarterly</a>
+   <a href="./year" class="fw-bold btn btn-success" style="width: 15%;float: left;">Yearly</a>
+</div>
+         <div class="row">
+            <div class="col-2  m-auto">
+               
+               @foreach ($khachhang as $r)
 <div class="report-number-container text-center">
    <div class="report-number">{{ $r->c }}</div>
    <p class="report-label">Unique Customers</p>
@@ -20,7 +30,7 @@
 @endforeach
 @foreach ($tuchoi as $r)
 <div class="report-number-container text-center">
-   <div class="report-number">{{ $r->c }}</div>
+   <div class="report-number">${{ $r->c }}</div>
    <p class="report-label">Total Revenue</p>
 </div>
 @endforeach
@@ -30,14 +40,6 @@
    <p class="report-label">Cancelled Orders</p>
 </div>
 @endforeach
-         <div class="row">
-            <div class="col-2  m-auto">
-               <div class="d-flex justify-content-between flex-column">
-                  <a href="./day" class="fw-bold btn btn-primary">Daily</a>
-                  <a href="./month" class="fw-bold btn btn-secondary">Monthly</a>
-                  <a href="./quarter" class="fw-bold btn btn-warning">Quarterly</a>
-                  <a href="./year" class="fw-bold btn btn-success">Yearly</a>
-               </div>
             </div>
             <div class="col-10">
                <div class=" mt-6">

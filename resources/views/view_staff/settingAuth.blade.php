@@ -137,6 +137,8 @@
                         @endforeach
                      </div>
 
+
+
                   </div>
                   <div class="row" style="text-align:center;">
                      <div class="col-md-12">
@@ -145,9 +147,32 @@
                      <div class="col-sm-12">
                         <a style="padding:10px" href="{{ route('home', ['request'=>true]) }}" class="">Cancel</a>
                      </div>
+                  </form>
 
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                        Launch static backdrop modal
+                      </button>
+                      
+                      <!-- Modal -->
+                      <div id="staticBackdrop" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete the account?</h5>
+                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <form action="{{ route('destroyUser', $user->id) }}" method="POST">
+                                       @csrf
+                                       @method('POST')
+                                    <button type="submit" class="btn btn-danger">Sure</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                   </div>
-               </form>
                <!-- /setting -->
             </div>
 

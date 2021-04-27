@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dish = User::where('id',$id)
+        $user = User::where('id',$id)
             ->update([
                 'name'=>$request->input('name'),
                 'dishCategoryId'=>$request->input('categoryId'),
@@ -55,7 +55,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        session()->flush();
+        $delete = DB::delete('delete from users where id = ?', [$id]);  
+        $deleteAddress = DB::delete('delete from user_addresses where userId = ?', [$id]); 
+        return redirect('/');
+
     }
 
     function setting($id)

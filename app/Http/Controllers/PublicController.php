@@ -50,9 +50,10 @@ class PublicController extends Controller
         return view('template.home', compact('access', 'dishhome', 'data'));
     }
 
-    function menu()
+    function menu($id)
     {
-        return view('template.menu');
+        $res = DB::select('select * from restaurants where id = ?', [$id]);
+        return view('template.menu', 'res');
     }
 
     function history()
