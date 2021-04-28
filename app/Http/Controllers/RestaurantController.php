@@ -118,9 +118,18 @@ class RestaurantController extends Controller
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
                 $page = (int)$page;
-                // dd($page);
+
+                if (isset($_GET['search'])) {
+                    $keysearch = $_GET['search'];
+                    $rs = $publicController->search($keysearch, [], 0, 10, $page);
+                    $data = $this->convertRestaurant($rs);
+
+                    $view = view('template.dataRes', compact('data'))->render();
+                    return response()->json(['html' => $view]);
+                };
+
+
                 $rs = $publicController->search('', [], 0, 10, $page);
-                // dd($rs);
                 $data = $this->convertRestaurant($rs);
 
                 $view = view('template.dataRes', compact('data'))->render();
@@ -129,28 +138,51 @@ class RestaurantController extends Controller
         }
 
         if (isset($_GET['page'])) {
-            // get page number
             $page = $_GET['page'];
             $page = (int)$page;
-            // dd($page);
+
+            if (isset($_GET['search'])) {
+                $keysearch = $_GET['search'];
+                $rs = $publicController->search($keysearch, [], 0, 10, $page);
+                $data = $this->convertRestaurant($rs);
+                if (count($data) == 0) {
+                    $rs = $publicController->search('', [], 0, 10, $page);
+                    $data = $this->convertRestaurant($rs);
+                }
+
+                return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
+            };
+
             $rs = $publicController->search('', [], 0, 10, $page);
             $data = $this->convertRestaurant($rs);
-            // dd($data);
             return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
         };
 
         if (isset($_GET['search'])) {
-            // get data with keysearch
             $keysearch = $_GET['search'];
-            $rs = $publicController->search($keysearch, [], '', '', '', 1);
+
+            if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+                $page = (int)$page;
+
+                $rs = $publicController->search($keysearch, [], 0, 10, $page);
+                $data = $this->convertRestaurant($rs);
+
+                return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
+            }
+
+            $rs = $publicController->search($keysearch, [], 0, 10, 1);
             $data = $this->convertRestaurant($rs);
+            if (count($data) == 0) {
+                $rs = $publicController->search('', [], 0, 10, 1);
+                $data = $this->convertRestaurant($rs);
+            }
+            return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
         };
 
 
         $rs = $publicController->search();
-        // convert data obj to array
         $data = $this->convertRestaurant($rs);
-
 
         return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
     }
@@ -160,28 +192,34 @@ class RestaurantController extends Controller
         // get category and tag
         $nameDishCat = $this->get_dish_cat();
         $nameFoodTag = $this->get_food_tag();
-        $ks = $request->keysearch;
-        $cat = $request->cat;
-        $prices = $request->price;
-        $tags = $request->tag;
-        $dataForm = [
-            'ks' => $ks,
-            'cat' => $cat,
-            'prices' => $prices,
-            'tags' => $tags
-        ];
-        //        dd($dataForm);
+
+        $ks = '';
+        $cat =  0;
+        $prices = 10;
+        $tags = [];
+
+        if (isset($request->keysearch)) {
+            $ks = $request->keysearch;
+        }
+        if (isset($request->cat)) {
+            $cat = $request->cat;
+        }
+        if (isset($request->price)) {
+            $prices = $request->price;
+        }
+        if (isset($request->tag)) {
+            $tags = $request->tag;
+        }
         $publicController = new PublicController();
-        // get full data
-        $rs = $publicController->search($keysearch = $ks, $tag = $tags, $cate = $cat, $price = $prices, 1);
-        //        dd($rs);
+
+        $rs = $publicController->search($ks, $tags, $cat, $prices, 1);
         $data = $this->convertRestaurant($rs);
-        // return view('template.restaurants', compact('data', 'dataForm', 'nameDishCat', 'nameFoodTag'));
-        return back()
-            ->with('data', $data)
-            ->with('dataForm', $dataForm)
-            ->with('nameDishCat', $nameDishCat)
-            ->with('nameFoodTag', $nameFoodTag);
+        if (count($data) == 0) {
+            $rs = $publicController->search('', [], 0, 10, 1);
+            $data = $this->convertRestaurant($rs);
+        }
+
+        return view('template.restaurants', compact('data', 'nameDishCat', 'nameFoodTag'));
     }
 
     public function searchFromHome(Request $request)

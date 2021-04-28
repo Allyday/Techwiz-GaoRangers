@@ -14,7 +14,6 @@ use App\Http\Controllers\OrderController;
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
-
 Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name('menu');
 
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
@@ -63,9 +62,9 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
     // route for staff
     Route::get('/user/{user}/setting', [UserController::class, 'setting'])->name('setting');
-    
-    
-    
+
+
+
     Route::get('/staff/index/{option}', [AdminController::class, 'index'])->name('staff');
     Route::get('/staff/menu', [AdminController::class, 'menu'])->name('staff.menu');
     Route::get('/staff/product/type', [AdminController::class, 'type_product'])->name('staff.type');
@@ -76,7 +75,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/dish/store', [DishesController::class, "store"])->name('dish-store');
     Route::get('/staff/orderStaff', [OrderController::class, "index"])->name('orderStaff');
     Route::get('/staff/{order}/orderDetail', [OrderController::class, "show"])->name('order-details');
-    
+
     Route::post('/staff/editDish/{dish}', [DishesController::class, "update"])->name('edit-dish');
     Route::post('/staff/deleteDish/{dish}', [DishesController::class, "destroy"])->name('delete-dish');
     Route::post('/staff/orderStatus/{order}', [OrderController::class, "update"])->name('update-order');
@@ -92,4 +91,3 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     // load all order (orderStatus==6)
     Route::get('get/all/past/order', [PublicController::class, 'get_past_order']);
 });
-

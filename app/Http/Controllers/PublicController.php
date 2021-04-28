@@ -71,7 +71,7 @@ class PublicController extends Controller
 
 
         if ($order == null) {
-            return redirect(route('home', ['order'=>'null']));
+            return redirect(route('home', ['order' => 'null']));
         }
 
         $order_id = $order->id;
@@ -183,7 +183,7 @@ class PublicController extends Controller
 
     public function search($keysearch = '', $tag = [], $cate = 0, $price = 10,  $pg = 1)
     {
-        //        dd($keysearch, $tag, $cate);
+
         //các biến lấy về từ request khi submit search
         $keysearch = $keysearch; //Lấy từ search theo tên - test = rice
         $tags = $tag; //mảng id của table food_tags - test = 15
@@ -217,7 +217,7 @@ class PublicController extends Controller
         }
         //search theo dish_tagID
         $temp = "";
-        if (is_array($tags)) {
+        if (is_array($tags) && $tags != null) {
             foreach ($tags as $tagId) {
                 if ($tagId > 0) {
                     $temp .= "," . $tagId;
@@ -238,10 +238,9 @@ class PublicController extends Controller
         }
         $new_sql = "select a.* from (" . $sql . ") a ";
         $new_sql .= " LIMIT $page, 8";
-        // dd($page);
 
         $table = DB::select($new_sql);
-
+        // dd($new_sql);
         return $table;
     }
 
