@@ -8,10 +8,20 @@
    <div class="top-links">
       <div class="container">
          <ul class="row links">
-            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="javasctip:void(0)" data-toggle="modal" data-target="#locationModal">Choose Your Location</a></li>
+            @if (!session('Location') && session('Location') == null)
+            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="<?= route('home', ['location'=>'null']) ?>">Choose Your Location</a></li>
+            @else
+            <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="javasctip:void(0)">Choose Your Location</a></li>
+            @endif
+
             <li class="col-xs-12 col-sm-3 link-item"><span>2</span><a href="{{ route('restaurants') }}">Choose Restaurant</a></li>
             <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="{{ route('menu', 1) }}">Pick Your favorite food</a></li>
+
+            @if (session('User'))
             <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="{{ route('checkout') }}">Order and Pay online</a></li>
+            @else
+            <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a data-toggle="modal" data-target="#modalLogin" href="javascript:void(0)">Order and Pay online</a></li>
+            @endif
          </ul>
       </div>
    </div>
@@ -209,40 +219,6 @@
          let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
          $('#tongtien').text(total(cart));
       
-         // // add to cart
-         // function addCart(id, name, price, image, quantity, tag) {
-         //    // sessionStorage.clear();
-         //    var test = [];
-         //    let temp = {
-         //       id: id,
-         //       ten: name,
-         //       quantity: quantity,
-         //       gia: price,
-         //       img: image,
-         //       tag: tag
-         //    };
-
-         //    console.log(temp);
-
-         //    let cart = JSON.parse(sessionStorage.getItem("cart"));
-         //    // console.log(cart);
-         //    if (cart == null) {
-         //       cart = [];
-         //       cart.push(temp);
-         //    } else {
-         //       let index = cart.findIndex((e) => {
-         //          if (e.id === id) return true;
-         //       });
-         //       if (index <= -1) {
-         //          cart.push(temp);
-         //       } else {
-         //          cart[index].quantity += 1;
-         //       }
-         //       test = cart;
-         //       window.sessionStorage.setItem("cart", JSON.stringify(test));
-               
-         //    }
-         // });
 
       function total(test){
          let sum = 0;

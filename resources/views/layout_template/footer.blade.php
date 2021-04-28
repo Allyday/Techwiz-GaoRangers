@@ -26,7 +26,7 @@
     }
 </script>
 
-    @if (isset($_GET['location']) && $_GET['location'] == 'null')
+@if (isset($_GET['location']) && $_GET['location'] == 'null')
     <script>
         $('document').ready(function() {
                 $('#addressNull').modal('show')
