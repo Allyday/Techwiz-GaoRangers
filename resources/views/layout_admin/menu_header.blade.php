@@ -6,7 +6,7 @@
    <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
          <div class="sidebar-brand">
-            <a href="/staff/index/day">FoodMate</a>
+            <a href="{{ route('staff', 'day') }}">FoodMate</a>
             <div id="close-sidebar">
                <i class="fas fa-times"></i>
             </div>

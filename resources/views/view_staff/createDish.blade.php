@@ -4,14 +4,14 @@
 <h2 class="text-center">Add Menu Item</h2>
 
 <div class="panel-form my-5">
-    <form action="/staff/dish/store" method="get">
+    <form action="{{ route('dish-store') }}" method="get">
         @csrf
         <div class="col-lg-8 mx-auto">
 
     
             <div class="mb-3">
                 <label for="name" class="form-label fw-bold">Dish name</label>
-                <input name="name" type="text" class="form-control" id="name" placeholder="Item name" required >
+                <input name="name" type="text" class="form-control" id="name" placeholder="Item name" required>
             </div>
             <div class="mb-3">
                 <div class="row">
@@ -19,7 +19,7 @@
                         <label for="type" class="form-label fw-bold" required>Dish category</label>
                         <select class="form-select" id="type" name="categoryId">
                             @foreach ($category as $c)
-                                <option value="{{ $c->id }}" >{{ $c->name }}</option>
+                            <option value="{{ $c->id }}">{{ $c->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -28,8 +28,7 @@
             <!-- Text area editor -->
             <div class="mb-3">
                 <label for="desc" class="form-label fw-bold">Item Details</label>
-                <textarea id="desc" name="description" required ></textarea>
-                
+                <textarea id="desc" name="description" required></textarea>
             </div>
             <div class="mb-3">
                 <div class="row mt-3">
@@ -51,12 +50,11 @@
             <hr class="my-4 py-1">
             <div class="row">
                 <div class="text-end">
-                    <a href="/staff/dishes"  class="btn btn-danger fw-bold" name="cancel">Cancel</a>
+                    <a href="{{ route('dishes') }}" class="btn btn-danger fw-bold" name="cancel">Cancel</a>
                     <button type="submit" class="btn btn-success fw-bold" id="btn-update">Add item</a>
                 </div>
             </div>
         </div>
     </form>
-    
 </div>
 @endsection
