@@ -188,7 +188,7 @@
                      </div>
                      <!--end:col -->
                      <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">
-                        <h5><a href="{{route('menu', $item['id'])}}">{{ $item['name'] }}</a></h5> <span>{{$item['street']." - ".$item['municipality']." - ".$item['district']." - ". $item['city']}}</span>
+                        <h5><a href="{{route('menu', $item['id'])}}">{{ $item['name'] }}</a></h5> <span>{{$item['street']." - ".$item['municipality']." - ".$item['district']}}</span>
                         <div class="bottom-part">
 
                            <div class="ratings"> <span>
