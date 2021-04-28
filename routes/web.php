@@ -73,18 +73,18 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/staff/dishes', [DishesController::class, "index"])->name('dishes');
     Route::get('/staff/{dish}/edit', [DishesController::class, "edit"]);
     Route::get('/staff/dish/create', [DishesController::class, "create"]);
-    Route::get('/staff/dish/store', [DishesController::class, "store"]);
+    Route::get('/staff/dish/store', [DishesController::class, "store"])->name('dish-store');
     Route::get('/staff/orderStaff', [OrderController::class, "index"])->name('orderStaff');
-    Route::get('/staff/{order}/orderDetail', [OrderController::class, "show"]);
+    Route::get('/staff/{order}/orderDetail', [OrderController::class, "show"])->name('order-details');
     
-    Route::post('/staff/editDish/{dish}', [DishesController::class, "update"]);
-    Route::post('/staff/deleteDish/{dish}', [DishesController::class, "destroy"]);
-    Route::post('/staff/orderStatus/{order}', [OrderController::class, "update"]);
+    Route::post('/staff/editDish/{dish}', [DishesController::class, "update"])->name('edit-dish');
+    Route::post('/staff/deleteDish/{dish}', [DishesController::class, "destroy"])->name('delete-dish');
+    Route::post('/staff/orderStatus/{order}', [OrderController::class, "update"])->name('update-order');
     Route::post('/user/settingUser/{user}', [UserController::class, "editpass"]);
-    Route::post('/staff/searchOrder', [OrderController::class, "search"]);
-    Route::post('/staff/status/searchOrder', [OrderController::class, "searchStatus"]);
+    Route::post('/staff/searchOrder', [OrderController::class, "search"])->name('search-order');
+    Route::post('/staff/status/searchOrder', [OrderController::class, "searchStatus"])->name('search-order-status');
     Route::post('/user/{users}/delete', [UserController::class, "destroy"])->name("destroyUser");
-    Route::post('/staff/{order}/orderCancel', [OrderController::class, "cancel"]);
+    Route::post('/staff/{order}/orderCancel', [OrderController::class, "cancel"])->name('reject-order');
 
     // Route::post('auth/edit', [AuthController::class, 'editpass'])->name('editpass');
 

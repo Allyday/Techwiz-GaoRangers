@@ -72,7 +72,7 @@ class OrderController extends Controller
         //             'timePickedUp'=>$time
         //         ]);
         // }
-        return redirect('/staff/orderStaff');
+        return redirect(route('orderStaff'));
     }
 
     public function destroy($id)
@@ -122,6 +122,6 @@ class OrderController extends Controller
                 'timeRejected'=>$time
             ]);
 
-        return redirect('/staff/orderStaff');
+        return redirect(route('orderStaff'));
     }
 }

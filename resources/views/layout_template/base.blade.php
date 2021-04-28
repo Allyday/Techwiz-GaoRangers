@@ -48,23 +48,23 @@
             let selectedLocation = autocomplete.getPlace();
             let addressUnits = selectedLocation.formatted_address.split(', ');
             // console.log('addressUnits', addressUnits);
-            
+
             // submit form location modal from footer
             // $("#formLocation").submit();
 
             let keysearch = $('#InputSearch').val();
 
-               // submit with ajax
+            // submit with ajax
             $.ajax({
-                  type: 'POST',
-                  url: '/save_location',
-                  data: $("#formLocation").serialize(), 
-                  success: function(res) { 
-                     if(res==1){
-                        window.location = `/restaurants?search=${keysearch}`;
-                     }
+               type: 'POST',
+               url: `{{ route('save_location')}}`,
+               data: $("#formLocation").serialize(),
+               success: function(res) {
+                  if (res == 1) {
+                     window.location = `{{ route('restaurants')}}?search=${keysearch}`;
                   }
-             });
+               }
+            });
             // end submit
 
             let municipality = removeAccents(addressUnits[addressUnits.length - 4]);
@@ -75,7 +75,7 @@
             // nếu là đang chọn location ở trang home thì truyền vào tham số url (?) để query
             if (location.pathname == '/' || location.pathname == '/restaurants') {
                let municipalityParam = municipality ? `&mun=${municipality}` : '';
-               let url = encodeURI(`restaurants?dis=${district}${municipalityParam}`);
+               let url = encodeURI(`{{ route('restaurants')}}?dis=${district}${municipalityParam}`);
                // location.href = url;
                // đọc url & xử lý để query ở màn restaurants 
             }

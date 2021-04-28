@@ -133,9 +133,8 @@
                                                     <b class="delivery-address">{{ $data['order']->address }}</b>
                                                 </p>
 
-                                                @if($data['order']['orderStatus'] <=2 ) 
-                                                <a href="javascript:void(0)" id="cancel-btn">Cancel Order</a>
-                                                @endif
+                                                @if($data['order']['orderStatus'] <=2 ) <a href="javascript:void(0)" id="cancel-btn">Cancel Order</a>
+                                                    @endif
 
                                             </td>
                                         </tr>
@@ -243,10 +242,10 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-lg-3">
                                 <div class="rest-logo pull-left">
-                                    <a class="restaurant-logo pull-left" href="/restaurant-details/${e.res_id}"><img style="width:80px;height:64px;" src="${e.resPhoto}" alt="Food logo"></a>
+                                    <a class="restaurant-logo pull-left" href="{{ route('menu', ${e.res_id}) }}"><img style="width:80px;height:64px;" src="${e.resPhoto}" alt="Food logo"></a>
                                 </div>
                                 <div class="rest-descr">
-                                    <h6><a href="/restaurant-details/${e.res_id}">${e.resName}</a></h6>
+                                    <h6><a href="{{ route('menu', ${e.res_id}) }}">${e.resName}</a></h6>
                                     <p> ${e.soluongmon} items </p>
                                 </div>
                             </div>

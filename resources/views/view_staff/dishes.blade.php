@@ -57,7 +57,7 @@
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <form action="/staff/deleteDish/{{$row->id}}" method="post">
+                        <form action="{{ route('delete-dish', $row->id) }}" method="post">
                            @csrf
                            @method('POST') 
                            <input type="hidden" value="0" name="is_active">
