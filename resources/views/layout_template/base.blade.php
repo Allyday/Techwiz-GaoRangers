@@ -57,11 +57,11 @@
             // submit with ajax
             $.ajax({
                type: 'POST',
-               url: url("save_location"),
+               url: `{{ route('save_location')}}`,
                data: $("#formLocation").serialize(),
                success: function(res) {
                   if (res == 1) {
-                     window.location = `${url('restaurants')}?search=${keysearch}`;
+                     window.location = `{{ route('restaurants')}}?search=${keysearch}`;
                   }
                }
             });
@@ -75,7 +75,7 @@
             // nếu là đang chọn location ở trang home thì truyền vào tham số url (?) để query
             if (location.pathname == '/' || location.pathname == '/restaurants') {
                let municipalityParam = municipality ? `&mun=${municipality}` : '';
-               let url = encodeURI(`${url('restaurants')}?dis=${district}${municipalityParam}`);
+               let url = encodeURI(`{{ route('restaurants')}}?dis=${district}${municipalityParam}`);
                // location.href = url;
                // đọc url & xử lý để query ở màn restaurants 
             }
