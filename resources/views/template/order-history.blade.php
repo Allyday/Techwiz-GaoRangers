@@ -5,6 +5,8 @@
 @section('content')
 <link href="{{ asset('template/css/order-progress.css') }}" rel="stylesheet">
 
+
+
 <div class="page-wrapper">
     <div class="container padding-bottom-3x mb-1">
         <div class="widget-heading">
@@ -14,6 +16,7 @@
                 </span>
             </h2>
         </div>
+        @if (isset($data))
         <div class="card">
             <div class="p-4 text-center text-white text-lg bg-dark rounded-top">
                 <span class="text-uppercase">Ordering from </span><span class="text-medium">4P's Pizza</span>
@@ -146,6 +149,7 @@
                 </div>
             </div>
         </div>
+@endif
     </div>
 
     <div class="container m-t-30">
@@ -231,7 +235,6 @@
     </div>
 </div>
 
-
 <script src="{{ asset('template/js/jquery.js') }}"></script>
 <script>
     function innerPastOrder(array) {
@@ -298,4 +301,6 @@
 
     })
 </script>
+
+
 @endsection

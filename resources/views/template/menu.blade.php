@@ -178,7 +178,7 @@
         test = cart;
         window.sessionStorage.setItem("cart", JSON.stringify(test));
          $('#tongtien').text(total(cart));
-          console.log(cart);
+         //  console.log(cart);
     }
 
    </script>
@@ -249,7 +249,7 @@
          test.forEach(item => {
             sum += item.gia * item.quantity;
          });
-         return sum;
+         return Math.round(sum * 100)/100;
       }
       
    </script>

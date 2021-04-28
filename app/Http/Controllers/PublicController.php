@@ -47,14 +47,14 @@ class PublicController extends Controller
         }
         // dd($data);
         $resCount = Restaurant::all()->count('id');
-        return view('template.home', compact('access', 'dishhome', 'data','resCount'));
+        return view('template.home', compact('access', 'dishhome', 'data', 'resCount'));
     }
 
     function menu($id)
     {
         $res = DB::select('select * from restaurants where id = ?', [$id]);
         $dishes = DB::select('select restaurants.*, dishes.name as dishName, dishes.id as dishId , dishes.photo as photoDish, dishes.price as dishPrice from restaurants inner join dishes on restaurants.id = dishes.restaurantId where restaurants.id = ?', [$id]);
-        
+
         return view('template.menu', compact('res', 'dishes'));
     }
 
@@ -67,12 +67,17 @@ class PublicController extends Controller
         $order = Order::where('userId', '=', session('User'))
             ->where('orderStatus', '<', 6)
             ->orderBy('timeCreated', 'DESC')
-            // ->limit(1)
             ->first();
+
+
+        if ($order == null) {
+            return redirect(route('home', ['order'=>'null']));
+        }
+
         $order_id = $order->id;
         // get order dish
         $order_dish = OrderDish::where('orderId', $order_id)->get();
-        
+
         // dd($order_dish);
         $arrayDish = [];
 
@@ -91,8 +96,6 @@ class PublicController extends Controller
             'order' => $order,
             'arrayDish' => $arrayDish,
         ];
-        // dd($data['order_dish']);
-        // dd($data['order']['orderStatus']);
 
         return view('template.order-history')->with('data', $data);
     }
@@ -180,14 +183,14 @@ class PublicController extends Controller
 
     public function search($keysearch = '', $tag = [], $cate = 0, $price = 10,  $pg = 1)
     {
-//        dd($keysearch, $tag, $cate);
+        //        dd($keysearch, $tag, $cate);
         //các biến lấy về từ request khi submit search
         $keysearch = $keysearch; //Lấy từ search theo tên - test = rice
-        $tags = $tag ; //mảng id của table food_tags - test = 15
+        $tags = $tag; //mảng id của table food_tags - test = 15
         $cate = $cate; //id của table dish_category test = 5
         $price = $price; //giá tiền;
         $page = (int)$pg;
-//        dd($keysearch);
+        //        dd($keysearch);
         $sql = "SELECT restaurants.id AS r_id,
                 restaurants.name,
                 restaurants.photo,

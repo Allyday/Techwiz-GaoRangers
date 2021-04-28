@@ -1,3 +1,78 @@
+<!-- start modal restaurant dont have loaction -->
+<div id="addressNull" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">You do not have address !</h5>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to add address now ?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModalAddress()" type="button" class="btn btn-primary">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--script-->
+<script src="{{ asset('template/js/jquery.js') }}"></script>
+
+<script>
+    function closeModalAddress(){
+        $('#addressNull').modal('hide')
+        $('#locationModal').modal('show')
+    }
+</script>
+
+    @if (isset($_GET['location']) && $_GET['location'] == 'null')
+    <script>
+        $('document').ready(function() {
+                $('#addressNull').modal('show')
+        });
+    </script>
+@else
+
+@endif
+<!-- end modal restaurant dont have loaction-->
+
+
+<!-- start modal order null-->
+<div id="orderNull" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">You do not have any orders!</h5>
+
+            </div>
+            <div class="modal-body">
+                <p>Do you want to order now ?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{{ route('restaurants') }}" type="button" class="btn btn-primary">Yes</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--script-->
+<script src="{{ asset('template/js/jquery.js') }}"></script>
+    @if (isset($_GET['order']) && $_GET['order'] == 'null')
+    <script>
+        $('document').ready(function() {
+                $('#orderNull').modal('show')
+        });
+    </script>
+@else
+
+@endif
+<!-- end modal order null-->
+
+
+
+
 <!-- start location modal -->
 
 <div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="locationModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
@@ -33,7 +108,7 @@
 <script>
     $('document').ready(function() {
         if (location.pathname.indexOf('setting') == -1)
-        location.href = '<?= route('home') ?>';
+            location.href = '<?= route('home', ['location'=>'null']) ?>';
             $('#locationModal').modal('show')
     });
 </script>

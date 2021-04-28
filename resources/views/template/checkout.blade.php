@@ -131,7 +131,7 @@
             location.href = '<?= route('restaurants') ?>';
         }
 
-            console.log(array);
+            // console.log(array);
             checkNull();
             innerHtml();
             updateCartTotal();
@@ -214,7 +214,7 @@
                                         <div class="btn btn-small btn-secondary quantity-btn inc">&#43;</div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-lg-2 item-cart-info">
-                                        <span class="price pull-left item-total">$ ${parseFloat(parseFloat(e.gia) * e.quantity)}</span>
+                                        <span class="price pull-left item-total">$ ${Math.round(parseFloat(e.gia) * e.quantity *100)/100}</span>
                                         <i onclick="removeCart(${e.id})" class="fa fa-times pull-right delete-item-btn" style="font-size: 30px"></i>
                                     </div>
                                 </div>
