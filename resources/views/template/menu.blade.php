@@ -249,7 +249,7 @@
          test.forEach(item => {
             sum += item.gia * item.quantity;
          });
-         return sum;
+         return Math.round(sum / 100) * 100;
       }
       
    </script>
