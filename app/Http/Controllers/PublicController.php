@@ -60,10 +60,6 @@ class PublicController extends Controller
 
     function history()
     {
-        // get order
-        // $order = Order::where('orderStatus', '<', 6)->first();
-
-
         $order = Order::where('userId', '=', session('User'))
             ->where('orderStatus', '<', 6)
             ->orderBy('timeCreated', 'DESC')
@@ -73,6 +69,7 @@ class PublicController extends Controller
         if ($order == null) {
             return redirect(route('home', ['order' => 'null']));
         }
+        
 
         $order_id = $order->id;
         // get order dish
@@ -96,7 +93,7 @@ class PublicController extends Controller
             'order' => $order,
             'arrayDish' => $arrayDish,
         ];
-
+        // dd($data);
         return view('template.order-history')->with('data', $data);
     }
 
@@ -110,7 +107,7 @@ class PublicController extends Controller
             $order = Order::where('userId', '=', session('User'))
                 ->where('orderStatus', '=', 6)
                 ->orderBy('timeCreated', 'DESC')
-                ->limit(2)
+                ->limit(3)
                 ->get();
 
 

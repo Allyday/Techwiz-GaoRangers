@@ -28,7 +28,7 @@
                             <div class="step-icon"><i class="fa fa-shopping-cart"></i></div>
                         </div>
                         <h4 class="step-title">Confirmed Order</h4>
-                        <h5>20:41 06/09/2019</h5>
+                        <h5>{{ $data['order']['timeCreated'] }}</h5>
 
                     </div>
                     <div class="step @if($data['order']['orderStatus'] >=3 ) completed @endif">
@@ -36,7 +36,9 @@
                             <div class="step-icon"><i class="fa fa-cog"></i></div>
                         </div>
                         <h4 class="step-title">Preparing Order</h4>
-                        <h5>20:51 06/09/2019</h5>
+                        @if ($data['order']['timeAccepted'] != null)
+                        <h5>{{$data['order']['timeAccepted']}}</h5>
+                        @endif
 
                     </div>
                     <div class="step @if($data['order']['orderStatus'] >=4 ) completed @endif">
@@ -44,19 +46,27 @@
                             <div class="step-icon"><i class="fa fa-check"></i></div>
                         </div>
                         <h4 class="step-title ">Finished Preparing</h4>
-                        <h5>20:56 06/09/2019</h5>
+                        @if ($data['order']['timeDoneCooking'] != null)
+                        <h5>{{$data['order']['timeDoneCooking']}}</h5>
+                        @endif
                     </div>
                     <div class="step @if($data['order']['orderStatus'] >=5 ) completed @endif">
                         <div class="step-icon-wrap">
                             <div class="step-icon"><i class="fa fa-car"></i></div>
                         </div>
                         <h4 class="step-title">Order in Delivery</h4>
+                        @if ($data['order']['timePickedUp'] != null)
+                        <h5>{{$data['order']['timePickedUp']}}</h5>
+                        @endif
                     </div>
                     <div class="step @if($data['order']['orderStatus'] >=6 ) completed @endif">
                         <div class="step-icon-wrap">
                             <div class="step-icon"><i class="fa fa-home"></i></div>
                         </div>
                         <h4 class="step-title">Order Delivered</h4>
+                        @if ($data['order']['timeDelivered'] != null)
+                        <h5>{{$data['order']['timeDelivered']}}</h5>
+                        @endif
                     </div>
                 </div>
                 <div class="row menu-widget current-order-item">
@@ -148,7 +158,7 @@
                 </div>
             </div>
         </div>
-@endif
+        @endif
     </div>
 
     <div class="container m-t-30">
@@ -242,10 +252,10 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-lg-3">
                                 <div class="rest-logo pull-left">
-                                    <a class="restaurant-logo pull-left" href="{{ route('menu', ${e.res_id}) }}"><img style="width:80px;height:64px;" src="${e.resPhoto}" alt="Food logo"></a>
+                                    <a class="restaurant-logo pull-left" href="/restaurant-details/${e.res_id}"><img style="width:80px;height:64px;" src="${e.resPhoto}" alt="Food logo"></a>
                                 </div>
                                 <div class="rest-descr">
-                                    <h6><a href="{{ route('menu', ${e.res_id}) }}">${e.resName}</a></h6>
+                                    <h6><a href="/restaurant-details/${e.res_id}">${e.resName}</a></h6>
                                     <p> ${e.soluongmon} items </p>
                                 </div>
                             </div>
@@ -280,8 +290,6 @@
                 url: "get/all/past/order"
             })
             .done(function(res) {
-                // nhan 1 array, 
-                // console.log(res);
                 innerPastOrder(res);
                 // collapse
                 $('#collapsePastOrder').collapse('show')

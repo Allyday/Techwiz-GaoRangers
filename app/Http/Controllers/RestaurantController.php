@@ -240,6 +240,7 @@ class RestaurantController extends Controller
         // bi chet o day vi chua co data
         $res_id = Dish::where('id', $array[0]['id'])->first()->restaurantId;
 
+
         $order = new Order;
         $order->userId =  $user_id;
         $order->restaurantId = $res_id;
@@ -250,8 +251,6 @@ class RestaurantController extends Controller
         $order->deliveryFee = $delivery;
 
         $order->save();
-        // return $array[0]['quantity'];
-
 
         if ($order) {
             foreach ($array as $item) {
@@ -261,6 +260,7 @@ class RestaurantController extends Controller
                     'dishId' => (int)$item['id'],
                     'dishQuantity' => (int)$item['quantity']
                 ]);
+                // return $orderDish;
             };
             return 200;
         }

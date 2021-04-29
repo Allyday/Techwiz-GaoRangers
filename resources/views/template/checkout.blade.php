@@ -306,7 +306,7 @@
                     _token: '{{csrf_token()}}'
                 },
                 success: function(res) {
-                    console.log(res);
+                    // console.log(res);
                     if(res==200){
                         sessionStorage.removeItem('cart');
                         location.href = '<?= route('order-history') ?>';
