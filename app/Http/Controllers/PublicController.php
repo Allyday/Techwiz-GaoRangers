@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\DishTag;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -187,10 +188,11 @@ class PublicController extends Controller
         $cate = $cate; //id của table dish_category test = 5
         $price = $price; //giá tiền;
         $page = (int)$pg;
-        //        dd($keysearch);
         $sql = "SELECT restaurants.id AS r_id,
                 restaurants.name,
                 restaurants.photo,
+                GROUP_CONCAT(food_tags.id) AS tag,
+                GROUP_CONCAT(dish_categories.id) as cate,
                 GROUP_CONCAT(dishes.id) arrayId,
                 GROUP_CONCAT(dishes.name) arrayName,
                 GROUP_CONCAT(dishes.price) arrayPrice,
@@ -199,7 +201,8 @@ class PublicController extends Controller
                 LEFT JOIN dishes ON restaurants.id = dishes.restaurantId
                 LEFT JOIN dish_categories ON dishes.dishCategoryId = dish_categories.id
                 LEFT JOIN dish_tags ON dishes.id = dish_tags.dishId
-                LEFT JOIN food_tags ON dish_tags.foodTagId = food_tags.id";
+                LEFT JOIN food_tags ON dish_tags.foodTagId = food_tags.id
+                WHERE 1=1";
         //search theo ten:
         if ($keysearch != null && strlen($keysearch) > 0) {
             $sql .= " WHERE (restaurants.name like '%" . $keysearch . "%' OR dishes.name LIKE '%" . $keysearch . "%')";
@@ -215,8 +218,11 @@ class PublicController extends Controller
         //search theo dish_tagID
         $temp = "";
         if (is_array($tags) && $tags != null) {
-            foreach ($tags as $tagId) {
-                if ($tagId > 0) {
+            foreach ($tags as $key =>$tagId) {
+                if($key == 0 && $tagId > 0){
+                    $temp .= $tagId;
+                }
+                else if ($tagId > 0) {
                     $temp .= "," . $tagId;
                 }
             }
@@ -225,7 +231,7 @@ class PublicController extends Controller
                     SELECT dish_tags.dishId
 				    FROM dish_tags
 				    GROUP BY dish_tags.dishId
-				    HAVING GROUP_CONCAT(dish_tags.foodTagId) like '" . $temp . "')";
+				    HAVING GROUP_CONCAT(dish_tags.foodTagId) like '%" . $temp . "%')";
         }
         $sql .= " GROUP by restaurants.id, restaurants.name, restaurants.photo ";
         // paginate
@@ -237,7 +243,7 @@ class PublicController extends Controller
         $new_sql .= " LIMIT $page, 8";
 
         $table = DB::select($new_sql);
-        // dd($new_sql);
+//         dd($new_sql);
         return $table;
     }
 
@@ -250,7 +256,7 @@ class PublicController extends Controller
             ->orderBy('count', 'desc')
             ->limit(6)
             ->get();
-        // dd($table);
+//         dd($table);
         return $table;
     }
 }
