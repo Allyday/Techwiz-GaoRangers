@@ -22,7 +22,7 @@ class OrderController extends Controller
     public function create()
     {
         //
-    }   
+    }
 
     public function store(Request $request)
     {
@@ -81,7 +81,7 @@ class OrderController extends Controller
     }
 
     public function search(Request $request)
-    {   
+    {
         if (!session('User_type') || session('User_type') != 1) {
             return redirect(route('home'));
         }
@@ -91,7 +91,7 @@ class OrderController extends Controller
     }
 
     public function searchStatus(Request $request)
-    {   
+    {
         if (!session('User_type') || session('User_type') != 1) {
             return redirect(route('home'));
         }
