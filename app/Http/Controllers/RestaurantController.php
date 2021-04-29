@@ -260,7 +260,6 @@ class RestaurantController extends Controller
                     'dishId' => (int)$item['id'],
                     'dishQuantity' => (int)$item['quantity']
                 ]);
-                // return $orderDish;
             };
             return 200;
         }
