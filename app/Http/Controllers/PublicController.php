@@ -191,8 +191,6 @@ class PublicController extends Controller
         $sql = "SELECT restaurants.id AS r_id,
                 restaurants.name,
                 restaurants.photo,
-                GROUP_CONCAT(food_tags.id) AS tag,
-                GROUP_CONCAT(dish_categories.id) as cate,
                 GROUP_CONCAT(dishes.id) arrayId,
                 GROUP_CONCAT(dishes.name) arrayName,
                 GROUP_CONCAT(dishes.price) arrayPrice,
@@ -201,8 +199,7 @@ class PublicController extends Controller
                 LEFT JOIN dishes ON restaurants.id = dishes.restaurantId
                 LEFT JOIN dish_categories ON dishes.dishCategoryId = dish_categories.id
                 LEFT JOIN dish_tags ON dishes.id = dish_tags.dishId
-                LEFT JOIN food_tags ON dish_tags.foodTagId = food_tags.id
-                WHERE 1=1";
+                LEFT JOIN food_tags ON dish_tags.foodTagId = food_tags.id";
         //search theo ten:
         if ($keysearch != null && strlen($keysearch) > 0) {
             $sql .= " WHERE (restaurants.name like '%" . $keysearch . "%' OR dishes.name LIKE '%" . $keysearch . "%')";
