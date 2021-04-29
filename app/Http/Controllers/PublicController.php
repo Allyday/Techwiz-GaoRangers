@@ -70,7 +70,7 @@ class PublicController extends Controller
         if ($order == null) {
             return redirect(route('home', ['order' => 'null']));
         }
-        
+
 
         $order_id = $order->id;
         // get order dish
@@ -199,10 +199,10 @@ class PublicController extends Controller
                 LEFT JOIN dishes ON restaurants.id = dishes.restaurantId
                 LEFT JOIN dish_categories ON dishes.dishCategoryId = dish_categories.id
                 LEFT JOIN dish_tags ON dishes.id = dish_tags.dishId
-                LEFT JOIN food_tags ON dish_tags.foodTagId = food_tags.id";
+                LEFT JOIN food_tags ON dish_tags.foodTagId = food_tags.id WHERE 1=1";
         //search theo ten:
         if ($keysearch != null && strlen($keysearch) > 0) {
-            $sql .= " WHERE (restaurants.name like '%" . $keysearch . "%' OR dishes.name LIKE '%" . $keysearch . "%')";
+            $sql .= " AND (restaurants.name like '%" . $keysearch . "%' OR dishes.name LIKE '%" . $keysearch . "%')";
         }
         //search theo dish_categoryId
         if ($cate > 0) {
