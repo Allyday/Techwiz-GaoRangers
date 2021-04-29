@@ -47,12 +47,13 @@
          google.maps.event.addListener(autocomplete, 'place_changed', function() {
             let selectedLocation = autocomplete.getPlace();
             let addressUnits = selectedLocation.formatted_address.split(', ');
-            // console.log('addressUnits', addressUnits);
-
-            // submit form location modal from footer
-            // $("#formLocation").submit();
 
             let keysearch = $('#InputSearch').val();
+            let searchUrlParams = keysearch ? `&search=${keysearch}` : '';
+
+            let municipality = removeAccents(addressUnits[addressUnits.length - 4]);
+            let district = removeAccents(addressUnits[addressUnits.length - 3]);
+            let municipalityParam = municipality ? `&mun=${municipality}` : '';
 
             // submit with ajax
             $.ajax({
@@ -60,25 +61,12 @@
                url: `{{ route('save_location')}}`,
                data: $("#formLocation").serialize(),
                success: function(res) {
-                  if (res == 1) {
-                     window.location = `{{ route('restaurants')}}?search=${keysearch}`;
+                  if (res == 1 && (location.pathname == '/' || location.pathname == '/restaurants')) {
+                     window.location = `{{ route('restaurants')}}?dis=${district}${municipalityParam}${searchUrlParams}`;
                   }
                }
             });
             // end submit
-
-            let municipality = removeAccents(addressUnits[addressUnits.length - 4]);
-            let district = removeAccents(addressUnits[addressUnits.length - 3]);
-
-            // console.log('municipality', municipality); // phường/xã
-            // console.log('district', district); // quận/huyện
-            // nếu là đang chọn location ở trang home thì truyền vào tham số url (?) để query
-            if (location.pathname == '/' || location.pathname == '/restaurants') {
-               let municipalityParam = municipality ? `&mun=${municipality}` : '';
-               let url = encodeURI(`{{ route('restaurants')}}?dis=${district}${municipalityParam}`);
-               // location.href = url;
-               // đọc url & xử lý để query ở màn restaurants 
-            }
          });
 
          function removeAccents(str) {
