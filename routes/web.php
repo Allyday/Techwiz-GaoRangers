@@ -11,6 +11,9 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\OrderController;
 
+// for chat
+use App\Http\Controllers\ChatController;
+
 
 // public
 Route::get('/', [PublicController::class, 'index'])->name('home');
@@ -50,6 +53,17 @@ Route::get('auth/staff/register/only/hiencoday', [AuthController::class, 'regist
 
 // check middleware
 Route::group(['middleware' => ['AuthCheck']], function () {
+    // route for chat    
+    // Route::get('chat/test', [ChatController::class, 'getMoreMess']);
+
+    Route::get('chat/chat', [ChatController::class, 'index'])->name('get.chat');
+    Route::get('chat/get/user/receiver', [ChatController::class, 'getReceiver'])->name('get.receiver');
+    Route::get('chat/load/more/message', [ChatController::class, 'getMoreMess'])->name('get.more.message');
+    Route::get('chat/get/{username}', [ChatController::class, 'getOneUser'])->name('get.user_chat');
+    Route::post('chat/chat', [ChatController::class, 'submit'])->name('post.chat');
+
+
+
 
     Route::get('auth/login', [AuthController::class, 'login'])->name('auth.login');
     Route::get('auth/register', [AuthController::class, 'register'])->name('auth.register');

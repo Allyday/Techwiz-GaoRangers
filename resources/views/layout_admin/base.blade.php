@@ -24,9 +24,30 @@
 <link href="{{ asset('/css/dashboard.css') }}" rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
+
+
+<!-- For Function Chat -->
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="{{ asset('chatapp/plugins/fontawesome-free/css/all.min.css') }}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{{ asset('chatapp/dist/css/adminlte.min.css') }}">
+
+<!-- end nav -->
+<style>
+   .changeColor {
+      color: blue;
+   }
+
+   .list-user {
+      font-size: 12px;
+   }
+</style>
 </head>
 
-<body>
+<body class="dark-mode">
    @include('layout_admin.menu_header')
    @yield('content')
    @include('layout_admin.js')

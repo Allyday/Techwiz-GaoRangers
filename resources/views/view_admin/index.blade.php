@@ -12,39 +12,38 @@
    <a href="./quarter" class="fw-bold btn btn-warning" style="width: 20%;float: left;">Quarterly</a>
    <a href="./year" class="fw-bold btn btn-success" style="width: 20%;float: left;">Yearly</a>
 </div>
-         <div class="row">
-            <div class="col-2  m-auto">
-               
-               @foreach ($khachhang as $r)
-<div class="report-number-container text-center">
-   <div class="report-number">{{ $r->c }}</div>
-   <p class="report-label">Unique Customers</p>
-</div>
-@endforeach
-@foreach ($hoanthanh as $r)
-<div class="report-number-container text-center">
-   <div class="report-number">{{ $r->c }}</div>
-   <p class="report-label">Completed Orders</p>
-</div>
-@endforeach
-@foreach ($tuchoi as $r)
-<div class="report-number-container text-center">
-   <div class="report-number">${{ $r->c }}</div>
-   <p class="report-label">Total Revenue</p>
-</div>
-@endforeach
-@foreach ($bihuy as $r)
-<div class="report-number-container text-center">
-   <div class="report-number">{{ $r->c }}</div>
-   <p class="report-label">Cancelled Orders</p>
-</div>
-@endforeach
-            </div>
-            <div class="col-10">
-               <div class=" mt-6">
-                  <script>
+<div class="row">
+   <div class="col-2  m-auto">
 
-                     window.onload = function() {
+      @foreach ($khachhang as $r)
+      <div class="report-number-container text-center">
+         <div class="report-number">{{ $r->c }}</div>
+         <p class="report-label">Unique Customers</p>
+      </div>
+      @endforeach
+      @foreach ($hoanthanh as $r)
+      <div class="report-number-container text-center">
+         <div class="report-number">{{ $r->c }}</div>
+         <p class="report-label">Completed Orders</p>
+      </div>
+      @endforeach
+      @foreach ($tuchoi as $r)
+      <div class="report-number-container text-center">
+         <div class="report-number">${{ $r->c }}</div>
+         <p class="report-label">Total Revenue</p>
+      </div>
+      @endforeach
+      @foreach ($bihuy as $r)
+      <div class="report-number-container text-center">
+         <div class="report-number">{{ $r->c }}</div>
+         <p class="report-label">Cancelled Orders</p>
+      </div>
+      @endforeach
+   </div>
+   <div class="col-10">
+      <div class=" mt-6">
+         <script>
+            window.onload = function() {
                   
                          var chart = new CanvasJS.Chart("chartRevenue", {
                              animationEnabled: true,
@@ -79,14 +78,14 @@
                          chart.render();
                   
                      }
-                  </script>
+         </script>
 
-                  <div class="container w-75 my-auto mx-auto my-5" id="chartRevenue" style="height: 370px; width: 100%;"></div>
-               </div>
-            </div>
-         </div>
+         <div class="container w-75 my-auto mx-auto my-5" id="chartRevenue" style="height: 370px; width: 100%;"></div>
+      </div>
+   </div>
+</div>
 
-         {{-- @php
+{{-- @php
             function getRevenue($option)
             {
                if ($option == 'day') {
@@ -108,10 +107,10 @@
 
          @endphp --}}
 
-            
-      </div>
-   </main>
-   <!-- page-content" -->
+
+</div>
+</main>
+<!-- page-content" -->
 </div>
 
 @endsection

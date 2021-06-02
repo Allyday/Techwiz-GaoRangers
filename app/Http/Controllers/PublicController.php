@@ -14,9 +14,32 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\OrderDish;
 use App\Models\Restaurant;
+use App\Http\Controllers\ChatController;
 
 class PublicController extends Controller
 {
+    var $user;
+    var $data = [];
+
+    function __construct()
+    {
+        $chatController = new ChatController;
+
+        if (session('User')) {
+
+            $user = User::where('id', session('User'))->first();
+
+            $this->user = $user;
+
+            if ($user['type'] == 2) {
+
+                $data = $chatController->loadChat($user['userName'], '_1admin1');
+
+                $this->data = $data;
+            }
+        }
+    }
+
     function index()
     {
         $access = false;
@@ -48,7 +71,12 @@ class PublicController extends Controller
         }
         // dd($data);
         $resCount = Restaurant::all()->count('id');
-        return view('template.home', compact('access', 'dishhome', 'data', 'resCount'));
+
+        $user = $this->user;
+        
+        $data_chat = $this->data;
+
+        return view('template.home', compact('access', 'dishhome', 'data', 'resCount', 'user', 'data_chat'));
     }
 
     function menu($id)
@@ -215,11 +243,10 @@ class PublicController extends Controller
         //search theo dish_tagID
         $temp = "";
         if (is_array($tags) && $tags != null) {
-            foreach ($tags as $key =>$tagId) {
-                if($key == 0 && $tagId > 0){
+            foreach ($tags as $key => $tagId) {
+                if ($key == 0 && $tagId > 0) {
                     $temp .= $tagId;
-                }
-                else if ($tagId > 0) {
+                } else if ($tagId > 0) {
                     $temp .= "," . $tagId;
                 }
             }
@@ -240,7 +267,7 @@ class PublicController extends Controller
         $new_sql .= " LIMIT $page, 8";
 
         $table = DB::select($new_sql);
-//         dd($new_sql);
+        //         dd($new_sql);
         return $table;
     }
 
@@ -253,7 +280,7 @@ class PublicController extends Controller
             ->orderBy('count', 'desc')
             ->limit(6)
             ->get();
-//         dd($table);
+        //         dd($table);
         return $table;
     }
 }

@@ -1,3 +1,11 @@
+<!-- chat box -->
+@if (session('User'))
+    
+@include('chat.chat-customer')
+@endif
+<!-- end chat box -->
+
+
 <!-- start modal restaurant dont have loaction -->
 <div id="addressNull" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">

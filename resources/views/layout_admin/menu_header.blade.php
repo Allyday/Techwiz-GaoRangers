@@ -66,9 +66,15 @@
                      <span>Manage Menu</span>
                   </a>
                </li>
+
                <li>
                   <a href="{{ route('setting', session('User')) }}">
                      <i class="fas fa-users"></i> Account Settings
+                  </a>
+               </li>
+               <li>
+                  <a href="{{ route('get.chat') }}">
+                     <i class="fas fa-users"></i> Function Chat
                   </a>
                </li>
 
