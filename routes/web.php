@@ -22,7 +22,7 @@ Route::get('/restaurant-details/{id}', [PublicController::class, 'menu'])->name(
 Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('restaurants');
 
 // add order
-Route::post('add/record/order', [RestaurantController::class, 'pay_now']);
+Route::post('add/record/order', [RestaurantController::class, 'pay_now'])->name('pay_now');
 
 
 // post location
