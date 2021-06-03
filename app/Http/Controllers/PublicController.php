@@ -15,30 +15,31 @@ use App\Models\Order;
 use App\Models\OrderDish;
 use App\Models\Restaurant;
 use App\Http\Controllers\ChatController;
+use function PHPUnit\Framework\isNull;
 
 class PublicController extends Controller
 {
-    // var $user;
-    // var $data = [];
-
-    // function __construct()
-    // {
-    //     $chatController = new ChatController();
-
-    //     if (session('User')) {
-
-    //         $user = User::where('id', session('User'))->first();
-
-    //         $this->user = $user;
-
-    //         if ($user['type'] == 2) {
-
-    //             $data = $chatController->loadChat($user['userName'], '_1admin1');
-
-    //             $this->data = $data;
-    //         }
-    //     }
-    // }
+//    var $user;
+//    var $data = [];
+//
+//    function __construct()
+//    {
+//        $chatController = new ChatController;
+//
+//        if (session('User')) {
+//
+//            $user = User::where('id', session('User'))->first();
+//
+//            $this->user = $user;
+//
+//            if ($user['type'] == 2) {
+//
+//                $data = $chatController->loadChat($user['userName'], '_1admin1');
+//
+//                $this->data = $data;
+//            }
+//        }
+//    }
 
     function index()
     {
@@ -271,17 +272,78 @@ class PublicController extends Controller
 				    GROUP BY dish_tags.dishId
 				    HAVING GROUP_CONCAT(dish_tags.foodTagId) like '%" . $temp . "%')";
         }
-        $sql .= " GROUP by restaurants.id, restaurants.name, restaurants.photo ";
+        $sql_group = " GROUP by restaurants.id, restaurants.name, restaurants.photo ";
+
+        if(session('Location')){
+            $vitri = explode(",",session('Location'));
+            $quocgia = null;
+            $tinh = null;
+            $quan = null;
+            $phuong = null;
+            if(count($vitri)==5){
+                $quocgia = $this->convert_name(trim($vitri[4]));
+                $tinh = $this->convert_name(trim($vitri[3]));
+                $quan = $this->convert_name(trim($vitri[2]));
+                $phuong = $this->convert_name(trim($vitri[1]));
+            }
+            if(count($vitri)==4){
+                $quocgia = $this->convert_name(trim($vitri[3]));
+                $tinh = $this->convert_name(trim($vitri[2]));
+                $quan = $this->convert_name(trim($vitri[1]));
+                $phuong = $this->convert_name(trim($vitri[0]));
+            }
+            if(count($vitri)==3){
+                $quocgia = $this->convert_name(trim($vitri[2]));
+                $tinh = $this->convert_name(trim($vitri[1]));
+                $quan = $this->convert_name(trim($vitri[0]));
+                $phuong = null;
+            }
+            if(count($vitri)==2){
+                $quocgia = $this->convert_name(trim($vitri[1]));
+                $tinh = $this->convert_name(trim($vitri[0]));
+                $quan = null;
+                $phuong = null;
+            }
+            if(isset($phuong)){
+                $sql_sort = "(".$sql." AND restaurants.id IN
+               (SELECT restaurants.id FROM restaurants WHERE restaurants.municipality = '".$phuong."')".$sql_group.")
+               UNION
+               (".$sql." AND restaurants.id IN
+               (SELECT restaurants.id FROM restaurants WHERE restaurants.district = '".$quan."' AND restaurants.municipality != '".$phuong."')".$sql_group.")
+               UNION
+               (".$sql." AND restaurants.id IN
+               (SELECT restaurants.id FROM restaurants WHERE
+                restaurants.district IN (SELECT administrativedivisions.name from administrativedivisions WHERE administrativedivisions.id =
+                (SELECT administrativedivisions.nearBy_1 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_2 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_3 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')))".$sql_group.")";
+            }
+            if (isset($quan) and is_null($phuong)){
+                $sql_sort = "(".$sql." AND restaurants.id IN
+               (SELECT restaurants.id FROM restaurants WHERE restaurants.district = '".$quan."' )".$sql_group.")
+               UNION
+               (".$sql." AND restaurants.id IN
+               (SELECT restaurants.id FROM restaurants WHERE
+                restaurants.district IN (SELECT administrativedivisions.name from administrativedivisions WHERE administrativedivisions.id =
+                (SELECT administrativedivisions.nearBy_1 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_2 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_3 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')))".$sql_group.")";
+            }
+            if(is_null($quan) and is_null($phuong)){
+                $sql_sort = $sql." ".$sql_group;
+            }
+        }
         // paginate
         if ($page > 0) {
 
             $page = ($page - 1) * 8;
         }
-        $new_sql = "select a.* from (" . $sql . ") a ";
+        $new_sql = "select a.* from (" . $sql_sort . ") a ";
         $new_sql .= " LIMIT $page, 8";
 
         $table = DB::select($new_sql);
-        //         dd($new_sql);
+//        var_dump($new_sql);
+//         dd($new_sql);
         return $table;
     }
 
@@ -296,5 +358,24 @@ class PublicController extends Controller
             ->get();
         //         dd($table);
         return $table;
+    }
+    function convert_name($str) {
+        $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
+        $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
+        $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
+        $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
+        $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
+        $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
+        $str = preg_replace("/(đ)/", 'd', $str);
+        $str = preg_replace("/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/", 'A', $str);
+        $str = preg_replace("/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/", 'E', $str);
+        $str = preg_replace("/(Ì|Í|Ị|Ỉ|Ĩ)/", 'I', $str);
+        $str = preg_replace("/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/", 'O', $str);
+        $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
+        $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
+        $str = preg_replace("/(Đ)/", 'D', $str);
+        $str = preg_replace("/(\“|\”|\‘|\’|\,|\!|\&|\;|\@|\#|\%|\~|\`|\=|\_|\'|\]|\[|\}|\{|\)|\(|\+|\^)/", '-', $str);
+        $str = preg_replace("/( )/", '-', $str);
+        return $str;
     }
 }

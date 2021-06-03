@@ -1,7 +1,7 @@
 <!-- chat box -->
 @if (session('User') &&  Request::fullUrl() == route('home') )
     @if ($user['type'] == 2)
-    @include('chat.chat-customer')
+@include('chat.chat-customer')
     @endif
 @endif
 <!-- end chat box -->
@@ -36,11 +36,11 @@
 </script>
 
 @if (isset($_GET['location']) && $_GET['location'] == 'null')
-<script>
-    $('document').ready(function() {
+    <script>
+        $('document').ready(function() {
                 $('#addressNull').modal('show')
         });
-</script>
+    </script>
 @else
 
 @endif
@@ -68,12 +68,12 @@
 
 <!--script-->
 <script src="{{ asset('template/js/jquery.js') }}"></script>
-@if (isset($_GET['order']) && $_GET['order'] == 'null')
-<script>
-    $('document').ready(function() {
+    @if (isset($_GET['order']) && $_GET['order'] == 'null')
+    <script>
+        $('document').ready(function() {
                 $('#orderNull').modal('show')
         });
-</script>
+    </script>
 @else
 
 @endif
