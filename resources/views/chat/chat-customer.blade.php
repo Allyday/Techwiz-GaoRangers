@@ -1,112 +1,105 @@
-<div class="dark-mode">
-    <div class="wrapper">
+<!-- icon chat -->
+<div class="chat-icon-open text-center" style="padding:15px; background: #007EFF; border-radius:50%; position: fixed; bottom: 50px; right:50px; z-index: 9999">
+    <span>
+        <i class="fas fa-envelope" style="font-size: 45px; color:#eaeaea"></i>
+    </span>
+    <span class="badge badge-danger icon-new-mess" style="position: absolute; top:10px; right:10px; color:rgb(255, 0, 0);">
+        <i class="fas fa-circle"></i>
+    </span>
+</div>
+<!-- end icon chat -->
 
-        <!-- chat content -->
-        <!-- Content Wrapper. Contains page content -->
-        <div class="container mt-5">
+<div class="col-md-4 chat-box" style="max-width: 550px;max-height:500px; position: fixed; bottom: 30px; right:50px; z-index: 9999">
+    <!-- DIRECT CHAT -->
+    <div class="card direct-chat direct-chat-warning">
 
-            <!-- /.card -->
-            <div class="row">
-
-
-                <div class="col-md-6 chat-box" >
-                    <!-- DIRECT CHAT -->
-                    <div class="card direct-chat direct-chat-warning" style="height: 400px">
-
-                        <div class="card-header">
-                            <h3 class="card-title" id="nameOfReceiver">Chat App</h3>
-                            <h3 hidden id="receiverUser">_1admin1</h3>
-
-                            <div class="card-tools">
-                                {{-- <span title="3 New Messages" class="badge badge-warning">3</span> --}}
-                                {{-- <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button> --}}
-
-                            </div>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <!-- Conversations are loaded here -->
-                            <div class="text-center">
-                                <a id="loadMore" href="javascript:void(0)" onclick="loadMore()">Load more</a>
-                            </div>
-
-                            <div class="direct-chat-messages" id="messChat">
-
-                                @if (count($data) == 0)
-                                <div class="direct-chat-msg" id="chatFromAdmin">
-                                    <div class="direct-chat-infos clearfix">
-                                        <span class="direct-chat-name float-left">Admin</span>
-                                    </div>
-                                    <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="{{ asset('chatapp/dist/img/user1-128x128.jpg') }}" alt="message user image">
-                                    <!-- /.direct-chat-img -->
-                                    <div class="direct-chat-text">
-                                        How can i help you ?
-                                    </div>
-                                    <!-- /.direct-chat-text -->
-                                </div>
-                                @endif
-
-                            </div>
-                            <!--/.direct-chat-messages-->
-
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <!-- form text -->
-                            <form method="POST">
-                                @csrf
-
-                                <div class="input-group">
-                                    <input type="text" name="message" placeholder="Type Message ..." class="form-control">
-
-                                    <span class="input-group-text" onclick="alert('chua co microphone()')" style="cursor: pointer;">
-                                        <i class="fas fa-microphone"></i>
-                                    </span>
-
-                                    <span class="input-group-text btn-submit" style="color: blue;cursor: pointer;">
-                                        Send
-                                    </span>
-
-                                </div>
-                            </form>
-                            <!-- end form text -->
-                        </div>
-                        <!-- /.card-footer-->
-                    </div>
-                    <!--/.direct-chat -->
-                </div>
-                <!-- /.col -->
-
+        <div class="card-header d-flex">
+            <div style="width:50%">
+                <h3 class="card-title" id="nameOfReceiver" style="font-size: 20px; margin-bottom:0;">Chat App</h3>
             </div>
 
-            <!-- /.row -->
+            <h3 hidden id="receiverUser">_1admin1</h3>
+            <div class="d-flex" style="width:50%; justify-content:flex-end">
+                <span style="padding: 0 10px" class="close-chat-box">
+                    <i class="fas fa-times"></i>
+                </span>
+            </div>
         </div>
-        <!-- end chat content -->
+        <!-- /.card-header -->
+        <div class="card-body" style="height: 300px; overflow:auto">
+            <!-- Conversations are loaded here -->
+            @if (count($data_chat) > 5)
+            <div class="text-center">
+                <a id="loadMore" href="javascript:void(0)" onclick="loadMore()">Load more</a>
+            </div>
+            @endif
 
+            <div class="direct-chat-messages" id="messChat">
+
+                @if (count($data_chat) == 0)
+                <div class="direct-chat-msg" id="chatFromAdmin" style="margin-bottom:15px; max-width:80%; display:flex ">
+                    <img style="width:40px; height: 40px; border-radius:50%" class="direct-chat-img" src="{{ asset('chatapp/dist/img/user1-128x128.jpg') }}" alt="message user image">
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text" style="background: #454d55; border-color:#454d55; margin-left:10px; padding: 5px 15px; border-radius:.3rem; color:#fff">
+                        How can i help you ?
+                    </div>
+                    <!-- /.direct-chat-text -->
+                </div>
+                @endif
+
+
+
+
+
+            </div>
+            <!--/.direct-chat-messages-->
+
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <!-- form text -->
+            <form method="POST">
+                @csrf
+                <div class="input-group d-flex text-center" style="justify-content: space-evenly; border: 1px solid #eaeaea;">
+                    <input type="text" name="message" placeholder="Type Message ..." class="form-control" style="width: 70%; border:none">
+
+                    <span class="input-group-text" onclick="microphone()" style="width:15%; cursor: pointer; padding: 10px 15px;">
+                        <i class="fas fa-microphone"></i>
+                    </span>
+
+                    <span class="input-group-text btn-submit" style="color: white;cursor: pointer;padding: 10px ;background: #7b7b7b;">
+                        Send
+                    </span>
+
+                </div>
+            </form>
+            <!-- end form text -->
+        </div>
+        <!-- /.card-footer-->
     </div>
-    <!-- ./wrapper -->
+    <!--/.direct-chat -->
+</div>
+<!-- /.col -->
 
-    <!-- script -->
-    <!-- jQuery -->
-    <script src="{{ asset('chatapp/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap -->
-    <script src="{{ asset('chatapp/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('chatapp/dist/js/adminlte.js') }}"></script>
-    <!-- end script -->
 
-    <!-- script by hand -->
-    <!-- cdn socket.io -->
-    <script src="https://cdn.socket.io/4.1.1/socket.io.min.js" integrity="sha384-cdrFIqe3RasCMNE0jeFG9xJHog/tgOVC1E9Lzve8LQN1g5WUHo0Kvk1mawWjxX7a" crossorigin="anonymous"></script>
+<!-- script -->
+<!-- jQuery -->
+<script src="{{ asset('chatapp/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset('chatapp/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset('chatapp/dist/js/adminlte.js') }}"></script>
+<!-- end script -->
 
-    <!-- send form use ajax -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- script by hand -->
+<!-- cdn socket.io -->
+<script src="https://cdn.socket.io/4.1.1/socket.io.min.js" integrity="sha384-cdrFIqe3RasCMNE0jeFG9xJHog/tgOVC1E9Lzve8LQN1g5WUHo0Kvk1mawWjxX7a" crossorigin="anonymous"></script>
 
-    <script type="text/javascript">
-        $(function () {
+<!-- send form use ajax -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
            
             var ip_address = '127.0.0.1';
             var socket_port = '8005';
@@ -116,25 +109,9 @@
                 socket.emit('user_connected', currentUser);
             })
 
-            // lấy danh sách các user active
-            socket.on('updateUsers', (data) => {
-                // console.log(data);
-                // remove class trc khi add
-                let status = $('.list-user');
-                status.removeClass('changeColor');
-
-                // xem thằng nào on thì add class active để có nút màu xanh 
-                data.forEach(ele => {
-                    status.each(index=>{
-                        if($(status[index]).attr('user-name') == ele['user_name']){
-                            $(status[index]).addClass('changeColor');
-                            $(status[index]).text('Online');
-                        }
-                    })
-
-                });
-
-            })
+            // only admin see
+            // socket.on('updateUsers', (data) => {
+            // })
 
             socket.on('private-channel:dataMessage', function (data){
                 // console.log('private-channel:',data);
@@ -147,6 +124,9 @@
                 .done(function(user) {
                      // append mess receiver here
                     messReceiver(user['userName'], data['created_at'], user['picture'], data['message'])
+                    if($('.chat-box').css('display') == 'none'){
+                        $('.icon-new-mess').css('display', '');
+                    }
 
                 })
                 .fail((jqXHR, ajaxOptions, thrownError) => {
@@ -156,235 +136,192 @@
             })
 
         })
-    </script>
+</script>
 
 
-    <script type="text/javascript">
-        const user_image = "{{ $user['picture'] }}";
-        var page_user = 1;
-        var page_mess = 1;
-        const currentUser = "{{ $user['userName'] }}";
-        var typeUser = "{{ $user['type'] }}";
+<script type="text/javascript">
+    const user_image = "{{ $user['picture'] }}";
+    var page_user = 1;
+    var page_mess = 1;
+    const currentUser = "{{ $user['userName'] }}";
+    var typeUser = "{{ $user['type'] }}";
 
 
 
+    function messReceiver(username, time, image, mess){
+        var row = `<div class="direct-chat-msg" style=" max-width:80%; display:flex ">
+                        <img style="width:40px; height: 40px; border-radius:50%" class="direct-chat-img" src="{{ asset('images/${image}') }}" alt="message user image">
+                        <div class="direct-chat-text" style="background: #454d55; border-color:#454d55; margin-left:10px; padding: 5px 15px; border-radius:.3rem; color:#fff">
+                            ${mess}
+                        </div>
+                    </div>
+                    <div class="direct-chat-infos clearfix" style="display:flex; font-size: 12px; margin-bottom:15px">
+                        <span>${(new Date( Date.parse(time) )).toLocaleString('vi-VN')}</span>
+                    </div>`;
 
-        function messReceiver(username, time, image, mess){
-            var row = `<div class="direct-chat-msg" style="max-width:80%">
-                            <!-- /.direct-chat-infos -->
-                            <img class="direct-chat-img" src="{{ asset('images/${image}') }}" alt="message user image">
-                            <!-- /.direct-chat-img -->
-                            <div class="direct-chat-text">
-                                ${mess}
-                            </div>
-                            <div class="direct-chat-infos clearfix">
-                                <span class="direct-chat-timestamp ">${(new Date( Date.parse(time) )).toLocaleString('vi-VN')}</span>
-                            </div>
-                            <!-- /.direct-chat-text -->
-                        </div>`;
+        document.getElementById('messChat').innerHTML += row;
+    }
 
-            document.getElementById('messChat').innerHTML += row;
+    function messSender(username, time, image, mess){
+        let row = `<div class="direct-chat-msg right" style="margin-left:20%;flex-direction: row-reverse; max-width:80%; display:flex ; margin-bottom:5px ">
+                        
+                        <img style="width:40px; height: 40px; border-radius:50%" class="direct-chat-img" src="{{ asset('images/${image}') }}" alt="message user image">
+                        <div class="direct-chat-text" style="background: blue; border-color:#454d55; margin-right:10px; padding: 5px 15px; border-radius:.3rem; color:#fff">
+                            ${mess}
+                        </div>
+                    </div>
+                    <div class="direct-chat-infos clearfix" style="display:flex; justify-content: flex-end; font-size: 12px; margin-bottom:15px">
+                        <span>${(new Date( Date.parse(time) )).toLocaleString('vi-VN')}</span>
+                    </div>
+                    `;
+
+        document.getElementById('messChat').innerHTML += row;
+    }
+
+    
+    // voice recognize to text
+    function record() {
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "vi-VN";
+
+        recognition.onresult = (event) => {
+            let res_text = event.results[0][0].transcript;
+            // console.log(res_text);
+            $("input[name='message']").val(res_text)
         }
-   
-        function messSender(username, time, image, mess){
-            let row = `<div class="direct-chat-msg right" style="margin-left:20%;text-align:end">
-                           
-                            <!-- /.direct-chat-infos -->
-                            <img class="direct-chat-img" src="{{ asset('images/${image}') }}" alt="message user image">
-                            <!-- /.direct-chat-img -->
-                            <div class="direct-chat-text">
-                                ${mess}
-                            </div>
-                            <div class="direct-chat-infos clearfix">
-                                
-                                <span class="direct-chat-timestamp float-right">${(new Date( Date.parse(time) )).toLocaleString('vi-VN')}</span>
-                            </div>
-                            <!-- /.direct-chat-text -->
-                        </div>`;
+        recognition.start()
+    }
 
-            document.getElementById('messChat').innerHTML += row;
-        }
-
-        function appendUser(img, username, firstname, lastname){
-            let row =  `<li>
-                            <img src="{{ asset('images/blank-profile-picture.png') }}" alt="User Image">
-                            <a onclick="loadChatUser('${username}')" class="users-list-name " type="button">${firstname+" "+lastname}</a>
-                            <span class="list-user" user-name="${username}">Offline</span>
-                        </li>`;
-            document.getElementById('icon_user').innerHTML += row;
-        }
-
-        // voice recognize to text
-        function record() {
-            var recognition = new webkitSpeechRecognition();
-            recognition.lang = "vi-VN";
-
-            recognition.onresult = (event) => {
-                let res_text = event.results[0][0].transcript;
-                console.log(res_text);
-                $("input[name='message']").val(res_text)
-            }
-            recognition.start()
-        }
-
-        function microphone(){
-            record();
-        }
-
-        function loadUser(){
-            page_user++;
-
-            $.ajax({
-                type:'GET',
-                url:"{{ route('get.chat') }}"+"?page="+page_user,
-            })
-            .done(function(data) {
-                // console.log(data);
-                if (data.length == 0){
-                    $('#loaduser').attr('hidden', 'hidden');
-                }
-                data.forEach(ele => {
-                    appendUser('img', ele['userName'], ele['firstName'], ele['lastName']);
-                });
-                $('#numberUser').text($('#icon_user').children().length)
-            })
-            .fail((jqXHR, ajaxOptions, thrownError) => {
-                // alert('Something went wrong, try again later!');
-            });
-           
-        }
-
-        function loadMore(){
-            page_mess++;
-            let receiver = $('#receiverUser').text().trim();
-            
-            $.ajax({
-                type:'GET',
-                url:`{{ route('get.more.message') }}?page=${page_mess}&sender=${currentUser}&receiver=${receiver}`,
-            })
-            .done(function(data) {
-                if(data[0].length==0){
-                    $('#loadMore').attr('hidden', 'hidden');
-                    return
-                }
-                // add data in chat box
-                data[0].forEach(ele => {
-                    if (ele['sender_username'] == currentUser){
-                        messSender( currentUser, ele['created_at'], user_image, ele['message'])
-                    }
-                    else {
-                        messReceiver( receiver, ele['created_at'], data[1]['picture'], ele['message'])
-                    }
-                });
-
-            })
-            .fail((jqXHR, ajaxOptions, thrownError) => {
-                // alert('Something went wrong, try again later!');
-            });
-
-        }
-
-        function loadChatUser(username){
-            // when click another user
-            $('#nameOfReceiver').text('Chat App')
-            $('#messChat').html("")
-            page_mess = 1
-            
-            // load data
-            $.ajax({
-                type:'GET',
-                url:"http://127.0.0.1:8000/chat/get/"+username,
-            })
-            .done(function(data) {
-               
-                // handle box chat
-                $('.chat-box').removeAttr('hidden');
-                $('#chatFromAdmin').attr('hidden', 'hidden');
-                $('#nameOfReceiver').text(data[1]['firstName']+' '+data[1]['lastName']);
-                $('#receiverUser').text(data[1]['userName']);
-                $('#loadMore').removeAttr('hidden');
-
-                if(data[0].length==0){
-                    $('#loadMore').attr('hidden', 'hidden');
-                    // return
-                }
-
-                // add data in chat box
-                data[0].forEach(ele => {
-                    if (ele['sender_username'] == currentUser){
-                        messSender( currentUser, ele['created_at'], user_image, ele['message'])
-                    }
-                    else {
-                        messReceiver( currentUser, ele['created_at'], data[1]['picture'], ele['message'])
-                    }
-                });
-
-            })
-            .fail((jqXHR, ajaxOptions, thrownError) => {
-                // alert('Something went wrong, try again later!');
-            });
-        }
+    function microphone(){
+        record();
+    }
 
 
-        function submitAjax(){
-            var text = $("input[name=message]").val();
-            let check = text.trim()
-            // validate
-            if (check.length == 0){
-                console.log('please type something ...')
+    function loadMore(){
+        page_mess++;
+        let receiver = $('#receiverUser').text().trim();
+        
+        $.ajax({
+            type:'GET',
+            url:`{{ route('get.more.message') }}?page=${page_mess}&sender=${currentUser}&receiver=${receiver}`,
+        })
+        .done(function(data) {
+            if(data[0].length==0){
+                $('#loadMore').attr('hidden', 'hidden');
                 return
             }
-
-            var _token = $("input[name=_token]").val();
-
-            let receiver = $('#receiverUser').text().trim();
-
-            var sender = "{{ $user['userName'] }}";
-
-            var sendData = {sender:sender, receiver:receiver, text:check, "_token":_token};
-            $("input[name=message]").val("")
-
-            $.ajax({
-                type:'POST',
-                url:"{{ route('post.chat') }}",
-                data:sendData,
-                dataType: "json"
-            })
-            .done(function(data) {
-                messSender(currentUser, data['created_at'], user_image, data['message']);
-            })
-            .fail((jqXHR, ajaxOptions, thrownError) => {
-                // alert('Something went wrong, try again later!');
+            // add data in chat box
+            data[0].forEach(ele => {
+                if (ele['sender_username'] == currentUser){
+                    messSender( currentUser, ele['created_at'], user_image, ele['message'])
+                }
+                else {
+                    messReceiver( receiver, ele['created_at'], data[1]['picture'], ele['message'])
+                }
             });
+
+        })
+        .fail((jqXHR, ajaxOptions, thrownError) => {
+            // alert('Something went wrong, try again later!');
+        });
+
+    }
+
+
+
+    function submitAjax(){
+        let text = $("input[name=message]").val();
+        let check = text.trim()
+        // validate
+        if (check.length == 0){
+            console.log('please type something ...')
+            return
         }
 
-        $( document ).ready(function() {
-            
-            $("form").keypress(function(e){
-                if(e.keyCode == 13) {
-                    e.preventDefault();
-                    submitAjax()
-                }
-            })
-            
+        var _token = $("input[name=_token]").val();
 
-            $(".btn-submit").click(function(e){
+        let receiver = $('#receiverUser').text().trim();
+
+        var sender = "{{ $user['userName'] }}";
+
+        var sendData = {sender:sender, receiver:receiver, text:check, "_token":_token};
+        $("input[name=message]").val("")
+
+        $.ajax({
+            type:'POST',
+            url:"{{ route('post.chat') }}",
+            data:sendData,
+            dataType: "json"
+        })
+        .done(function(data) {
+            messSender(currentUser, data['created_at'], user_image, data['message']);
+        })
+        .fail((jqXHR, ajaxOptions, thrownError) => {
+            // alert('Something went wrong, try again later!');
+        });
+    }
+
+    $( document ).ready(function() {
+        var input_mess =  $("input[name=message]");
+        var chat_box = $('.chat-box');
+        var chat_icon = $('.chat-icon-open');
+        var close_chat_box = $('.close-chat-box');
+        var icon_new_mess = $('.icon-new-mess');
+
+
+        // submit when press enter
+        $("form").keypress(function(e){
+            if(e.keyCode == 13) {
                 e.preventDefault();
                 submitAjax()
-            });
-
+            }
+        })
+        
+        // submit when click button
+        $(".btn-submit").click(function(e){
+            e.preventDefault();
+            submitAjax()
         });
-    </script>
 
-    @foreach ($data_chat as $item)
-    @if ($item['sender_username'] == $user['userName'])
-    <script>
-        messSender( "{{ $user['userName'] }}", "{{ $item['created_at'] }}", "{{ $user['picture'] }}", "{{ $item['message'] }}")
-    </script>
-    @else
-    <script>
-        messReceiver( "Admin", "{{ $item['created_at'] }}", "user1-128x128.jpg", "{{ $item['message'] }}")
-    </script>
-    @endif
-    @endforeach
-</div>
+        // check input`message` when empty
+        input_mess.keyup(function() {
+            let check = input_mess.val().trim();
+
+            if (check.length > 0){
+                $(".btn-submit").css("background-color", 'blue');
+                
+            }else{
+                $(".btn-submit").css("background-color", '#7b7b7b');
+            }
+        });
+
+        // default chat-box hidden
+        chat_box.css('display','none')
+        chat_icon.css('display','')
+        // function change 
+        chat_icon.click(()=> {
+            
+            chat_icon.css('display','none')
+            chat_box.css('display','')
+        })
+        close_chat_box.click(()=> {
+            chat_box.css('display','none')
+            icon_new_mess.css('display','none')
+            chat_icon.css('display','')
+        })
+
+
+    });
+</script>
+
+@foreach ($data_chat as $item)
+@if ($item['sender_username'] == $user['userName'])
+<script>
+    messSender( "{{ $user['userName'] }}", "{{ $item['created_at'] }}", "{{ $user['picture'] }}", "{{ $item['message'] }}")
+</script>
+@else
+<script>
+    messReceiver( "Admin", "{{ $item['created_at'] }}", "user1-128x128.jpg", "{{ $item['message'] }}")
+</script>
+@endif
+@endforeach

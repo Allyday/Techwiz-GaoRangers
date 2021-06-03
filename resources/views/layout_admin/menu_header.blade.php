@@ -16,6 +16,7 @@
                <img class="img-responsive img-rounded" src="../assets/img/user.png" alt="User picture">
             </div> --}}
             <div class="user-info">
+               <img style="width: 70px" src="{{ asset('images/user1-128x128.jpg') }}" alt="User Image">
                <span class="user-name">
                   <strong>Administrator</strong>
                </span>

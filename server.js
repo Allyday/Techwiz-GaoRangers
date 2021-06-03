@@ -22,7 +22,7 @@ redis.subscribe('private-channel', () => {
 
 redis.on('message', (channel, message) => {
     message = JSON.parse(message);
-    
+
 
     if (channel == 'private-channel') {
         let data = message.data.dataMess;
@@ -69,7 +69,14 @@ io.on("connection", socket => {
         users.push(tuple);
 
         // emit array of user with status active
-        io.emit('updateUsers', users);
+        // lay socket id of receiver
+        let socketID = '';
+        users.forEach(element => {
+            if (element['user_name'] == '_1admin1') {
+                socketID = element['socket_id'];
+            }
+        });
+        io.to(socketID).emit('updateUsers', users);
     });
 
     // disconnect

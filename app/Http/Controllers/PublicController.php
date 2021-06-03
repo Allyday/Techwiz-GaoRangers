@@ -18,27 +18,27 @@ use App\Http\Controllers\ChatController;
 
 class PublicController extends Controller
 {
-    var $user;
-    var $data = [];
+    // var $user;
+    // var $data = [];
 
-    function __construct()
-    {
-        $chatController = new ChatController;
+    // function __construct()
+    // {
+    //     $chatController = new ChatController();
 
-        if (session('User')) {
+    //     if (session('User')) {
 
-            $user = User::where('id', session('User'))->first();
+    //         $user = User::where('id', session('User'))->first();
 
-            $this->user = $user;
+    //         $this->user = $user;
 
-            if ($user['type'] == 2) {
+    //         if ($user['type'] == 2) {
 
-                $data = $chatController->loadChat($user['userName'], '_1admin1');
+    //             $data = $chatController->loadChat($user['userName'], '_1admin1');
 
-                $this->data = $data;
-            }
-        }
-    }
+    //             $this->data = $data;
+    //         }
+    //     }
+    // }
 
     function index()
     {
@@ -72,9 +72,23 @@ class PublicController extends Controller
         // dd($data);
         $resCount = Restaurant::all()->count('id');
 
-        $user = $this->user;
-        
-        $data_chat = $this->data;
+        // for chat
+        $chatController = new ChatController();
+
+        if (session('User')) {
+
+            $user = User::where('id', session('User'))->first();
+
+            if ($user['type'] == 2) {
+
+                $data_chat = $chatController->loadChat($user['userName'], '_1admin1');
+            } else {
+                $data_chat = [];
+            }
+        } else {
+            $user = null;
+            $data_chat = [];
+        }
 
         return view('template.home', compact('access', 'dishhome', 'data', 'resCount', 'user', 'data_chat'));
     }

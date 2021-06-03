@@ -66,7 +66,7 @@
                                 <div class="input-group">
                                     <input type="text" name="message" placeholder="Type Message ..." class="form-control">
 
-                                    <span class="input-group-text" onclick="alert('chua co microphone()')" style="cursor: pointer;">
+                                    <span class="input-group-text" onclick="microphone()" style="cursor: pointer;">
                                         <i class="fas fa-microphone"></i>
                                     </span>
 
@@ -111,7 +111,7 @@
 
                                 @if ($item['userName'] != $user['userName'])
                                 <li>
-                                    <img src="{{ asset('images/blank-profile-picture.png') }}" alt="User Image">
+                                    <img style="width: 70px" src="{{ asset('images/blank-profile-picture.png') }}" alt="User Image">
                                     <a onclick="loadChatUser('{{ $item['userName'] }}')" class="users-list-name " type="button">{{ $item['firstName']." ".$item['lastName'] }}</a>
                                     <span class="list-user" user-name="{{ $item['userName'] }}">Offline</span>
                                 </li>
@@ -172,7 +172,7 @@
 
             // lấy danh sách các user active
             socket.on('updateUsers', (data) => {
-                // console.log(data);
+                console.log(data);
                 // remove class trc khi add
                 let status = $('.list-user');
                 status.removeClass('changeColor');
@@ -261,7 +261,7 @@
 
         function appendUser(img, username, firstname, lastname){
             let row =  `<li>
-                            <img src="{{ asset('images/blank-profile-picture.png') }}" alt="User Image">
+                            <img style="width:70px" src="{{ asset('images/blank-profile-picture.png') }}" alt="User Image">
                             <a onclick="loadChatUser('${username}')" class="users-list-name " type="button">${firstname+" "+lastname}</a>
                             <span class="list-user" user-name="${username}">Offline</span>
                         </li>`;
@@ -275,7 +275,7 @@
 
             recognition.onresult = (event) => {
                 let res_text = event.results[0][0].transcript;
-                console.log(res_text);
+                // console.log(res_text);
                 $("input[name='message']").val(res_text)
             }
             recognition.start()
@@ -339,6 +339,13 @@
         }
 
         function loadChatUser(username){
+            let current_url = window.location.href
+
+            url_link = "http://127.0.0.1:8000/chat/get/";
+
+            if(current_url.startsWith("http://localhost")){
+                url_link = "http://localhost:8000/chat/get/";
+            }
             // when click another user
             $('#nameOfReceiver').text('Chat App')
             $('#messChat').html("")
@@ -347,7 +354,7 @@
             // load data
             $.ajax({
                 type:'GET',
-                url:"http://127.0.0.1:8000/chat/get/"+username,
+                url:url_link+username ,
             })
             .done(function(data) {
                
