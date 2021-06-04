@@ -274,7 +274,12 @@ class RestaurantController extends Controller
      
     function checkCoupons(Request $request){
         if($request->ajax()){
-            return $request->all();
+            // return $request->all();
+            $data = [
+                "type"=>1,
+                'value'=> 10.86
+            ];
+            return $data;
         }
     }
 }

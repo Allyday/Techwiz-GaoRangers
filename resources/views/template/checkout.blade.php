@@ -89,6 +89,10 @@
                                 <div class="cart-totals-fields">
                                     <table class="table">
                                         <thead>
+                                            <div style="display:none" class=" noticeCoupons pt-1 font-weight-bold text-danger text-center">
+                                                The code invalid?
+                                            </div>
+
                                             <div id="btn-collapse" class="py-1 pl-1 font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 Do you have any coupons?
                                                 <a class="ml-1">
@@ -97,8 +101,9 @@
                                             </div>
                                             <div class="collapse" id="collapseExample">
                                                 <form id="formCoupons" method="POST">
+                                                    <label class=" ml-1 text-danger errorText">Invalid field</label>
                                                     <input required style="width: 90%" class="ml-1 mb-1 form-control" type="text" name="coupons" placeholder="Discount code">
-                                                    <button type="button" class="btn-submit btn btn-info ml-1 mb-1" style="width: 90%">submit</button>
+                                                    <button type="button" class="btn-submit btn btn-info ml-1 mb-1" style="width: 90%">Apply</button>
                                                 </form>
 
                                             </div>
@@ -106,18 +111,34 @@
                                         <tbody>
                                             <tr>
                                                 <td>Cart Subtotal</td>
-                                                <td class="text-end">$ <span id="cart-subtotal">29.00</span></td>
+                                                <td class="text-end">$<span id="cart-subtotal">29.00</span></td>
                                             </tr>
                                             <tr>
                                                 <td>Delivery Fee</td>
                                                 <td id="delivery-fee" class="text-end">$2.00</td>
                                             </tr>
 
+
+                                            <!-- display amount discount-->
+                                            <tr style="display: none" class="amountDiscount">
+                                                <td>Amount discount</td>
+                                                <td class="text-end">$2.00</td>
+                                            </tr>
+
+                                            <!-- display percent discount-->
+                                            <tr style="display: none" class="percentDiscount">
+                                                <td>Percent discount</td>
+                                                <td class="text-end">$2.00</td>
+                                            </tr>
+
+                                        </tbody>
+                                        <tfoot>
                                             <tr>
                                                 <td class="text-color"><strong>Total</strong></td>
-                                                <td class="text-color text-end"><strong id="cart-total">$31.00</strong></td>
+                                                <td class="text-color text-end font-weight-bold">$<span id="cart-total">31.00</span></td>
                                             </tr>
-                                        </tbody>
+                                        </tfoot>
+
                                     </table>
                                 </div>
                             </div>
@@ -138,7 +159,16 @@
                                 @else
                                 <p class="text-xs-center"> <a data-toggle="modal" data-target="#locationModal" href="javascript:void(0)" class="btn btn-outline-success btn-block">Pay now</a> </p>
                                 @endif
-
+                                <!-- Loader spinner -->
+                                <div id="spinner" class="w-100" style="text-align: center">
+                                    <div class="lds-ellipsis">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <!-- end:Loader spinner -->
                             </div>
                         </div>
                     </div>
@@ -219,6 +249,8 @@
                 }
 
             })
+            $('#spinner').hide();
+            $('.errorText').hide();
         });
 
         // submit coupons
@@ -234,17 +266,54 @@
         
         function submitCoupons(){
             let indata = $('input[name="coupons"]');
-            if (indata.val().trim().length < 5) return console.log('type discount code ...')
+            let subtotal = parseFloat($('#cart-subtotal').text());
+            let total = parseFloat($('#cart-total').text());
+
+            if (indata.val().trim().length < 5 || subtotal <= 0) {
+                $('.errorText').show();
+                indata.css('border-color', 'red')
+                return console.log('type discount code ...')
+            }
 
             $.ajax({
                 type: 'POST',
                 url: "{{ route('checkCoupons') }}",
                 data: {
-                    data: indata.val().trim(),
+                    code: indata.val().trim(),
+                    subtotal: subtotal,
                     _token: '{{csrf_token()}}'
                 },
-                success: function(res) {
-                    console.log(res);
+                beforeSend:()=>{
+                    $('.text-xs-center').hide();
+                    $('#spinner').show();
+                },
+                success: function(data) {
+                    console.log(data)
+
+                    if(data.type == 0){
+                        // error
+                        $('.noticeCoupons').text(data.value);
+                        $('.noticeCoupons').css('display','')
+                    }else if(data.type == 1){
+                        // percent
+                        $('.percentDiscount > td.text-end').text('-$'+data.value)
+                        $('.percentDiscount').css('display','')
+
+                        // update total
+                        $('#cart-total').text(`${total - data.value}`);
+
+                    }else if(data.type == 2){
+                        // amount
+                        $('.amountDiscount>td.text-end').text('-$'+data.value)
+                        $('.amountDiscount').css('display','')
+                        
+                        // update total
+                        $('#cart-total').text(`${total - data.value}`);
+                    }
+                    
+                    // hide loader spinner
+                    $('.text-xs-center').show();
+                    $('#spinner').hide();
                 }
             });
         }
@@ -255,6 +324,7 @@
                 $('#cart-subtotal').text('0');
                 $('#cart-total').html('0');
                 $('#delivery-fee').html('0');
+                $('.text-xs-center').hide();
             }
         }
 
@@ -326,7 +396,7 @@
 
             var cartTotal = Math.round((subtotal + deliveryFee) * 100) / 100;
             $('#cart-subtotal').html(`${subtotal}`);
-            $('#cart-total').html(`$${cartTotal}`);
+            $('#cart-total').html(`${cartTotal}`);
         }
 
         function removeCart(id) {

@@ -16,7 +16,6 @@ class LocationController extends Controller
         }
         $location = $request->location;
         $location  = explode(" | ", $location);
-        // dd($location);
         $request->session()->put('Location', $location[1]);
         return redirect()->route('restaurants',['location' => session('Location')]);
     }

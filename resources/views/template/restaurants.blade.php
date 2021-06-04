@@ -139,13 +139,11 @@
                <!--Restaurant entry -->
                @include('template.dataRes')
                <!-- end:Restaurant entry -->
+            </div>
+            <div class="col-md-12 ">
                <!-- Loader spinner -->
-               <div class="col-md-12 " style="text-align: center; display: none">
-                  <div class="lds-roller">
-                     <div></div>
-                     <div></div>
-                     <div></div>
-                     <div></div>
+               <div id="loader-spinner" class="col-md-12 " style="text-align: center; display: none">
+                  <div class="lds-ellipsis">
                      <div></div>
                      <div></div>
                      <div></div>
@@ -153,7 +151,6 @@
                   </div>
                </div>
                <!-- end:Loader spinner -->
-
 
             </div>
          </div>
@@ -171,14 +168,14 @@
            beforeSend: ()=>{
               $('#loader-spinner').show();
            },error: function (xhr, ajaxOptions, thrownError) {
-               // console.log(xhr.status);
-               // console.log(thrownError);
                // return;
             }
          })
          .done( (data) => {
-            if(data.html == " "){
+            // console.log(data);
+            if(data.html == ""){
                $('#loader-spinner').html('No more records found');
+               $('#loader-spinner').show();
                return;
             }
             $('#loader-spinner').hide();
