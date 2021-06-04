@@ -9,7 +9,7 @@
 
 <div class="page-wrapper">
     <div class="container padding-bottom-3x mb-1">
-        <div class="widget-heading">
+        <div class="widget-heading" style="padding-left: 0">
             <h2 class="text-dark">
                 <span style="border-bottom: 2px solid #ff3300">
                     Current Order
@@ -163,13 +163,19 @@
 
     <div class="container m-t-30">
         <!-- /widget heading -->
-        <div class="widget-heading">
+        <div class="widget-heading" style="padding-left: 0">
             <h2 class="text-dark " id="toglle_colapse">
                 <span style="border-bottom: 2px solid #ff3300;cursor:pointer;">
                     Past Orders
                 </span>
             </h2>
             <div class="clearfix"></div>
+        </div>
+
+        <div id="pastOrders" style="display:none; padding-bottom: 15px ">
+            <span style="font-size:20px">
+                You don't have any orders yet!
+            </span>
         </div>
 
         <div id="collapsePastOrder" class="collapse widget clearfix order-history">
@@ -290,6 +296,10 @@
                 url: "get/all/past/order"
             })
             .done(function(res) {
+                if (res == 404){
+                    $("#pastOrders").css('display', '');
+                    return;
+                }
                 innerPastOrder(res);
                 // collapse
                 $('#collapsePastOrder').collapse('show')

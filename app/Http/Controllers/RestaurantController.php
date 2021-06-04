@@ -13,6 +13,8 @@ use App\Models\DishCategory;
 use App\Models\FoodTag;
 use Carbon\Carbon;
 
+use function PHPUnit\Framework\isNull;
+
 class RestaurantController extends Controller
 {
     function convertObjToArray($obj)
@@ -107,6 +109,9 @@ class RestaurantController extends Controller
 
     function restaurants(Request $request)
     {
+        if(isNull(session('Location'))){
+            return redirect(route('home', ['location' => 'null']));
+        }
         // get full data
         $publicController = new PublicController();
 

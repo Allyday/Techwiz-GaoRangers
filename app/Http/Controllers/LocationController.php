@@ -14,6 +14,6 @@ class LocationController extends Controller
             $request->session()->put('Location', $location);
             return 1;
         }
-
+        return $request->all();
     }
 }

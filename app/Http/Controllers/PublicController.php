@@ -133,6 +133,9 @@ class PublicController extends Controller
                 ->limit(3)
                 ->get();
 
+            if(count($order) == 0){
+                return 404;
+            }
 
             $res = Restaurant::where('id', $order[0]['restaurantId'])->first();
 
@@ -253,63 +256,63 @@ class PublicController extends Controller
         }
         $sql_group = " GROUP by restaurants.id, restaurants.name, restaurants.photo ";
 
-        if(session('Location')){
-            $vitri = explode(",",session('Location'));
+        if (session('Location')) {
+            $vitri = explode(",", session('Location'));
             $quocgia = null;
             $tinh = null;
             $quan = null;
             $phuong = null;
-            if(count($vitri)==5){
+            if (count($vitri) == 5) {
                 $quocgia = $this->convert_name(trim($vitri[4]));
                 $tinh = $this->convert_name(trim($vitri[3]));
                 $quan = $this->convert_name(trim($vitri[2]));
                 $phuong = $this->convert_name(trim($vitri[1]));
             }
-            if(count($vitri)==4){
+            if (count($vitri) == 4) {
                 $quocgia = $this->convert_name(trim($vitri[3]));
                 $tinh = $this->convert_name(trim($vitri[2]));
                 $quan = $this->convert_name(trim($vitri[1]));
                 $phuong = $this->convert_name(trim($vitri[0]));
             }
-            if(count($vitri)==3){
+            if (count($vitri) == 3) {
                 $quocgia = $this->convert_name(trim($vitri[2]));
                 $tinh = $this->convert_name(trim($vitri[1]));
                 $quan = $this->convert_name(trim($vitri[0]));
                 $phuong = null;
             }
-            if(count($vitri)==2){
+            if (count($vitri) == 2) {
                 $quocgia = $this->convert_name(trim($vitri[1]));
                 $tinh = $this->convert_name(trim($vitri[0]));
                 $quan = null;
                 $phuong = null;
             }
-            if(isset($phuong)){
-                $sql_sort = "(".$sql." AND restaurants.id IN
-               (SELECT restaurants.id FROM restaurants WHERE restaurants.municipality = '".$phuong."')".$sql_group.")
+            if (isset($phuong)) {
+                $sql_sort = "(" . $sql . " AND restaurants.id IN
+               (SELECT restaurants.id FROM restaurants WHERE restaurants.municipality = '" . $phuong . "')" . $sql_group . ")
                UNION
-               (".$sql." AND restaurants.id IN
-               (SELECT restaurants.id FROM restaurants WHERE restaurants.district = '".$quan."' AND restaurants.municipality != '".$phuong."')".$sql_group.")
+               (" . $sql . " AND restaurants.id IN
+               (SELECT restaurants.id FROM restaurants WHERE restaurants.district = '" . $quan . "' AND restaurants.municipality != '" . $phuong . "')" . $sql_group . ")
                UNION
-               (".$sql." AND restaurants.id IN
+               (" . $sql . " AND restaurants.id IN
                (SELECT restaurants.id FROM restaurants WHERE
                 restaurants.district IN (SELECT administrativedivisions.name from administrativedivisions WHERE administrativedivisions.id =
-                (SELECT administrativedivisions.nearBy_1 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
-                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_2 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
-                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_3 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')))".$sql_group.")";
+                (SELECT administrativedivisions.nearBy_1 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_2 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_3 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')))" . $sql_group . ")";
             }
-            if (isset($quan) and is_null($phuong)){
-                $sql_sort = "(".$sql." AND restaurants.id IN
-               (SELECT restaurants.id FROM restaurants WHERE restaurants.district = '".$quan."' )".$sql_group.")
+            if (isset($quan) and is_null($phuong)) {
+                $sql_sort = "(" . $sql . " AND restaurants.id IN
+               (SELECT restaurants.id FROM restaurants WHERE restaurants.district = '" . $quan . "' )" . $sql_group . ")
                UNION
-               (".$sql." AND restaurants.id IN
+               (" . $sql . " AND restaurants.id IN
                (SELECT restaurants.id FROM restaurants WHERE
                 restaurants.district IN (SELECT administrativedivisions.name from administrativedivisions WHERE administrativedivisions.id =
-                (SELECT administrativedivisions.nearBy_1 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
-                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_2 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
-                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_3 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')))".$sql_group.")";
+                (SELECT administrativedivisions.nearBy_1 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_2 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_3 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')))" . $sql_group . ")";
             }
-            if(is_null($quan) and is_null($phuong)){
-                $sql_sort = $sql." ".$sql_group;
+            if (is_null($quan) and is_null($phuong)) {
+                $sql_sort = $sql . " " . $sql_group;
             }
         }
         // paginate
@@ -321,8 +324,8 @@ class PublicController extends Controller
         $new_sql .= " LIMIT $page, 8";
 
         $table = DB::select($new_sql);
-//        var_dump($new_sql);
-//         dd($new_sql);
+        //        var_dump($new_sql);
+        //         dd($new_sql);
         return $table;
     }
 
@@ -338,7 +341,8 @@ class PublicController extends Controller
         //         dd($table);
         return $table;
     }
-    function convert_name($str) {
+    function convert_name($str)
+    {
         $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
         $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
         $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
