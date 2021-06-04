@@ -276,8 +276,8 @@ class RestaurantController extends Controller
         if($request->ajax()){
             // return $request->all();
             $data = [
-                "type"=>1,
-                'value'=> 10.86
+                "type"=>1, // 0
+                'value'=> 10.86 // 'code expired'
             ];
             return $data;
         }
