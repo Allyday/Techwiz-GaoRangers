@@ -13,16 +13,16 @@
                 @else
                 <li class="col-xs-12 col-sm-3 link-item"><span>1</span><a href="javasctip:void(0)">Choose Your Location</a></li>
                 @endif
-      
+
                 <li class="col-xs-12 col-sm-3 link-item"><span>2</span><a href="{{ route('restaurants') }}">Choose Restaurant</a></li>
                 <li class="col-xs-12 col-sm-3 link-item active"><span>3</span><a href="{{ route('menu', 1) }}">Pick Your favorite food</a></li>
-      
+
                 @if (session('User'))
                 <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a href="{{ route('checkout') }}">Order and Pay online</a></li>
                 @else
                 <li class="col-xs-12 col-sm-3 link-item"><span>4</span><a data-toggle="modal" data-target="#modalLogin" href="javascript:void(0)">Order and Pay online</a></li>
                 @endif
-             </ul>
+            </ul>
         </div>
     </div>
     <div class="container m-t-30">
@@ -88,6 +88,21 @@
                             <div class="cart-totals margin-b-20">
                                 <div class="cart-totals-fields">
                                     <table class="table">
+                                        <thead>
+                                            <div id="btn-collapse" class="py-1 pl-1 font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                Do you have any coupons?
+                                                <a class="ml-1">
+                                                    <i class="icon-arrow fas fa-arrow-down"></i>
+                                                </a>
+                                            </div>
+                                            <div class="collapse" id="collapseExample">
+                                                <form id="formCoupons" method="POST">
+                                                    <input required style="width: 90%" class="ml-1 mb-1 form-control" type="text" name="coupons" placeholder="Discount code">
+                                                    <button type="button" class="btn-submit btn btn-info ml-1 mb-1" style="width: 90%">submit</button>
+                                                </form>
+
+                                            </div>
+                                        </thead>
                                         <tbody>
                                             <tr>
                                                 <td>Cart Subtotal</td>
@@ -97,6 +112,7 @@
                                                 <td>Delivery Fee</td>
                                                 <td id="delivery-fee" class="text-end">$2.00</td>
                                             </tr>
+
                                             <tr>
                                                 <td class="text-color"><strong>Total</strong></td>
                                                 <td class="text-color text-end"><strong id="cart-total">$31.00</strong></td>
@@ -137,9 +153,9 @@
         $( document ).ready(function() {
             var array = JSON.parse(window.sessionStorage.getItem("cart")) || [];
 
-        if(array.length==0){
-            location.href = '<?= route('restaurants') ?>';
-        }
+            if(array.length==0){
+                location.href = '<?= route('restaurants') ?>';
+            }
 
             // console.log(array);
             checkNull();
@@ -187,8 +203,51 @@
                 checkNull();
             });
 
-            
+            // change icon arrow , where coupons
+            $('#btn-collapse').click(()=> {
+                let icon_arrow = $('.icon-arrow');
+                // console.log('change icon')
+                if(icon_arrow.hasClass('fa-arrow-down')){
+                    icon_arrow.removeClass('fa-arrow-down')
+                    icon_arrow.addClass('fa-arrow-up')
+                    return;
+                }
+                if(icon_arrow.hasClass('fa-arrow-up')){
+                    icon_arrow.removeClass('fa-arrow-up')
+                    icon_arrow.addClass('fa-arrow-down')
+                    return
+                }
+
+            })
         });
+
+        // submit coupons
+        $('.btn-submit').click(()=> {
+            submitCoupons()
+        })
+        $('input[name="coupons"]').keypress(function (e) {
+            if (e.key == 'Enter') {
+                e.preventDefault();
+                submitCoupons()
+            }
+        });
+        
+        function submitCoupons(){
+            let indata = $('input[name="coupons"]');
+            if (indata.val().trim().length < 5) return console.log('type discount code ...')
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('checkCoupons') }}",
+                data: {
+                    data: indata.val().trim(),
+                    _token: '{{csrf_token()}}'
+                },
+                success: function(res) {
+                    console.log(res);
+                }
+            });
+        }
 
         function checkNull(){
             var array = JSON.parse(window.sessionStorage.getItem("cart")) || [];
@@ -234,9 +293,6 @@
             });
 
         }
-       
-
-        
 
         function updateItemTotal($element, quantity) {
             var price = +$element.parent().parent().find('.item-price').html().split(' ')[1];

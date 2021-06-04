@@ -23,6 +23,8 @@ Route::get('/restaurants', [RestaurantController::class, 'restaurants'])->name('
 
 // add order
 Route::post('add/record/order', [RestaurantController::class, 'pay_now'])->name('pay_now');
+// check Coupons
+Route::post('check/Coupons', [RestaurantController::class, 'checkCoupons'])->name('checkCoupons');
 
 
 // post location

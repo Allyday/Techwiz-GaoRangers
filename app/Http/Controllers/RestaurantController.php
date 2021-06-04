@@ -109,7 +109,7 @@ class RestaurantController extends Controller
 
     function restaurants(Request $request)
     {
-        if(isNull(session('Location'))){
+        if(!(session('Location'))){
             return redirect(route('home', ['location' => 'null']));
         }
         // get full data
@@ -270,5 +270,11 @@ class RestaurantController extends Controller
         }
 
         return 500;
+    }
+     
+    function checkCoupons(Request $request){
+        if($request->ajax()){
+            return $request->all();
+        }
     }
 }
