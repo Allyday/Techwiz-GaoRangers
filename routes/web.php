@@ -55,7 +55,7 @@ Route::get('auth/staff/register/only/hiencoday', [AuthController::class, 'regist
 
 // check middleware
 Route::group(['middleware' => ['AuthCheck']], function () {
-    // route for chat    
+    // route for chat
     // Route::get('chat/test', [ChatController::class, 'getMoreMess']);
 
     Route::get('chat/chat', [ChatController::class, 'index'])->name('get.chat');
@@ -107,3 +107,4 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     // load all order (orderStatus==6)
     Route::get('get/all/past/order', [PublicController::class, 'get_past_order']);
 });
+

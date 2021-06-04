@@ -1,9 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700|Give+You+Glory);
 
 /*------------------------------------------------------------------
-Theme Name: Foodpicky - Responsive Bootstrap Restaurants Directory template Online food ordering 
+Theme Name: Foodpicky - Responsive Bootstrap Restaurants Directory template Online food ordering
 Version: 1.0
-Author: codenpixel.com  
+Author: codenpixel.com
 Contact: info@codenpixel.com
 -------------------------------------------------------------------*/
 
@@ -443,7 +443,7 @@ input[type=number] {
 }
 
 .space-sm {
-    padding-bottom: 30;
+    padding-bottom: 30px;
     padding-top: 30px
 }
 
@@ -1095,7 +1095,7 @@ input[type=number] {
 
 
 /*============================================
-* Modal 
+* Modal
 =============================================*/
 
 .cart-addon .food-item {
@@ -1163,7 +1163,7 @@ button.close span {
 }
 
 
-/*-----------------------------------  
+/*-----------------------------------
 How it works section
 -----------------------------------*/
 
@@ -1220,7 +1220,7 @@ How it works section
 }
 
 
-/*-----------------------------------  
+/*-----------------------------------
 Steps
 -----------------------------------*/
 
@@ -1496,7 +1496,7 @@ Steps
 @media (min-width: 1200px) {}
 
 
-/*-----------------------------------  
+/*-----------------------------------
 App section
 -----------------------------------*/
 
@@ -2232,7 +2232,7 @@ a[aria-expanded=false] .fa-angle-down {
 
 /*==============================
 *
-* Rstaurants 
+* Rstaurants
 *
 ==============================*/
 

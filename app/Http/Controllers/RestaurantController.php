@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DiscountCode;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 
@@ -271,15 +272,47 @@ class RestaurantController extends Controller
 
         return 500;
     }
-     
+
     function checkCoupons(Request $request){
         if($request->ajax()){
-            // return $request->all();
-            $data = [
-                "type"=>1, // 0
-                'value'=> 10.86 // 'code expired'
-            ];
-            return $data;
+            $code = $request->code;
+            $subtotal = $request->subtotal;
+            $code = '10%discount';
+            $discount = DiscountCode::where('code',$code)->first();
+            if(isset($discount)){
+                if($discount->is_active == 0){
+                    $type = 0;
+                    $message = "Code khong ton tai!";
+                    $arr = array('type' => $type,'value'=>$message);
+                    return json_encode($arr);
+                }elseif ($discount->endDate<now()){
+                    $type = 0;
+                    $message = "Code da het han su dung!";
+                    $arr = array('type' => $type,'value'=>$message);
+                    return json_encode($arr);
+                }elseif ($discount->orderMin>$subtotal){
+                    $type = 0;
+                    $message = "Tong tien can tren ".$discount->orderMin.'$'." de su dung duoc ma nay!!!";
+                    $arr = array('type' => $type,'value'=>$message);
+                    return json_encode($arr);
+                }else{
+                    $type = $discount->discountType;
+                    if($type == 1){
+                        $discountAmount = $subtotal*$discount->percentDiscounted;
+                    }
+                    if($type == 2){
+                        $discountAmount = $discount->amountDiscounted;
+                    }
+                    $arr = array('type' => $type,'value'=>$discountAmount);
+                    return json_encode($arr);
+                }
+            }else{
+                $type = 0;
+                $message = "Code khong ton tai!";
+                $arr = array('type' => $type,'value'=>$message);
+                return json_encode($arr);
+            }
+//            return $request->all();
         }
     }
 }
