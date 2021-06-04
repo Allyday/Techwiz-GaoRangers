@@ -296,9 +296,11 @@ class PublicController extends Controller
                (" . $sql . " AND restaurants.id IN
                (SELECT restaurants.id FROM restaurants WHERE
                 restaurants.district IN (SELECT administrativedivisions.name from administrativedivisions WHERE administrativedivisions.id =
-                (SELECT administrativedivisions.nearBy_1 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')
-                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_2 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')
-                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_3 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')))" . $sql_group . ")";
+                (SELECT administrativedivisions.nearBy_1 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_2 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_3 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')))".$sql_group.")
+                UNION
+               (".$sql." ".$sql_group.")";
             }
             if (isset($quan) and is_null($phuong)) {
                 $sql_sort = "(" . $sql . " AND restaurants.id IN
@@ -307,13 +309,17 @@ class PublicController extends Controller
                (" . $sql . " AND restaurants.id IN
                (SELECT restaurants.id FROM restaurants WHERE
                 restaurants.district IN (SELECT administrativedivisions.name from administrativedivisions WHERE administrativedivisions.id =
-                (SELECT administrativedivisions.nearBy_1 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')
-                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_2 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')
-                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_3 FROM administrativedivisions WHERE administrativedivisions.name like '%" . $quan . "%')))" . $sql_group . ")";
+                (SELECT administrativedivisions.nearBy_1 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_2 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')
+                or administrativedivisions.id = (SELECT administrativedivisions.nearBy_3 FROM administrativedivisions WHERE administrativedivisions.name like '%".$quan."%')))".$sql_group.")
+                UNION
+                (".$sql." ".$sql_group.")";
             }
             if (is_null($quan) and is_null($phuong)) {
                 $sql_sort = $sql . " " . $sql_group;
             }
+        }else{
+            $sql_sort = $sql." ".$sql_group;
         }
         // paginate
         if ($page > 0) {
