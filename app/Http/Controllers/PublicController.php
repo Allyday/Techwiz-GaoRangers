@@ -18,27 +18,6 @@ use App\Http\Controllers\ChatController;
 
 class PublicController extends Controller
 {
-    // var $user;
-    // var $data = [];
-
-    // function __construct()
-    // {
-    //     $chatController = new ChatController();
-
-    //     if (session('User')) {
-
-    //         $user = User::where('id', session('User'))->first();
-
-    //         $this->user = $user;
-
-    //         if ($user['type'] == 2) {
-
-    //             $data = $chatController->loadChat($user['userName'], '_1admin1');
-
-    //             $this->data = $data;
-    //         }
-    //     }
-    // }
 
     function index()
     {
