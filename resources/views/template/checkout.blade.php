@@ -125,12 +125,6 @@
                                                 <td class="text-end">$2.00</td>
                                             </tr>
 
-                                            <!-- display percent discount-->
-                                            <tr style="display: none" class="percentDiscount">
-                                                <td>Percent discount</td>
-                                                <td class="text-end">$2.00</td>
-                                            </tr>
-
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -294,15 +288,8 @@
                         // error
                         $('.noticeCoupons').text(data.value);
                         $('.noticeCoupons').css('display','')
-                    }else if(data.type == 1){
-                        // percent
-                        $('.percentDiscount > td.text-end').text('-$'+data.value)
-                        $('.percentDiscount').css('display','')
-
-                        // update total
-                        $('#cart-total').text(`${total - data.value}`);
-
-                    }else if(data.type == 2){
+                        
+                    }else if(data.type == 2 || data.type == 1){
                         // amount
                         $('.amountDiscount>td.text-end').text('-$'+data.value)
                         $('.amountDiscount').css('display','')

@@ -284,17 +284,17 @@ class RestaurantController extends Controller
                     $type = 0;
                     $message = "Code khong ton tai!";
                     $arr = array('type' => $type,'value'=>$message);
-                    return json_encode($arr);
+                    return ($arr);
                 }elseif ($discount->endDate<now()){
                     $type = 0;
                     $message = "Code da het han su dung!";
                     $arr = array('type' => $type,'value'=>$message);
-                    return json_encode($arr);
+                    return ($arr);
                 }elseif ($discount->orderMin>$subtotal){
                     $type = 0;
                     $message = "Tong tien can tren ".$discount->orderMin.'$'." de su dung duoc ma nay!!!";
                     $arr = array('type' => $type,'value'=>$message);
-                    return json_encode($arr);
+                    return ($arr);
                 }else{
                     $type = $discount->discountType;
                     if($type == 1){
@@ -304,15 +304,14 @@ class RestaurantController extends Controller
                         $discountAmount = $discount->amountDiscounted;
                     }
                     $arr = array('type' => $type,'value'=>$discountAmount);
-                    return json_encode($arr);
+                    return ($arr);
                 }
             }else{
                 $type = 0;
                 $message = "Code khong ton tai!";
                 $arr = array('type' => $type,'value'=>$message);
-                return json_encode($arr);
+                return ($arr);
             }
-//            return $request->all();
         }
     }
 }
