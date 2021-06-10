@@ -330,7 +330,7 @@ class PublicController extends Controller
         $new_sql .= " LIMIT $page, 8";
 
         $table = DB::select($new_sql);
-        //        var_dump($new_sql);
+//                var_dump($new_sql);
         //         dd($new_sql);
         return $table;
     }
@@ -364,7 +364,7 @@ class PublicController extends Controller
         $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
         $str = preg_replace("/(Đ)/", 'D', $str);
         $str = preg_replace("/(\“|\”|\‘|\’|\,|\!|\&|\;|\@|\#|\%|\~|\`|\=|\_|\'|\]|\[|\}|\{|\)|\(|\+|\^)/", '-', $str);
-        $str = preg_replace("/( )/", '-', $str);
+        $str = preg_replace("/( )/", ' ', $str);
         return $str;
     }
 }

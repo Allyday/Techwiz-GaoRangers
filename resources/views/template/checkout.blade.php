@@ -257,7 +257,7 @@
                 submitCoupons()
             }
         });
-        
+
         function submitCoupons(){
             let indata = $('input[name="coupons"]');
             let subtotal = parseFloat($('#cart-subtotal').text());
@@ -293,11 +293,11 @@
                         // amount
                         $('.amountDiscount>td.text-end').text('-$'+data.value)
                         $('.amountDiscount').css('display','')
-                        
+
                         // update total
                         $('#cart-total').text(`${total - data.value}`);
                     }
-                    
+
                     // hide loader spinner
                     $('.text-xs-center').show();
                     $('#spinner').hide();
