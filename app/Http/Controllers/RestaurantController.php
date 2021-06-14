@@ -277,7 +277,7 @@ class RestaurantController extends Controller
         if($request->ajax()){
             $code = $request->code;
             $subtotal = $request->subtotal;
-            $code = '10%discount';
+            // $code = '10%discount';
             $discount = DiscountCode::where('code',$code)->first();
             if(isset($discount)){
                 if($discount->is_active == 0){
