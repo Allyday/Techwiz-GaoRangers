@@ -134,7 +134,7 @@
                     The code invalid?
                 </div>
     
-                <div class="w-100 py-1 font-weight-bold">
+                <div class="w-100 py-1 font-weight-bold" style="font-size: 18px">
                     Do you have any coupons?
                 </div>
                 <form id="formCoupons" method="POST">
@@ -145,14 +145,33 @@
                 
             </div>
 
-            <div class="form-group amountDiscount font-weight-bold" style="display: ">
+            <!-- test stripe -->
+            <form action="#" method="post" id="payment-form">
+                <div class="form-row mb-2">
+                  <label for="card-element mb-2 font-weight-bold" style="font-size: 18px; font-weight:600;color:black">
+                    Credit or debit card
+                  </label>
+                  <div id="card-element">
+                    <!-- A Stripe Element will be inserted here. -->
+                  </div>
+              
+                  <!-- Used to display Element errors. -->
+                  <div id="card-errors" role="alert"></div>
+                </div>
+              
+                {{-- <button class="btn btn-outline-success mt-2">Submit Payment</button> --}}
+              </form>
+            <!-- end test stripe -->
+
+            <div class="form-group amountDiscount" >
                 <!-- display amount discount-->
-                    <h4>Amount discount: -<small>$</small><span>0</span></h4>
+                    <h5 class="font-weight-bold">Amount discount: -<small>$</small><span>0</span></h5>
             </div>
 
-            <div class="form-group font-weight-bold">
-              <h3>Your total: <small>$</small><span class="total_confirm">0</span></h3>
+            <div class="form-group ">
+              <h4 class="font-weight-bold">Your total: <small>$</small><span class="total_confirm">0</span></h4>
             </div>
+            
         </div>
 
         <div class="modal-footer btn-footer-confirm" style="height: 100px">
@@ -177,6 +196,60 @@
 
     {{-- script --}}
     <script src="{{ asset('template/js/jquery.js') }}"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        $(document).ready(()=>{
+            var stripe = Stripe('pk_test_51J1ju6FvkgzTVA7am1fMCWOMRlbj4JSW7tl4LkmglUrYyayDkFiCO0YbCtfque6IIMBfATzCzoKaQhQ5yr5il8kP00hlvxSDbx');
+            var elements = stripe.elements();
+
+            // Custom styling can be passed to options when creating an Element.
+            var style = {
+            base: {
+                // Add your base input styles here. For example:
+                fontSize: '18px',
+                color: '#32325d',
+            },
+            };
+
+            // Create an instance of the card Element.
+            var card = elements.create('card', {style: style});
+
+            // Add an instance of the card Element into the `card-element` <div>.
+            card.mount('#card-element');
+
+            // Create a token or display an error when the form is submitted.
+            var form = document.getElementById('payment-form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                stripe.createToken(card).then(function(result) {
+                    if (result.error) {
+                        // Inform the customer that there was an error.
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        // Send the token to your server.
+                        stripeTokenHandler(result.token);
+                    }
+                });
+            });
+
+            function stripeTokenHandler(token) {
+                // Insert the token ID into the form so it gets submitted to the server
+                var form = document.getElementById('payment-form');
+                var hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripeToken');
+                hiddenInput.setAttribute('value', token.id);
+                form.appendChild(hiddenInput);
+
+                // Submit the form
+                form.submit();
+            }
+
+
+        })
+    </script>
     <script>
         $( document ).ready(function() {
             // console.log(parseFloat($('.amountDiscount>td>span').text()));
@@ -187,7 +260,7 @@
                 $('.total_confirm').text(total)
                 //make sure input's value = ''
                 $('input[name="coupons"]').val('')
-                $('.amountDiscount').text('0')
+                $('.amountDiscount>h5>span').text(0)
 
                 // console.log(total)
                 $('.modal-confirm').modal('show')
@@ -344,7 +417,7 @@
                             $('.noticeCoupons').text(data.value);
                             $('.noticeCoupons').css('display','')
 
-                            $('.amountDiscount>h4>span').text(0)
+                            $('.amountDiscount>h5>span').text(0)
                             
                             // update total
                             $('.total_confirm').text(`${total}`)
@@ -357,7 +430,7 @@
                             // 1px solid #
                             indata.css('border-color', 'green')
 
-                            $('.amountDiscount>h4>span').text(data.value)
+                            $('.amountDiscount>h5>span').text(data.value)
                             
                             // update total
                             $('.total_confirm').text(`${total - data.value}`)
@@ -459,7 +532,7 @@
                 let array = JSON.parse(window.sessionStorage.getItem("cart")) || [];
                 let subtotal = parseFloat($('#cart-subtotal').text());
 
-                let amountDiscount = parseFloat($('.amountDiscount>h4>span').text());
+                let amountDiscount = parseFloat($('.amountDiscount>h5>span').text());
                 let lastNumber = parseFloat((subtotal-amountDiscount).toFixed(2))
                 // console.log(lastNumber);
 
