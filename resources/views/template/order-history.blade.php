@@ -135,7 +135,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-color"><strong>Total</strong></td>
-                                            <td class="text-color text-end price item-price"><strong id="cart-total">${{ (int)$data['order']->totalDishPrice+2 }}</strong></td>
+                                            <td class="text-color text-end price item-price"><strong id="cart-total">${{ (float)$data['order']->totalDishPrice+2 }}</strong></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="text-color text-center cancel-btn-container">

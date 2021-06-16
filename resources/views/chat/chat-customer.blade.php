@@ -148,7 +148,7 @@
 
 
 
-    function messReceiver(username, time, image, mess){
+    function messReceiver(username, time, image, mess, prepend=false){
         var row = `<div class="direct-chat-msg" style=" max-width:80%; display:flex ">
                         <img style="width:40px; height: 40px; border-radius:50%" class="direct-chat-img" src="{{ asset('images/${image}') }}" alt="message user image">
                         <div class="direct-chat-text" style="background: #454d55; border-color:#454d55; margin-left:10px; padding: 5px 15px; border-radius:.3rem; color:#fff">
@@ -159,10 +159,15 @@
                         <span>${(new Date( Date.parse(time) )).toLocaleString('vi-VN')}</span>
                     </div>`;
 
-        document.getElementById('messChat').innerHTML += row;
+            let messChat = document.getElementById('messChat');
+            if(prepend){
+                messChat.innerHTML = row + messChat.innerHTML;
+            }else{
+                messChat.innerHTML += row;
+            }
     }
 
-    function messSender(username, time, image, mess){
+    function messSender(username, time, image, mess, prepend=false){
         let row = `<div class="direct-chat-msg right" style="margin-left:20%;flex-direction: row-reverse; max-width:80%; display:flex ; margin-bottom:5px ">
                         
                         <img style="width:40px; height: 40px; border-radius:50%" class="direct-chat-img" src="{{ asset('images/${image}') }}" alt="message user image">
@@ -175,7 +180,12 @@
                     </div>
                     `;
 
-        document.getElementById('messChat').innerHTML += row;
+            let messChat = document.getElementById('messChat');
+            if(prepend){
+                messChat.innerHTML = row + messChat.innerHTML;
+            }else{
+                messChat.innerHTML += row;
+            }
     }
 
     
@@ -213,10 +223,10 @@
             // add data in chat box
             data[0].forEach(ele => {
                 if (ele['sender_username'] == currentUser){
-                    messSender( currentUser, ele['created_at'], user_image, ele['message'])
+                    messSender( currentUser, ele['created_at'], user_image, ele['message'],prepend=true)
                 }
                 else {
-                    messReceiver( receiver, ele['created_at'], data[1]['picture'], ele['message'])
+                    messReceiver( receiver, ele['created_at'], data[1]['picture'], ele['message'], prepend=true)
                 }
             });
 

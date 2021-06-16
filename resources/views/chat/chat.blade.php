@@ -2,7 +2,24 @@
 
 @section('content')
 
+<!-- notification -->
+<div id="notificationMess" style="position: absolute;z-index:100; bottom:50px; right:50px; width:300px; overflow:auto; max-height:500px">
+
+    {{-- <div class="d-flex w-100 mt-3 border border-danger bg-dark" style="border-radius: 30px; padding:10px 10px 10px 25px">
+        <h1 hidden>username</h1>
+        <div onclick="deleteAndLoad(this, 'user001')" class="d-flex flex-column" style="flex:0.85; cursor: pointer;">
+            <span>New message from user_name 1</span>
+            <span>Click here to see</span>
+        </div>
+        <div onclick="deleteNotification(this)" class="deleteNotification d-flex justify-content-center align-items-center" style="flex:0.15; cursor: pointer;">
+            <span>X</span>
+        </div>
+    </div> --}}
+
+</div>
+<!-- end notification -->
 <div class="dark-mode">
+
     <div class="wrapper">
 
         <!-- chat content -->
@@ -19,7 +36,7 @@
 
                         <div class="card-header">
                             <h3 class="card-title" id="nameOfReceiver">Chat App</h3>
-                            <h3 hidden id="receiverUser"> @if ($user['type']==2) _1admin1 @endif </h3>
+                            <h3 hidden id="receiverUser"></h3>
 
                             <div class="card-tools">
                                 {{-- <span title="3 New Messages" class="badge badge-warning">3</span> --}}
@@ -104,7 +121,7 @@
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body p-0" style="max-height: 300px; overflow:auto">
+                        <div class="card-body p-0" style="height: 327px; overflow:auto">
                             <ul class="users-list clearfix" id="icon_user">
 
                                 @foreach ($users as $item)
@@ -193,23 +210,49 @@
             socket.on('private-channel:dataMessage', function (data){
                 // console.log('private-channel:',data);
                 let receiver = $('#receiverUser').text().trim();
+                let sender = data.sender_username;
 
+                let addNo = true;
+                
+                let listNotice = $('#notificationMess').children()
+                for (let index = 0; index < listNotice.length; index++) {
+                    const element = $(listNotice[index]).children()[0].innerText;
+                    if (sender==element){
+                        addNo = false;
+                    }
+                    console.log(element);
+                }
+                
+
+                // load data
                 $.ajax({
-                type:'GET',
-                url:`{{ route('get.receiver') }}?receiver=${receiver}`,
-                })
-                .done(function(user) {
-                     // append mess receiver here
-                    messReceiver(user['userName'], data['created_at'], user['picture'], data['message'])
-
-                })
-                .fail((jqXHR, ajaxOptions, thrownError) => {
-                    // alert('Something went wrong, try again later!');
+                        type:'GET',
+                        url:`http://localhost:8000/chat/get/${sender}?only=yes` ,
+                    })
+                    .done(function(user) {
+                        // console.log(user);
+                        if (receiver.length==0){
+                            if(addNo){
+                                addNotification(user.userName,user.firstName,user.lastName)
+                            }
+                        }else if(receiver!=sender){
+                            if(addNo){
+                                addNotification(user.userName,user.firstName,user.lastName)
+                            }
+                        }else{
+                            // append mess receiver here
+                            messReceiver(user['userName'], data['created_at'], user['picture'], data['message'])
+                        }
+                    })
+                    .fail((jqXHR, ajaxOptions, thrownError) => {
+                        // alert('Something went wrong, try again later!');
                 });
 
             })
 
         })
+
+       
     </script>
 
 
@@ -220,10 +263,36 @@
         const currentUser = "{{ $user['userName'] }}";
         var typeUser = "{{ $user['type'] }}";
 
+        // notification
 
+        const deleteNotification = (e)=>{
+            e.parentElement.remove()
+        }
+        
+        const deleteAndLoad = (e, username)=>{
+            e.parentElement.remove()
+            loadChatUser(username)
+        }
+        
+        const addNotification = (username, firstname, lastname)=>{
+            let row = `<div class="d-flex w-100 mt-3 border border-danger bg-dark" style="border-radius: 30px; padding:10px 10px 10px 25px">
+                            <h1 hidden>${username}</h1>
+                            <div onclick="deleteAndLoad(this,'${username}')" class="d-flex flex-column" style="flex: 0.85; cursor: pointer;">
+                                <span>New message from ${firstname+" "+lastname}</span>
+                                <span>Click here to see</span>
+                            </div>
+                            <div onclick="deleteNotification(this)" class="deleteNotification d-flex justify-content-center align-items-center" style="flex:0.15; cursor: pointer;">
+                                <span>X</span>
+                            </div>
+                        </div>`;
 
+            document.getElementById('notificationMess').innerHTML += row;
+        }
 
-        function messReceiver(username, time, image, mess){
+        //
+
+        function messReceiver(username, time, image, mess, prepend=false){
+            let messChat = document.getElementById('messChat');
             var row = `<div class="direct-chat-msg" style="max-width:80%">
                             <!-- /.direct-chat-infos -->
                             <img class="direct-chat-img" src="{{ asset('images/${image}') }}" alt="message user image">
@@ -237,10 +306,14 @@
                             <!-- /.direct-chat-text -->
                         </div>`;
 
-            document.getElementById('messChat').innerHTML += row;
+            if(prepend){
+                messChat.innerHTML = row + messChat.innerHTML;
+            }else{
+                messChat.innerHTML += row;
+            }
         }
    
-        function messSender(username, time, image, mess){
+        function messSender(username, time, image, mess, prepend=false){
             let row = `<div class="direct-chat-msg right" style="margin-left:20%;text-align:end">
                            
                             <!-- /.direct-chat-infos -->
@@ -255,8 +328,12 @@
                             </div>
                             <!-- /.direct-chat-text -->
                         </div>`;
-
-            document.getElementById('messChat').innerHTML += row;
+            let messChat = document.getElementById('messChat');
+            if(prepend){
+                messChat.innerHTML = row + messChat.innerHTML;
+            }else{
+                messChat.innerHTML += row;
+            }
         }
 
         function appendUser(img, username, firstname, lastname){
@@ -324,10 +401,10 @@
                 // add data in chat box
                 data[0].forEach(ele => {
                     if (ele['sender_username'] == currentUser){
-                        messSender( currentUser, ele['created_at'], user_image, ele['message'])
+                        messSender( currentUser, ele['created_at'], user_image, ele['message'], prepend=true)
                     }
                     else {
-                        messReceiver( receiver, ele['created_at'], data[1]['picture'], ele['message'])
+                        messReceiver( receiver, ele['created_at'], data[1]['picture'], ele['message'], prepend=true)
                     }
                 });
 
@@ -354,9 +431,10 @@
             // load data
             $.ajax({
                 type:'GET',
-                url:url_link+username ,
+                url:url_link+username+'?only=no' ,
             })
             .done(function(data) {
+                // console.log(data);
                
                 // handle box chat
                 $('.chat-box').removeAttr('hidden');

@@ -102,10 +102,10 @@
                                 @if (session('Location') && session('Location')!=null)
                                 <p class="text-xs-center">
                                      <a id="confirm_pay" href="javascript:void(0)" class="btn btn-outline-success btn-block">Next</a> 
-                                     {{-- <a id="pay_now" href="javascript:void(0)" class="btn btn-outline-success btn-block" data-toggle="modal" data-target=".modal-confirm">Pay now</a>  --}}
+                                     {{-- <a  href="javascript:void(0)" class="btn btn-outline-success btn-block" data-toggle="modal" data-target=".modal-confirm">Pay now</a>  --}}
                                 </p>
                                 @else
-                                <p class="text-xs-center"> <a data-toggle="modal" data-target="#locationModal" href="javascript:void(0)" class="btn btn-outline-success btn-block">Pay now</a> </p>
+                                <p class="text-xs-center"> <a data-toggle="modal" data-target="#locationModal" href="javascript:void(0)" class="btn btn-outline-success btn-block">Next</a> </p>
                                 @endif
                                 
                             </div>
@@ -130,7 +130,7 @@
 
         <div class="modal-body">
             <div class="form-group">
-                <div style="display:none" class=" noticeCoupons pt-1 font-weight-bold text-danger text-center">
+                <div style="display:none" class="noticeCoupons pt-1 font-weight-bold text-danger text-center">
                     The code invalid?
                 </div>
     
@@ -146,10 +146,10 @@
             </div>
 
             <!-- test stripe -->
-            <form action="#" method="post" id="payment-form">
+            <form id="payment-form">
                 <div class="form-row mb-2">
                   <label for="card-element mb-2 font-weight-bold" style="font-size: 18px; font-weight:600;color:black">
-                    Credit or debit card
+                    Credit or debit card <span class="text-danger">*</span>
                   </label>
                   <div id="card-element">
                     <!-- A Stripe Element will be inserted here. -->
@@ -159,7 +159,7 @@
                   <div id="card-errors" role="alert"></div>
                 </div>
               
-                {{-- <button class="btn btn-outline-success mt-2">Submit Payment</button> --}}
+                <button id="check_payment" style="display: none" class="btn btn-outline-success mt-2">Submit Payment</button>
               </form>
             <!-- end test stripe -->
 
@@ -176,7 +176,8 @@
 
         <div class="modal-footer btn-footer-confirm" style="height: 100px">
             <button style="margin-top: 20px" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button id="pay_now" style="margin-top: 20px" type="button" class="btn btn-success">Pay now</button>      
+            <button id='submit_payment' style="margin-top: 20px" type="button" class="btn btn-success">Pay now</button>      
+            {{-- <button disabled id="pay_now" style="margin-top: 20px" type="button" class="btn btn-success">Pay now</button>       --}}
 
             <!-- Loader spinner -->
             <div id="spinner" class="w-100" style="text-align: center">
@@ -204,11 +205,11 @@
 
             // Custom styling can be passed to options when creating an Element.
             var style = {
-            base: {
-                // Add your base input styles here. For example:
-                fontSize: '18px',
-                color: '#32325d',
-            },
+                base: {
+                    // Add your base input styles here. For example:
+                    fontSize: '18px',
+                    color: '#32325d',
+                },
             };
 
             // Create an instance of the card Element.
@@ -217,41 +218,91 @@
             // Add an instance of the card Element into the `card-element` <div>.
             card.mount('#card-element');
 
+            // submit when click submit_payment
+            $('#submit_payment').on('click', ()=>{
+                $('.btn-footer-confirm>button').hide();
+                $('#spinner').show();
+
+                $('#check_payment').click()
+                           
+            })
+
             // Create a token or display an error when the form is submitted.
             var form = document.getElementById('payment-form');
+            
             form.addEventListener('submit', function(event) {
-                event.preventDefault();
+                event.preventDefault();                
 
                 stripe.createToken(card).then(function(result) {
+                    var errorElement = document.getElementById('card-errors');
                     if (result.error) {
                         // Inform the customer that there was an error.
-                        var errorElement = document.getElementById('card-errors');
+                        errorElement.style.color = 'red';
+                        errorElement.style.margin = '10px 0';
                         errorElement.textContent = result.error.message;
+                        $('.btn-footer-confirm>button').show();
+                        $('#spinner').hide();
+                
                     } else {
+                        errorElement.style.display = 'none';
                         // Send the token to your server.
                         stripeTokenHandler(result.token);
                     }
                 });
             });
-
+            
             function stripeTokenHandler(token) {
-                // Insert the token ID into the form so it gets submitted to the server
-                var form = document.getElementById('payment-form');
-                var hiddenInput = document.createElement('input');
-                hiddenInput.setAttribute('type', 'hidden');
-                hiddenInput.setAttribute('name', 'stripeToken');
-                hiddenInput.setAttribute('value', token.id);
-                form.appendChild(hiddenInput);
-
+                
                 // Submit the form
-                form.submit();
+                let cardElement = elements.getElement('card');
+                let total = parseFloat( $('.total_confirm').text()) * 100;
+                
+
+                $.ajax({
+                    type: 'POST',
+                    url: `http://localhost:8005/charge`,
+                    data: {
+                        stripeToken: token.id,
+                        total: total
+                    },
+                    success: async function(res) {
+                         // confirm card
+                        const payload = await stripe
+                            .confirmCardPayment(res.clientSecret, {
+                                payment_method: {
+                                    card: cardElement,
+                                },
+                            })
+                            .then(({ paymentIntent }) => {
+                                // console.log(paymentIntent.id);
+                                postByAjax(pay_now());
+                            }).catch(error =>{
+                                $('.noticeCoupons').text('An error occurred! try again later.');
+                                $('.noticeCoupons').css('display','')
+
+                                $('.btn-footer-confirm>button').show();
+                                $('#spinner').hide();
+                            });
+                    },
+                    error: (err)=>{
+                        // error
+                        $('.noticeCoupons').text(err.responseJSON.message);
+                        $('.noticeCoupons').css('display','')
+                
+                        $('.btn-footer-confirm>button').show();
+                        $('#spinner').hide();
+                
+                    }
+                });
+
+
             }
 
 
-        })
-    </script>
-    <script>
-        $( document ).ready(function() {
+            // submit save orders in laravel 
+
+
+
             // console.log(parseFloat($('.amountDiscount>td>span').text()));
             // modal confirm 
             $('#confirm_pay').on('click', ()=>{
@@ -430,10 +481,10 @@
                             // 1px solid #
                             indata.css('border-color', 'green')
 
-                            $('.amountDiscount>h5>span').text(data.value)
+                            $('.amountDiscount>h5>span').text((data.value).toFixed(2))
                             
                             // update total
-                            $('.total_confirm').text(`${total - data.value}`)
+                            $('.total_confirm').text(`${(total - data.value).toFixed(2)}`)
                         }
                         
                         // hide loader spinner
@@ -558,11 +609,12 @@
                 });
             }
             // add order
-            $('#pay_now').on('click', () => {
-                postByAjax(pay_now());
+            // $('#pay_now').on('click', () => {
+                // postByAjax(pay_now());
+                // console.log('pay now');
                 // pay_now()
 
-            })
+            // })
     });
     </script>
     {{-- end script --}}

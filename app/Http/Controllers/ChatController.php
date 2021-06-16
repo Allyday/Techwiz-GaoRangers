@@ -66,7 +66,7 @@ class ChatController extends Controller
         if ($user['type'] == 1) {
 
             if ($request->ajax()) {
-                $data_us = User::where('type',2)->paginate(8);
+                $data_us = User::where('type', 2)->paginate(8);
 
                 $users = [];
                 foreach ($data_us as $item) {
@@ -75,7 +75,7 @@ class ChatController extends Controller
                 return $users;
             }
 
-            $data_us = User::where('type',2)->paginate(8);
+            $data_us = User::where('type', 2)->paginate(8);
 
             $users = [];
             foreach ($data_us as $item) {
@@ -107,11 +107,17 @@ class ChatController extends Controller
     function getOneUser($username, Request $request)
     {
         if ($request->ajax()) {
-            $userReceiver = User::where('userName', $username)->first();
+            if ($_GET['only'] == 'no') {
 
-            $data = $this->loadChat('_1admin1', $userReceiver['userName']);
+                $userReceiver = User::where('userName', $username)->first();
 
-            return [$data, $userReceiver];
+                $data = $this->loadChat('_1admin1', $userReceiver['userName']);
+
+                return [$data, $userReceiver];
+            } else {
+                $userReceiver = User::where('userName', $username)->first();
+                return $userReceiver;
+            }
         }
         return back();
     }
