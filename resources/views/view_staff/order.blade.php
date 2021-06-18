@@ -14,30 +14,32 @@
 
          </button>
       </form>
-      <form action="{{ route('search-order-status') }}" method="post" style="width:27%;float:left">
-         @csrf
-         @method('POST')
-         <input type="hidden" name="search" value="2">
-         <button type="submit" class="btn btn-warning fw-bold" id="btn-update">Pending
-         </button>
-
-      </form>
-      <form action="{{ route('search-order-status') }}" method="post" style="width:16%;float:left">
-         @csrf
-         @method('POST')
-         <input type="hidden" name="search" value="3">
-         <button type="submit" class="btn btn-secondary fw-bold" id="btn-update">Cooking
-         </button>
-
-      </form>
-      <form action="{{ route('search-order-status') }}" method="post" style="width:16%;float:left">
-         @csrf
-         @method('POST')
-         <input type="hidden" name="search" value="4">
-         <button type="submit" class="btn btn-primary fw-bold" id="btn-update">Ready!!!
-         </button>
-
-      </form>
+      <div style="width:60%;float: left;">
+         <form action="{{ route('search-order-status') }}" method="post" style="width:20%;float:right">
+            @csrf
+            @method('POST')
+            <input type="hidden" name="search" value="2">
+            <button type="submit" class="btn btn-warning fw-bold" id="btn-update">Pending
+            </button>
+   
+         </form>
+         <form action="{{ route('search-order-status') }}" method="post" style="width:20%;float:right">
+            @csrf
+            @method('POST')
+            <input type="hidden" name="search" value="3">
+            <button type="submit" class="btn btn-secondary fw-bold" id="btn-update">Cooking
+            </button>
+   
+         </form>
+         <form action="{{ route('search-order-status') }}" method="post" style="width:20%;float:right">
+            @csrf
+            @method('POST')
+            <input type="hidden" name="search" value="4">
+            <button type="submit" class="btn btn-primary fw-bold" id="btn-update">Ready!!!
+            </button>
+   
+         </form>
+      </div>
    </div>
    <table id="tableCustomer" class="table hover row-border" style="width:100%">
       <thead>
@@ -46,7 +48,7 @@
             <th>Orderer</th>
             <th>Status</th>
             <th>Time Create</th>
-            <th></th>
+            <th style="width:50px !important"></th>
          </tr>
       </thead>
       <tbody>
@@ -71,8 +73,8 @@
                echo getStatusOrderTag($row->orderStatus);
                @endphp</td>
             <td>{{ $row->timeCreated }}</td>
-            <td class="text-center" style="width:400px">
-               <form action="{{ route('update-order', $row->id) }}" method="post" style="float: left;width:70%">
+            <td class="text-center" style="width:200px">
+               <form action="{{ route('update-order', $row->id) }}" method="post" style="float: left;">
                   @csrf
                   @method('POST')
                   <input type="hidden" id="orderStatus" name="orderStatus" value="{{ $status }}">
@@ -120,7 +122,7 @@
                echo getStatusOrderTag($row->orderStatus);
                @endphp</td>
             <td>{{ $row->timeCreated }}</td>
-            <td class="text-center" style="width:400px">
+            <td class="text-center" style="width:200px">
                <form action="{{ route('update-order', $row->id) }}" method="post" style="float: left;width:70%">
                   @csrf
                   @method('POST')
@@ -139,7 +141,7 @@
                   echo getStatusOrderTag($row->orderStatus);
                   @endphp</td>
                <td>{{ $row->timeCreated }}</td>
-               <td class="text-center" style="width:400px">
+               <td class="text-center" style="width:200px">
                   <a style="float: left;margin:10px" href="{{ route('order-details', $row->id) }}" class="btn btn-primary"><i style="font-size: 20px" class="fas fa-search-dollar"></i></a>
                </td>
             </tr>

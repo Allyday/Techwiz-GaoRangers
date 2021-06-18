@@ -40,7 +40,7 @@
       </div>
       @endforeach
    </div>
-   <div class="col-10">
+   <div class="col-10" style="margin-top: 50px">
       <div class=" mt-6">
          <script>
             window.onload = function() {
